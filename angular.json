@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rester-rest": {
+    "felix": {
       "root": "",
       "sourceRoot": "client",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/rester-rest",
+            "outputPath": "dist/felix",
             "index": "client/index.html",
             "main": "client/main.ts",
             "polyfills": "client/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "rester-rest:build"
+            "browserTarget": "felix:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "rester-rest:build:production"
+              "browserTarget": "felix:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rester-rest:build"
+            "browserTarget": "felix:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         }
       }
     },
-    "rester-rest-e2e": {
+    "felix-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "rester-rest:serve"
+            "devServerTarget": "felix:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "rester-rest:serve:production"
+              "devServerTarget": "felix:serve:production"
             }
           }
         },
@@ -135,5 +135,5 @@
       }
     }
   },
-  "defaultProject": "rester-rest"
+  "defaultProject": "felix"
 }
