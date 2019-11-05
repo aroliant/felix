@@ -1,0 +1,9 @@
+$theme-colors: (
+  "primary": #009688,
+  "dark": #004d40,
+  "light": #e0f2f1
+);
+// Required
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";

@@ -7,11 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
-    pathMatch: 'full',
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        pathMatch: 'full'
       }
     ]
   },

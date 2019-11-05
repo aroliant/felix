@@ -1,0 +1,40 @@
+@font-face {
+  font-family: Roboto-Regular;
+  src: url(../fonts/roboto/Roboto-Regular.ttf);
+}
+@font-face {
+  font-family: Roboto-Medium;
+  src: url(../fonts/roboto/Roboto-Medium.ttf);
+}
+@font-face {
+  font-family: Roboto-Bold;
+  src: url(../fonts/roboto/Roboto-Bold.ttf);
+}
+@font-face {
+  font-family: Roboto-Black;
+  src: url(../fonts/roboto/Roboto-Black.ttf);
+}
+$font-size-base: 1.3rem;
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "./variables";
+
+// Global Defaults
+.MainContent {
+  margin-top: 67px;
+  margin-left: 200px;
+  width: calc(100% - 200px);
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+// Theme Customization (Bootstrap)
+* {
+  outline: none;
+  box-shadow: none;
+}
+input:focus {
+  box-shadow: none !important;
+}
