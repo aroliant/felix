@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
 
-  ngOnInit() {
   }
 
+  ngOnInit() {
+
+
+
+  }
+
+
+  openSearchOverlay() {
+    document.getElementById("HeaderTopSearch__contentOverlay").style.display = "block";
+  }
+  openSearchMenu() {
+    document.getElementById("HeaderTopSearch__content").style.display = "block";
+  }
 }

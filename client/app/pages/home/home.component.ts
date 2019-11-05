@@ -11,5 +11,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
+  // close search and overlay
+  closeSearchAndOverlay() {
+    document.getElementById("HeaderTopSearch__content").style.display = "none";
+    document.getElementById("HeaderTopSearch__contentOverlay").style.display = "none";
+  }
 
 }

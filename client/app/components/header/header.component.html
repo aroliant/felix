@@ -1,6 +1,12 @@
 <div class="HeaderTop shadow-sm">
-    <div class="form-group m-0 w-100">
-        <input type="text" class="form-control HeaderTop__search" name=""
-            placeholder="Search by file or folder name...">
+    <div class="form-group m-0 w-100 HeaderTopSearch d-flex flex-row align-items-center">
+        <img src="../../../assets/icons/search.svg" class="HeaderTopSearch__icon ml-4 mr-2" alt="">
+        <input type="text" class="form-control HeaderTop__search" (click)="openSearchMenu();openSearchOverlay();"
+            name="" placeholder="Search by file or folder name...">
+        <div class="HeaderTopSearch__content" id="HeaderTopSearch__content">
+            <ul class="list-unstyled">
+                <li>No results found containing ''</li>
+            </ul>
+        </div>
     </div>
 </div>

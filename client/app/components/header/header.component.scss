@@ -6,11 +6,29 @@
   height: 67px;
   display: flex;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   width: 100%;
+  background-color: #ffffff;
 }
 .HeaderTop__search {
   border: 0;
+}
+.HeaderTopSearch {
+  position: relative;
+}
+.HeaderTopSearch__content {
+  width: 400px;
+  background: white;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  padding: 1rem;
+  position: absolute;
+  top: 46px;
+  left: 38px;
+  display: none;
+}
+.HeaderTopSearch__icon {
+  height: 20px;
 }

@@ -10,5 +10,4 @@ export class DefaultComponent implements OnInit {
 
     ngOnInit() {
     }
-
 }

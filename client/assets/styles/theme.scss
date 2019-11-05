@@ -28,6 +28,7 @@ $font-size-base: 1.3rem;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 2rem;
+  position: relative;
 }
 
 // Theme Customization (Bootstrap)
@@ -37,4 +38,15 @@ $font-size-base: 1.3rem;
 }
 input:focus {
   box-shadow: none !important;
+}
+#HeaderTopSearch__contentOverlay {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000063;
 }
