@@ -1,0 +1,170 @@
+@import "../../../assets/styles/variables";
+
+.FileBrowser {
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.FileBrowserHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #d3d3d3;
+}
+.FileBrowserHeader__left {
+  color: map-get($theme-colors, "secondary");
+}
+.FileBrowserHeader__right {
+  color: map-get($theme-colors, "secondary");
+}
+
+.FileBrowser .table {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.FileBrowser table th,
+.FileBrowser table td {
+  border: none;
+}
+
+.FileBrowser__icon {
+  height: 25px;
+}
+
+.FileBrowser tr,
+.FileBrowser th {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #d3d3d3;
+}
+.FileBrowser tr:last-child {
+  border-bottom: none;
+}
+
+.FileBrowser__titlebar {
+  border-bottom: 1px solid #d3d3d3;
+  background-color: #fafafa;
+}
+
+.FileBrowser__selectcolumn {
+  text-align: center;
+  max-width: 50px;
+}
+.FileBrowser__namecolumn {
+  min-width: 50%;
+  text-align: left;
+}
+.FileBrowser__sizecolumn {
+  min-width: 10%;
+  text-align: left;
+}
+.FileBrowser__timecolumn {
+  min-width: 20%;
+  text-align: left;
+}
+.FileBrowser__optioncolumn {
+  min-width: 14%;
+  text-align: right;
+}
+.FileBrowserOption {
+  position: relative;
+  cursor: pointer;
+}
+.FileBrowserOption:hover .FileBrowserOption__menu {
+  display: block;
+}
+.FileBrowserOption__menu {
+  position: absolute;
+  right: 0;
+  top: 32px;
+  background: #ffffff;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  min-width: 200px;
+  text-align: center;
+  display: none;
+  z-index: 6;
+}
+.FileBrowserOption__menuitem {
+  padding: 0.2rem;
+  color: map-get($theme-colors, "secondary");
+  cursor: pointer;
+}
+.FileBrowserOption__menuitem:hover {
+  color: map-get($theme-colors, "primary");
+}
+
+/* The CheckboxContainer */
+.CheckboxContainer {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 0;
+}
+
+/* Hide the browser's default checkbox */
+.CheckboxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.CheckboxContainer__checkmark {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #ffffff;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  display: flex;
+}
+
+/* On mouse-over, add a grey background color */
+.CheckboxContainer:hover input ~ .CheckboxContainer__checkmark {
+  background-color: #fafafa;
+}
+
+/* When the checkbox is checked, add a blue background */
+.CheckboxContainer input:checked ~ .CheckboxContainer__checkmark {
+  background-color: #ffffff;
+  border: 1px solid map-get($theme-colors, "primary");
+}
+
+/* Create the CheckboxContainer__checkmark/indicator (hidden when not checked) */
+.CheckboxContainer__checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the CheckboxContainer__checkmark when checked */
+.CheckboxContainer input:checked ~ .CheckboxContainer__checkmark:after {
+  display: block;
+}
+
+/* Style the CheckboxContainer__checkmark/indicator */
+.CheckboxContainer .CheckboxContainer__checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid map-get($theme-colors, "primary");
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

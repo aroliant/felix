@@ -1,8 +1,107 @@
 <div class="MainContent">
   <app-breadcrumb></app-breadcrumb>
-  <p>
-    home works!
-  </p>
+
+  <div class="FileBrowser">
+    <div class="FileBrowserHeader small">
+      <strong class="FileBrowserHeader__left">present-working-directory</strong>
+      <div class="FileBrowserHeader__right">2 items</div>
+    </div>
+    <table class="table table-hover">
+      <thead class="FileBrowser__titlebar">
+        <tr>
+          <th scope="col" class="FileBrowser__selectcolumn">
+            <label class="CheckboxContainer">
+              <input type="checkbox" disabled>
+              <span class="CheckboxContainer__checkmark"></span>
+            </label>
+          </th>
+          <th scope="col" class="FileBrowser__namecolumn">Name</th>
+          <th scope="col" class="FileBrowser__sizecolumn">Size</th>
+          <th scope="col" class="FileBrowser__timecolumn">Last Modified</th>
+          <th scope="col" class="FileBrowser__optioncolumn"></th>
+        </tr>
+      </thead>
+      <tbody class="FileBrowser__content">
+        <tr>
+          <td class="FileBrowser__selectcolumn">
+            <label class="CheckboxContainer">
+              <input type="checkbox" checked="checked">
+              <span class="CheckboxContainer__checkmark"></span>
+            </label>
+          </td>
+          <td class="FileBrowser__namecolumn">
+            <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
+            Sample_folder
+          </td>
+          <td class="FileBrowser__sizecolumn">40B</td>
+          <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
+          <td class="FileBrowser__optioncolumn">
+            <div class="FileBrowserOption">
+              More
+              <div class="FileBrowserOption__menu">
+                <ul class="list-unstyled m-0">
+                  <li class="FileBrowserOption__menuitem">Rename</li>
+                  <li class="FileBrowserOption__menuitem">Delete</li>
+                </ul>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="FileBrowser__selectcolumn">
+            <label class="CheckboxContainer">
+              <input type="checkbox">
+              <span class="CheckboxContainer__checkmark"></span>
+            </label>
+          </td>
+          <td class="FileBrowser__namecolumn">
+            <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
+            Sample_folder
+          </td>
+          <td class="FileBrowser__sizecolumn">40B</td>
+          <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
+          <td class="FileBrowser__optioncolumn">
+            <div class="FileBrowserOption">
+              More
+              <div class="FileBrowserOption__menu">
+                <ul class="list-unstyled m-0">
+                  <li class="FileBrowserOption__menuitem">Rename</li>
+                  <li class="FileBrowserOption__menuitem">Delete</li>
+                </ul>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="FileBrowser__selectcolumn">
+            <label class="CheckboxContainer">
+              <input type="checkbox">
+              <span class="CheckboxContainer__checkmark"></span>
+            </label>
+          </td>
+          <td class="FileBrowser__namecolumn">
+            <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
+            index.html
+          </td>
+          <td class="FileBrowser__sizecolumn">40B</td>
+          <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
+          <td class="FileBrowser__optioncolumn">
+            <div class="FileBrowserOption">
+              More
+              <div class="FileBrowserOption__menu">
+                <ul class="list-unstyled m-0">
+                  <li class="FileBrowserOption__menuitem">Rename</li>
+                  <li class="FileBrowserOption__menuitem">Delete</li>
+                </ul>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
   <div id="HeaderTopSearch__contentOverlay" (click)="closeSearchAndOverlay()">
   </div>
 </div>

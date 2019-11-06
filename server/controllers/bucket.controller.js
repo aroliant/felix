@@ -132,4 +132,8 @@ export class BucketController {
     return res.send({ "success": true })
   }
 
+  static uploadObjects(req, res) {
+
+  }
+
 }
