@@ -5,7 +5,7 @@
     "ng": "ng",
     "client": "ng serve",
     "server": "babel-node app.js",
-    "server:dev": "nodemon --exec 'node_modules/.bin/babel-node app.js'",
+    "server:dev": "nodemon --exec 'babel-node app.js'",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
