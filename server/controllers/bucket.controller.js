@@ -104,21 +104,24 @@ export class BucketController {
   static searchObjects(req, res) {
 
     const params = req.body
-
+    const rootPath = config.ROOT_FOLDER + '/buckets/' + params.bucketName
     let objects = []
 
     const proecessObject = through2.obj(function (item, enc, next) {
       const object = {
+        name: item.path.replace(rootPath, ''),
         size: item.stats.size,
         createdAt: item.stats.ctime,
         modifiedAt: item.stats.mtime,
+        objectType: item.stats.isDirectory() == true ? 'folder' : 'file'
       }
       objects.push(object)
       next()
     })
 
-    klaw(config.ROOT_FOLDER + '/' + params.bucketName + params.path, { depthLimit: 0 })
+    klaw(rootPath + params.path, { depthLimit: 0 })
       .pipe(proecessObject)
+      .on('data', item => objects.push(item))
       .on('end', () => {
         return res.json({
           success: true,
