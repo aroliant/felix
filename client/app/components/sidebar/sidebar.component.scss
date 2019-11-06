@@ -7,7 +7,7 @@
   height: 100vh;
   overflow: hidden;
   width: 200px;
-  background-color: map-get($theme-colors, "dark");
+  background-color: map-get($theme-colors, "primary");
   z-index: 5;
 }
 .Sidebar__title {
