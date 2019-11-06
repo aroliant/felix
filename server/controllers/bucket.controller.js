@@ -103,4 +103,8 @@ export class BucketController {
     return res.json(bucketsDB.get('buckets').value());
   }
 
+  static uploadObjects(req, res) {
+
+  }
+
 }
