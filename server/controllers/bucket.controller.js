@@ -1,85 +1,106 @@
-import config from '../config'
-const low = require('lowdb')
-const FileSyncBuckets = require('lowdb/adapters/FileSync')
-const adapterBuckets = new FileSyncBuckets(config.ROOT_FOLDER+'/buckets.json')
-const dbBuckets = low(adapterBuckets)
-const uuidv4 = require('uuid/v4');
 
-dbBuckets.defaults({"buckets": []}).write()
+import low from 'lowdb'
+const FileSync = require('lowdb/adapters/FileSync')
+const uuidv4 = require('uuid/v4');
+const fs = require('fs')
+
+
+import config from '../config'
+
+const bucketsAdapter = new FileSync(config.ROOT_FOLDER + '/buckets.json')
+const bucketsDB = low(bucketsAdapter)
+
+bucketsDB.defaults({ "buckets": [] }).write()
 
 export class BucketController {
 
-    static createBucket(req, res) {
-        const id = uuidv4();
-        dbBuckets.get('buckets')
-        .push({
-            "bucketID" : id,
-            "name" : req.body.bucketName,
-            "size" : "0KB",
-            "items" : "0",
-            "database" : req.body.bucketName+".bucket.json",
-            "createdBy" : req.body.userID,
-            "createdAt" : Date()
-          })
-        .write()
-        const FileSyncBucket = require('lowdb/adapters/FileSync')
-        const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER+'/'+req.body.bucketName+'.bucket.json')
-        const dbBucket = low(adapterBucket)
-        dbBucket.set('bucket',{
-            "name": req.body.bucketName,
-            "bucketID" : id,
-            "size": "0KB",
-            "items": "0",
-            "database": req.body.bucketName+".bucket.json",
-            "createdBy": req.body.userID,
-            "createdAt": Date(),
-            "domains": [],
-            "settings": {
-              "endPoint": "",
-              "sslEnabled": false,
-              "fileListing": "restricted"
-            }
-          })
-        .write()
-        res.send({"success":true})
+  static createBucket(req, res) {
+    const id = uuidv4();
+
+    const bucket = {
+      "bucketID": id,
+      "name": req.body.bucketName,
+      "size": "0KB",
+      "items": "0",
+      "database": req.body.bucketName + ".bucket.json",
+      "createdBy": req.body.userID,
+      "createdAt": Date.now()
     }
 
-    static updateBucket(req, res) {
-      var data = {}
-      if(req.body.size != undefined)
-      data.size = req.body.size
-      if(req.body.items != undefined)
-      data.items = req.body.items
-        dbBuckets.get('buckets')
-        .find({ bucketID: req.body.bucketID })
-        .assign(data)
-        .write()
-        const FileSyncBucket = require('lowdb/adapters/FileSync')
-        const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER+'/'+req.body.database)
-        const dbBucket = low(adapterBucket)
-        dbBucket.get('bucket')
-        .assign(req.body)
-        .write()
-        res.send({"success":true})
-    }
+    bucketsDB.get('buckets')
+      .push(bucket)
+      .write()
+    const bucketAdapter = new FileSync(config.ROOT_FOLDER + '/' + bucket.name + '.bucket.json')
+    const bucketDB = low(bucketAdapter)
+    bucketDB.set('bucket', {
+      "name": req.body.bucketName,
+      "bucketID": id,
+      "size": "0KB",
+      "items": "0",
+      "database": bucket.database,
+      "createdBy": bucket.createdBy,
+      "createdAt": bucket.createdAt,
+      "domains": [],
+      "settings": {
+        "endPoint": "",
+        "sslEnabled": false,
+        "fileListing": "restricted"
+      }
+    })
+    .write()
 
-    static getAllBuckets(req, res) {
-      return res.json(dbBuckets.get('buckets').value());
-    }
+    fs.mkdir(config.ROOT_FOLDER+'/'+bucket.name,() => {});
 
-    static getBucket(req, res) {
-      return res.json(dbBuckets.get('buckets').find({ bucketID: req.params.bucketID }).value());
-    }
+    return res.send({ "success": true })
 
-    static deleteBucket(req, res) {
-        dbBuckets.get('buckets')
-        .remove({ bucketID: req.params.bucketID })
-        .write()
-        res.send({"success":true})
-    }
+  }
 
-    static getObjects(req, res) {
-        return res.json(dbBuckets.get('buckets').value());
-    }
+  static updateBucket(req, res) {
+    const bucket = req.body
+    const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucket.bucketID }).value())['name']
+    const FileSyncBucket = require('lowdb/adapters/FileSync')
+    const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER + '/' + bucketName+'.bucket.json')
+    const bucketDB = low(adapterBucket)
+    bucketDB.get('bucket')
+      .assign(bucket)
+      .write()
+    res.send({ "success": true })
+  }
+
+  static getAllBuckets(req, res) {
+    return res.json(bucketsDB.get('buckets').value());
+  }
+
+  static getBucket(req, res) {
+    const bucketID = req.params.bucketID
+    const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucketID }).value())['name']
+    const FileSyncBucket = require('lowdb/adapters/FileSync')
+    const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER + '/' + bucketName+'.bucket.json')
+    const bucketDB = low(adapterBucket)
+    return res.json(bucketDB.get('bucket').value());
+  }
+
+  static deleteBucket(req, res) {
+    const bucketID = req.params.bucketID
+    const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucketID }).value())['name']
+      fs.unlink(config.ROOT_FOLDER+'/'+bucketName+'.bucket.json', (err) => {
+        if (err) {
+          console.error(err)
+          return res.send({ "success": false })
+        }
+      })
+      bucketsDB.get('buckets')
+      .remove({ bucketID: bucketID })
+      .write()
+
+      fs.rmdir(config.ROOT_FOLDER+'/'+bucketName, () => { recursive: true });
+
+    return res.send({ "success": true })
+
+  }
+
+  static getObjects(req, res) {
+    return res.json(bucketsDB.get('buckets').value());
+  }
 
 }
