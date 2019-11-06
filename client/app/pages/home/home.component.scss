@@ -7,6 +7,20 @@
   width: 100%;
 }
 
+.FileBrowserHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #d3d3d3;
+}
+.FileBrowserHeader__left {
+  color: map-get($theme-colors, "secondary");
+}
+.FileBrowserHeader__right {
+  color: map-get($theme-colors, "secondary");
+}
+
 .FileBrowser .table {
   margin-bottom: 0;
   width: 100%;
@@ -29,6 +43,11 @@
 }
 .FileBrowser tr:last-child {
   border-bottom: none;
+}
+
+.FileBrowser__titlebar {
+  border-bottom: 1px solid #d3d3d3;
+  background-color: #fafafa;
 }
 
 .FileBrowser__selectcolumn {
