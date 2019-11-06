@@ -51,7 +51,7 @@ export class BucketController {
     })
       .write()
 
-    fs.mkdir(config.ROOT_FOLDER + '/' + bucket.name, () => { });
+    fs.mkdir(config.ROOT_FOLDER + '/buckets/' + bucket.name, () => { });
 
     return res.send({ "success": true })
 
@@ -95,7 +95,7 @@ export class BucketController {
       .remove({ bucketID: bucketID })
       .write()
 
-    fs.rmdir(config.ROOT_FOLDER + '/' + bucketName, () => { recursive: true });
+    fs.rmdir(config.ROOT_FOLDER + '/buckets/' + bucketName, () => { recursive: true });
 
     return res.send({ "success": true })
 
