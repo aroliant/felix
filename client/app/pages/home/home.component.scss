@@ -4,10 +4,52 @@
   border: 1px solid #d3d3d3;
   border-radius: 4px;
   overflow: hidden;
+  width: 100%;
 }
 
-.FileBrowser table thead th {
-  border-width: 1px;
+.FileBrowser .table {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.FileBrowser table th,
+.FileBrowser table td {
+  border: none;
+}
+
+.FileBrowser__icon {
+  height: 25px;
+}
+
+.FileBrowser tr,
+.FileBrowser th {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #d3d3d3;
+}
+.FileBrowser tr:last-child {
+  border-bottom: none;
+}
+
+.FileBrowser__selectcolumn {
+  text-align: center;
+  max-width: 50px;
+}
+.FileBrowser__namecolumn {
+  min-width: 50%;
+  text-align: left;
+}
+.FileBrowser__sizecolumn {
+  min-width: 10%;
+  text-align: left;
+}
+.FileBrowser__timecolumn {
+  min-width: 20%;
+  text-align: left;
+}
+.FileBrowser__optioncolumn {
+  min-width: 14%;
+  text-align: right;
 }
 
 /* The CheckboxContainer */
