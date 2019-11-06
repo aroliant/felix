@@ -1,6 +1,14 @@
 <div class="MainContent">
   <app-breadcrumb></app-breadcrumb>
 
+  <div class="FileBrowserControls">
+    <div>Dropdown</div>
+    <div>
+      <button class="btn btn-light my-2 mr-2">New Folder</button>
+      <button class="btn btn-primary my-2 mr-0">Upload Files</button>
+    </div>
+  </div>
+
   <div class="FileBrowser">
     <div class="FileBrowserHeader small">
       <strong class="FileBrowserHeader__left">present-working-directory</strong>
@@ -37,7 +45,8 @@
           <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
           <td class="FileBrowser__optioncolumn">
             <div class="FileBrowserOption">
-              More
+              <input id="menu03" type="checkbox" class="FileBrowserOption__openmenu">
+              <label for="menu03" class="FileBrowserOption__openmenu_toggle">More</label>
               <div class="FileBrowserOption__menu">
                 <ul class="list-unstyled m-0">
                   <li class="FileBrowserOption__menuitem">Rename</li>
@@ -62,7 +71,8 @@
           <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
           <td class="FileBrowser__optioncolumn">
             <div class="FileBrowserOption">
-              More
+              <input id="menu02" type="checkbox" class="FileBrowserOption__openmenu">
+              <label for="menu02" class="FileBrowserOption__openmenu_toggle">More</label>
               <div class="FileBrowserOption__menu">
                 <ul class="list-unstyled m-0">
                   <li class="FileBrowserOption__menuitem">Rename</li>
@@ -87,7 +97,8 @@
           <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
           <td class="FileBrowser__optioncolumn">
             <div class="FileBrowserOption">
-              More
+              <input id="menu01" type="checkbox" class="FileBrowserOption__openmenu">
+              <label for="menu01" class="FileBrowserOption__openmenu_toggle">More</label>
               <div class="FileBrowserOption__menu">
                 <ul class="list-unstyled m-0">
                   <li class="FileBrowserOption__menuitem">Rename</li>
