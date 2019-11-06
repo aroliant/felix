@@ -1,8 +1,55 @@
 <div class="MainContent">
   <app-breadcrumb></app-breadcrumb>
-  <p>
-    home works!
-  </p>
+
+  <div class="FileBrowser">
+    <table class="table table-hover">
+      <div class="FileBrowser__header">
+
+      </div>
+      <thead class="FileBrowser__titlebar">
+        <tr>
+          <th scope="col">
+            <label class="CheckboxContainer">
+              <input type="checkbox" disabled>
+              <span class="CheckboxContainer__checkmark"></span>
+            </label>
+          </th>
+          <th scope="col" colspan="2">Name</th>
+          <th scope="col">Size</th>
+          <th scope="col">Last Modified</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class="FileBrowser__content">
+        <tr>
+          <td>
+            <label class="CheckboxContainer">
+              <input type="checkbox" checked="checked">
+              <span class="CheckboxContainer__checkmark"></span>
+            </label>
+          </td>
+          <td colspan="2">Sample_folder</td>
+          <td>40B</td>
+          <td><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
+          <td>More</td>
+        </tr>
+        <tr>
+          <td>
+            <label class="CheckboxContainer">
+              <input type="checkbox">
+              <span class="CheckboxContainer__checkmark"></span>
+            </label>
+          </td>
+          <td colspan="2">Sample_folder</td>
+          <td>40B</td>
+          <td><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
+          <td>More</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
   <div id="HeaderTopSearch__contentOverlay" (click)="closeSearchAndOverlay()">
   </div>
 </div>
