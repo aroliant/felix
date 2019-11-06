@@ -12,10 +12,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
-
   }
+
+
 
 
   openSearchOverlay() {
@@ -24,4 +23,11 @@ export class HeaderComponent implements OnInit {
   openSearchMenu() {
     document.getElementById("HeaderTopSearch__content").style.display = "block";
   }
+
+  // close search and overlay
+  closeSearchAndOverlay() {
+    document.getElementById("HeaderTopSearch__content").style.display = "none";
+    document.getElementById("HeaderTopSearch__contentOverlay").style.display = "none";
+  }
+
 }

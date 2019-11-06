@@ -28,7 +28,21 @@
   top: 46px;
   left: 38px;
   display: none;
+  z-index: 8;
 }
 .HeaderTopSearch__icon {
   height: 20px;
+}
+
+#HeaderTopSearch__contentOverlay {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #00000063;
+  top: 67px;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 7;
 }
