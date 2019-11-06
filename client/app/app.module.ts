@@ -11,6 +11,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { BucketComponent } from './pages/buckets/bucket/bucket.component';
+import { UsersComponent } from './pages/users/users.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { BucketComponent } from './pages/buckets/bucket/bucket.component';
     HeaderComponent,
     FooterComponent,
     BreadcrumbComponent,
-    BucketComponent
+    BucketComponent,
+    UsersComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

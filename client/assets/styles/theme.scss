@@ -36,6 +36,9 @@
   outline: none;
   box-shadow: none;
 }
+a:hover {
+  text-decoration: none;
+}
 input:focus {
   box-shadow: none !important;
 }

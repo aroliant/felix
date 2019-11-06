@@ -16,3 +16,11 @@
 .Sidebar__title--sub {
   font-family: Roboto-Medium;
 }
+
+.SidebarLink {
+  padding: 10px;
+  cursor: pointer;
+}
+.SidebarLink:hover {
+  background-color: map-get($theme-colors, "dark");
+}

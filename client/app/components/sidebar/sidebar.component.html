@@ -1,14 +1,16 @@
-<div class="col-lg-2 Sidebar text-white">
-    <div class="Logo w-100 py-3" routerLink="/">
+<div class="col-lg-2 p-0 Sidebar text-white">
+    <a class="Logo w-100 p-3 text-white d-block" routerLink="/">
         <h1 class="Sidebar__title">Felix</h1>
         <h6 class="Sidebar__title--sub">File Manager</h6>
-    </div>
+    </a>
 
     <div class="SidebarLinks">
-        <details class="SidebarLink SidebarLink-dropdown">
-            <summary>Buckets</summary>
-            <div class="SidebarLink" routerLink="/buckets/bucket">bucket001</div>
+        <details class="SidebarLink-dropdown">
+            <summary class="SidebarLink">Buckets</summary>
+            <div class="SidebarLink pl-5" routerLink="/buckets/bucket">bucket001</div>
         </details>
+        <div class="SidebarLink" routerLink="/users">Users</div>
+        <div class="SidebarLink" routerLink="/settings">Settings</div>
     </div>
 
 

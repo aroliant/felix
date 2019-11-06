@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BucketComponent } from './pages/buckets/bucket/bucket.component';
+import { UsersComponent } from './pages/users/users.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -17,7 +19,15 @@ const routes: Routes = [
       {
         path: 'buckets/bucket',
         component: BucketComponent,
-      }
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+      },
     ]
   },
   {
