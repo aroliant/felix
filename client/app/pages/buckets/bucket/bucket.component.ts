@@ -12,4 +12,13 @@ export class BucketComponent implements OnInit {
   ngOnInit() {
   }
 
+  uploadFiles(event) {
+    console.log(event.target.files)
+  }
+
+  uploadFolders(event) {
+    console.log(event.target.files)
+  }
+
+
 }
