@@ -3,7 +3,6 @@
 .FileBrowser {
   border: 1px solid #d3d3d3;
   border-radius: 4px;
-  overflow: hidden;
   width: 100%;
 }
 
@@ -69,6 +68,34 @@
 .FileBrowser__optioncolumn {
   min-width: 14%;
   text-align: right;
+}
+.FileBrowserOption {
+  position: relative;
+  cursor: pointer;
+}
+.FileBrowserOption:hover .FileBrowserOption__menu {
+  display: block;
+}
+.FileBrowserOption__menu {
+  position: absolute;
+  right: 0;
+  top: 32px;
+  background: #ffffff;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  min-width: 200px;
+  text-align: center;
+  display: none;
+  z-index: 6;
+}
+.FileBrowserOption__menuitem {
+  padding: 0.2rem;
+  color: map-get($theme-colors, "secondary");
+  cursor: pointer;
+}
+.FileBrowserOption__menuitem:hover {
+  color: map-get($theme-colors, "primary");
 }
 
 /* The CheckboxContainer */
