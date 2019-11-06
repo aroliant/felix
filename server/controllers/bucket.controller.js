@@ -1,8 +1,9 @@
 
 import low from 'lowdb'
+import Busboy from 'busboy'
 const FileSync = require('lowdb/adapters/FileSync')
 const uuidv4 = require('uuid/v4');
-const fs = require('fs')
+const fs = require('fs-extra')
 const klaw = require('klaw')
 const path = require('path')
 const through2 = require('through2')
@@ -136,6 +137,37 @@ export class BucketController {
   }
 
   static uploadObjects(req, res) {
+
+    const fileName = req.params[0]
+    const absolutePath = config.ROOT_FOLDER + "/buckets/" + fileName
+
+    const busboy = new Busboy({ headers: req.headers })
+
+    fs.ensureFile(absolutePath, (err) => {
+
+      if (err) {
+        return res.json({
+          success: false,
+          message: "Unable to upload file"
+        })
+      }
+
+      busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+        file.pipe(fs.createWriteStream(absolutePath));
+      });
+
+      busboy.on('finish', function () {
+        return res.json({
+          success: true,
+          path: fileName
+        })
+      });
+
+      busboy.on('error', (err) => { console.log(err) })
+
+      return req.pipe(busboy)
+
+    })
 
   }
 

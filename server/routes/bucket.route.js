@@ -20,4 +20,4 @@ router.route('/objects/').post((req, res) => BucketController.searchObjects(req,
 router.route('/objects/').delete((req, res) => BucketController.deleteObject(req, res));
 
 
-router.route('/objects/upload').post((req, res) => BucketController.uploadObjects(req, res));
+router.route('/objects/*').put((req, res) => BucketController.uploadObjects(req, res));
