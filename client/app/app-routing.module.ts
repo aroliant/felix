@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
 import { HomeComponent } from './pages/home/home.component';
+import { BucketComponent } from './pages/buckets/bucket/bucket.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         pathMatch: 'full'
+      },
+      {
+        path: 'buckets/bucket',
+        component: BucketComponent,
       }
     ]
   },

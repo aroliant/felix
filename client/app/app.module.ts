@@ -10,6 +10,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { BucketComponent } from './pages/buckets/bucket/bucket.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     SidebarComponent,
     HeaderComponent,
     FooterComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    BucketComponent
   ],
   imports: [
     BrowserModule,
