@@ -3,47 +3,53 @@
 
   <div class="FileBrowser">
     <table class="table table-hover">
-      <div class="FileBrowser__header">
+      <!-- <div class="FileBrowser__header">
 
-      </div>
+      </div> -->
       <thead class="FileBrowser__titlebar">
         <tr>
-          <th scope="col">
+          <th scope="col" class="FileBrowser__selectcolumn">
             <label class="CheckboxContainer">
               <input type="checkbox" disabled>
               <span class="CheckboxContainer__checkmark"></span>
             </label>
           </th>
-          <th scope="col" colspan="2">Name</th>
-          <th scope="col">Size</th>
-          <th scope="col">Last Modified</th>
-          <th scope="col"></th>
+          <th scope="col" class="FileBrowser__namecolumn">Name</th>
+          <th scope="col" class="FileBrowser__sizecolumn">Size</th>
+          <th scope="col" class="FileBrowser__timecolumn">Last Modified</th>
+          <th scope="col" class="FileBrowser__optioncolumn"></th>
         </tr>
       </thead>
       <tbody class="FileBrowser__content">
         <tr>
-          <td>
+          <td class="FileBrowser__selectcolumn">
             <label class="CheckboxContainer">
               <input type="checkbox" checked="checked">
               <span class="CheckboxContainer__checkmark"></span>
             </label>
           </td>
-          <td colspan="2">Sample_folder</td>
-          <td>40B</td>
-          <td><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
-          <td>More</td>
+          <td class="FileBrowser__namecolumn">
+            <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
+            Sample_folder
+          </td>
+          <td class="FileBrowser__sizecolumn">40B</td>
+          <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
+          <td class="FileBrowser__optioncolumn">More</td>
         </tr>
         <tr>
-          <td>
+          <td class="FileBrowser__selectcolumn">
             <label class="CheckboxContainer">
               <input type="checkbox">
               <span class="CheckboxContainer__checkmark"></span>
             </label>
           </td>
-          <td colspan="2">Sample_folder</td>
-          <td>40B</td>
-          <td><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
-          <td>More</td>
+          <td class="FileBrowser__namecolumn">
+            <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
+            Sample_folder
+          </td>
+          <td class="FileBrowser__sizecolumn">40B</td>
+          <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr></td>
+          <td class="FileBrowser__optioncolumn">More</td>
         </tr>
       </tbody>
     </table>
