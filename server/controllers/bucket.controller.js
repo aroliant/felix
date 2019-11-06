@@ -3,7 +3,9 @@ import low from 'lowdb'
 const FileSync = require('lowdb/adapters/FileSync')
 const uuidv4 = require('uuid/v4');
 const fs = require('fs')
-
+const klaw = require('klaw')
+const path = require('path')
+const through2 = require('through2')
 
 import config from '../config'
 
@@ -47,9 +49,9 @@ export class BucketController {
         "fileListing": "restricted"
       }
     })
-    .write()
+      .write()
 
-    fs.mkdir(config.ROOT_FOLDER+'/'+bucket.name,() => {});
+    fs.mkdir(config.ROOT_FOLDER + '/' + bucket.name, () => { });
 
     return res.send({ "success": true })
 
@@ -59,7 +61,7 @@ export class BucketController {
     const bucket = req.body
     const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucket.bucketID }).value())['name']
     const FileSyncBucket = require('lowdb/adapters/FileSync')
-    const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER + '/' + bucketName+'.bucket.json')
+    const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
     const bucketDB = low(adapterBucket)
     bucketDB.get('bucket')
       .assign(bucket)
@@ -75,7 +77,7 @@ export class BucketController {
     const bucketID = req.params.bucketID
     const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucketID }).value())['name']
     const FileSyncBucket = require('lowdb/adapters/FileSync')
-    const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER + '/' + bucketName+'.bucket.json')
+    const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
     const bucketDB = low(adapterBucket)
     return res.json(bucketDB.get('bucket').value());
   }
@@ -83,24 +85,51 @@ export class BucketController {
   static deleteBucket(req, res) {
     const bucketID = req.params.bucketID
     const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucketID }).value())['name']
-      fs.unlink(config.ROOT_FOLDER+'/'+bucketName+'.bucket.json', (err) => {
-        if (err) {
-          console.error(err)
-          return res.send({ "success": false })
-        }
-      })
-      bucketsDB.get('buckets')
+    fs.unlink(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json', (err) => {
+      if (err) {
+        console.error(err)
+        return res.send({ "success": false })
+      }
+    })
+    bucketsDB.get('buckets')
       .remove({ bucketID: bucketID })
       .write()
 
-      fs.rmdir(config.ROOT_FOLDER+'/'+bucketName, () => { recursive: true });
+    fs.rmdir(config.ROOT_FOLDER + '/' + bucketName, () => { recursive: true });
 
     return res.send({ "success": true })
 
   }
 
-  static getObjects(req, res) {
-    return res.json(bucketsDB.get('buckets').value());
+  static searchObjects(req, res) {
+
+    const params = req.body
+
+    let objects = []
+
+    const proecessObject = through2.obj(function (item, enc, next) {
+      const object = {
+        size: item.stats.size,
+        createdAt: item.stats.ctime,
+        modifiedAt: item.stats.mtime,
+      }
+      objects.push(object)
+      next()
+    })
+
+    klaw(config.ROOT_FOLDER + '/' + params.bucketName + params.path, { depthLimit: 0 })
+      .pipe(proecessObject)
+      .on('end', () => {
+        return res.json({
+          success: true,
+          objects: objects
+        })
+      })
+
+  }
+
+  static deleteObjects(req, res) {
+    return res.send({ "success": true })
   }
 
 }
