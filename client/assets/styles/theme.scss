@@ -32,15 +32,15 @@
 
 // Theme Customization (Bootstrap)
 * {
-  outline: none;
-  box-shadow: none;
+  outline: none !important;
+  box-shadow: none !important;
 }
 a:hover {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 input:focus {
   box-shadow: none !important;
 }
 .btn:focus {
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
