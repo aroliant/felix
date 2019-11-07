@@ -2,15 +2,33 @@
   <app-breadcrumb></app-breadcrumb>
 
   <div class="FileBrowserControls">
-    <div>Dropdown</div>
-    <div>
-      <button class="btn btn-light my-2 mr-2">New Folder</button>
-      <button class="btn btn-primary my-2 mr-0">
-        <input type="file" multiple (change)="uploadFiles($event)"  />Upload Files</button>
-
-      <button class="btn btn-primary my-2 mr-0">
-        <input type="file" webkitdirectory mozdirectory multiple (change)="uploadFolders($event)" />Upload
-        Folders</button>
+    <div class="row w-100 my-3">
+      <div class="col-lg-4">
+        <button class="btn btn-light mr-2">New Folder</button>
+      </div>
+      <div class="col-lg-4">
+        <div class="input-group">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" multiple (change)="uploadFiles($event)" id="uploadFiles">
+            <label class="custom-file-label" for="uploadFiles">Choose file</label>
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload Files</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="input-group">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" webkitdirectory mozdirectory multiple
+              (change)="uploadFolders($event)" id="uploadFolders">
+            <label class="custom-file-label" for="uploadFolders">Choose file</label>
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload Folders</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
