@@ -15,11 +15,11 @@
           <button class="btn btn-primary UploadActions mr-3" type="button">Actions (0)
           </button>
 
-          <button class="btn btn-primary UploadFile mr-3" type="button">Upload Files
+          <button class="btn btn-primary UploadFile mr-3" type="button" (click)="openUploadFilesModal()">Upload Files
             <input type="file" class="UploadFile__input" multiple (change)="uploadFiles($event)">
           </button>
 
-          <button class="btn btn-primary UploadFolder" type="button">Upload Folders
+          <button class="btn btn-primary UploadFolder" type="button" (click)="openUploadFoldersModal()">Upload Folders
             <input type="file" class="UploadFolder__input" webkitdirectory mozdirectory multiple
               (change)="uploadFolders($event)">
           </button>
@@ -131,6 +131,129 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Upload Files-->
+<div class="modal" id="UploadFilesModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Upload File</h5>
+        </div>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeUploadFilesModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-2">Select whether to set this file to private or publicly readable:</p>
+        <div class="d-flex flex-row mb-3">
+          <div class="form-check mr-3">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+              checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Private
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              Public
+            </label>
+          </div>
+        </div>
+
+        <div class="UploadReadyFiles">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="UploadReadyFiles__name">Name</th>
+                <th class="UploadReadyFiles__size">Size</th>
+                <th class="UploadReadyFiles__file">Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="UploadReadyFiles__name"> Screenshot 2019-11-07 at 1.01.28 PM.png </td>
+                <td class="UploadReadyFiles__size">42 KB</td>
+                <td class="UploadReadyFiles__file">image/png</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="w-100 text-left">
+          <button type="button" class="btn btn-primary mr-3" (click)="closeUploadFilesModal();">Upload File</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="closeUploadFilesModal();">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Upload Folders-->
+<div class="modal" id="UploadFoldersModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Upload Folders</h5>
+        </div>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          (click)="closeUploadFoldersModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-2">Select whether to set this file to private or publicly readable:</p>
+        <div class="d-flex flex-row mb-3">
+          <div class="form-check mr-3">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+              checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Private
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              Public
+            </label>
+          </div>
+        </div>
+
+        <div class="UploadReadyFiles">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="UploadReadyFiles__name">Name</th>
+                <th class="UploadReadyFiles__size">Size</th>
+                <th class="UploadReadyFiles__file">Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="UploadReadyFiles__name">sample folder</td>
+                <td class="UploadReadyFiles__size">42 KB</td>
+                <td class="UploadReadyFiles__file">directory</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="w-100 text-left">
+          <button type="button" class="btn btn-primary mr-3" (click)="closeUploadFoldersModal();">Upload Folders</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="closeUploadFoldersModal();">Cancel</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

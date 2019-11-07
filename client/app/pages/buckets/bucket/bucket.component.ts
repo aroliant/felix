@@ -70,5 +70,19 @@ export class BucketComponent implements OnInit {
     }
   }
 
+  openUploadFilesModal() {
+    document.getElementById("UploadFilesModal").style.display = "block";
+  }
+  closeUploadFilesModal() {
+    document.getElementById("UploadFilesModal").style.display = "none";
+  }
+
+  openUploadFoldersModal() {
+    document.getElementById("UploadFoldersModal").style.display = "block";
+  }
+  closeUploadFoldersModal() {
+    document.getElementById("UploadFoldersModal").style.display = "none";
+  }
+
 
 }

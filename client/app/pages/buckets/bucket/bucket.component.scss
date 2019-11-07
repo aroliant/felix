@@ -1,6 +1,7 @@
 @import "../../../../assets/styles/variables";
 
-.FileBrowser {
+.FileBrowser,
+.UploadReadyFiles {
   border: 1px solid #d3d3d3;
   border-radius: 4px;
   width: 100%;
@@ -19,34 +20,8 @@
 .FileBrowserHeader__right {
   color: map-get($theme-colors, "secondary");
 }
-
-.FileBrowser .table {
-  margin-bottom: 0;
-  width: 100%;
-}
-
-.FileBrowser table th,
-.FileBrowser table td {
-  border: none;
-}
-
 .FileBrowser__icon {
   height: 25px;
-}
-
-.FileBrowser tr,
-.FileBrowser th {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #d3d3d3;
-}
-.FileBrowser tr:last-child {
-  border-bottom: none;
-}
-
-.FileBrowser__titlebar {
-  border-bottom: 1px solid #d3d3d3;
-  background-color: #fafafa;
 }
 
 .FileBrowser__selectcolumn {
@@ -77,13 +52,13 @@
   position: absolute;
   background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
-  opacity: .001;
-  transition: transform .2s ease-in-out,opacity .2s ease-in-out,width .2s ease-in-out,height .2s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0.001;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out, width 0.2s ease-in-out, height 0.2s ease-in-out;
   border: 1px solid #dfdfdf;
-  border-top: 1px solid #dfdfdf,10px solid #fff;
+  border-top: 1px solid #dfdfdf, 10px solid #fff;
   margin: 0 0 25px -6px;
-  transform: translate3d(calc(-50% + .5px),-10px,0);
+  transform: translate3d(calc(-50% + 0.5px), -10px, 0);
   -webkit-backface-visibility: hidden;
   pointer-events: none;
   z-index: 10;
@@ -113,7 +88,7 @@
 .FileBrowserOption__openmenu:checked ~ .FileBrowserOption__menu {
   display: block;
   opacity: 1;
-  transition: transform .2s ease-in-out,opacity .2s ease-in-out,width .2s ease-in-out,height .2s ease-in-out;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out, width 0.2s ease-in-out, height 0.2s ease-in-out;
 }
 
 .FileBrowserControls {
@@ -139,6 +114,18 @@
   cursor: pointer;
 }
 
+.UploadReadyFiles__name {
+  width: 70%;
+  text-align: left;
+}
+.UploadReadyFiles__size {
+  width: 10%;
+  text-align: left;
+}
+.UploadReadyFiles__file {
+  width: 20%;
+  text-align: left;
+}
 /* The CheckboxContainer */
 .CheckboxContainer {
   display: block;

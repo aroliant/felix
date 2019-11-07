@@ -29,3 +29,32 @@
   padding: 2rem;
   position: relative;
 }
+
+table {
+  margin-bottom: 0 !important;
+  width: 100%;
+}
+
+table th,
+table td {
+  border: none !important;
+}
+
+tr,
+th {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #d3d3d3 !important;
+}
+tr:last-child {
+  border-bottom: none !important;
+}
+
+thead {
+  border-bottom: 1px solid #d3d3d3 !important;
+  background-color: #fafafa !important;
+}
+
+.modal {
+  background-color: #00000047;
+}
