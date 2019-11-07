@@ -13,6 +13,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { BucketComponent } from './pages/buckets/bucket/bucket.component';
 import { UsersComponent } from './pages/users/users.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { BucketsComponent } from './pages/buckets/buckets.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
     BreadcrumbComponent,
     BucketComponent,
     UsersComponent,
-    SettingsComponent
+    SettingsComponent,
+    BucketsComponent
   ],
   imports: [
     BrowserModule,

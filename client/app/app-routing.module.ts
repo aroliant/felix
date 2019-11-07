@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { BucketComponent } from './pages/buckets/bucket/bucket.component';
 import { UsersComponent } from './pages/users/users.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { BucketsComponent } from './pages/buckets/buckets.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         pathMatch: 'full'
+      },
+      {
+        path: 'buckets',
+        component: BucketsComponent,
       },
       {
         path: 'buckets/bucket',
