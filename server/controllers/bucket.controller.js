@@ -7,6 +7,7 @@ const fs = require('fs-extra')
 const klaw = require('klaw')
 const path = require('path')
 const through2 = require('through2')
+var rimraf = require("rimraf");
 
 import config from '../config'
 
@@ -96,7 +97,7 @@ export class BucketController {
       .remove({ bucketID: bucketID })
       .write()
 
-    fs.rmdir(config.ROOT_FOLDER + '/buckets/' + bucketName, () => { recursive: true });
+    rimraf(config.ROOT_FOLDER + '/buckets/' + bucketName,()=>{})
 
     return res.send({ "success": true })
 
@@ -133,6 +134,11 @@ export class BucketController {
   }
 
   static deleteObjects(req, res) {
+    var params = req.body;
+    params.path.forEach(object => {
+    rimraf(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + object, function () {});
+    });
+
     return res.send({ "success": true })
   }
 
