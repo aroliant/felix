@@ -16,7 +16,6 @@
 }
 // $font-size-base: 1.3rem;
 
-@import "../../../node_modules/bootstrap/scss/bootstrap";
 @import "./variables";
 
 // Global Defaults
@@ -43,5 +42,5 @@ input:focus {
   box-shadow: none !important;
 }
 .btn:focus {
-  box-shadow: none;
+  box-shadow: none!important;
 }

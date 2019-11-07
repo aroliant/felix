@@ -3,7 +3,4 @@ $theme-colors: (
   "dark": #285f8c,
   "light": #b6d7f3
 );
-// Required
-@import "../../../node_modules/bootstrap/scss/functions";
-@import "../../../node_modules/bootstrap/scss/variables";
-@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/bootstrap";

@@ -4,14 +4,14 @@
   <div class="FileBrowserControls">
     <div class="row w-100 my-3 mx-0">
       <div class="col-lg-4 p-0">
-        <button class="btn btn-light mr-2">New Folder</button>
+        <button class="btn btn-outline-primary mr-2">New Folder</button>
       </div>
       <div class="col-lg-8 text-right p-0">
-        <button class="btn btn-outline-secondary UploadFile mr-3" type="button">Upload Files
+        <button class="btn btn-primary UploadFile mr-3" type="button">Upload Files
           <input type="file" class="UploadFile__input" multiple (change)="uploadFiles($event)">
         </button>
 
-        <button class="btn btn-outline-secondary UploadFolder" type="button">Upload Folders
+        <button class="btn btn-primary UploadFolder" type="button">Upload Folders
           <input type="file" class="UploadFolder__input" webkitdirectory mozdirectory multiple
             (change)="uploadFolders($event)">
         </button>
