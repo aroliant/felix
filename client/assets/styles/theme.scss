@@ -18,7 +18,7 @@
 
 @import "./variables";
 
-// Global Defaults
+// Theme Customization (Bootstrap)
 .MainContent {
   margin-top: 67px;
   margin-left: 200px;
@@ -28,19 +28,4 @@
   overflow-y: auto;
   padding: 2rem;
   position: relative;
-}
-
-// Theme Customization (Bootstrap)
-* {
-  outline: none !important;
-  box-shadow: none !important;
-}
-a:hover {
-  text-decoration: none !important;
-}
-input:focus {
-  box-shadow: none !important;
-}
-.btn:focus {
-  box-shadow: none !important;
 }

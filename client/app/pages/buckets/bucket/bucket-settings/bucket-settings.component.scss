@@ -1,0 +1,24 @@
+@import "../../../../../assets/styles/variables";
+
+.BucketSettings__item {
+  display: flex;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #d3d3d3;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+}
+
+.BucketSettings__item--column {
+  flex-direction: column;
+}
+
+.BucketEndpoint {
+  background-color: #fafafa;
+  border-radius: 4px;
+  overflow: hidden;
+  display: inline-flex;
+  padding: 5px;
+  align-items: center;
+}

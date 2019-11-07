@@ -4,3 +4,18 @@ $theme-colors: (
   "light": #b6d7f3
 );
 @import "../../../node_modules/bootstrap/scss/bootstrap";
+
+// Boostrap defaults overide
+* {
+  outline: none;
+  box-shadow: none;
+}
+a:hover {
+  text-decoration: none;
+}
+input:focus {
+  box-shadow: none;
+}
+.btn:focus {
+  box-shadow: none;
+}

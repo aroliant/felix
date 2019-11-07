@@ -14,6 +14,7 @@ import { BucketComponent } from './pages/buckets/bucket/bucket.component';
 import { UsersComponent } from './pages/users/users.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { BucketsComponent } from './pages/buckets/buckets.component';
+import { BucketSettingsComponent } from './pages/buckets/bucket/bucket-settings/bucket-settings.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BucketsComponent } from './pages/buckets/buckets.component';
     BucketComponent,
     UsersComponent,
     SettingsComponent,
-    BucketsComponent
+    BucketsComponent,
+    BucketSettingsComponent
   ],
   imports: [
     BrowserModule,

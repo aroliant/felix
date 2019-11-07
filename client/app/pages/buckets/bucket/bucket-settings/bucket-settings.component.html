@@ -1,0 +1,69 @@
+<div class="MainContent">
+    <div class="container">
+        <app-breadcrumb></app-breadcrumb>
+
+        <div class="BucketSettings">
+            <div class="BucketSettings__item">
+                <div>
+                    <h5 class="m-0">File Listing</h5>
+                    <p class="m-0">
+                        <strong>Restricted:</strong>
+                        Only users who connect to this Space using access keys can list the contents.
+                    </p>
+                </div>
+                <button class="btn btn-outline-secondary">Edit</button>
+            </div>
+            <div class="BucketSettings__item">
+                <div>
+                    <h5 class="m-0">CDN (Content Delivery Network)</h5>
+                    <p class="m-0">
+                        <strong>Enabled:</strong>
+                        Your Space is being served via the content delivery network.
+                    </p>
+                </div>
+                <div>
+                    <button class="btn btn-outline-light mr-3">Purge Cache</button>
+                    <button class="btn btn-outline-secondary">Edit</button>
+                </div>
+            </div>
+            <div class="BucketSettings__item">
+                <div>
+                    <h5 class="m-0">CORS Configurations</h5>
+                    <p class="m-0">
+                        Rules are processed in order from top to bottom until there is a match - drag and drop rules to
+                        reorder.
+                    </p>
+                </div>
+                <button class="btn btn-outline-secondary">Add</button>
+            </div>
+            <div class="BucketSettings__item BucketSettings__item--column">
+                <div>
+                    <h5 class="m-0">Endpoint</h5>
+                    <p class="m-0">
+                        <strong>Restricted:</strong>
+                        The endpoint is used to configure 3rd party clients, which may refer to it by other names such
+                        as the S3 Endpoint or Server.
+                    </p>
+                </div>
+                <div class="w-100 text-left mt-2">
+                    <div class="BucketEndpoint">
+                        <span class="mx-2">nyc3.digitaloceanspaces.com</span>
+                        <button class="btn btn-light">Copy</button>
+                    </div>
+                </div>
+            </div>
+            <div class="BucketSettings__item">
+                <div>
+                    <h5 class="m-0">Delete this bucket</h5>
+                    <p class="m-0">
+                        This will schedule your space to be deleted. Your space and all associated objects will be
+                        permanently destroyed, scrubbed, and irretrievable after the deletion period. You will NOT be
+                        billed for the Space from the time you requested a delete to time the Space and its contents are
+                        actually deleted.
+                    </p>
+                </div>
+                <button class="btn btn-outline-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
