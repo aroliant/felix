@@ -19,6 +19,8 @@ import { BucketsComponent } from './pages/buckets/buckets.component';
 import { BucketSettingsComponent } from './pages/buckets/bucket/bucket-settings/bucket-settings.component';
 
 import { MainService } from './services/main.service';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { CreateBucketComponent } from './pages/buckets/create-bucket/create-bucket.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { MainService } from './services/main.service';
     UsersComponent,
     SettingsComponent,
     BucketsComponent,
-    BucketSettingsComponent
+    BucketSettingsComponent,
+    SignInComponent,
+    CreateBucketComponent
   ],
   imports: [
     BrowserModule,
