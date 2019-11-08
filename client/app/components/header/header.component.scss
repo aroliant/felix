@@ -46,3 +46,26 @@
   height: 100vh;
   z-index: 7;
 }
+
+.HeaderTopAccount__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+}
+.HeaderTopAccount__icon:hover {
+  cursor: pointer;
+}
+
+.HeaderTopAccount:hover {
+  position: relative;
+}
+
+.HeaderTopAccount__menu {
+  display: none;
+  position: absolute;
+  right: 10px;
+  min-width: 130px;
+}
+.HeaderTopAccount:hover .HeaderTopAccount__menu {
+  display: block;
+}

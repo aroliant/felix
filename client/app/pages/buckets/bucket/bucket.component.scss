@@ -50,31 +50,18 @@
 
 .FileBrowserOption__menu {
   position: absolute;
+  right: 0;
+  min-width: 130px;
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  opacity: 0.001;
-  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out, width 0.2s ease-in-out, height 0.2s ease-in-out;
   border: 1px solid #dfdfdf;
   border-top: 1px solid #dfdfdf, 10px solid #fff;
-  margin: 0 0 25px -6px;
-  transform: translate3d(calc(-50% + 0.5px), -10px, 0);
-  -webkit-backface-visibility: hidden;
   pointer-events: none;
   z-index: 10;
-  left: 50%;
-  top: calc(50% + 22px);
-  min-width: 150px;
   display: none;
 }
-.FileBrowserOption__menuitem {
-  padding: 0.2rem;
-  color: map-get($theme-colors, "secondary");
-  cursor: pointer;
-}
-.FileBrowserOption__menuitem:hover {
-  color: map-get($theme-colors, "primary");
-}
+
 .FileBrowserOption__openmenu {
   position: absolute;
   width: 100%;
