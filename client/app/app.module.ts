@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,8 @@ import { UsersComponent } from './pages/users/users.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { BucketsComponent } from './pages/buckets/buckets.component';
 import { BucketSettingsComponent } from './pages/buckets/bucket/bucket-settings/bucket-settings.component';
+
+import { MainService } from './services/main.service';
 
 @NgModule({
   declarations: [
@@ -35,10 +38,11 @@ import { BucketSettingsComponent } from './pages/buckets/bucket/bucket-settings/
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

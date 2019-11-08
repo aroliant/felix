@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MainService } from 'client/app/services/main.service';
 
 @Component({
   selector: 'app-bucket',
@@ -9,10 +11,29 @@ export class BucketComponent implements OnInit {
 
   bucketName = 'aroliant'
   currentPath = '/'
+  bucket = {}
+  objects = []
+  filteredObjects = []
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private mainService: MainService) { }
 
   ngOnInit() {
+    this.route.params.subscribe((data) => {
+      this.bucketName = data.bucketName;
+      this.mainService.getBucket(this.bucketName).subscribe((res: any) => {
+        if (res.success) {
+          this.bucket = res.bucket;
+          var filters = {
+            bucketName: this.bucket['bucketName'],
+            path: '/'
+          }
+          this.mainService.searchObjects(filters).subscribe((res: any) => {
+            this.objects = res.objects
+            this.filteredObjects = this.objects
+          })
+        }
+      });
+    })
   }
 
   uploadFiles(event) {

@@ -23,7 +23,7 @@ export class BucketController {
 
     const bucket = {
       "bucketID": id,
-      "name": req.body.bucketName,
+      "bucketName": req.body.bucketName,
       "size": "0KB",
       "items": "0",
       "database": req.body.bucketName + ".bucket.json",
@@ -34,10 +34,10 @@ export class BucketController {
     bucketsDB.get('buckets')
       .push(bucket)
       .write()
-    const bucketAdapter = new FileSync(config.ROOT_FOLDER + '/' + bucket.name + '.bucket.json')
+    const bucketAdapter = new FileSync(config.ROOT_FOLDER + '/' + bucket.bucketName + '.bucket.json')
     const bucketDB = low(bucketAdapter)
     bucketDB.set('bucket', {
-      "name": req.body.bucketName,
+      "bucketName": req.body.bucketName,
       "bucketID": id,
       "size": "0KB",
       "items": "0",
@@ -53,7 +53,7 @@ export class BucketController {
     })
       .write()
 
-    fs.mkdir(config.ROOT_FOLDER + '/buckets/' + bucket.name, () => { });
+    fs.mkdir(config.ROOT_FOLDER + '/buckets/' + bucket.bucketName, () => { });
 
     return res.send({ "success": true })
 
@@ -61,7 +61,7 @@ export class BucketController {
 
   static updateBucket(req, res) {
     const bucket = req.body
-    const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucket.bucketID }).value())['name']
+    const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucket.bucketID }).value())['bucketName']
     const FileSyncBucket = require('lowdb/adapters/FileSync')
     const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
     const bucketDB = low(adapterBucket)
@@ -72,21 +72,20 @@ export class BucketController {
   }
 
   static getAllBuckets(req, res) {
-    return res.json(bucketsDB.get('buckets').value());
+    return res.json({ "success": true, "buckets": bucketsDB.get('buckets').value() });
   }
 
   static getBucket(req, res) {
-    const bucketID = req.params.bucketID
-    const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucketID }).value())['name']
+    const bucketName = req.params.bucketName
     const FileSyncBucket = require('lowdb/adapters/FileSync')
     const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
     const bucketDB = low(adapterBucket)
-    return res.json(bucketDB.get('bucket').value());
+    return res.json({ success: true, bucket: bucketDB.get('bucket').value() });
   }
 
   static deleteBucket(req, res) {
     const bucketID = req.params.bucketID
-    const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucketID }).value())['name']
+    const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucketID }).value())['bucketName']
     fs.unlink(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json', (err) => {
       if (err) {
         console.error(err)
@@ -97,7 +96,7 @@ export class BucketController {
       .remove({ bucketID: bucketID })
       .write()
 
-    rimraf(config.ROOT_FOLDER + '/buckets/' + bucketName,()=>{})
+    rimraf(config.ROOT_FOLDER + '/buckets/' + bucketName, () => { })
 
     return res.send({ "success": true })
 
@@ -136,7 +135,7 @@ export class BucketController {
   static deleteObjects(req, res) {
     var params = req.body;
     params.path.forEach(object => {
-    rimraf(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + object, function () {});
+      rimraf(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + object, function () { });
     });
 
     return res.send({ "success": true })
