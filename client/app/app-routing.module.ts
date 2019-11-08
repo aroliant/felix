@@ -7,6 +7,8 @@ import { UsersComponent } from './pages/users/users.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { BucketsComponent } from './pages/buckets/buckets.component';
 import { BucketSettingsComponent } from './pages/buckets/bucket/bucket-settings/bucket-settings.component';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { CreateBucketComponent } from './pages/buckets/create-bucket/create-bucket.component';
 
 const routes: Routes = [
   {
@@ -19,8 +21,16 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'sign-in',
+        component: SignInComponent,
+      },
+      {
         path: 'buckets',
         component: BucketsComponent,
+      },
+      {
+        path: 'buckets/create',
+        component: CreateBucketComponent,
       },
       {
         path: 'buckets/:bucketName',

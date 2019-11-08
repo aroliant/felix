@@ -18,8 +18,8 @@ export class BucketComponent implements OnInit {
   constructor(private route: ActivatedRoute, private mainService: MainService) { }
 
   ngOnInit() {
-    this.route.params.subscribe((data) => {
-      this.bucketName = data.bucketName;
+    this.route.params.subscribe((params) => {
+      this.bucketName = params.bucketName;
       this.mainService.getBucket(this.bucketName).subscribe((res: any) => {
         if (res.success) {
           this.bucket = res.bucket;
