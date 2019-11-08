@@ -11,7 +11,7 @@ export class BucketComponent implements OnInit {
 
   bucketName = 'aroliant'
   currentPath = '/'
-  bucket = {}
+  bucket: any
   objects = []
   filteredObjects = []
 
@@ -23,7 +23,7 @@ export class BucketComponent implements OnInit {
       this.mainService.getBucket(this.bucketName).subscribe((res: any) => {
         if (res.success) {
           this.bucket = res.bucket;
-          var filters = {
+          const filters = {
             bucketName: this.bucket['bucketName'],
             path: '/'
           }

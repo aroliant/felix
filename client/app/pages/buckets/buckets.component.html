@@ -2,9 +2,9 @@
     <div class="container">
         <div class="Buckets">
             <div class="Bucket" *ngFor="let bucket of filteredBucekts">
-                <div class="Bucket__name" routerLink="/buckets/bucket/{{bucket.bucketName}}">
+                <div class="Bucket__name" routerLink="/buckets/{{bucket.bucketName}}">
                     <h6 class="m-0 text-primary Bucket__info--name">{{bucket.bucketName}}</h6>
-                    <div class="small Bucket__info text-secondary">NYC3/{{bucket.items}} items totaling {{bucket.size}}
+                    <div class="small Bucket__info text-secondary">BLAZ/{{bucket.items}} items totaling {{bucket.size}}
                     </div>
                 </div>
                 <div class="Bucket__url">https://{{bucket.bucketName}}.blaz.app <span

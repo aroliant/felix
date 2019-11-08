@@ -2,14 +2,14 @@
     <div class="PresentBucket my-3">
         <img src="../../../assets/icons/empty-bucket.svg" class="PresentBucket__icon" alt="">
         <div>
-            <h4 class="m-0 PresentBucket__name">bucket-aroliant-01</h4>
+            <h4 class="m-0 PresentBucket__name">{{bucket?.bucketName}}</h4>
             <div class="PresentBucket__info">1.6 MB / 29 items</div>
         </div>
     </div>
 
     <div class="BucketNaviation pt-3">
-        <a routerLink="/buckets/bucket" class="BucketNaviation__item">Files</a>
-        <a routerLink="/buckets/bucket/bucket-settings" class="BucketNaviation__item">Settings</a>
+        <a routerLink="/buckets/{{bucket?.bucketName}}" class="BucketNaviation__item">Files</a>
+        <a routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings" class="BucketNaviation__item">Settings</a>
     </div>
 
 </div>

@@ -23,11 +23,11 @@ const routes: Routes = [
         component: BucketsComponent,
       },
       {
-        path: 'buckets/bucket/:bucketName',
+        path: 'buckets/:bucketName',
         component: BucketComponent,
       },
       {
-        path: 'buckets/bucket/:bucketName/bucket-settings',
+        path: 'buckets/:bucketName/bucket-settings',
         component: BucketSettingsComponent,
       },
       {
