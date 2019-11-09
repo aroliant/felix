@@ -8,8 +8,10 @@
     </div>
 
     <div class="BucketNaviation pt-3">
-        <a routerLink="/buckets/{{bucket?.bucketName}}" class="BucketNaviation__item">Files</a>
-        <a routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings" class="BucketNaviation__item">Settings</a>
+        <a routerLink="/buckets/{{bucket?.bucketName}}" routerLinkActive="BucketNaviation__itemActive"
+            [routerLinkActiveOptions]="{exact: true}" class="BucketNaviation__item">Files</a>
+        <a routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings" routerLinkActive="BucketNaviation__itemActive"
+            [routerLinkActiveOptions]="{exact: true}" class="BucketNaviation__item">Settings</a>
     </div>
 
 </div>
