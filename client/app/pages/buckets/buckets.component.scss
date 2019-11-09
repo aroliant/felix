@@ -66,3 +66,25 @@
   color: map-get($theme-colors, "primary");
   transition: 0.3s linear;
 }
+
+.Bucket__menu {
+  position: relative;
+}
+.Bucket__menucontent {
+  position: absolute;
+  right: 0;
+  min-width: 130px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dfdfdf;
+  border-top: 1px solid #dfdfdf, 10px solid #fff;
+  pointer-events: none;
+  z-index: 10;
+  display: none;
+  height: 100%;
+  flex-direction: column;
+}
+.Bucket__menu:hover .Bucket__menucontent {
+  display: flex;
+}
