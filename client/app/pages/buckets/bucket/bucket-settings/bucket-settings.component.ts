@@ -22,4 +22,10 @@ export class BucketSettingsComponent implements OnInit {
 
   }
 
+  openFileListingPrivacy() {
+    document.getElementById("FileListingPrivacy").style.display = "flex";
+  }
+  closeFileListingPrivacy() {
+    document.getElementById("FileListingPrivacy").style.display = "none";
+  }
 }
