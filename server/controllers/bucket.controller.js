@@ -19,15 +19,22 @@ bucketsDB.defaults({ "buckets": [] }).write()
 export class BucketController {
 
   static createBucket(req, res) {
+
+    const params = req.body
+
+    if (bucketsDB.get('buckets').filter({ bucketName: params.bucketName }).value().length != 0) {
+      return res.send({ "success": false, "message": "Bucket Name Already Exists" })
+    }
+
     const id = uuidv4();
 
     const bucket = {
       "bucketID": id,
-      "bucketName": req.body.bucketName,
+      "bucketName": params.bucketName,
       "size": "0KB",
       "items": "0",
-      "database": req.body.bucketName + ".bucket.json",
-      "createdBy": req.body.userID,
+      "database": params.bucketName + ".bucket.json",
+      "createdBy": params.userID,
       "createdAt": Date.now()
     }
 
