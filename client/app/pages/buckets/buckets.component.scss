@@ -88,3 +88,9 @@
 .Bucket__menu:hover .Bucket__menucontent {
   display: flex;
 }
+
+.Bucket__menucontent .list-group .list-group-item {
+  font-size: 0.8rem;
+  padding: 10px;
+  text-align: center;
+}
