@@ -28,4 +28,12 @@ export class BucketSettingsComponent implements OnInit {
   closeFileListingPrivacy() {
     document.getElementById("FileListingPrivacy").style.display = "none";
   }
+
+  openDeleteBucketModal() {
+    document.getElementById("DeleteBucketModal").style.display = "flex";
+  }
+  closeDeleteBucketModal() {
+    document.getElementById("DeleteBucketModal").style.display = "none";
+  }
+
 }
