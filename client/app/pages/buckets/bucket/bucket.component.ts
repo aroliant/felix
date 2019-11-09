@@ -106,4 +106,25 @@ export class BucketComponent implements OnInit {
   }
 
 
+  openManagePermissionModal() {
+    document.getElementById("ManagePermissionModal").style.display = "block";
+  }
+  closeManagePermissionModal() {
+    document.getElementById("ManagePermissionModal").style.display = "none";
+  }
+
+  openManageMetaModal() {
+    document.getElementById("ManageMetaModal").style.display = "block";
+  }
+  closeManageMetaModal() {
+    document.getElementById("ManageMetaModal").style.display = "none";
+  }
+
+  showManageMeta__custompairing() {
+    document.getElementById("ManageMeta__custompairing").style.display = "flex";
+  }
+  hideManageMeta__custompairing() {
+    document.getElementById("ManageMeta__custompairing").style.display = "none";
+  }
+
 }

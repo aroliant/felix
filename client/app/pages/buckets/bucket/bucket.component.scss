@@ -1,7 +1,8 @@
 @import "../../../../assets/styles/variables";
 
 .FileBrowser,
-.UploadReadyFiles {
+.UploadReadyFiles,
+.ManageMeta {
   border: 1px solid #d3d3d3;
   border-radius: 4px;
   width: 100%;
@@ -200,4 +201,23 @@
 
 .UploadActions:hover .UploadActions__content {
   display: block;
+}
+
+.ManageMeta__key {
+  text-align: left;
+  width: 40%;
+}
+.ManageMeta__value {
+  text-align: left;
+  width: 50%;
+}
+.ManageMeta__option {
+  text-align: center;
+  width: 10%;
+}
+
+.ManageMeta__custompairing {
+  display: none;
+  width: 100%;
+  align-items: center;
 }
