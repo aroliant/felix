@@ -24,13 +24,13 @@ export class BucketController {
 
     try {
       if (bucketsDB.get('buckets').filter({ bucketName: params.bucketName }).value().length != 0) {
-        return res.send({
+        return res.json({
           success: false,
-          message: "Bucket Name Already Exists" 
+          message: "Bucket Name Already Exists"
         })
       }
     } catch (err) {
-      return res.send({
+      return res.json({
         success: false,
         message: "Buckets cannot be accessed"
       })
@@ -51,7 +51,7 @@ export class BucketController {
     try {
       bucketsDB.get('buckets').push(bucket).write()
     } catch (err) {
-      return res.send({
+      return res.json({
         success: false,
         message: "Unable to create Bucket",
         error: err
@@ -79,7 +79,7 @@ export class BucketController {
       })
         .write()
     } catch (err) {
-      return res.send({
+      return res.json({
         success: false,
         message: "Bucket Failed to be Created",
         error: err
@@ -88,17 +88,17 @@ export class BucketController {
 
     fs.mkdir(config.ROOT_FOLDER + '/buckets/' + bucket.bucketName, function (err) {
       if (err) {
-        return res.send({
+        return res.json({
           success: false,
           message: "Failed to Create New Folder",
           error: err
         });
+      } else {
+        return res.json({
+          success: true,
+          message: "Bucket Created Successfully"
+        });
       }
-    });
-
-    return res.send({
-      success: true,
-      message: "Bucket Created Successfully"
     });
 
   }
@@ -106,21 +106,20 @@ export class BucketController {
   static updateBucket(req, res) {
     const bucket = req.body
     const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucket.bucketID }).value())['bucketName']
-    const FileSyncBucket = require('lowdb/adapters/FileSync')
-    const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
+    const adapterBucket = new FileSync(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
     const bucketDB = low(adapterBucket)
 
     try {
       bucketDB.get('bucket').assign(bucket).write()
     } catch (err) {
-      return res.send({
+      return res.json({
         success: false,
         message: "Failed to Update Bucket",
         error: err
       });
     }
 
-    res.send({
+    res.json({
       success: true,
       message: "Bucket Updated Successfully"
     })
@@ -131,23 +130,23 @@ export class BucketController {
     try {
       buckets = bucketsDB.get('buckets').value()
     } catch (err) {
-      return res.send({
-        success: false, 
+      return res.json({
+        success: false,
         message: "Buckets cannot be Accessed",
         error: err
       });
     }
 
     return res.json({
-       success: true,
-       buckets: buckets
-      });
+      success: true,
+      buckets: buckets
+    });
 
   }
 
   static getBucket(req, res) {
     const bucketName = req.params.bucketName
-    const adapterBucket = new FileSyncBucket(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
+    const adapterBucket = new FileSync(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
     const bucketDB = low(adapterBucket)
 
     var bucket = {}
@@ -155,7 +154,7 @@ export class BucketController {
     try {
       bucket = bucketDB.get('bucket').value()
     } catch (err) {
-      return res.send({
+      return res.json({
         success: false,
         message: "Buckets cannot be Accessed",
         error: err
@@ -176,7 +175,7 @@ export class BucketController {
     try {
       bucketName = (bucketsDB.get('buckets').find({ bucketID: bucketID }).value())['bucketName']
     } catch (err) {
-      return res.send({
+      return res.json({
         success: false,
         message: "Bucket Not Found",
         error: err
@@ -185,7 +184,7 @@ export class BucketController {
 
     fs.unlink(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json', function (err) {
       if (err) {
-        return res.send({
+        return res.json({
           success: false,
           message: "Failed to Delete " + bucketName + " Folder",
           error: err
@@ -196,7 +195,7 @@ export class BucketController {
     try {
       bucketsDB.get('buckets').remove({ bucketID: bucketID }).write()
     } catch (err) {
-      return res.send({
+      return res.json({
         success: false,
         message: "Bucket Not Found",
         error: err
@@ -205,7 +204,7 @@ export class BucketController {
 
     rimraf(config.ROOT_FOLDER + '/buckets/' + bucketName, function (err) {
       if (err) {
-        return res.send({
+        return res.json({
           success: false,
           message: "Failed to Delete " + bucketName + " Folder",
           error: err
@@ -213,7 +212,7 @@ export class BucketController {
       }
     })
 
-    return res.send({
+    return res.json({
       success: true,
       message: "Bucket Deleted Successfully"
     })
@@ -260,12 +259,16 @@ export class BucketController {
   static deleteObjects(req, res) {
     var params = req.body;
     params.paths.forEach(object => {
-      rimraf(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + object, () => {} );
-  })
-    return res.send({
+      fs.remove(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + object, err => {
+        if (err) { }
+      })
+    })
+
+    return res.json({
       success: true,
-      message:"Object Deleted Successfully"
-  })
+      message: "Object Deleted Successfully"
+    })
+
   }
 
   static uploadObjects(req, res) {
@@ -301,6 +304,50 @@ export class BucketController {
       return req.pipe(busboy)
 
     })
+
+  }
+
+  static createFolder(req, res) {
+
+    const params = req.body
+
+    fs.mkdir(config.ROOT_FOLDER + '/buckets/' + params.bucketName + params.path, function (err) {
+      if (err) {
+        return res.json({
+          success: false,
+          message: "Unable to Create New Folder",
+          error: err
+        })
+      } else {
+        return res.json({
+          success: true,
+          message: "Folder Created Successfully"
+        })
+      }
+    });
+
+  }
+
+  static moveObjects(req, res) {
+
+    const params = req.body
+    const src = config.ROOT_FOLDER + '/buckets/' + params.bucketName + params.src;
+    const dest = config.ROOT_FOLDER + '/buckets/' + params.bucketName + params.dest;
+
+    fs.move(src, dest)
+      .then(() => {
+        return res.send({
+          success: true,
+          message: "Object Moved Successfully"
+        })
+      })
+      .catch(err => {
+        return res.send({
+          success: false,
+          message: "Unable to Move Object",
+          error: err
+        })
+      })
 
   }
 
