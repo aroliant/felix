@@ -178,3 +178,26 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.UploadActions {
+  position: relative;
+  display: inline-block;
+}
+
+.UploadActions__content {
+  position: absolute;
+  right: 0;
+  top: 34px;
+  min-width: 150px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dfdfdf;
+  border-top: 1px solid #dfdfdf, 10px solid #fff;
+  pointer-events: none;
+  display: none;
+}
+
+.UploadActions:hover .UploadActions__content {
+  display: block;
+}

@@ -12,8 +12,16 @@
           </div>
         </div>
         <div class="col-lg-6 text-right p-0">
-          <button class="btn btn-primary UploadActions mr-3" type="button">Actions (0)
-          </button>
+          <div class="UploadActions mr-3">
+            <button class="btn btn-primary" type="button">Actions (0)
+            </button>
+            <div class="UploadActions__content">
+              <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">Move to folder</a>
+                <a href="#" class="list-group-item list-group-item-action">Delete</a>
+              </div>
+            </div>
+          </div>
 
           <button class="btn btn-primary UploadFile mr-3" type="button" (click)="openUploadFilesModal()">Upload Files
             <input type="file" class="UploadFile__input" multiple (change)="uploadFiles($event)">
