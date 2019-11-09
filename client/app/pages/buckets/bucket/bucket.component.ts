@@ -134,4 +134,11 @@ export class BucketComponent implements OnInit {
     document.getElementById("MoveItemModal").style.display = "none";
   }
 
+  openShareItemModal() {
+    document.getElementById("ShareItemModal").style.display = "flex";
+  }
+  closeShareItemModal() {
+    document.getElementById("ShareItemModal").style.display = "none";
+  }
+
 }
