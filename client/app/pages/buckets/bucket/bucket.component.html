@@ -17,8 +17,9 @@
             </button>
             <div class="UploadActions__content">
               <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Move to folder</a>
-                <a href="#" class="list-group-item list-group-item-action">Delete</a>
+                <a Value class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
+                  folder</a>
+                <a Value class="list-group-item list-group-item-action">Delete</a>
               </div>
             </div>
           </div>
@@ -75,12 +76,14 @@
                 More
                 <div class="FileBrowserOption__menu">
                   <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">Manage Permissions</a>
-                    <a href="#" class="list-group-item list-group-item-action">Manage Metadata</a>
-                    <a href="#" class="list-group-item list-group-item-action">Download</a>
-                    <a href="#" class="list-group-item list-group-item-action">Rename</a>
-                    <a href="#" class="list-group-item list-group-item-action">Move to folder</a>
-                    <a href="#" class="list-group-item list-group-item-action">Delete</a>
+                    <a class="list-group-item list-group-item-action" (click)="openManagePermissionModal();">Manage
+                      Permissions</a>
+                    <a class="list-group-item list-group-item-action" (click)="openManageMetaModal();">Manage
+                      Metadata</a>
+                    <a class="list-group-item list-group-item-action">Download</a>
+                    <a class="list-group-item list-group-item-action">Rename</a>
+                    <a class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to folder</a>
+                    <a class="list-group-item list-group-item-action">Delete</a>
                   </div>
                 </div>
               </div>
@@ -105,12 +108,15 @@
                 More
                 <div class="FileBrowserOption__menu">
                   <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">Manage Permissions</a>
-                    <a href="#" class="list-group-item list-group-item-action">Manage Metadata</a>
-                    <a href="#" class="list-group-item list-group-item-action">Download</a>
-                    <a href="#" class="list-group-item list-group-item-action">Rename</a>
-                    <a href="#" class="list-group-item list-group-item-action">Move to folder</a>
-                    <a href="#" class="list-group-item list-group-item-action">Delete</a>
+                    <a Value class="list-group-item list-group-item-action"
+                      (click)="openManagePermissionModal();">Manage Permissions</a>
+                    <a Value class="list-group-item list-group-item-action" (click)="openManageMetaModal();">Manage
+                      Metadata</a>
+                    <a Value class="list-group-item list-group-item-action">Download</a>
+                    <a Value class="list-group-item list-group-item-action">Rename</a>
+                    <a Value class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
+                      folder</a>
+                    <a Value class="list-group-item list-group-item-action">Delete</a>
                   </div>
                 </div>
               </div>
@@ -135,13 +141,15 @@
                 More
                 <div class="FileBrowserOption__menu">
                   <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action"
+                    <a Value class="list-group-item list-group-item-action"
                       (click)="openManagePermissionModal();">Manage Permissions</a>
-                    <a href="#" class="list-group-item list-group-item-action">Manage Metadata</a>
-                    <a href="#" class="list-group-item list-group-item-action">Download</a>
-                    <a href="#" class="list-group-item list-group-item-action">Rename</a>
-                    <a href="#" class="list-group-item list-group-item-action">Move to folder</a>
-                    <a href="#" class="list-group-item list-group-item-action">Delete</a>
+                    <a Value class="list-group-item list-group-item-action" (click)="openManageMetaModal();">Manage
+                      Metadata</a>
+                    <a Value class="list-group-item list-group-item-action">Download</a>
+                    <a Value class="list-group-item list-group-item-action">Rename</a>
+                    <a Value class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
+                      folder</a>
+                    <a Value class="list-group-item list-group-item-action">Delete</a>
                   </div>
                 </div>
               </div>
@@ -149,16 +157,6 @@
           </tr>
         </tbody>
       </table>
-
-      <div class="list-group-item list-group-item-action" (click)="openManagePermissionModal();">Manage Permissions
-        <span class="text-danger mx-2 small">This is temporary link to open modal until i fix hover menu</span>
-      </div>
-      <div class="list-group-item list-group-item-action" (click)="openManageMetaModal();">Manage meta
-        <span class="text-danger mx-2 small">This is temporary link to open modal until i fix hover menu</span>
-      </div>
-      <div class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move Item (File/Folder)
-        <span class="text-danger mx-2 small">This is temporary link to open modal until i fix hover menu</span>
-      </div>
     </div>
   </div>
 </div>
