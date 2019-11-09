@@ -40,7 +40,7 @@
         <strong class="FileBrowserHeader__left">present-working-directory</strong>
         <div class="FileBrowserHeader__right">2 items</div>
       </div>
-      <table class="table table-hover">
+      <table class="table ">
         <thead class="FileBrowser__titlebar">
           <tr>
             <th scope="col" class="FileBrowser__selectcolumn">
@@ -154,6 +154,9 @@
         <span class="text-danger mx-2 small">This is temporary link to open modal until i fix hover menu</span>
       </div>
       <div class="list-group-item list-group-item-action" (click)="openManageMetaModal();">Manage meta
+        <span class="text-danger mx-2 small">This is temporary link to open modal until i fix hover menu</span>
+      </div>
+      <div class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move Item (File/Folder)
         <span class="text-danger mx-2 small">This is temporary link to open modal until i fix hover menu</span>
       </div>
     </div>
@@ -456,6 +459,58 @@
             Save</button>
           <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeManageMetaModal();">
             Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Manage Permission-->
+<div class="modal" id="MoveItemModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Move <code>item</code> to folder</h5>
+        </div>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeMoveItemModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="MoveFileBrowser">
+          <div class="list-group">
+            <details>
+
+              <summary class="list-group-item list-group-item-action">Folder One</summary>
+              <details class="ml-3">
+                <summary class="list-group-item list-group-item-action">Child of folder one</summary>
+                <div class="list-group-item list-group-item-action ml-3">child-folder-one-file.html</div>
+              </details>
+
+              <summary class="list-group-item list-group-item-action ml-3">folder-one-file.html</summary>
+
+            </details>
+
+            <details>
+              <summary class="list-group-item list-group-item-action">Folder Two</summary>
+              <div class="list-group-item list-group-item-action ml-3">folder-two-file.html</div>
+            </details>
+
+            <div class="list-group-item list-group-item-action">index.html</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="w-100 text-left">
+          <button type="button" class="btn btn-primary mr-3" (click)="closeMoveItemModal();">
+            Move Here</button>
+          <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeMoveItemModal();">
+            Cancel</button>
+          <button type="button" class="btn btn-outline-primary">
+            New Folder</button>
         </div>
       </div>
     </div>

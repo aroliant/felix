@@ -127,4 +127,11 @@ export class BucketComponent implements OnInit {
     document.getElementById("ManageMeta__custompairing").style.display = "none";
   }
 
+  openMoveItemModal() {
+    document.getElementById("MoveItemModal").style.display = "flex";
+  }
+  closeMoveItemModal() {
+    document.getElementById("MoveItemModal").style.display = "none";
+  }
+
 }
