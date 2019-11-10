@@ -33,11 +33,11 @@ export class BucketComponent implements OnInit {
           }
           this.mainService.searchObjects(filters).subscribe((res: any) => {
             this.objects = res.objects
-            this.objects.map((object,i) => {
-              if(object.objectType == 'folder'){
+            this.objects.map((object, i) => {
+              if (object.objectType == 'folder') {
                 this.directories.push(object)
               }
-              else if(object.objectType == 'file'){
+              else if (object.objectType == 'file') {
                 this.files.push(object)
               }
             })
@@ -50,34 +50,34 @@ export class BucketComponent implements OnInit {
   }
 
   searchFilter() {
-    if(this.searchInput === ''){
+    if (this.searchInput === '') {
       this.filteredDirectories = this.directories
       this.filteredFiles = this.files
-    }else{
+    } else {
       this.filteredDirectories = []
       this.filteredFiles = []
-      this.directories.map((directory,i) => {
-        if(directory.name.includes(this.searchInput))
-        this.filteredDirectories.push(directory)
+      this.directories.map((directory, i) => {
+        if (directory.name.includes(this.searchInput))
+          this.filteredDirectories.push(directory)
       })
-      this.files.map((file,i)=>{
-        if(file.name.includes(this.searchInput))
-        this.filteredFiles.push(file)
+      this.files.map((file, i) => {
+        if (file.name.includes(this.searchInput))
+          this.filteredFiles.push(file)
       })
     }
   }
 
-  deleteFile(index){
+  deleteFile(index) {
     var object = {
       paths: [],
       bucketName: this.bucketName
     }
-    object.paths.push(this.currentPath+'/'+this.filteredFiles[index].name)
-    this.mainService.deleteObjects(object).subscribe((res:any) => {
-      if(res.success){
-        for(var i=0;i<this.files.length;i++){
-          if(this.files[i].name === this.filteredFiles[index].name){
-            this.files.splice(i,1)
+    object.paths.push(this.currentPath + '/' + this.filteredFiles[index].name)
+    this.mainService.deleteObjects(object).subscribe((res: any) => {
+      if (res.success) {
+        for (var i = 0; i < this.files.length; i++) {
+          if (this.files[i].name === this.filteredFiles[index].name) {
+            this.files.splice(i, 1)
             break;
           }
         }
@@ -86,17 +86,17 @@ export class BucketComponent implements OnInit {
     })
   }
 
-  deleteFolder(index){
+  deleteFolder(index) {
     var object = {
       paths: [],
       bucketName: this.bucketName
     }
-    object.paths.push(this.currentPath+'/'+this.filteredDirectories[index].name+'/')
-    this.mainService.deleteObjects(object).subscribe((res:any) => {
-      if(res.success){
-        for(var i=0;i<this.files.length;i++){
-          if(this.directories[i].name === this.filteredDirectories[index].name){
-            this.directories.splice(i,1)
+    object.paths.push(this.currentPath + '/' + this.filteredDirectories[index].name + '/')
+    this.mainService.deleteObjects(object).subscribe((res: any) => {
+      if (res.success) {
+        for (var i = 0; i < this.files.length; i++) {
+          if (this.directories[i].name === this.filteredDirectories[index].name) {
+            this.directories.splice(i, 1)
             break;
           }
         }
