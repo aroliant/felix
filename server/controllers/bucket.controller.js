@@ -227,7 +227,8 @@ export class BucketController {
 
     const proecessObject = through2.obj(function (item, enc, next) {
       const object = {
-        name: item.path.replace(rootPath, ''),
+        fullPath: item.path.replace(rootPath, ''),
+        name: path.basename(item.path),
         size: item.stats.size,
         createdAt: item.stats.ctime,
         modifiedAt: item.stats.mtime,

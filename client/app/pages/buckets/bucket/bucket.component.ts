@@ -11,9 +11,13 @@ export class BucketComponent implements OnInit {
 
   bucketName = 'aroliant'
   currentPath = '/'
+  searchInput = ''
   bucket: any
   objects = []
-  filteredObjects = []
+  directories = []
+  files = []
+  filteredDirectories = []
+  filteredFiles = []
 
   constructor(private route: ActivatedRoute, private mainService: MainService) { }
 
@@ -25,14 +29,79 @@ export class BucketComponent implements OnInit {
           this.bucket = res.bucket;
           const filters = {
             bucketName: this.bucket['bucketName'],
-            path: '/'
+            path: this.currentPath
           }
           this.mainService.searchObjects(filters).subscribe((res: any) => {
             this.objects = res.objects
-            this.filteredObjects = this.objects
+            this.objects.map((object,i) => {
+              if(object.objectType == 'folder'){
+                this.directories.push(object)
+              }
+              else if(object.objectType == 'file'){
+                this.files.push(object)
+              }
+            })
+            this.filteredDirectories = this.directories
+            this.filteredFiles = this.files
           })
         }
       });
+    })
+  }
+
+  searchFilter() {
+    if(this.searchInput === ''){
+      this.filteredDirectories = this.directories
+      this.filteredFiles = this.files
+    }else{
+      this.filteredDirectories = []
+      this.filteredFiles = []
+      this.directories.map((directory,i) => {
+        if(directory.name.includes(this.searchInput))
+        this.filteredDirectories.push(directory)
+      })
+      this.files.map((file,i)=>{
+        if(file.name.includes(this.searchInput))
+        this.filteredFiles.push(file)
+      })
+    }
+  }
+
+  deleteFile(index){
+    var object = {
+      paths: [],
+      bucketName: this.bucketName
+    }
+    object.paths.push(this.currentPath+'/'+this.filteredFiles[index].name)
+    this.mainService.deleteObjects(object).subscribe((res:any) => {
+      if(res.success){
+        for(var i=0;i<this.files.length;i++){
+          if(this.files[i].name === this.filteredFiles[index].name){
+            this.files.splice(i,1)
+            break;
+          }
+        }
+        this.filteredFiles.splice(index, 1)
+      }
+    })
+  }
+
+  deleteFolder(index){
+    var object = {
+      paths: [],
+      bucketName: this.bucketName
+    }
+    object.paths.push(this.currentPath+'/'+this.filteredDirectories[index].name+'/')
+    this.mainService.deleteObjects(object).subscribe((res:any) => {
+      if(res.success){
+        for(var i=0;i<this.files.length;i++){
+          if(this.directories[i].name === this.filteredDirectories[index].name){
+            this.directories.splice(i,1)
+            break;
+          }
+        }
+        this.filteredDirectories.splice(index, 1)
+      }
     })
   }
 
