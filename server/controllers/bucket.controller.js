@@ -235,14 +235,20 @@ export class BucketController {
         modifiedAt: item.stats.mtime,
         objectType: item.stats.isDirectory() == true ? 'folder' : 'file'
       }
-      if(object.objectType == 'file')
-      files.push(object)
-      else if(object.objectType == 'folder')
-      directories.push(object)
+
+      if (params.name == undefined || object.name.indexOf(params.name) > -1 ) {
+
+        if (object.objectType == 'file')
+          files.push(object)
+        else if (object.objectType == 'folder')
+          directories.push(object)
+
+      }
+
       next()
     })
 
-    const _path  = rootPath + params.path
+    const _path = rootPath + params.path
 
     klaw(_path, { depthLimit: 0 })
       .pipe(processObject)
@@ -255,10 +261,6 @@ export class BucketController {
         });
       })
       .on('end', () => {
-        objects.map((object,i) => {
-          if(object.objectType == 'file')
-          files.push(object)
-        })
         return res.json({
           success: true,
           objects: directories.splice(1).concat(files)
