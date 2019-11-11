@@ -46,7 +46,7 @@
           <tr>
             <th scope="col" class="FileBrowser__selectcolumn">
               <label class="CheckboxContainer">
-                <input type="checkbox" disabled>
+                <input type="checkbox" [(ngModel)]="states.checkedAll" (ngModelChange)="selectAll($event)">
                 <span class="CheckboxContainer__checkmark"></span>
               </label>
             </th>
@@ -61,7 +61,8 @@
           <tr *ngFor="let object of objects; let i = index">
             <td class="FileBrowser__selectcolumn">
               <label class="CheckboxContainer">
-                <input type="checkbox">
+                <input type="checkbox" [checked]="objectStates[i].isSelected" name="select_{{i}}"
+                  (ngModelChange)="selectObject($event, i)">
                 <span class="CheckboxContainer__checkmark"></span>
               </label>
             </td>

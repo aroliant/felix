@@ -14,6 +14,10 @@ export class BucketComponent implements OnInit {
   searchInput = ''
   bucket: any
   objects = []
+  objectStates = []
+  states = {
+    checkedAll: false,
+  }
 
   constructor(private route: ActivatedRoute, private mainService: MainService) { }
 
@@ -32,9 +36,25 @@ export class BucketComponent implements OnInit {
       }
       this.mainService.searchObjects(filters).subscribe((objectsResult: any) => {
         this.objects = objectsResult.objects
+        this.objectStates = Array(this.objects.length).fill({
+          showActions: false,
+          isSelected: false,
+        })
       })
 
     })
+  }
+
+  selectAll(state) {
+    this.objectStates = Array(this.objects.length).fill({
+      showActions: false,
+      isSelected: state,
+    })
+  }
+
+  selectObject(state, index) {
+    this.states.checkedAll = false
+    this.objectStates[index].isSelected = state
   }
 
   search() {
