@@ -51,22 +51,23 @@
 
 .FileBrowserOption .FileBrowserOption__menu.open {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  height: 283px;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
   opacity: 1;
 }
 
 .FileBrowserOption__menu {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 30px;
   min-width: 150px;
   background-color: #fff;
   border-radius: 4px;
-  z-index: 10;
-  height: 0;
+  z-index: -1;
   opacity: 0;
+  transform: translate3d(0, -10px, 0);
   overflow: hidden;
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .FileBrowserOption .list-group .list-group-item {
@@ -192,19 +193,21 @@
 .UploadActions__content {
   position: absolute;
   right: 0;
-  top: 34px;
+  top: 40px;
   min-width: 150px;
   background-color: #fff;
   border-radius: 4px;
-  height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
+  transform: translate3d(0, -10px, 0);
+  z-index: -1;
 }
 
 .UploadActions:hover .UploadActions__content {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  height: 101px;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
   opacity: 1;
 }
 
