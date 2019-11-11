@@ -3,7 +3,8 @@ $theme-colors: (
   "dark": #285f8c,
   "light": #b6d7f3,
   "black": #000000,
-  "white": #ffffff
+  "white": #ffffff,
+  "lighter": #fafafa
 );
 $enable-transitions: true;
 $enable-gradients: false;
@@ -36,4 +37,8 @@ input:focus {
 .btn-success,
 .btn-light {
   border: 0;
+}
+
+.btn-light {
+  color: map-get($theme-colors, "primary");
 }
