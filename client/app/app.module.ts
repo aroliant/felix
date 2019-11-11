@@ -21,6 +21,12 @@ import { BucketSettingsComponent } from './pages/buckets/bucket/bucket-settings/
 import { MainService } from './services/main.service';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { CreateBucketComponent } from './pages/buckets/create-bucket/create-bucket.component';
+import { UploadFilesComponent } from './pages/buckets/bucket/modal/upload-files/upload-files.component';
+import { MoveFilesComponent } from './pages/buckets/bucket/modal/move-files/move-files.component';
+import { PermissionsComponent } from './pages/buckets/bucket/modal/permissions/permissions.component';
+import { MetaComponent } from './pages/buckets/bucket/modal/meta/meta.component';
+import { ShareComponent } from './pages/buckets/bucket/modal/share/share.component';
+import { DeleteComponent } from './pages/buckets/bucket/modal/delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +45,12 @@ import { CreateBucketComponent } from './pages/buckets/create-bucket/create-buck
     BucketSettingsComponent,
     SignInComponent,
     CreateBucketComponent,
+    UploadFilesComponent,
+    MoveFilesComponent,
+    PermissionsComponent,
+    MetaComponent,
+    ShareComponent,
+    DeleteComponent,
   ],
   imports: [
     BrowserModule,

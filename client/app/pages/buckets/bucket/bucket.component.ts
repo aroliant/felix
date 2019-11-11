@@ -18,6 +18,14 @@ export class BucketComponent implements OnInit {
   states = {
     checkedAll: false,
   }
+  modalStates = {
+    delete: false,
+    meta: false,
+    moveFiles: false,
+    permissions: false,
+    share: false,
+    uploadFiles: false,
+  }
   currentActionIndex = 0
 
   constructor(private route: ActivatedRoute, private mainService: MainService) { }
@@ -98,6 +106,27 @@ export class BucketComponent implements OnInit {
     })
   }
 
+  // Show
+
+  showManagePermissionsModal() {
+    this.modalStates.permissions = true
+  }
+
+  showManageMetaModal() {
+
+  }
+
+  showMoveObjectsModal() {
+
+  }
+
+  showShareObjectModal() {
+
+  }
+
+  showDeleteModal() {
+
+  }
 
   uploadFiles(event) {
     const files = event.target.files
@@ -152,56 +181,6 @@ export class BucketComponent implements OnInit {
     if (fileLength > 0) {
       xhr.send(formData);
     }
-  }
-
-  openUploadFilesModal() {
-    document.getElementById("UploadFilesModal").style.display = "block";
-  }
-  closeUploadFilesModal() {
-    document.getElementById("UploadFilesModal").style.display = "none";
-  }
-
-  openUploadFoldersModal() {
-    document.getElementById("UploadFoldersModal").style.display = "block";
-  }
-  closeUploadFoldersModal() {
-    document.getElementById("UploadFoldersModal").style.display = "none";
-  }
-
-
-  openManagePermissionModal() {
-    document.getElementById("ManagePermissionModal").style.display = "block";
-  }
-  closeManagePermissionModal() {
-    document.getElementById("ManagePermissionModal").style.display = "none";
-  }
-
-  openManageMetaModal() {
-    document.getElementById("ManageMetaModal").style.display = "block";
-  }
-  closeManageMetaModal() {
-    document.getElementById("ManageMetaModal").style.display = "none";
-  }
-
-  showManageMeta__custompairing() {
-    document.getElementById("ManageMeta__custompairing").style.display = "flex";
-  }
-  hideManageMeta__custompairing() {
-    document.getElementById("ManageMeta__custompairing").style.display = "none";
-  }
-
-  openMoveItemModal() {
-    document.getElementById("MoveItemModal").style.display = "flex";
-  }
-  closeMoveItemModal() {
-    document.getElementById("MoveItemModal").style.display = "none";
-  }
-
-  openShareItemModal() {
-    document.getElementById("ShareItemModal").style.display = "flex";
-  }
-  closeShareItemModal() {
-    document.getElementById("ShareItemModal").style.display = "none";
   }
 
 }
