@@ -57,89 +57,28 @@
           </tr>
         </thead>
         <tbody class="FileBrowser__content">
-          <tr>
-            <td class="FileBrowser__selectcolumn">
-              <label class="CheckboxContainer">
-                <input type="checkbox" checked="checked">
-                <span class="CheckboxContainer__checkmark"></span>
-              </label>
-            </td>
-            <td class="FileBrowser__namecolumn">
-              <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
-              Sample_folder
-            </td>
-            <td class="FileBrowser__sizecolumn">40B</td>
-            <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">4 days ago</abbr>
-            </td>
-            <td class="FileBrowser__optioncolumn">
-              <div class="FileBrowserOption">
-                More <i class="icofont-thin-down"></i>
-                <div class="FileBrowserOption__menu">
-                  <div class="list-group">
-                    <a class="list-group-item list-group-item-action" (click)="openManagePermissionModal();">Manage
-                      Permissions</a>
-                    <a class="list-group-item list-group-item-action" (click)="openManageMetaModal();">Manage
-                      Metadata</a>
-                    <a class="list-group-item list-group-item-action">Download</a>
-                    <a class="list-group-item list-group-item-action">Rename</a>
-                    <a class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to folder</a>
-                    <a class="list-group-item list-group-item-action" (click)="openShareItemModal();">Share</a>
-                    <a class="list-group-item list-group-item-action">Delete</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr *ngFor="let directory of filteredDirectories; let i = index" >
-            <td class="FileBrowser__selectcolumn">
-              <label class="CheckboxContainer">
-                <input type="checkbox" >
-                <span class="CheckboxContainer__checkmark"></span>
-              </label>
-            </td>
-            <td class="FileBrowser__namecolumn">
-              <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
-              {{directory.name}}
-            </td>
-            <td class="FileBrowser__sizecolumn">{{directory.size}}</td>
-            <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">{{directory.modifiedAt}}</abbr>
-            </td>
-            <td class="FileBrowser__optioncolumn">
-              <div class="FileBrowserOption">
-                More <i class="icofont-thin-down"></i>
-                <div class="FileBrowserOption__menu">
-                  <div class="list-group">
-                    <a class="list-group-item list-group-item-action" (click)="openManagePermissionModal();">Manage
-                      Permissions</a>
-                    <a class="list-group-item list-group-item-action" (click)="openManageMetaModal();">Manage
-                      Metadata</a>
-                    <a class="list-group-item list-group-item-action">Download</a>
-                    <a class="list-group-item list-group-item-action">Rename</a>
-                    <a class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
-                      folder</a>
-                    <a class="list-group-item list-group-item-action" (click)="openShareItemModal();">Share</a>
-                    <a class="list-group-item list-group-item-action" (click)="deleteFolder(i)" >Delete</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr *ngFor="let file of filteredFiles;let i = index" >
+
+          <tr *ngFor="let object of objects; let i = index">
             <td class="FileBrowser__selectcolumn">
               <label class="CheckboxContainer">
                 <input type="checkbox">
                 <span class="CheckboxContainer__checkmark"></span>
               </label>
             </td>
-            <td class="FileBrowser__namecolumn">
-              <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
-              {{file.name}}
+            <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'">
+              <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
+              {{object.name}}
             </td>
-            <td class="FileBrowser__sizecolumn">{{file.size}}</td>
-            <td class="FileBrowser__timecolumn"><abbr title="Sat, Nov 2, 2019 at 11:23am IST">{{file.modifiedAt}}</abbr>
+            <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='file'">
+              <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
+              {{object.name}}
+            </td>
+            <td class="FileBrowser__sizecolumn">{{object.size}}</td>
+            <td class="FileBrowser__timecolumn"><abbr
+                title="Sat, Nov 2, 2019 at 11:23am IST">{{object.modifiedAt}}</abbr>
             </td>
             <td class="FileBrowser__optioncolumn">
-              <div class="FileBrowserOption">
+              <div class="FileBrowserOption" *ngIf="object.objectType=='folder'">
                 More <i class="icofont-thin-down"></i>
                 <div class="FileBrowserOption__menu">
                   <div class="list-group">
@@ -152,12 +91,30 @@
                     <a class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
                       folder</a>
                     <a class="list-group-item list-group-item-action" (click)="openShareItemModal();">Share</a>
-                    <a class="list-group-item list-group-item-action" (click)="deleteFile(i)" >Delete</a>
+                    <a class="list-group-item list-group-item-action" (click)="deleteFolder(i)">Delete</a>
+                  </div>
+                </div>
+              </div>
+              <div class="FileBrowserOption" *ngIf="object.objectType=='file'">
+                More <i class="icofont-thin-down"></i>
+                <div class="FileBrowserOption__menu">
+                  <div class="list-group">
+                    <a class="list-group-item list-group-item-action" (click)="openManagePermissionModal();">Manage
+                      Permissions</a>
+                    <a class="list-group-item list-group-item-action" (click)="openManageMetaModal();">Manage
+                      Metadata</a>
+                    <a class="list-group-item list-group-item-action">Download</a>
+                    <a class="list-group-item list-group-item-action">Rename</a>
+                    <a class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
+                      folder</a>
+                    <a class="list-group-item list-group-item-action" (click)="openShareItemModal();">Share</a>
+                    <a class="list-group-item list-group-item-action" (click)="deleteFile(i)">Delete</a>
                   </div>
                 </div>
               </div>
             </td>
           </tr>
+
         </tbody>
       </table>
     </div>
