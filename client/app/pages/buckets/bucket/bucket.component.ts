@@ -18,6 +18,7 @@ export class BucketComponent implements OnInit {
   states = {
     checkedAll: false,
   }
+  currentActionIndex = 0
 
   constructor(private route: ActivatedRoute, private mainService: MainService) { }
 
@@ -36,9 +37,10 @@ export class BucketComponent implements OnInit {
       }
       this.mainService.searchObjects(filters).subscribe((objectsResult: any) => {
         this.objects = objectsResult.objects
-        this.objectStates = Array(this.objects.length).fill({
-          showActions: false,
-          isSelected: false,
+        this.objects.map((object, index) => {
+          object.showActions = false
+          object.isSelected = false
+          return object
         })
       })
 
@@ -46,15 +48,38 @@ export class BucketComponent implements OnInit {
   }
 
   selectAll(state) {
-    this.objectStates = Array(this.objects.length).fill({
-      showActions: false,
-      isSelected: state,
+    console.log('[action] -> selectAll')
+    this.objects.map((object, index) => {
+      object.isSelected = state
+      return object
     })
   }
 
-  selectObject(state, index) {
+  selectObject(event, index) {
+    console.log('[action] -> selectObject')
     this.states.checkedAll = false
-    this.objectStates[index].isSelected = state
+    const val = event.target.value === 'on' ? true : false
+    this.objects[index].isSelected = val
+  }
+
+  showActions(index) {
+    console.log('[action] -> showActions', index)
+    this.objects[index].showActions = true
+    this.currentActionIndex = index
+    const self = this
+    setTimeout(() => {
+      self.currentActionIndex = -1
+    }, 500)
+  }
+
+  hideAllActions() {
+    console.log('[action] -> hideAllActions')
+    this.objects.map((state, i) => {
+      if (this.currentActionIndex !== i) {
+        state.showActions = false
+      }
+      return state
+    })
   }
 
   search() {

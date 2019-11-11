@@ -38,7 +38,7 @@ import { CreateBucketComponent } from './pages/buckets/create-bucket/create-buck
     BucketsComponent,
     BucketSettingsComponent,
     SignInComponent,
-    CreateBucketComponent
+    CreateBucketComponent,
   ],
   imports: [
     BrowserModule,

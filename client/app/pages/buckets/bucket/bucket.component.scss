@@ -49,7 +49,7 @@
   position: relative;
 }
 
-.FileBrowserOption:hover .FileBrowserOption__menu {
+.FileBrowserOption .FileBrowserOption__menu.open {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   height: 283px;
   opacity: 1;

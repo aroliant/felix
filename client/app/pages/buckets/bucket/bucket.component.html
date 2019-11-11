@@ -1,4 +1,4 @@
-<div class="MainContent">
+<div class="MainContent" (click)="hideAllActions()">
   <div class="container">
     <app-breadcrumb [bucket]="bucket"></app-breadcrumb>
 
@@ -61,8 +61,8 @@
           <tr *ngFor="let object of objects; let i = index">
             <td class="FileBrowser__selectcolumn">
               <label class="CheckboxContainer">
-                <input type="checkbox" [checked]="objectStates[i].isSelected" name="select_{{i}}"
-                  (ngModelChange)="selectObject($event, i)">
+                <input type="checkbox" [checked]="object.isSelected" name="select_{{i}}"
+                  (change)="selectObject($event, i)">
                 <span class="CheckboxContainer__checkmark"></span>
               </label>
             </td>
@@ -79,37 +79,20 @@
                 title="Sat, Nov 2, 2019 at 11:23am IST">{{object.modifiedAt}}</abbr>
             </td>
             <td class="FileBrowser__optioncolumn">
-              <div class="FileBrowserOption" *ngIf="object.objectType=='folder'">
+              <div class="FileBrowserOption" (click)="showActions(i)" #action_{{i}}>
                 More <i class="icofont-thin-down"></i>
-                <div class="FileBrowserOption__menu">
+                <div class="FileBrowserOption__menu" [class.open]="object.showActions === true" #action_menu_{{i}}>
                   <div class="list-group">
                     <a class="list-group-item list-group-item-action" (click)="openManagePermissionModal();">Manage
                       Permissions</a>
                     <a class="list-group-item list-group-item-action" (click)="openManageMetaModal();">Manage
                       Metadata</a>
-                    <a class="list-group-item list-group-item-action">Download</a>
+                    <a class="list-group-item list-group-item-action" *ngIf="object.objectType=='file'">Download</a>
                     <a class="list-group-item list-group-item-action">Rename</a>
                     <a class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
                       folder</a>
                     <a class="list-group-item list-group-item-action" (click)="openShareItemModal();">Share</a>
                     <a class="list-group-item list-group-item-action" (click)="deleteFolder(i)">Delete</a>
-                  </div>
-                </div>
-              </div>
-              <div class="FileBrowserOption" *ngIf="object.objectType=='file'">
-                More <i class="icofont-thin-down"></i>
-                <div class="FileBrowserOption__menu">
-                  <div class="list-group">
-                    <a class="list-group-item list-group-item-action" (click)="openManagePermissionModal();">Manage
-                      Permissions</a>
-                    <a class="list-group-item list-group-item-action" (click)="openManageMetaModal();">Manage
-                      Metadata</a>
-                    <a class="list-group-item list-group-item-action">Download</a>
-                    <a class="list-group-item list-group-item-action">Rename</a>
-                    <a class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
-                      folder</a>
-                    <a class="list-group-item list-group-item-action" (click)="openShareItemModal();">Share</a>
-                    <a class="list-group-item list-group-item-action" (click)="deleteFile(i)">Delete</a>
                   </div>
                 </div>
               </div>
