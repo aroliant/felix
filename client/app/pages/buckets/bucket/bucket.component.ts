@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'client/app/services/main.service';
 
 @Component({
@@ -26,9 +26,10 @@ export class BucketComponent implements OnInit {
     share: false,
     uploadFiles: false,
   }
+
   currentActionIndex = 0
 
-  constructor(private route: ActivatedRoute, private mainService: MainService) { }
+  constructor(private route: ActivatedRoute, private mainService: MainService, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -39,20 +40,33 @@ export class BucketComponent implements OnInit {
         }
       });
 
-      const filters = {
-        bucketName: this.bucketName,
-        path: this.currentPath
-      }
-      this.mainService.searchObjects(filters).subscribe((objectsResult: any) => {
-        this.objects = objectsResult.objects
-        this.objects.map((object, index) => {
-          object.showActions = false
-          object.isSelected = false
-          return object
+      this.route.queryParams.subscribe((queryParams) => {
+
+        const filters = {
+          bucketName: this.bucketName,
+          path: this.currentPath
+        }
+
+        if (queryParams.path) {
+          filters.path = queryParams.path
+          this.currentPath = filters.path
+        }
+
+        this.mainService.searchObjects(filters).subscribe((objectsResult: any) => {
+          this.objects = objectsResult.objects
+          this.objects.map((object, index) => {
+            object.showActions = false
+            object.isSelected = false
+            return object
+          })
         })
+
       })
 
+
     })
+
+
   }
 
   selectAll(state) {
@@ -106,7 +120,12 @@ export class BucketComponent implements OnInit {
     })
   }
 
-  // Show
+  browseFolder(folderName) {
+    const path = '/' + folderName + '/'
+    this.router.navigate(['buckets', this.bucketName], { queryParams: { path: path } })
+  }
+
+  // Show Modals
 
   showManagePermissionsModal() {
     this.modalStates.permissions = true

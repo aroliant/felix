@@ -225,9 +225,8 @@ export class BucketController {
     const rootPath = config.ROOT_FOLDER + '/buckets/' + params.bucketName
     let objects = []
 
-    const proecessObject = through2.obj(function (item, enc, next) {
+    const processObject = through2.obj(function (item, enc, next) {
       const object = {
-        fullPath: item.path.replace(rootPath, ''),
         name: path.basename(item.path),
         size: item.stats.size,
         createdAt: item.stats.ctime,
@@ -238,8 +237,11 @@ export class BucketController {
       next()
     })
 
-    klaw(rootPath + params.path, { depthLimit: 0 })
-      .pipe(proecessObject)
+    const _path  = rootPath + params.path
+    console.log(_path)
+
+    klaw(_path, { depthLimit: 0 })
+      .pipe(processObject)
       .on('data', item => objects.push(item))
       .on('error', (err, item) => {
         return res.json({
@@ -251,7 +253,7 @@ export class BucketController {
       .on('end', () => {
         return res.json({
           success: true,
-          objects: objects
+          objects: objects.splice(1)
         })
       })
 

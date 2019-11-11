@@ -38,7 +38,7 @@
 
     <div class="FileBrowser">
       <div class="FileBrowserHeader small">
-        <strong class="FileBrowserHeader__left">present-working-directory</strong>
+        <strong class="FileBrowserHeader__left">{{this.currentPath}}</strong>
         <div class="FileBrowserHeader__right">2 items</div>
       </div>
       <table class="table ">
@@ -66,7 +66,7 @@
                 <span class="CheckboxContainer__checkmark"></span>
               </label>
             </td>
-            <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'">
+            <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'" (click)="browseFolder(object.name)">
               <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
               {{object.name}}
             </td>
