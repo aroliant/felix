@@ -69,7 +69,7 @@
                         reorder.
                     </p>
                 </div>
-                <button class="btn btn-outline-secondary">Add</button>
+                <button class="btn btn-outline-secondary" (click)="openCORSoptionModal()">Add</button>
             </div>
             <div class="BucketSettings__item BucketSettings__item--column">
                 <div>
@@ -106,7 +106,6 @@
 
 
 <!-- Delete Bucket Modal-->
-<!-- Modal Move Item-->
 <div class="modal" id="DeleteBucketModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -138,6 +137,80 @@
                         Cancel</button>
                     <button type="button" class="btn btn-danger">
                         Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CORS Option Modal-->
+<div class="modal" id="CORSoptionModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Advanced CORS Options</h5>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="closeCORSoptionModal();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6 class="m-0">Origin</h6>
+                <div class="form-group">
+                    <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
+                    <input type="text" class="form-control" placeholder="Enter the name of this bucket">
+                </div>
+
+                <h6 class="m-0">Allowed Methods</h6>
+                <div class="form-group">
+                    <div class="form-check form-check-inline p-2">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox99" value="option1">
+                        <label class="form-check-label" for="inlineCheckbox99">GET</label>
+                    </div>
+                    <div class="form-check form-check-inline p-2">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox98" value="option2">
+                        <label class="form-check-label" for="inlineCheckbox98">PUT</label>
+                    </div>
+                    <div class="form-check form-check-inline p-2">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox97" value="option3">
+                        <label class="form-check-label" for="inlineCheckbox97">DELETE</label>
+                    </div>
+                    <div class="form-check form-check-inline p-2">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox96" value="option4">
+                        <label class="form-check-label" for="inlineCheckbox96">POST</label>
+                    </div>
+                    <div class="form-check form-check-inline p-2">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox95" value="option5">
+                        <label class="form-check-label" for="inlineCheckbox95">HEAD</label>
+                    </div>
+                </div>
+
+                <div class="my-3">
+                    <h6 class="m-0">Allowed Headers</h6>
+                    <div class="w-100 HeaderCORS flex-row align-items-center" id="HeaderCORS">
+                        <div class="form-group flex-grow-1 mb-0">
+                            <input type="text" class="form-control" placeholder="Header Name">
+                        </div>
+                        <a (click)="removeHeaderCORS();" class="text-danger p-2">Remove</a>
+                    </div>
+                    <a (click)="addHeaderCORS();" class="text-primary">Add Header</a>
+                </div>
+
+                <h6 class="m-0">Access Control Max Age</h6>
+                <div class="form-group">
+                    <label class="m-0 small text-secondary">Seconds</label>
+                    <input type="text" class="form-control" value="0">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100 text-left">
+                    <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeCORSoptionModal();">
+                        Save Options</button>
+                    <button type="button" class="btn btn-danger" (click)="closeCORSoptionModal();">
+                        Cancel</button>
                 </div>
             </div>
         </div>

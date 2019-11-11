@@ -30,10 +30,24 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   openDeleteBucketModal() {
-    document.getElementById("DeleteBucketModal").style.display = "flex";
+    document.getElementById("DeleteBucketModal").style.display = "block";
   }
   closeDeleteBucketModal() {
     document.getElementById("DeleteBucketModal").style.display = "none";
+  }
+
+  openCORSoptionModal() {
+    document.getElementById("CORSoptionModal").style.display = "block";
+  }
+  closeCORSoptionModal() {
+    document.getElementById("CORSoptionModal").style.display = "none";
+  }
+
+  addHeaderCORS() {
+    document.getElementById("HeaderCORS").style.display = "flex";
+  }
+  removeHeaderCORS() {
+    document.getElementById("HeaderCORS").style.display = "none";
   }
 
 }
