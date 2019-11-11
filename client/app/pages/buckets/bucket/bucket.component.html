@@ -38,7 +38,11 @@
 
     <div class="FileBrowser">
       <div class="FileBrowserHeader small">
-        <strong class="FileBrowserHeader__left">{{this.currentPath}}</strong>
+        <strong class="FileBrowserHeader__left">
+          <div *ngFor="let crumb of bucketBreadcrumbs">
+            <a (click)="navigateBucketBreadcrumb(crumb.path)">{{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
+          </div>
+        </strong>
         <div class="FileBrowserHeader__right">2 items</div>
       </div>
       <table class="table ">
@@ -74,9 +78,9 @@
               <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
               {{object.name}}
             </td>
-            <td class="FileBrowser__sizecolumn">{{object.size}}</td>
-            <td class="FileBrowser__timecolumn"><abbr
-                title="Sat, Nov 2, 2019 at 11:23am IST">{{object.modifiedAt}}</abbr>
+            <td class="FileBrowser__sizecolumn">{{object.size | bytes}}</td>
+            <td class="FileBrowser__timecolumn">
+              <abbr title="{{object.modifiedAt | date: 'full'}}">{{object.modifiedAt | date: 'medium'}}</abbr>
             </td>
             <td class="FileBrowser__optioncolumn">
               <div class="FileBrowserOption" (click)="showActions(i)" #action_{{i}}>

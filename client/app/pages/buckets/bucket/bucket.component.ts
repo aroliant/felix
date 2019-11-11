@@ -9,12 +9,13 @@ import { MainService } from 'client/app/services/main.service';
 })
 export class BucketComponent implements OnInit {
 
-  bucketName = 'aroliant'
+  bucketName = ''
   currentPath = '/'
+  bucketBreadcrumbs = [{ path: '/', name: '/' }]
   searchInput = ''
   bucket: any
   objects = []
-  objectStates = []
+
   states = {
     checkedAll: false,
   }
@@ -50,6 +51,7 @@ export class BucketComponent implements OnInit {
         if (queryParams.path) {
           filters.path = queryParams.path
           this.currentPath = filters.path
+          this.bucketBreadcrumbs = this.makeBreadcrumb(this.currentPath)
         }
 
         this.mainService.searchObjects(filters).subscribe((objectsResult: any) => {
@@ -149,7 +151,7 @@ export class BucketComponent implements OnInit {
   }
 
   browseFolder(folderName) {
-    const path = '/' + folderName + '/'
+    const path = this.currentPath + folderName + '/'
     this.router.navigate(['buckets', this.bucketName], { queryParams: { path: path } })
   }
 
@@ -228,6 +230,33 @@ export class BucketComponent implements OnInit {
     if (fileLength > 0) {
       xhr.send(formData);
     }
+  }
+
+  navigateBucketBreadcrumb(path) {
+    this.router.navigate(['buckets', this.bucketName], { queryParams: { path: path } })
+  }
+
+  makeBreadcrumb(path) {
+
+    const pathArray = path.split('/')
+    let root = '/'
+    const crumbs = [{
+      path: '/',
+      name: '/'
+    }]
+
+    for (let i = 1; i < pathArray.length - 1; i++) {
+
+      root = root + pathArray[i] + '/'
+
+      crumbs.push({
+        path: root,
+        name: pathArray[i],
+      })
+
+    }
+
+    return crumbs
   }
 
 }
