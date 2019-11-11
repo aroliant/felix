@@ -50,7 +50,9 @@
 }
 
 .FileBrowserOption:hover .FileBrowserOption__menu {
-  display: block;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  height: 283px;
+  opacity: 1;
 }
 
 .FileBrowserOption__menu {
@@ -60,16 +62,19 @@
   min-width: 150px;
   background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #dfdfdf;
-  border-top: 1px solid #dfdfdf, 10px solid #fff;
   z-index: 10;
-  display: none;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
 }
 
 .FileBrowserOption .list-group .list-group-item {
   font-size: 0.8rem;
   padding: 10px;
+  cursor: pointer;
+  height: 41px;
+  overflow: hidden;
   text-align: center;
 }
 
@@ -191,14 +196,16 @@
   min-width: 150px;
   background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid #dfdfdf;
-  border-top: 1px solid #dfdfdf, 10px solid #fff;
-  display: none;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
 }
 
 .UploadActions:hover .UploadActions__content {
-  display: block;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  height: 101px;
+  opacity: 1;
 }
 
 .ManageMeta__key {

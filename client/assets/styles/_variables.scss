@@ -3,6 +3,8 @@ $theme-colors: (
   "dark": #285f8c,
   "light": #b6d7f3
 );
+$enable-transitions: true;
+$enable-gradients: true;
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 // Boostrap defaults overide
