@@ -38,7 +38,11 @@
 
     <div class="FileBrowser">
       <div class="FileBrowserHeader small">
-        <strong class="FileBrowserHeader__left">{{this.currentPath}}</strong>
+        <strong class="FileBrowserHeader__left">
+          <div *ngFor="let crumb of bucketBreadcrumbs">
+            <a (click)="navigateBucketBreadcrumb(crumb.path)">{{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
+          </div>
+        </strong>
         <div class="FileBrowserHeader__right">2 items</div>
       </div>
       <table class="table ">
