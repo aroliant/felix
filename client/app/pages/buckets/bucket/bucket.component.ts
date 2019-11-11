@@ -104,8 +104,36 @@ export class BucketComponent implements OnInit {
     })
   }
 
-  search() {
-    // TODO :     
+  searchFilter() {
+    if(this.searchInput == ''){
+
+      const filters = {
+        bucketName: this.bucketName,
+        path: this.currentPath
+      }
+
+      this.mainService.searchObjects(filters).subscribe((objectsResult:any) => {
+        if(objectsResult.success){
+          this.objects = objectsResult.objects
+        }
+      })
+
+    }else{
+
+      const filters = {
+        bucketName: this.bucketName,
+        path: this.currentPath,
+        name: this.searchInput
+      }
+
+      this.mainService.searchObjects(filters).subscribe((objectsResult:any) => {
+        if(objectsResult.success){
+          this.objects = objectsResult.objects
+        }
+      })
+
+    }
+
   }
 
   deleteObject() {

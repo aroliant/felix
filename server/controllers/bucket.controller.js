@@ -224,6 +224,8 @@ export class BucketController {
     const params = req.body
     const rootPath = config.ROOT_FOLDER + '/buckets/' + params.bucketName
     let objects = []
+    let directories = []
+    let files = []
 
     const processObject = through2.obj(function (item, enc, next) {
       const object = {
@@ -233,12 +235,14 @@ export class BucketController {
         modifiedAt: item.stats.mtime,
         objectType: item.stats.isDirectory() == true ? 'folder' : 'file'
       }
-      objects.push(object)
+      if(object.objectType == 'file')
+      files.push(object)
+      else if(object.objectType == 'folder')
+      directories.push(object)
       next()
     })
 
     const _path  = rootPath + params.path
-    console.log(_path)
 
     klaw(_path, { depthLimit: 0 })
       .pipe(processObject)
@@ -251,9 +255,13 @@ export class BucketController {
         });
       })
       .on('end', () => {
+        objects.map((object,i) => {
+          if(object.objectType == 'file')
+          files.push(object)
+        })
         return res.json({
           success: true,
-          objects: objects.splice(1)
+          objects: directories.splice(1).concat(files)
         })
       })
 
