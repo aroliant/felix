@@ -25,6 +25,7 @@
     "@angular/platform-browser": "~8.2.13",
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
+    "angular-pipes": "^10.0.0",
     "bootstrap": "^4.3.1",
     "busboy": "^0.3.1",
     "core-js": "^2.5.4",

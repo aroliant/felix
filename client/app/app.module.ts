@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NgBytesPipeModule } from 'angular-pipes';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultComponent } from './layouts/default/default.component';
@@ -57,6 +59,7 @@ import { DeleteComponent } from './pages/buckets/bucket/modal/delete/delete.comp
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    NgBytesPipeModule,
   ],
   providers: [MainService],
   bootstrap: [AppComponent]
