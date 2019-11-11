@@ -5,15 +5,15 @@
     <div class="FileBrowserControls">
       <div class="row w-100 my-3 mx-0">
         <div class="col-lg-6 p-0 d-flex flex-row">
-          <button class="btn btn-outline-primary mr-2">New Folder</button>
-          <div class="form-group mb-0 w-75">
+          <button class="btn btn-primary mr-2">New Folder</button>
+          <div class="form-group mb-0 flex-grow-1">
             <input type="text" class="form-control" name="" (input)="searchFilter()" [(ngModel)]="searchInput"
               placeholder="Start typing to filter the list of files and folders">
           </div>
         </div>
         <div class="col-lg-6 text-right p-0">
           <div class="UploadActions mr-3">
-            <button class="btn btn-primary" type="button">Actions (0) <i class="icofont-simple-down"></i>
+            <button class="btn btn-outline-secondary" type="button">Actions (0) <i class="icofont-simple-down"></i>
             </button>
             <div class="UploadActions__content">
               <div class="list-group">

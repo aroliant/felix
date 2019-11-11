@@ -1,10 +1,12 @@
 $theme-colors: (
   "primary": #429ce4,
   "dark": #285f8c,
-  "light": #b6d7f3
+  "light": #b6d7f3,
+  "black": #000000,
+  "white": #ffffff
 );
 $enable-transitions: true;
-$enable-gradients: true;
+$enable-gradients: false;
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 // Boostrap defaults overide
@@ -20,4 +22,18 @@ input:focus {
 }
 .btn:focus {
   box-shadow: none;
+}
+.btn {
+  padding: 8px 31px;
+  border-radius: 3px;
+  font-size: 90%;
+  height: 41px;
+  letter-spacing: 1px;
+}
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.btn-success,
+.btn-light {
+  border: 0;
 }
