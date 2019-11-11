@@ -24,3 +24,6 @@
 .SidebarLink:hover {
   background-color: map-get($theme-colors, "dark");
 }
+.SidebarLink__active{
+  background-color: map-get($theme-colors, "dark");
+}
