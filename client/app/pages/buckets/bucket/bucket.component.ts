@@ -113,19 +113,19 @@ export class BucketComponent implements OnInit {
   }
 
   showManageMetaModal() {
-
+    this.modalStates.meta = true
   }
 
   showMoveObjectsModal() {
-
+    this.modalStates.moveFiles = true
   }
 
   showShareObjectModal() {
-
+    this.modalStates.share = true
   }
 
   showDeleteModal() {
-
+    this.modalStates.delete = true
   }
 
   uploadFiles(event) {

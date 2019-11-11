@@ -14,4 +14,8 @@ export class DeleteComponent implements OnInit {
   ngOnInit() {
   }
 
+  hideModal() {
+    this.show = false
+  }
+
 }

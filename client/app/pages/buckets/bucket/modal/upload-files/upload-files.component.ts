@@ -14,4 +14,8 @@ export class UploadFilesComponent implements OnInit {
   ngOnInit() {
   }
 
+  hideModal() {
+    this.show = false
+  }
+
 }

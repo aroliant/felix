@@ -14,4 +14,7 @@ export class ShareComponent implements OnInit {
   ngOnInit() {
   }
 
+  hideModal() {
+    this.show = false
+  }
 }

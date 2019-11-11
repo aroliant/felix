@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PermissionsComponent implements OnInit {
 
-  @Input() show;
+  @Input('show') show;
 
   constructor() { }
 

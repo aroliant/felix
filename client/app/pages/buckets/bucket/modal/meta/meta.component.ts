@@ -14,4 +14,8 @@ export class MetaComponent implements OnInit {
   ngOnInit() {
   }
 
+  hideModal() {
+    this.show = false
+  }
+
 }

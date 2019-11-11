@@ -1,5 +1,5 @@
 <!-- Delete File-Folder Modal-->
-<div class="modal" id="DeleteFileFolderModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal" id="DeleteFileFolderModal" tabindex="-1" role="dialog" aria-hidden="true" [class.open]="show">
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,7 +8,7 @@
                 </div>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                    (click)="closeDeleteFileFolderModal();">
+                    (click)="hideModal()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -18,7 +18,7 @@
             <div class="modal-footer">
                 <div class="w-100 text-left">
                     <button type="button" class="btn btn-outline-secondary mr-3"
-                        (click)="closeDeleteFileFolderModal();">
+                        (click)="hideModal()">
                         Cancel</button>
                     <button type="button" class="btn btn-danger">
                         Delete</button>
