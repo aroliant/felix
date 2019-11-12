@@ -363,4 +363,9 @@ export class BucketController {
 
   }
 
+  ensureObjectMeta(absolutePath) {
+    // TODO: Create/Update meta for the new Folder
+
+  }
+
 }

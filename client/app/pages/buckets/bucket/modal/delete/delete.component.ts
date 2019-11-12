@@ -18,7 +18,6 @@ export class DeleteComponent implements OnInit {
   constructor(private mainService: MainService) { }
 
   ngOnInit() {
-
   }
 
   deleteObject() {
@@ -27,6 +26,8 @@ export class DeleteComponent implements OnInit {
     this.objects.map((object,i) => {
       paths.push(this.currentPath + object['name'] + (object['objectType'] == 'folder' ? '/' : ''))
     })
+    console.log(this.bucket)
+    console.log(paths)
 
     this.mainService.deleteObjects({
       bucketName: this.bucket.bucketName,

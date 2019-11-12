@@ -24,11 +24,11 @@
             </div>
           </div>
 
-          <button class="btn btn-primary UploadFile mr-3" type="button" (click)="openUploadFilesModal()">Upload Files
+          <button class="btn btn-primary UploadFile mr-3" type="button">Upload Files
             <input type="file" class="UploadFile__input" multiple (change)="uploadFiles($event)">
           </button>
 
-          <button class="btn btn-primary UploadFolder" type="button" (click)="openUploadFoldersModal()">Upload Folders
+          <button class="btn btn-primary UploadFolder" type="button">Upload Folders
             <input type="file" class="UploadFolder__input" webkitdirectory mozdirectory multiple
               (change)="uploadFolders($event)">
           </button>
@@ -84,7 +84,11 @@
             </td>
             <td class="FileBrowser__optioncolumn">
               <div class="FileBrowserOption" (click)="showActions(i)" #action_{{i}}>
-                More <i class="icofont-thin-down"></i>
+                <span class="text-primary">
+                  More <i class="icofont-simple-down"></i>
+                  <!-- Enable this up icon with ngIf @jacobsamro -->
+                  <!-- <i class="icofont-simple-up"></i> -->
+                </span>
                 <div class="FileBrowserOption__menu" [class.open]="object.showActions === true" #action_menu_{{i}}>
                   <div class="list-group">
                     <a class="list-group-item list-group-item-action" (click)="showManagePermissionsModal()">Manage
@@ -98,7 +102,7 @@
                     <a class="list-group-item list-group-item-action" (click)="showMoveObjectsModal()">Move to
                       folder</a>
                     <a class="list-group-item list-group-item-action" (click)="showShareObjectModal()">Share</a>
-                    <a class="list-group-item list-group-item-action" (click)="showDeleteModal(i)">Delete</a>
+                    <a class="list-group-item list-group-item-action text-danger" (click)="showDeleteModal(i)">Delete</a>
                   </div>
                 </div>
               </div>
@@ -117,4 +121,4 @@
 <app-modal-move-files [show]="modalStates.moveFiles"></app-modal-move-files>
 <app-modal-permissions [show]="modalStates.permissions"></app-modal-permissions>
 <app-modal-share [show]="modalStates.share"></app-modal-share>
-<app-modal-upload-files [show]="modalStates.uploadFiles"></app-modal-upload-files>
+<app-modal-upload-files [show]="modalStates.uploadFiles" [files]="actions.files"></app-modal-upload-files>

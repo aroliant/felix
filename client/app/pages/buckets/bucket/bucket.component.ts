@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'client/app/services/main.service';
 import { environment } from '../../../../environments/environment'
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-bucket',
   templateUrl: './bucket.component.html',
@@ -16,7 +17,8 @@ export class BucketComponent implements OnInit {
   bucket: any
   objects = []
   actions = {
-    objectsToDelete: []
+    objectsToDelete: [],
+    files: []
   }
 
   states = {
@@ -35,7 +37,7 @@ export class BucketComponent implements OnInit {
 
   API_URL = environment.API_URL
 
-  constructor(private route: ActivatedRoute, private mainService: MainService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private mainService: MainService, private router: Router, private toast: ToastrService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -208,7 +210,7 @@ export class BucketComponent implements OnInit {
   }
 
   upload(file, uploadingIndex) {
-
+    const self = this
     console.log(file)
 
     const fileLength = file.size;
@@ -227,7 +229,7 @@ export class BucketComponent implements OnInit {
     formData.append('file', file);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('PUT', `http://localhost:3000/bucket/objects/${uploadFilePath}`, true);
+    xhr.open('PUT', `${this.API_URL}/bucket/objects/${uploadFilePath}`, true);
     xhr.upload.onprogress = function (e) {
       const percentComplete = Math.ceil((e.loaded / e.total) * 100);
       console.log(percentComplete)
@@ -235,7 +237,7 @@ export class BucketComponent implements OnInit {
 
     xhr.onload = function () {
       if (this.status === 200) {
-        console.log(this.status)
+        self.toast.success('File Uploaded')
       }
     }
 

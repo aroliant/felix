@@ -17,6 +17,8 @@
 }
 .FileBrowserHeader__left {
   color: map-get($theme-colors, "secondary");
+  display: flex;
+  flex-direction: row;
 }
 .FileBrowserHeader__right {
   color: map-get($theme-colors, "secondary");

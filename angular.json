@@ -28,7 +28,8 @@
             ],
             "styles": [
               "client/assets/styles/theme.scss",
-              "client/assets/icofont/icofont.min.css"
+              "client/assets/icofont/icofont.min.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

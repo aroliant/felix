@@ -25,6 +25,8 @@
     "@angular/platform-browser": "~8.2.13",
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
+    "@ngx-loading-bar/core": "^4.2.0",
+    "@ngx-loading-bar/http-client": "^4.2.0",
     "angular-pipes": "^10.0.0",
     "bootstrap": "^4.3.1",
     "busboy": "^0.3.1",
@@ -36,6 +38,7 @@
     "helmet": "^3.16.0",
     "klaw": "^3.0.0",
     "lowdb": "^1.0.0",
+    "ngx-toastr": "^11.2.1",
     "rxjs": "~6.5.3",
     "uuid": "^3.3.3",
     "zone.js": "~0.9.1"

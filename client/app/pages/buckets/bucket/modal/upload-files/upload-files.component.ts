@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UploadFilesComponent implements OnInit {
 
   @Input() show;
+  @Input() files;
 
   constructor() { }
 

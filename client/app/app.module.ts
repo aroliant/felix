@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgBytesPipeModule } from 'angular-pipes';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +32,7 @@ import { PermissionsComponent } from './pages/buckets/bucket/modal/permissions/p
 import { MetaComponent } from './pages/buckets/bucket/modal/meta/meta.component';
 import { ShareComponent } from './pages/buckets/bucket/modal/share/share.component';
 import { DeleteComponent } from './pages/buckets/bucket/modal/delete/delete.component';
+import { CustomToastrComponent } from './components/custom-toastr/custom-toastr.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,7 @@ import { DeleteComponent } from './pages/buckets/bucket/modal/delete/delete.comp
     MetaComponent,
     ShareComponent,
     DeleteComponent,
+    CustomToastrComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,8 +65,14 @@ import { DeleteComponent } from './pages/buckets/bucket/modal/delete/delete.comp
     AppRoutingModule,
     FormsModule,
     NgBytesPipeModule,
+    LoadingBarHttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      toastComponent: CustomToastrComponent,
+    })
   ],
   providers: [MainService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CustomToastrComponent]
 })
 export class AppModule { }
