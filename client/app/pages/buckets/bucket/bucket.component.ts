@@ -17,7 +17,7 @@ export class BucketComponent implements OnInit {
   bucket: any
   objects = []
   actions = {
-    objectToDelete: {},
+    objectsToDelete: [],
     files: []
   }
 
@@ -95,7 +95,12 @@ export class BucketComponent implements OnInit {
 
   showActions(index) {
     console.log('[action] -> showActions', index)
-    this.objects[index].showActions = true
+    if (!this.objects[index].showActions) {
+      this.objects[index].showActions = true
+    } else {
+      this.objects[index].showActions = false
+    }
+
     this.currentActionIndex = index
     const self = this
     setTimeout(() => {
@@ -147,17 +152,12 @@ export class BucketComponent implements OnInit {
 
   onDelete($event) {
     if ($event.success) {
-      this.objects.splice(this.objects.indexOf(this.actions.objectToDelete), 1)
-      this.modalStates.delete = false
+      this.actions.objectsToDelete.map((objectToDelete, i) => {
+        this.objects.splice(this.objects.indexOf(this.actions.objectsToDelete[i]), 1)
+      })
     }
-  }
-
-  deleteObjects(objects) {
-    this.mainService.deleteObjects(objects).subscribe((res: any) => {
-      if (res.success) {
-        // TODO : Remove from UI
-      }
-    })
+    this.modalStates.delete = false
+    this.actions.objectsToDelete = []
   }
 
   browseFolder(folderName) {
@@ -185,7 +185,15 @@ export class BucketComponent implements OnInit {
 
   showDeleteModal(i) {
     this.modalStates.delete = true
-    this.actions.objectToDelete = this.objects[i]
+    this.actions.objectsToDelete.push(this.objects[i])
+  }
+
+  showDeletesModel() {
+    this.modalStates.delete = true
+    this.objects.map((object, index) => {
+      if (object.isSelected)
+        this.actions.objectsToDelete.push(object)
+    })
   }
 
   uploadFiles(event) {
@@ -234,7 +242,7 @@ export class BucketComponent implements OnInit {
 
     xhr.onload = function () {
       if (this.status === 200) {
-        self.toast.success('File Uploaded')
+        self.toast.success('', 'File Uploaded')
       }
     }
 

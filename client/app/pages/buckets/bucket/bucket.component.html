@@ -19,7 +19,7 @@
               <div class="list-group">
                 <a Value class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
                   folder</a>
-                <a Value class="list-group-item list-group-item-action text-danger">Delete</a>
+                <a Value class="list-group-item list-group-item-action" (click)="showDeletesModel()">Delete</a>
               </div>
             </div>
           </div>
@@ -40,7 +40,8 @@
       <div class="FileBrowserHeader small">
         <strong class="FileBrowserHeader__left">
           <div *ngFor="let crumb of bucketBreadcrumbs">
-            <a (click)="navigateBucketBreadcrumb(crumb.path)" class="FileBrowserHeader__crumb">{{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
+            <a (click)="navigateBucketBreadcrumb(crumb.path)"
+              class="FileBrowserHeader__crumb">{{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
           </div>
         </strong>
         <div class="FileBrowserHeader__right">2 items</div>
@@ -102,7 +103,8 @@
                     <a class="list-group-item list-group-item-action" (click)="showMoveObjectsModal()">Move to
                       folder</a>
                     <a class="list-group-item list-group-item-action" (click)="showShareObjectModal()">Share</a>
-                    <a class="list-group-item list-group-item-action text-danger" (click)="showDeleteModal(i)">Delete</a>
+                    <a class="list-group-item list-group-item-action text-danger"
+                      (click)="showDeleteModal(i)">Delete</a>
                   </div>
                 </div>
               </div>
@@ -115,7 +117,7 @@
   </div>
 </div>
 
-<app-modal-delete [show]="modalStates.delete" [object]="actions.objectToDelete" [bucket]="bucket"
+<app-modal-delete [show]="modalStates.delete" [objects]="actions.objectsToDelete" [bucket]="bucket"
   [currentPath]="currentPath" (onDelete)="onDelete($event)"></app-modal-delete>
 <app-modal-meta [show]="modalStates.meta"></app-modal-meta>
 <app-modal-move-files [show]="modalStates.moveFiles"></app-modal-move-files>
