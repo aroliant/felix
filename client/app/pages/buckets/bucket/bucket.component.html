@@ -24,11 +24,11 @@
             </div>
           </div>
 
-          <button class="btn btn-primary UploadFile mr-3" type="button" (click)="openUploadFilesModal()">Upload Files
+          <button class="btn btn-primary UploadFile mr-3" type="button">Upload Files
             <input type="file" class="UploadFile__input" multiple (change)="uploadFiles($event)">
           </button>
 
-          <button class="btn btn-primary UploadFolder" type="button" (click)="openUploadFoldersModal()">Upload Folders
+          <button class="btn btn-primary UploadFolder" type="button">Upload Folders
             <input type="file" class="UploadFolder__input" webkitdirectory mozdirectory multiple
               (change)="uploadFolders($event)">
           </button>
@@ -121,4 +121,4 @@
 <app-modal-move-files [show]="modalStates.moveFiles"></app-modal-move-files>
 <app-modal-permissions [show]="modalStates.permissions"></app-modal-permissions>
 <app-modal-share [show]="modalStates.share"></app-modal-share>
-<app-modal-upload-files [show]="modalStates.uploadFiles"></app-modal-upload-files>
+<app-modal-upload-files [show]="modalStates.uploadFiles" [files]="actions.files"></app-modal-upload-files>
