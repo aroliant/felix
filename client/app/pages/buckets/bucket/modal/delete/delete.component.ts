@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MainService } from 'client/app/services/main.service';
+import { PathLocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-modal-delete',
@@ -9,7 +10,7 @@ import { MainService } from 'client/app/services/main.service';
 export class DeleteComponent implements OnInit {
 
   @Input() show;
-  @Input() object: any;
+  @Input() objects: [];
   @Input() bucket: any;
   @Input() currentPath;
   @Output() public onDelete = new EventEmitter<String>();
@@ -17,13 +18,17 @@ export class DeleteComponent implements OnInit {
   constructor(private mainService: MainService) { }
 
   ngOnInit() {
-
   }
 
   deleteObject() {
 
-    const path = this.currentPath + this.object['name'] + (this.object['objectType'] == 'folder' ? '/' : '');
-    const paths = [path]
+    var paths = [];
+    this.objects.map((object,i) => {
+      paths.push(this.currentPath + object['name'] + (object['objectType'] == 'folder' ? '/' : ''))
+    })
+    console.log(this.bucket)
+    console.log(paths)
+
     this.mainService.deleteObjects({
       bucketName: this.bucket.bucketName,
       paths: paths

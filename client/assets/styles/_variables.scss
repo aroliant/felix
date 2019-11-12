@@ -1,10 +1,11 @@
 $theme-colors: (
   "primary": #429ce4,
-  "dark": #285f8c,
+  "dark": #1b84da,
   "light": #b6d7f3,
   "black": #000000,
   "white": #ffffff,
-  "lighter": #fafafa
+  "lighter": #fafafa,
+  "success": #8bc34a
 );
 $enable-transitions: true;
 $enable-gradients: false;
@@ -18,11 +19,15 @@ $enable-gradients: false;
 a:hover {
   text-decoration: none;
 }
+input {
+  padding: 20px 15px!important;
+  height: 41px!important;
+}
 input:focus {
-  box-shadow: none;
+  box-shadow: none !important;
 }
 .btn:focus {
-  box-shadow: none;
+  box-shadow: none!important;
 }
 .btn {
   padding: 8px 31px;

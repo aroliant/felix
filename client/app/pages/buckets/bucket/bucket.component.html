@@ -1,4 +1,4 @@
-<div class="MainContent" (click)="hideAllActions()">
+<div class="MainContent">
   <div class="container">
     <app-breadcrumb [bucket]="bucket"></app-breadcrumb>
 
@@ -19,7 +19,7 @@
               <div class="list-group">
                 <a Value class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
                   folder</a>
-                <a Value class="list-group-item list-group-item-action text-danger">Delete</a>
+                <a Value class="list-group-item list-group-item-action" (click)="showDeletesModel()">Delete</a>
               </div>
             </div>
           </div>
@@ -40,12 +40,12 @@
       <div class="FileBrowserHeader small">
         <strong class="FileBrowserHeader__left">
           <div *ngFor="let crumb of bucketBreadcrumbs">
-            <a (click)="navigateBucketBreadcrumb(crumb.path)">{{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
+            <a (click)="navigateBucketBreadcrumb(crumb.path)" class="FileBrowserHeader__crumb">{{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
           </div>
         </strong>
         <div class="FileBrowserHeader__right">2 items</div>
       </div>
-      <table class="table ">
+      <table class="table table-hover">
         <thead class="FileBrowser__titlebar">
           <tr>
             <th scope="col" class="FileBrowser__selectcolumn">
@@ -115,7 +115,7 @@
   </div>
 </div>
 
-<app-modal-delete [show]="modalStates.delete" [object]="actions.objectToDelete" [bucket]="bucket"
+<app-modal-delete [show]="modalStates.delete" [objects]="actions.objectsToDelete" [bucket]="bucket"
   [currentPath]="currentPath" (onDelete)="onDelete($event)"></app-modal-delete>
 <app-modal-meta [show]="modalStates.meta"></app-modal-meta>
 <app-modal-move-files [show]="modalStates.moveFiles"></app-modal-move-files>

@@ -1,7 +1,13 @@
+@import "../../../assets/styles/variables";
+
 .Breadcrumb {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+}
+
+.PresentBucket__name {
+  font-family: Roboto-Medium;
 }
 
 .PresentBucket {
@@ -10,10 +16,10 @@
 
 .PresentBucket__icon {
   width: 60px;
-  background-color: #fafafa;
+  background-color: map-get($theme-colors, "white");
   border-radius: 60px;
   padding: 10px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid map-get($theme-colors, "primary");
   margin-right: 20px;
 }
 
