@@ -30,8 +30,8 @@ export class MainService {
     return this.httpc.get(this.API_URL + '/bucket/' + bucketName);
   }
 
-  deleteBucket(bucketID) {
-    return this.httpc.delete(this.API_URL + '/bucket/', bucketID);
+  deleteBucket(bucketName) {
+    return this.httpc.delete(this.API_URL + '/bucket/' + bucketName);
   }
 
   // Objects

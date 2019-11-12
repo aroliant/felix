@@ -11,7 +11,7 @@ router.route('/').post((req, res) => BucketController.createBucket(req, res));
 router.route('/').put((req, res) => BucketController.updateBucket(req, res));
 router.route('/').get((req, res) => BucketController.getAllBuckets(req, res));
 router.route('/:bucketName').get((req, res) => BucketController.getBucket(req, res));
-router.route('/:bucketID').delete((req, res) => BucketController.deleteBucket(req, res));
+router.route('/:bucketName').delete((req, res) => BucketController.deleteBucket(req, res));
 
 // Objects
 
