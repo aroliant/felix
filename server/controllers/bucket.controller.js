@@ -62,7 +62,7 @@ export class BucketController {
     const bucketDB = low(bucketAdapter)
 
     try {
-      bucketDB.set('bucket', { // ok I'll chaneg those
+      bucketDB.set('bucket', {
         bucketName: req.body.bucketName,
         bucketID: id,
         size: "0KB",
@@ -74,7 +74,7 @@ export class BucketController {
         settings: {
           endPoint: "",
           sslEnabled: false,
-          fileListing: "restricted"
+          fileListing: params.fileListing
         }
       })
         .write()

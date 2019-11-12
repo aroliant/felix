@@ -5,7 +5,7 @@
 
             <div class="form-group mb-0">
                 <label class="h6">Choose a unique name</label>
-                <input type="text" class="form-control" aria-label="Sizing example input"
+                <input type="text" class="form-control" aria-label="Sizing example input" [(ngModel)]="bucket.bucketName"
                     aria-describedby="inputGroup-sizing-default" placeholder="Choose a unique name for your bucket">
             </div>
         </div>
@@ -13,7 +13,7 @@
             <h4 class="font-weight-light">Allow file listing?</h4>
             <div class="form-check form-check-inline border p-3 rounded">
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                    value="option1">
+                    value="restricted" checked [(ngModel)]="bucket.fileListing" >
                 <label class="form-check-label p-3" for="inlineRadio1"><span class="h6">Restrict File
                         Listing</span><br />
                     <div class="small">Only users who connect to this Bucket using access keys can list the contents.
@@ -22,7 +22,7 @@
             </div>
             <div class="form-check form-check-inline border p-3 rounded">
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                    value="option2">
+                value="enabled" [(ngModel)]="bucket.fileListing" >
                 <label class="form-check-label p-3" for="inlineRadio2"><span class="h6">Enable File Listing </span>
                     <br />
                     <div class="small">Anyone can list the contents of this Space.
@@ -32,7 +32,7 @@
         </div>
 
         <div class="w-100 text-right mt-2">
-            <button class="btn btn-primary">Create</button>
+            <button class="btn btn-primary" (click)="createBucket()" >Create</button>
         </div>
     </div>
 </div>
