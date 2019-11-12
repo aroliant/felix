@@ -2,6 +2,7 @@
     <div class="container">
         <div class="Buckets">
             <div class="Bucket" *ngFor="let bucket of buckets">
+                <img src="../../../assets/icons/empty-bucket.svg" class="Bucket__icon" alt="">
                 <div class="Bucket__name" routerLink="/buckets/{{bucket.bucketName}}">
                     <h6 class="m-0 text-primary Bucket__info--name">{{bucket.bucketName}}</h6>
                     <div class="small Bucket__info text-secondary">BLAZ/{{bucket.items}} items totaling {{bucket.size}}
@@ -17,8 +18,10 @@
                     </a>
                     <div class="Bucket__menucontent">
                         <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action">Show Files</a>
-                            <a href="#" class="list-group-item list-group-item-action">Settings</a>
+                            <a href="#" class="list-group-item list-group-item-action"
+                                routerLink="/buckets/{{bucket.bucketName}}">Show Files</a>
+                            <a class="list-group-item list-group-item-action"
+                                routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings">Settings</a>
                         </div>
                     </div>
                 </div>
