@@ -234,7 +234,7 @@ export class BucketComponent implements OnInit {
 
     xhr.onload = function () {
       if (this.status === 200) {
-        self.toast.success('File Uploaded')
+        self.toast.success('', 'File Uploaded')
       }
     }
 
