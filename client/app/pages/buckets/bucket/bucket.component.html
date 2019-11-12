@@ -19,7 +19,7 @@
               <div class="list-group">
                 <a Value class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
                   folder</a>
-                <a Value class="list-group-item list-group-item-action">Delete</a>
+                <a Value class="list-group-item list-group-item-action text-danger">Delete</a>
               </div>
             </div>
           </div>
@@ -84,7 +84,11 @@
             </td>
             <td class="FileBrowser__optioncolumn">
               <div class="FileBrowserOption" (click)="showActions(i)" #action_{{i}}>
-                More <i class="icofont-thin-down"></i>
+                <span class="text-primary">
+                  More <i class="icofont-simple-down"></i>
+                  <!-- Enable this up icon with ngIf @jacobsamro -->
+                  <!-- <i class="icofont-simple-up"></i> -->
+                </span>
                 <div class="FileBrowserOption__menu" [class.open]="object.showActions === true" #action_menu_{{i}}>
                   <div class="list-group">
                     <a class="list-group-item list-group-item-action" (click)="showManagePermissionsModal()">Manage
@@ -98,7 +102,7 @@
                     <a class="list-group-item list-group-item-action" (click)="showMoveObjectsModal()">Move to
                       folder</a>
                     <a class="list-group-item list-group-item-action" (click)="showShareObjectModal()">Share</a>
-                    <a class="list-group-item list-group-item-action" (click)="showDeleteModal(i)">Delete</a>
+                    <a class="list-group-item list-group-item-action text-danger" (click)="showDeleteModal(i)">Delete</a>
                   </div>
                 </div>
               </div>

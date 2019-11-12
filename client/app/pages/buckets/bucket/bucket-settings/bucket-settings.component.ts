@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MainService } from 'client/app/services/main.service';
 
 @Component({
   selector: 'app-bucket-settings',
@@ -11,8 +12,9 @@ export class BucketSettingsComponent implements OnInit {
   bucket = {
     bucketName: ''
   }
+  deleteConfirmationBucketName = ''
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,private mainService: MainService,private router: Router) { }
 
   ngOnInit() {
 
@@ -30,10 +32,23 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   openDeleteBucketModal() {
+    this.deleteConfirmationBucketName = ''
     document.getElementById("DeleteBucketModal").style.display = "block";
   }
   closeDeleteBucketModal() {
     document.getElementById("DeleteBucketModal").style.display = "none";
+  }
+  deleteBucket() {
+    console.log(this.deleteConfirmationBucketName + ' === ' + this.bucket.bucketName)
+    if(this.deleteConfirmationBucketName === this.bucket.bucketName){
+      this.mainService.deleteBucket(this.bucket.bucketName).subscribe((deleteBucketStatus:any) => {
+        if(deleteBucketStatus.success){
+          this.closeDeleteBucketModal();
+          console.log(deleteBucketStatus.message)
+          this.router.navigate(['buckets'])
+        }
+      })
+    }
   }
 
   openCORSoptionModal() {

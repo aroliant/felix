@@ -124,18 +124,18 @@
                 </p>
                 <p>Confirm you want to permanently delete this Bucket by entering its name below.</p>
                 <div class="form-group">
-                    <input type="text" class="form-control" value="fibo-bucket" disabled>
+                    <input type="text" class="form-control" value="{{bucket.bucketName}}" disabled>
                 </div>
                 <div class="form-group mb-0">
                     <label class="m-0 small text-secondary">enter the name of this bucket to enable deletion</label>
-                    <input type="text" class="form-control" placeholder="Enter the name of this bucket">
+                    <input type="text" class="form-control" [(ngModel)]="deleteConfirmationBucketName" placeholder="Enter the name of this bucket">
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="w-100 text-left">
                     <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeDeleteBucketModal();">
                         Cancel</button>
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteBucket()" >
                         Delete</button>
                 </div>
             </div>

@@ -74,7 +74,7 @@ export class BucketController {
         settings: {
           endPoint: "",
           sslEnabled: false,
-          fileListing: "restricted"
+          fileListing: params.fileListing
         }
       })
         .write()
@@ -169,11 +169,10 @@ export class BucketController {
   }
 
   static deleteBucket(req, res) {
-    const bucketID = req.params.bucketID
-    var bucketName
+    var bucketName = req.params.bucketName
 
     try {
-      bucketName = (bucketsDB.get('buckets').find({ bucketID: bucketID }).value())['bucketName']
+      bucketName = (bucketsDB.get('buckets').find({ bucketName: bucketName }).value())['bucketName']
     } catch (err) {
       return res.json({
         success: false,
@@ -193,7 +192,7 @@ export class BucketController {
     })
 
     try {
-      bucketsDB.get('buckets').remove({ bucketID: bucketID }).write()
+      bucketsDB.get('buckets').remove({ bucketName: bucketName }).write()
     } catch (err) {
       return res.json({
         success: false,
