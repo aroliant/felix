@@ -66,6 +66,7 @@ export class BucketComponent implements OnInit {
           this.objects.map((object, index) => {
             object.showActions = false
             object.isSelected = false
+            object.onEditMode = false
             return object
           })
         })
@@ -95,7 +96,12 @@ export class BucketComponent implements OnInit {
 
   showActions(index) {
     console.log('[action] -> showActions', index)
-    this.objects[index].showActions = true
+    if (!this.objects[index].showActions) {
+      this.objects[index].showActions = true
+    } else {
+      this.objects[index].showActions = false
+    }
+
     this.currentActionIndex = index
     const self = this
     setTimeout(() => {
@@ -114,7 +120,7 @@ export class BucketComponent implements OnInit {
   }
 
   searchFilter() {
-    if (this.searchInput == '') {
+    if (this.searchInput === '') {
 
       const filters = {
         bucketName: this.bucketName,
@@ -147,7 +153,7 @@ export class BucketComponent implements OnInit {
 
   onDelete($event) {
     if ($event.success) {
-      this.actions.objectsToDelete.map((objectToDelete,i) => {
+      this.actions.objectsToDelete.map((objectToDelete, i) => {
         this.objects.splice(this.objects.indexOf(this.actions.objectsToDelete[i]), 1)
       })
     }
@@ -186,9 +192,32 @@ export class BucketComponent implements OnInit {
   showDeletesModel() {
     this.modalStates.delete = true
     this.objects.map((object, index) => {
-      if(object.isSelected)
-      this.actions.objectsToDelete.push(object)
+      if (object.isSelected) {
+        this.actions.objectsToDelete.push(object)
+      }
+
     })
+  }
+
+  createNewFolder() {
+    this.objects.unshift({
+      name: '',
+      size: 0,
+      objectType: 'folder',
+      createdAt: new Date(),
+      modifiedAt: new Date(),
+      isSelected: false,
+      showActions: false,
+      onEditMode: true,
+    })
+  }
+
+  openFolderEditMode(i) {
+    this.objects[i].onEditMode = true
+  }
+
+  closeFolderEditMode(i) {
+    this.objects[i].onEditMode = false
   }
 
   uploadFiles(event) {

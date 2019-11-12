@@ -1,11 +1,11 @@
-<div class="MainContent">
+<div class="MainContent" (click)="hideAllActions()">
   <div class="container">
     <app-breadcrumb [bucket]="bucket"></app-breadcrumb>
 
     <div class="FileBrowserControls">
       <div class="row w-100 my-3 mx-0">
         <div class="col-lg-6 p-0 d-flex flex-row">
-          <button class="btn btn-primary mr-2">New Folder</button>
+          <button class="btn btn-primary mr-2" (click)="createNewFolder()">New Folder</button>
           <div class="form-group mb-0 flex-grow-1">
             <input type="text" class="form-control" name="" (input)="searchFilter()" [(ngModel)]="searchInput"
               placeholder="Start typing to filter the list of files and folders">
@@ -40,7 +40,8 @@
       <div class="FileBrowserHeader small">
         <strong class="FileBrowserHeader__left">
           <div *ngFor="let crumb of bucketBreadcrumbs">
-            <a (click)="navigateBucketBreadcrumb(crumb.path)" class="FileBrowserHeader__crumb">{{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
+            <a (click)="navigateBucketBreadcrumb(crumb.path)"
+              class="FileBrowserHeader__crumb">{{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
           </div>
         </strong>
         <div class="FileBrowserHeader__right">2 items</div>
@@ -70,9 +71,18 @@
                 <span class="CheckboxContainer__checkmark"></span>
               </label>
             </td>
-            <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'" (click)="browseFolder(object.name)">
-              <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
-              {{object.name}}
+            <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'">
+              <span (click)="browseFolder(object.name)" *ngIf="!object.onEditMode">
+                <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
+                {{object.name}}
+              </span>
+
+              <!-- editable mode -->
+              <div *ngIf="object.onEditMode">
+                <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
+                <input type="text" [(ngModel)]="object.name" placeholder="Folder name" />
+                <button (click)="closeFolderEditMode(i)">check</button>
+              </div>
             </td>
             <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='file'">
               <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
@@ -98,11 +108,12 @@
                     <a class="list-group-item list-group-item-action"
                       href="{{API_URL}}/{{bucketName}}{{currentPath}}{{object.name}}" target="_blank"
                       *ngIf="object.objectType=='file'">Download</a>
-                    <a class="list-group-item list-group-item-action">Rename</a>
+                    <a class="list-group-item list-group-item-action" (click)="openFolderEditMode(i)">Rename</a>
                     <a class="list-group-item list-group-item-action" (click)="showMoveObjectsModal()">Move to
                       folder</a>
                     <a class="list-group-item list-group-item-action" (click)="showShareObjectModal()">Share</a>
-                    <a class="list-group-item list-group-item-action text-danger" (click)="showDeleteModal(i)">Delete</a>
+                    <a class="list-group-item list-group-item-action text-danger"
+                      (click)="showDeleteModal(i)">Delete</a>
                   </div>
                 </div>
               </div>
