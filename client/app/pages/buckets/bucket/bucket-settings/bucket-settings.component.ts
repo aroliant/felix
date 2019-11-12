@@ -46,6 +46,15 @@ export class BucketSettingsComponent implements OnInit {
   closeDeleteBucketModal() {
     document.getElementById("DeleteBucketModal").style.display = "none";
   }
+
+  openPurgeModal() {
+    this.deleteConfirmationBucketName = ''
+    document.getElementById("PurgeModal").style.display = "block";
+  }
+  closePurgeModal() {
+    document.getElementById("PurgeModal").style.display = "none";
+  }
+
   deleteBucket() {
     console.log(this.deleteConfirmationBucketName + ' === ' + this.bucket.bucketName)
     if (this.deleteConfirmationBucketName === this.bucket.bucketName) {

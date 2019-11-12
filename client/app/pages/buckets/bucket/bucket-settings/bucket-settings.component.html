@@ -57,8 +57,8 @@
                     </p>
                 </div>
                 <div>
-                    <button class="btn btn-outline-light mr-3">Purge Cache</button>
-                    <button class="btn btn-outline-secondary">Edit</button>
+                    <button class="btn btn-outline-light mr-3" (click)="openPurgeModal();">Purge Cache</button>
+                    <button class="btn btn-outline-secondary" (click)="openPurgeModal();">Edit</button>
                 </div>
             </div>
             <div class="BucketSettings__item">
@@ -83,7 +83,8 @@
                 <div class="w-100 text-left mt-2">
                     <div class="BucketEndpoint">
                         <span class="mx-2">{{bucket.bucketName}}.blaz.app</span>
-                        <button class="btn btn-light" (click)="copyToClipboard(bucket.bucketName + '.blaz.app')" >Copy</button>
+                        <button class="btn btn-light"
+                            (click)="copyToClipboard(bucket.bucketName + '.blaz.app')">Copy</button>
                     </div>
                 </div>
             </div>
@@ -128,14 +129,15 @@
                 </div>
                 <div class="form-group mb-0">
                     <label class="m-0 small text-secondary">enter the name of this bucket to enable deletion</label>
-                    <input type="text" class="form-control" [(ngModel)]="deleteConfirmationBucketName" placeholder="Enter the name of this bucket">
+                    <input type="text" class="form-control" [(ngModel)]="deleteConfirmationBucketName"
+                        placeholder="Enter the name of this bucket">
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="w-100 text-left">
                     <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeDeleteBucketModal();">
                         Cancel</button>
-                    <button type="button" class="btn btn-outline-danger" (click)="deleteBucket()" >
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteBucket()">
                         Delete</button>
                 </div>
             </div>
@@ -210,6 +212,60 @@
                     <button type="button" class="btn btn-success mr-3" (click)="closeCORSoptionModal();">
                         Save Options</button>
                     <button type="button" class="btn btn-outline-secondary" (click)="closeCORSoptionModal();">
+                        Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PURGE Option Modal-->
+<div class="modal" id="PurgeModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Purge Cache</h5>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="closePurgeModal();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Choose a directory (or multiple directories) or the entire Space to remove those elements and their
+                    children from the cache.</p>
+                <div class="MoveFileBrowser">
+                    <div class="list-group">
+                        <details>
+
+                            <summary class="list-group-item list-group-item-action">Folder One</summary>
+                            <details class="ml-3">
+                                <summary class="list-group-item list-group-item-action">Child of folder one</summary>
+                                <div class="list-group-item list-group-item-action ml-3">child-folder-one-file.html
+                                </div>
+                            </details>
+
+                            <summary class="list-group-item list-group-item-action ml-3">folder-one-file.html</summary>
+
+                        </details>
+
+                        <details>
+                            <summary class="list-group-item list-group-item-action">Folder Two</summary>
+                            <div class="list-group-item list-group-item-action ml-3">folder-two-file.html</div>
+                        </details>
+
+                        <div class="list-group-item list-group-item-action">index.html</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="w-100 text-left">
+                    <button type="button" class="btn btn-primary mr-3" (click)="closePurgeModal();">
+                        Purge Selected Directories</button>
+                    <button type="button" class="btn btn-outline-secondary" (click)="closePurgeModal();">
                         Cancel</button>
                 </div>
             </div>
