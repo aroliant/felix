@@ -1,5 +1,675 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "../client/assets/styles/theme.scss";
+
+@font-face {
+  font-family: Roboto-Regular;
+  src: url(../client/assets/fonts/roboto/Roboto-Regular.ttf);
+}
+@font-face {
+  font-family: Roboto-Medium;
+  src: url(../client/assets/fonts/roboto/Roboto-Medium.ttf);
+}
+@font-face {
+  font-family: Roboto-Bold;
+  src: url(../client/assets/fonts/roboto/Roboto-Bold.ttf);
+}
+@font-face {
+  font-family: Roboto-Black;
+  src: url(../client/assets/fonts/roboto/Roboto-Black.ttf);
+}
+
+/*********** PAGES STYLES STARTS HERE ***********/
+
+/* HOME PAGE STYLES STARTS HERE */
+
+/* HOME PAGE STYLES ENDS HERE */
+
+/* BUCKETS PAGE STYLES STARTS HERE */
+.Bucket {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  height: 50px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.Bucket:hover {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.Bucket__name {
+  position: relative;
+  width: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 38px;
+  width: 40%;
+}
+
+.Bucket__info--name {
+  position: relative;
+  transform: translateY(9.5px);
+  transition: 0.3s linear;
+}
+
+.Bucket__info {
+  opacity: 0;
+  transition: 0.3s linear;
+  transform: translateY(19px);
+}
+
+.Bucket:hover .Bucket__info {
+  opacity: 1;
+  transition: 0.3s linear;
+  transform: translateY(0);
+}
+
+.Bucket:hover .Bucket__info--name {
+  transform: translateY(0px);
+  transition: 0.3s linear;
+}
+
+.Bucket__url {
+  color: map-get($theme-colors, "secondary");
+  width: 50%;
+}
+
+.Bucket__menu {
+  width: 10%;
+  text-align: right;
+}
+
+.Bucket__url_copy {
+  display: none;
+  margin-left: 20px;
+  transition: 0.3s linear;
+}
+
+.Bucket__url:hover .Bucket__url_copy {
+  display: unset;
+  color: map-get($theme-colors, "primary");
+  transition: 0.3s linear;
+}
+
+.Bucket__menu {
+  position: relative;
+}
+
+.Bucket__menucontent {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  min-width: 130px;
+  background-color: #fff;
+  border-radius: 4px;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+  transform: translate3d(0, -10px, 0);
+  z-index: -1;
+}
+
+.Bucket__menu:hover .Bucket__menucontent {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+}
+
+.Bucket__menucontent .list-group .list-group-item {
+  font-size: 0.8rem;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+  height: 41px;
+}
+/* BUCKETS PAGE STYLES ENDS HERE */
+
+/* CREATE BUCKET PAGE STYLES STARTS HERE */
+.CreateBucket__icon {
+  width: 30px;
+  background-color: #fafafa;
+  border-radius: 30px;
+  margin-right: 20px;
+}
+/* CREATE BUCKET PAGE STYLES ENDS HERE */
+
+/* BUCKET PAGE STYLES STARTS HERE */
+.FileBrowser {
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.FileBrowserHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.FileBrowserHeader__left {
+  color: map-get($theme-colors, "secondary");
+  display: flex;
+  flex-direction: row;
+}
+
+.FileBrowserHeader__crumb {
+  letter-spacing: 1px;
+}
+
+.FileBrowserHeader__crumb:hover {
+  text-decoration: underline !important;
+  color: map-get($theme-colors, "primary") !important;
+  cursor: pointer;
+}
+
+.FileBrowserHeader__right {
+  color: map-get($theme-colors, "secondary");
+}
+
+.FileBrowser__icon {
+  height: 25px;
+}
+
+.FileBrowser__selectcolumn {
+  text-align: center;
+  max-width: 50px;
+}
+
+.FileBrowser__namecolumn {
+  min-width: 50%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.FileBrowser__sizecolumn {
+  min-width: 10%;
+  text-align: left;
+}
+
+.FileBrowser__timecolumn {
+  min-width: 20%;
+  text-align: left;
+}
+
+.FileBrowser__optioncolumn {
+  min-width: 14%;
+  text-align: right;
+}
+
+.FileBrowserOption {
+  position: relative;
+  cursor: pointer;
+}
+
+.FileBrowserOption .FileBrowserOption__menu.open {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+  opacity: 1;
+}
+
+.FileBrowserOption__menu {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  min-width: 150px;
+  background-color: #fff;
+  border-radius: 4px;
+  z-index: -1;
+  opacity: 0;
+  transform: translate3d(0, -10px, 0);
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+}
+
+.FileBrowserOption .list-group .list-group-item {
+  font-size: 0.8rem;
+  padding: 10px;
+  cursor: pointer;
+  height: 41px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.FileBrowserControls {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.UploadFile,
+.UploadFolder {
+  position: relative;
+}
+
+.UploadFile__input,
+.UploadFolder__input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+/* The CheckboxContainer */
+.CheckboxContainer {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 0;
+}
+
+/* Hide the browser's default checkbox */
+.CheckboxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.CheckboxContainer__checkmark {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #ffffff;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  display: flex;
+}
+
+/* On mouse-over, add a grey background color */
+.CheckboxContainer:hover input ~ .CheckboxContainer__checkmark {
+  background-color: #fafafa;
+}
+
+/* When the checkbox is checked, add a blue background */
+.CheckboxContainer input:checked ~ .CheckboxContainer__checkmark {
+  background-color: #ffffff;
+  border: 1px solid map-get($theme-colors, "primary");
+}
+
+/* Create the CheckboxContainer__checkmark/indicator (hidden when not checked) */
+.CheckboxContainer__checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the CheckboxContainer__checkmark when checked */
+.CheckboxContainer input:checked ~ .CheckboxContainer__checkmark:after {
+  display: block;
+}
+
+/* Style the CheckboxContainer__checkmark/indicator */
+.CheckboxContainer .CheckboxContainer__checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid map-get($theme-colors, "primary");
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.UploadActions {
+  position: relative;
+  display: inline-block;
+}
+
+.UploadActions__content {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  min-width: 150px;
+  background-color: #fff;
+  border-radius: 4px;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.2s ease-out;
+  transform: translate3d(0, -10px, 0);
+  z-index: -1;
+}
+
+.UploadActions:hover .UploadActions__content {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+  opacity: 1;
+}
+
+.MoveFileBrowser {
+  width: 100%;
+  border: 0.5px solid #d3d3d3;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.MoveFileBrowser .list-group-item {
+  border: 0;
+}
+/* BUCKET PAGE STYLES ENDS HERE */
+
+/* BUCKET SETTINGS PAGE STYLES STARTS HERE */
+.BucketSettings__item {
+  display: flex;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #d3d3d3;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
+.BucketSettings__item--column {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.BucketEndpoint {
+  background-color: map-get($theme-colors, "light_dim");
+  border-radius: 4px;
+  overflow: hidden;
+  display: inline-flex;
+  padding: 5px;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 400px;
+}
+
+.FileListingPrivacy {
+  display: none;
+}
+
+.HeaderCORS {
+  display: none;
+}
+/* BUCKET SETTINGS PAGE STYLES ENDS HERE */
+
+/* MODAL BUCKET MANAGE META MODAL PAGE STYLES STARTS HERE */
+.ManageMeta {
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.ManageMeta__key {
+  text-align: left;
+  width: 40%;
+}
+
+.ManageMeta__value {
+  text-align: left;
+  width: 50%;
+}
+
+.ManageMeta__option {
+  text-align: center;
+  width: 10%;
+}
+
+.ManageMeta__custompairing {
+  display: none;
+  width: 100%;
+  align-items: center;
+}
+/* MODAL BUCKET MANAGE META MODAL PAGE STYLES ENDS HERE */
+
+/* MODAL BUCKET MANAGE PERMISSION MODAL PAGE STYLES STARTS HERE */
+.UploadReadyFiles {
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.UploadReadyFiles__name {
+  width: 70%;
+  text-align: left;
+}
+
+.UploadReadyFiles__size {
+  width: 10%;
+  text-align: left;
+}
+
+.UploadReadyFiles__file {
+  width: 20%;
+  text-align: left;
+}
+/* MODAL BUCKETS MANAGE PERMISSION MODAL PAGE STYLES ENDS HERE */
+
+/* MODAL BUCKET UPLOAD FILE/FOLDER MODAL PAGE STYLES STARTS HERE */
+/* MODAL BUCKET UPLOAD FILE/FOLDER MODAL PAGE STYLES ENDS HERE */
+
+/* MODAL BUCKET SHARE MODAL PAGE STYLES STARTS HERE */
+/* MODAL BUCKET SHARE MODAL PAGE STYLES ENDS HERE */
+
+/* MODAL BUCKET MOVE FILE/FOLDER MODAL PAGE STYLES STARTS HERE */
+/* MODAL BUCKET MOVE FILE/FOLDER MODAL PAGE STYLES ENDS HERE */
+
+/* MODAL BUCKET DELETE FILE/FOLDER MODAL PAGE STYLES STARTS HERE */
+/* MODAL BUCKET DELETE FILE/FOLDER MODAL PAGE STYLES ENDS HERE */
+
+/* SETTINGS PAGE STYLES STARTS HERE */
+
+/* SETTINGS PAGE STYLES ENDS HERE */
+
+/* SIGN-IN PAGE STYLES STARTS HERE */
+
+/* SIGN-IN PAGE STYLES ENDS HERE */
+
+/* USERS PAGE STYLES STARTS HERE */
+.User__ID {
+  width: 10%;
+}
+
+.User__name {
+  width: 25%;
+}
+
+.User__password {
+  width: 25%;
+}
+
+.User__role {
+  width: 15%;
+}
+
+.User__status {
+  width: 15%;
+}
+
+.User__actions {
+  width: 10%;
+}
+/* USERS PAGE STYLES ENDS HERE */
+
+/*********** PAGES STYLES ENDS HERE ***********/
+
+/*********** COMPONENTS STYLES STARTS HERE ***********/
+
+/* SIDEBAR COMPONENT STYLES STARTS HERE */
+.Sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  width: 200px;
+  background-color: map-get($theme-colors, "primary");
+  z-index: 5;
+}
+.Sidebar__title {
+  font-family: Roboto-Black;
+}
+.Sidebar__title--sub {
+  font-family: Roboto-Medium;
+}
+
+.SidebarLink {
+  padding: 10px;
+  cursor: pointer;
+}
+.SidebarLink:hover {
+  background-color: map-get($theme-colors, "dark");
+}
+.SidebarLink__active {
+  background-color: map-get($theme-colors, "dark");
+}
+/* SIDEBAR COMPONENT STYLES ENDS HERE */
+
+/* HEADER COMPONENT STYLES STARTS HERE */
+.HeaderTop {
+  padding-left: 200px;
+  z-index: 4;
+  height: 67px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  background-color: #ffffff;
+}
+.HeaderTop__search {
+  border: 0;
+}
+.HeaderTopSearch {
+  position: relative;
+}
+.HeaderTopSearch__content {
+  width: 400px;
+  background: white;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  padding: 1rem;
+  position: absolute;
+  top: 46px;
+  left: 38px;
+  display: none;
+  z-index: 8;
+}
+.HeaderTopSearch__icon {
+  height: 20px;
+}
+
+#HeaderTopSearch__contentOverlay {
+  display: none;
+  position: absolute;
+  left: 0;
+  background-color: #00000063;
+  top: 67px;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 7;
+}
+
+.HeaderTopAccount__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+}
+.HeaderTopAccount__icon:hover {
+  cursor: pointer;
+}
+
+.HeaderTopAccount:hover {
+  position: relative;
+}
+
+.HeaderTopAccount__menu {
+  display: none;
+  position: absolute;
+  right: 10px;
+  min-width: 130px;
+}
+.HeaderTopAccount:hover .HeaderTopAccount__menu {
+  display: block;
+}
+/* HEADER COMPONENT STYLES ENDS HERE */
+
+/* BREADCRUMB COMPONENT STYLES STARTS HERE */
+.Breadcrumb {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.PresentBucket__name {
+  font-family: Roboto-Medium;
+}
+
+.PresentBucket {
+  display: flex;
+}
+
+.PresentBucket__icon {
+  width: 60px;
+  background-color: map-get($theme-colors, "white");
+  border-radius: 60px;
+  padding: 10px;
+  border: 1px solid map-get($theme-colors, "primary");
+  margin-right: 20px;
+}
+
+.BucketNaviation {
+  border-bottom: 1px solid #d3d3d3;
+  padding-bottom: 10px;
+}
+
+.BucketNaviation__item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 20px;
+  position: relative;
+}
+
+.BucketNaviation__itemActive:after {
+  position: absolute;
+  width: 90%;
+  height: 2px;
+  background: #419ce4;
+  bottom: -4px;
+  content: "";
+  left: 5%;
+  right: 5%;
+  border-radius: 2px;
+}
+/* BREADCRUMB COMPONENT STYLES ENDS HERE */
+
+/* CUSTOM_TOASTR COMPONENT STYLES STARTS HERE */
 .toast-container .ngx-toastr:hover {
   opacity: 1;
   cursor: pointer;
@@ -20,3 +690,18 @@
   border: 2px solid #429be5;
   box-shadow: none !important;
 }
+/* CUSTOM_TOASTR COMPONENT STYLES ENDS HERE */
+
+/* FOOTER COMPONENT STYLES STARTS HERE */
+.Footer {
+  padding-left: 200px;
+}
+/* FOOTER COMPONENT STYLES ENDS HERE */
+
+/* BREADCRUMB COMPONENT STYLES STARTS HERE */
+/* BREADCRUMB COMPONENT STYLES ENDS HERE */
+
+/* BREADCRUMB COMPONENT STYLES STARTS HERE */
+/* BREADCRUMB COMPONENT STYLES ENDS HERE */
+
+/*********** COMPONENTS STYLES ENDS HERE ***********/

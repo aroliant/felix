@@ -1,22 +1,53 @@
-@font-face {
-  font-family: Roboto-Regular;
-  src: url(../fonts/roboto/Roboto-Regular.ttf);
+$theme-colors: (
+  "primary": #429ce4,
+  "dark": #1b84da,
+  "light": #b6d7f3,
+  "black": #000000,
+  "white": #ffffff,
+  "light_dim": #fafafa,
+  "success": #8bc34a
+);
+$enable-transitions: true;
+$enable-gradients: false;
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+// Boostrap defaults overide
+* {
+  outline: none;
+  box-shadow: none;
 }
-@font-face {
-  font-family: Roboto-Medium;
-  src: url(../fonts/roboto/Roboto-Medium.ttf);
+a:hover {
+  text-decoration: none;
 }
-@font-face {
-  font-family: Roboto-Bold;
-  src: url(../fonts/roboto/Roboto-Bold.ttf);
+input {
+  padding: 20px 15px !important;
+  height: 41px !important;
 }
-@font-face {
-  font-family: Roboto-Black;
-  src: url(../fonts/roboto/Roboto-Black.ttf);
+input:focus {
+  box-shadow: none !important;
+}
+.btn:focus {
+  box-shadow: none !important;
+}
+.btn {
+  padding: 8px 31px;
+  border-radius: 3px;
+  font-size: 90%;
+  height: 41px;
+  letter-spacing: 1px;
+}
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.btn-success,
+.btn-light {
+  border: 0;
+}
+
+.btn-light {
+  color: map-get($theme-colors, "primary");
 }
 // $font-size-base: 1.3rem;
-
-@import "./variables";
 
 // Theme Customization (Bootstrap)
 .MainContent {
