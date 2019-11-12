@@ -80,8 +80,8 @@
               <!-- editable mode -->
               <div *ngIf="object.onEditMode">
                 <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
-                <input type="text" [(ngModel)]="object.name" placeholder="Folder name" />
-                <button (click)="closeFolderEditMode(i)">check</button>
+                <input type="text" [(ngModel)]="object.name" [(ngModel)]="newFolderName" (keydown)="createFolder($event,i)" placeholder="Folder name" />
+                <!-- <button (click)="closeFolderEditMode(i)">check</button> -->
               </div>
             </td>
             <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='file'">
