@@ -20,6 +20,14 @@
   display: flex;
   flex-direction: row;
 }
+.FileBrowserHeader__crumb {
+  letter-spacing: 1px;
+}
+.FileBrowserHeader__crumb:hover {
+  text-decoration: underline !important;
+  color: map-get($theme-colors, "primary") !important;
+  cursor: pointer;
+}
 .FileBrowserHeader__right {
   color: map-get($theme-colors, "secondary");
 }
@@ -34,6 +42,7 @@
 .FileBrowser__namecolumn {
   min-width: 50%;
   text-align: left;
+  cursor: pointer;
 }
 .FileBrowser__sizecolumn {
   min-width: 10%;
@@ -49,6 +58,7 @@
 }
 .FileBrowserOption {
   position: relative;
+  cursor: pointer;
 }
 
 .FileBrowserOption .FileBrowserOption__menu.open {
