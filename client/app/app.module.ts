@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgBytesPipeModule } from 'angular-pipes';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -60,6 +61,7 @@ import { DeleteComponent } from './pages/buckets/bucket/modal/delete/delete.comp
     AppRoutingModule,
     FormsModule,
     NgBytesPipeModule,
+    LoadingBarHttpClientModule,
   ],
   providers: [MainService],
   bootstrap: [AppComponent]
