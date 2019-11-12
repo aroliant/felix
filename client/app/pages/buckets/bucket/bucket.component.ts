@@ -15,6 +15,11 @@ export class BucketComponent implements OnInit {
   searchInput = ''
   bucket: any
   objects = []
+  actions = {
+    objectToDelete : {
+
+    }
+  }
 
   states = {
     checkedAll: false,
@@ -107,20 +112,20 @@ export class BucketComponent implements OnInit {
   }
 
   searchFilter() {
-    if(this.searchInput == ''){
+    if (this.searchInput == '') {
 
       const filters = {
         bucketName: this.bucketName,
         path: this.currentPath
       }
 
-      this.mainService.searchObjects(filters).subscribe((objectsResult:any) => {
-        if(objectsResult.success){
+      this.mainService.searchObjects(filters).subscribe((objectsResult: any) => {
+        if (objectsResult.success) {
           this.objects = objectsResult.objects
         }
       })
 
-    }else{
+    } else {
 
       const filters = {
         bucketName: this.bucketName,
@@ -128,8 +133,8 @@ export class BucketComponent implements OnInit {
         name: this.searchInput
       }
 
-      this.mainService.searchObjects(filters).subscribe((objectsResult:any) => {
-        if(objectsResult.success){
+      this.mainService.searchObjects(filters).subscribe((objectsResult: any) => {
+        if (objectsResult.success) {
           this.objects = objectsResult.objects
         }
       })
@@ -138,8 +143,11 @@ export class BucketComponent implements OnInit {
 
   }
 
-  deleteObject() {
-    // TODO :
+  onDelete($event) {
+    if ($event.success) {
+      this.objects.splice(this.objects.indexOf(this.actions.objectToDelete), 1)
+      this.modalStates.delete = false
+    }
   }
 
   deleteObjects(objects) {
@@ -173,8 +181,9 @@ export class BucketComponent implements OnInit {
     this.modalStates.share = true
   }
 
-  showDeleteModal() {
+  showDeleteModal(i) {
     this.modalStates.delete = true
+    this.actions.objectToDelete = this.objects[i]
   }
 
   uploadFiles(event) {
