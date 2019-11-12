@@ -66,6 +66,7 @@ export class BucketComponent implements OnInit {
           this.objects.map((object, index) => {
             object.showActions = false
             object.isSelected = false
+            object.onEditMode = false
             return object
           })
         })
@@ -119,7 +120,7 @@ export class BucketComponent implements OnInit {
   }
 
   searchFilter() {
-    if (this.searchInput == '') {
+    if (this.searchInput === '') {
 
       const filters = {
         bucketName: this.bucketName,
@@ -191,9 +192,32 @@ export class BucketComponent implements OnInit {
   showDeletesModel() {
     this.modalStates.delete = true
     this.objects.map((object, index) => {
-      if (object.isSelected)
+      if (object.isSelected) {
         this.actions.objectsToDelete.push(object)
+      }
+
     })
+  }
+
+  createNewFolder() {
+    this.objects.unshift({
+      name: '',
+      size: 0,
+      objectType: 'folder',
+      createdAt: new Date(),
+      modifiedAt: new Date(),
+      isSelected: false,
+      showActions: false,
+      onEditMode: true,
+    })
+  }
+
+  openFolderEditMode(i) {
+    this.objects[i].onEditMode = true
+  }
+
+  closeFolderEditMode(i) {
+    this.objects[i].onEditMode = false
   }
 
   uploadFiles(event) {
