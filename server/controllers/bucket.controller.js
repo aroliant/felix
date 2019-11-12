@@ -62,7 +62,7 @@ export class BucketController {
     const bucketDB = low(bucketAdapter)
 
     try {
-      bucketDB.set('bucket', { // ok I'll chaneg those
+      bucketDB.set('bucket', {
         bucketName: req.body.bucketName,
         bucketID: id,
         size: "0KB",
@@ -361,6 +361,11 @@ export class BucketController {
           error: err
         })
       })
+
+  }
+
+  ensureObjectMeta(absolutePath) {
+    // TODO: Create/Update meta for the new Folder
 
   }
 
