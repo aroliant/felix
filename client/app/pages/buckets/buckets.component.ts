@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'client/app/services/main.service';
+import { HelperService } from 'client/app/services/helper.service';
 
 @Component({
   selector: 'app-buckets',
@@ -8,7 +9,7 @@ import { MainService } from 'client/app/services/main.service';
 })
 export class BucketsComponent implements OnInit {
 
-  constructor(private mainService: MainService) { }
+  constructor(private mainService: MainService, private helperService: HelperService) { }
 
   buckets = []
 
@@ -16,6 +17,10 @@ export class BucketsComponent implements OnInit {
     this.mainService.getAllBuckets().subscribe((res: any) => {
       this.buckets = res.buckets;
     })
+  }
+
+  copyToClipboard(string){
+    this.helperService.copyToClipboard(string)
   }
 
 }
