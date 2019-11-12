@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'client/app/services/main.service';
+import { HelperService } from 'client/app/services/helper.service';
 
 @Component({
   selector: 'app-bucket-settings',
@@ -14,14 +15,21 @@ export class BucketSettingsComponent implements OnInit {
   }
   deleteConfirmationBucketName = ''
 
-  constructor(private route: ActivatedRoute,private mainService: MainService,private router: Router) { }
+  constructor(private route: ActivatedRoute,
+    private mainService: MainService,
+    private router: Router,
+    private helperService: HelperService
+  ) { }
 
   ngOnInit() {
 
     this.route.params.subscribe((params) => {
       this.bucket.bucketName = params.bucketName
     })
+  }
 
+  copyToClipboard(string) {
+    this.helperService.copyToClipboard(string)
   }
 
   openFileListingPrivacy() {
@@ -40,9 +48,9 @@ export class BucketSettingsComponent implements OnInit {
   }
   deleteBucket() {
     console.log(this.deleteConfirmationBucketName + ' === ' + this.bucket.bucketName)
-    if(this.deleteConfirmationBucketName === this.bucket.bucketName){
-      this.mainService.deleteBucket(this.bucket.bucketName).subscribe((deleteBucketStatus:any) => {
-        if(deleteBucketStatus.success){
+    if (this.deleteConfirmationBucketName === this.bucket.bucketName) {
+      this.mainService.deleteBucket(this.bucket.bucketName).subscribe((deleteBucketStatus: any) => {
+        if (deleteBucketStatus.success) {
           this.closeDeleteBucketModal();
           console.log(deleteBucketStatus.message)
           this.router.navigate(['buckets'])

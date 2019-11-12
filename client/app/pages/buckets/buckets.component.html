@@ -8,6 +8,7 @@
                     </div>
                 </div>
                 <div class="Bucket__url">https://{{bucket.bucketName}}.blaz.app <span
+                        (click)="copyToClipboard('http://'+bucket.bucketName+'.blaz.app')"
                         class="Bucket__url_copy small">Copy</span>
                 </div>
                 <div class="Bucket__menu p-3">

@@ -24,6 +24,7 @@ import { BucketsComponent } from './pages/buckets/buckets.component';
 import { BucketSettingsComponent } from './pages/buckets/bucket/bucket-settings/bucket-settings.component';
 
 import { MainService } from './services/main.service';
+import { HelperService } from './services/helper.service';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { CreateBucketComponent } from './pages/buckets/create-bucket/create-bucket.component';
 import { UploadFilesComponent } from './pages/buckets/bucket/modal/upload-files/upload-files.component';
@@ -71,7 +72,7 @@ import { CustomToastrComponent } from './components/custom-toastr/custom-toastr.
       toastComponent: CustomToastrComponent,
     })
   ],
-  providers: [MainService],
+  providers: [MainService, HelperService],
   bootstrap: [AppComponent],
   entryComponents: [CustomToastrComponent]
 })
