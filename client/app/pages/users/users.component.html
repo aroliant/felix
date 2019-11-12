@@ -1,5 +1,37 @@
 <div class="MainContent">
     <div class="container">
-        <p>users works!</p>
+        <div class="w-100 d-flex flex-row justify-content-between">
+            <h3 class="font-weight-light mb-0">Users</h3>
+            <button class="btn btn-primary">Add User</button>
+        </div>
+        <div class="w-100 mt-4">
+
+            <table class="table table-hover">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th class="User__ID">ID</th>
+                        <th class="User__name">Username</th>
+                        <th class="User__password">Password</th>
+                        <th class="User__role">Role</th>
+                        <th class="User__status">Status</th>
+                        <th class="User__actions">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="User__ID">001</td>
+                        <td class="User__name">fibonuserx</td>
+                        <td class="User__password">
+                            <input type="password" name="" class="form-control" id="UserPassword">
+                        </td>
+                        <td class="User__role">Admin</td>
+                        <td class="User__status">Active</td>
+                        <td class="User__actions">
+                            Delete
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
