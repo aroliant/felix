@@ -85,8 +85,34 @@
               </div>
             </td>
             <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='file'">
-              <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
-              {{object.name}}
+              <span>
+                <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
+                {{object.name}}
+              </span>
+
+              <!-- hover menu -->
+              <div class="FileBrowser__infomenu">
+                <div class="d-flex flex-row align-items-center">
+                  <div>Origin</div>
+                  <div>
+                    <a class="FileBrowser__infomenu_URL mx-2"
+                      href="">https://bucket-pradeephareesh.blaz.app/guess-number-game/index.html</a>
+                  </div>
+                  <button class="btn btn-light">Copy</button>
+                </div>
+                <table class="table mt-2">
+                  <tbody>
+                    <tr>
+                      <th>Permission</th>
+                      <td>Public</td>
+                    </tr>
+                    <tr>
+                      <th>Content-type</th>
+                      <td>text/html</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </td>
             <td class="FileBrowser__sizecolumn">{{object.size | bytes}}</td>
             <td class="FileBrowser__timecolumn">
