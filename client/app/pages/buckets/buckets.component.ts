@@ -8,15 +8,13 @@ import { MainService } from 'client/app/services/main.service';
 })
 export class BucketsComponent implements OnInit {
 
-  constructor(private mainService : MainService) { }
+  constructor(private mainService: MainService) { }
 
   buckets = []
-  filteredBucekts = []
 
   ngOnInit() {
-    this.mainService.getAllBuckets().subscribe((res:any) => {
+    this.mainService.getAllBuckets().subscribe((res: any) => {
       this.buckets = res.buckets;
-      this.filteredBucekts = this.buckets;
     })
   }
 

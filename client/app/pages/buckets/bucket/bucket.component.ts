@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'client/app/services/main.service';
-
+import { environment } from '../../../../environments/environment'
 @Component({
   selector: 'app-bucket',
   templateUrl: './bucket.component.html',
@@ -34,6 +34,8 @@ export class BucketComponent implements OnInit {
   }
 
   currentActionIndex = 0
+
+  API_URL = environment.API_URL
 
   constructor(private route: ActivatedRoute, private mainService: MainService, private router: Router) { }
 

@@ -91,7 +91,9 @@
                       Permissions</a>
                     <a class="list-group-item list-group-item-action" (click)="showManageMetaModal()">Manage
                       Metadata</a>
-                    <a class="list-group-item list-group-item-action" *ngIf="object.objectType=='file'">Download</a>
+                    <a class="list-group-item list-group-item-action"
+                      href="{{API_URL}}/{{bucketName}}{{currentPath}}{{object.name}}" target="_blank"
+                      *ngIf="object.objectType=='file'">Download</a>
                     <a class="list-group-item list-group-item-action">Rename</a>
                     <a class="list-group-item list-group-item-action" (click)="showMoveObjectsModal()">Move to
                       folder</a>
@@ -109,7 +111,8 @@
   </div>
 </div>
 
-<app-modal-delete [show]="modalStates.delete" [object]="actions.objectToDelete" [bucket]="bucket" [currentPath]="currentPath" (onDelete)="onDelete($event)" ></app-modal-delete>
+<app-modal-delete [show]="modalStates.delete" [object]="actions.objectToDelete" [bucket]="bucket"
+  [currentPath]="currentPath" (onDelete)="onDelete($event)"></app-modal-delete>
 <app-modal-meta [show]="modalStates.meta"></app-modal-meta>
 <app-modal-move-files [show]="modalStates.moveFiles"></app-modal-move-files>
 <app-modal-permissions [show]="modalStates.permissions"></app-modal-permissions>
