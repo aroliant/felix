@@ -26,13 +26,13 @@ export class BucketController {
       if (bucketsDB.get('buckets').filter({ bucketName: params.bucketName }).value().length != 0) {
         return res.json({
           success: false,
-          message: "Bucket Name Already Exists"
+          message: "Bucket name already exists"
         })
       }
     } catch (err) {
       return res.json({
         success: false,
-        message: "Buckets cannot be accessed"
+        message: "Error occured while creating bucket"
       })
     }
 
@@ -81,7 +81,7 @@ export class BucketController {
     } catch (err) {
       return res.json({
         success: false,
-        message: "Bucket Failed to be Created",
+        message: "Unable to create Bucket",
         error: err
       })
     }
@@ -90,13 +90,13 @@ export class BucketController {
       if (err) {
         return res.json({
           success: false,
-          message: "Failed to Create New Folder",
+          message: "Unable to create bucket folder",
           error: err
         });
       } else {
         return res.json({
           success: true,
-          message: "Bucket Created Successfully"
+          message: "Bucket Created !"
         });
       }
     });
@@ -114,14 +114,14 @@ export class BucketController {
     } catch (err) {
       return res.json({
         success: false,
-        message: "Failed to Update Bucket",
+        message: "Unable to update Bucket",
         error: err
       });
     }
 
     res.json({
       success: true,
-      message: "Bucket Updated Successfully"
+      message: "Bucket Updated !"
     })
   }
 
@@ -132,7 +132,7 @@ export class BucketController {
     } catch (err) {
       return res.json({
         success: false,
-        message: "Buckets cannot be Accessed",
+        message: "Unable to retrive Buckets",
         error: err
       });
     }
@@ -156,7 +156,7 @@ export class BucketController {
     } catch (err) {
       return res.json({
         success: false,
-        message: "Buckets cannot be Accessed",
+        message: "Unable to retrive Bucket",
         error: err
       });
     }
@@ -177,7 +177,7 @@ export class BucketController {
     } catch (err) {
       return res.json({
         success: false,
-        message: "Bucket Not Found",
+        message: "Unable to find Bucket",
         error: err
       });
     }
@@ -186,7 +186,7 @@ export class BucketController {
       if (err) {
         return res.json({
           success: false,
-          message: "Failed to Delete " + bucketName + " Folder",
+          message: "Failed to delete meta file",
           error: err
         });
       }
@@ -197,7 +197,7 @@ export class BucketController {
     } catch (err) {
       return res.json({
         success: false,
-        message: "Bucket Not Found",
+        message: "Unable to delete Bucket",
         error: err
       })
     }
@@ -206,7 +206,7 @@ export class BucketController {
       if (err) {
         return res.json({
           success: false,
-          message: "Failed to Delete " + bucketName + " Folder",
+          message: "Failed to delete bucket folder",
           error: err
         });
       }
@@ -214,7 +214,7 @@ export class BucketController {
 
     return res.json({
       success: true,
-      message: "Bucket Deleted Successfully"
+      message: "Bucket Deleted !"
     })
 
   }
@@ -236,7 +236,7 @@ export class BucketController {
         objectType: item.stats.isDirectory() == true ? 'folder' : 'file'
       }
 
-      if (params.name == undefined || object.name.indexOf(params.name) > -1 ) {
+      if (params.name == undefined || object.name.indexOf(params.name) > -1) {
 
         if (object.objectType == 'file')
           files.push(object)
@@ -256,7 +256,7 @@ export class BucketController {
       .on('error', (err, item) => {
         return res.json({
           success: false,
-          message: "Failed to Search the Object",
+          message: "Unable to search Objects",
           error: err
         });
       })
@@ -279,7 +279,7 @@ export class BucketController {
 
     return res.json({
       success: true,
-      message: "Object Deleted Successfully"
+      message: "Object Deleted !"
     })
 
   }
@@ -328,13 +328,13 @@ export class BucketController {
       if (err) {
         return res.json({
           success: false,
-          message: "Unable to Create New Folder",
+          message: "Unable to create new folder",
           error: err
         })
       } else {
         return res.json({
           success: true,
-          message: "Folder Created Successfully"
+          message: "Folder created !"
         })
       }
     });
@@ -351,13 +351,13 @@ export class BucketController {
       .then(() => {
         return res.send({
           success: true,
-          message: "Object Moved Successfully"
+          message: "Objects moved !"
         })
       })
       .catch(err => {
         return res.send({
           success: false,
-          message: "Unable to Move Object",
+          message: "Unable to move Objects",
           error: err
         })
       })
