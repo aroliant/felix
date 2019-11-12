@@ -14,6 +14,7 @@ export class BucketComponent implements OnInit {
   currentPath = '/'
   bucketBreadcrumbs = [{ path: '/', name: '/' }]
   searchInput = ''
+  newFolderName = ''
   bucket: any
   objects = []
   actions = {
@@ -77,6 +78,10 @@ export class BucketComponent implements OnInit {
     })
 
 
+  }
+
+  inputting($event) {
+    console.log($event)
   }
 
   selectAll(state) {
@@ -210,6 +215,21 @@ export class BucketComponent implements OnInit {
       showActions: false,
       onEditMode: true,
     })
+  }
+
+  createFolder(event, i) {
+    if (event.keyCode == 13) {
+      const newFolder = {
+        path: this.currentPath + this.newFolderName,
+        bucketName: this.bucket.bucketName
+      }
+      this.mainService.createFolder(newFolder).subscribe((newFolderStatus: any) => {
+        if (newFolderStatus.success) {
+          this.closeFolderEditMode(i)
+          console.log("Created");
+        }
+      })
+    }
   }
 
   openFolderEditMode(i) {

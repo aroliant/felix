@@ -11,7 +11,11 @@ import { HelperService } from 'client/app/services/helper.service';
 export class BucketSettingsComponent implements OnInit {
 
   bucket = {
-    bucketName: ''
+    bucketName: '',
+    bucketID: '',
+    settings: {
+      fileListing: ''
+    }
   }
   deleteConfirmationBucketName = ''
 
@@ -25,6 +29,11 @@ export class BucketSettingsComponent implements OnInit {
 
     this.route.params.subscribe((params) => {
       this.bucket.bucketName = params.bucketName
+      this.mainService.getBucket(this.bucket.bucketName).subscribe((getBucketResult:any) => {
+        if(getBucketResult.success){
+          this.bucket = getBucketResult.bucket
+        }
+      })
     })
   }
 
@@ -37,6 +46,20 @@ export class BucketSettingsComponent implements OnInit {
   }
   closeFileListingPrivacy() {
     document.getElementById("FileListingPrivacy").style.display = "none";
+  }
+
+  saveAndCloseFileListingPrivacy() {
+    var bucket = {
+      bucketID: this.bucket.bucketID,
+      settings: {
+        fileListing: this.bucket.settings.fileListing
+      }
+    }
+    this.mainService.updateBucket(bucket).subscribe((UpdateBucketResult : any) => {
+      if(UpdateBucketResult.success){
+        console.log('Updated')
+      }
+    })
   }
 
   openDeleteBucketModal() {

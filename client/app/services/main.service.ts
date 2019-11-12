@@ -48,4 +48,16 @@ export class MainService {
     return this.httpc.put(this.API_URL + '/bucket/objects/' + path, file);
   }
 
+  // New Folder
+
+  createFolder(data) {
+    return this.httpc.post(this.API_URL + '/bucket/objects/folder', data);
+  }
+
+  // Move Object
+
+  moveObject(data) {
+    return this.httpc.put(this.API_URL + '/bucket/objects/move', data);
+  }
+
 }
