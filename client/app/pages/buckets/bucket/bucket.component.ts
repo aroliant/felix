@@ -35,6 +35,8 @@ export class BucketComponent implements OnInit {
     uploadFiles: false,
   }
 
+  objectNameBeforeRenaming = ''
+
   currentActionIndex = 0
 
   API_URL = environment.API_URL
@@ -83,10 +85,6 @@ export class BucketComponent implements OnInit {
     })
 
 
-  }
-
-  inputting($event) {
-    console.log($event)
   }
 
   selectAll(state) {
@@ -214,6 +212,7 @@ export class BucketComponent implements OnInit {
   }
 
   createNewFolder() {
+    this.objectNameBeforeRenaming = '' // folder newly created
     this.objects.unshift({
       name: '',
       size: 0,
@@ -226,22 +225,45 @@ export class BucketComponent implements OnInit {
     })
   }
 
-  createFolder(event, i) {
+  editFolder(event, i) {
     if (event.keyCode == 13) {
-      const newFolder = {
-        path: this.currentPath + this.newFolderName,
-        bucketName: this.bucket.bucketName
-      }
-      this.mainService.createFolder(newFolder).subscribe((newFolderStatus: any) => {
-        if (newFolderStatus.success) {
-          this.closeFolderEditMode(i)
-          console.log("Created");
+
+      if(this.objectNameBeforeRenaming == ''){
+
+        const newFolder = {
+          path: this.currentPath + this.objects[i].name,
+          bucketName: this.bucket.bucketName
         }
-      })
+
+        this.mainService.createFolder(newFolder).subscribe((newFolderStatus: any) => {
+          if (newFolderStatus.success) {
+            this.closeFolderEditMode(i)
+            console.log("Created");
+          }
+        })
+
+      } else {
+
+        const renameObject = {
+          bucketName: this.bucket.bucketName,
+          src: this.currentPath + this.objectNameBeforeRenaming,
+          dest: this.currentPath + this.objects[i].name
+        }
+
+        this.mainService.moveObject(renameObject).subscribe((renameObjectStatus: any) => {
+          if(renameObjectStatus.success) {
+            this.closeFolderEditMode(i);
+            console.log("Renamed from " + this.objectNameBeforeRenaming + ' to ' + this.objects[i].name)
+          }
+        })
+
+      }
+
     }
   }
 
   openFolderEditMode(i) {
+    this.objectNameBeforeRenaming = this.objects[i].name
     this.objects[i].onEditMode = true
   }
 

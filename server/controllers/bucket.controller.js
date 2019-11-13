@@ -227,20 +227,25 @@ export class BucketController {
     let files = []
 
     const processObject = through2.obj(function (item, enc, next) {
-      const object = {
-        name: path.basename(item.path),
-        size: item.stats.size,
-        createdAt: item.stats.ctime,
-        modifiedAt: item.stats.mtime,
-        objectType: item.stats.isDirectory() == true ? 'folder' : 'file'
-      }
 
-      if (params.name == undefined || object.name.indexOf(params.name) > -1) {
+      if(params.bucketName != path.basename(item.path)){
 
-        if (object.objectType == 'file')
-          files.push(object)
-        else if (object.objectType == 'folder')
-          directories.push(object)
+        const object = {
+          name: path.basename(item.path),
+          size: item.stats.size,
+          createdAt: item.stats.ctime,
+          modifiedAt: item.stats.mtime,
+          objectType: item.stats.isDirectory() == true ? 'folder' : 'file'
+        }
+  
+        if (params.name == undefined || object.name.indexOf(params.name) > -1) {
+  
+          if (object.objectType == 'file')
+            files.push(object)
+          else if (object.objectType == 'folder')
+            directories.push(object)
+  
+        }
 
       }
 
@@ -262,7 +267,7 @@ export class BucketController {
       .on('end', () => {
         return res.json({
           success: true,
-          objects: directories.splice(1).concat(files)
+          objects: directories.concat(files)
         })
       })
 

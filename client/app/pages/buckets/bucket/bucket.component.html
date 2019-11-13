@@ -80,7 +80,7 @@
               <!-- editable mode -->
               <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
                 <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
-                <input type="text" class="form-control" [(ngModel)]="object.name" [(ngModel)]="newFolderName" (keydown)="createFolder($event,i)" placeholder="Folder name" />
+                <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editFolder($event,i)" placeholder="Folder name" />
                 <!-- <button (click)="closeFolderEditMode(i)">check</button> -->
               </div>
             </td>
