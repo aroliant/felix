@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'client/app/services/main.service';
 import { environment } from '../../../../environments/environment'
 import { ToastrService } from 'ngx-toastr';
+import { HelperService } from 'client/app/services/helper.service';
 @Component({
   selector: 'app-bucket',
   templateUrl: './bucket.component.html',
@@ -38,7 +39,11 @@ export class BucketComponent implements OnInit {
 
   API_URL = environment.API_URL
 
-  constructor(private route: ActivatedRoute, private mainService: MainService, private router: Router, private toast: ToastrService) { }
+  constructor(private route: ActivatedRoute,
+    private mainService: MainService,
+    private router: Router,
+    private toast: ToastrService,
+    private helperService: HelperService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -122,6 +127,10 @@ export class BucketComponent implements OnInit {
       }
       return state
     })
+  }
+
+  copyToClipboard(string) {
+    this.helperService.copyToClipboard(string)
   }
 
   searchFilter() {
