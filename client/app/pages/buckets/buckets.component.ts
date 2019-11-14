@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'client/app/services/main.service';
 import { HelperService } from 'client/app/services/helper.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-buckets',
@@ -9,7 +10,11 @@ import { HelperService } from 'client/app/services/helper.service';
 })
 export class BucketsComponent implements OnInit {
 
-  constructor(private mainService: MainService, private helperService: HelperService) { }
+  constructor(
+    private mainService: MainService,
+    private helperService: HelperService,
+    private toastr: ToastrService
+  ) { }
 
   buckets = []
 
@@ -21,13 +26,7 @@ export class BucketsComponent implements OnInit {
 
   copyToClipboard(string) {
     this.helperService.copyToClipboard(string)
-  }
-
-  diffInDays(a) {
-    const date1 = Date.now();
-    const date2 = a;
-    const diffTime = Math.abs(date2 - date1);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    this.toastr.success('URL Copied!');
   }
 
 }
