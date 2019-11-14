@@ -294,6 +294,10 @@ export class BucketComponent implements OnInit {
     }
   }
 
+  editFile() {
+    //TODO:
+  }
+
   openFolderEditMode(i) {
     this.objectNameBeforeRenaming = this.objects[i].name
     this.objects[i].onEditMode = true

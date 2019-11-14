@@ -10,7 +10,6 @@ import through2 from 'through2'
 import rimraf from 'rimraf'
 
 import config from '../config'
-import { I18nSelectPipe } from '@angular/common';
 
 const bucketsAdapter = new FileSync(config.ROOT_FOLDER + '/buckets.json')
 const bucketsDB = low(bucketsAdapter)
