@@ -19,7 +19,7 @@
                     <div class="d-flex flex-row mb-3">
                         <div class="form-check form-check-inline border p-3 rounded">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                            value="restricted" [(ngModel)]="bucket?.settings['fileListing']">
+                                value="restricted" [(ngModel)]="bucket?.settings['fileListing']">
                             <label class="form-check-label p-3" for="inlineRadio1"><span class="h6">Restrict File
                                     Listing</span><br />
                                 <div class="small">Only users who connect to this Bucket using access keys can list
@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-check form-check-inline border p-3 rounded">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                value="enabled" [(ngModel)]="bucket?.settings['fileListing']" >
+                                value="enabled" [(ngModel)]="bucket?.settings['fileListing']">
                             <label class="form-check-label p-3" for="inlineRadio2"><span class="h6">Enable File
                                     Listing
                                 </span>
@@ -48,19 +48,19 @@
                 </div>
 
             </div>
-            <div class="BucketSettings__item">
+            <!-- <div class="BucketSettings__item">
                 <div>
                     <h5 class="m-0">CDN (Content Delivery Network)</h5>
                     <p class="m-0">
                         <strong>Enabled:</strong>
-                        Your Space is being served via the content delivery network.
+                        CDN
                     </p>
                 </div>
                 <div>
                     <button class="btn btn-outline-light mr-3" (click)="openPurgeModal();">Purge Cache</button>
                     <button class="btn btn-outline-secondary" (click)="openPurgeModal();">Edit</button>
                 </div>
-            </div>
+            </div> -->
             <div class="BucketSettings__item">
                 <div>
                     <h5 class="m-0">CORS Configurations</h5>
