@@ -26,22 +26,34 @@
 /* HOME PAGE STYLES ENDS HERE */
 
 /* BUCKETS PAGE STYLES STARTS HERE */
-.Bucket {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem;
+.Buckets {
   border: 1px solid #d3d3d3;
-  border-radius: 3px;
-  height: 50px;
-  cursor: pointer;
+  border-radius: 4px;
   width: 100%;
-  margin-top: 10px;
 }
 
-.Bucket:hover {
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+.Bucket__name {
+  position: relative;
+  width: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  align-items: flex-start;
+}
+
+.Bucket__size {
+  width: 10%;
+}
+
+.Bucket__created {
+  width: 25%;
+}
+
+.Bucket__menu {
+  width: 10%;
+  position: relative;
+  text-align: right;
 }
 
 .Bucket__icon {
@@ -51,65 +63,6 @@
   padding: 5px;
   border: 1px solid map-get($theme-colors, "primary");
   margin-right: 20px;
-}
-
-.Bucket__name {
-  position: relative;
-  width: 200px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  height: 38px;
-  width: 40%;
-}
-
-.Bucket__info--name {
-  position: relative;
-  transform: translateY(9.5px);
-  transition: 0.3s linear;
-}
-
-.Bucket__info {
-  opacity: 0;
-  transition: 0.3s linear;
-  transform: translateY(19px);
-}
-
-.Bucket:hover .Bucket__info {
-  opacity: 1;
-  transition: 0.3s linear;
-  transform: translateY(0);
-}
-
-.Bucket:hover .Bucket__info--name {
-  transform: translateY(0px);
-  transition: 0.3s linear;
-}
-
-.Bucket__url {
-  color: map-get($theme-colors, "secondary");
-  width: 50%;
-}
-
-.Bucket__menu {
-  width: 10%;
-  text-align: right;
-}
-
-.Bucket__url_copy {
-  display: none;
-  margin-left: 20px;
-  transition: 0.3s linear;
-}
-
-.Bucket__url:hover .Bucket__url_copy {
-  display: unset;
-  color: map-get($theme-colors, "primary");
-  transition: 0.3s linear;
-}
-
-.Bucket__menu {
-  position: relative;
 }
 
 .Bucket__menucontent {
@@ -143,6 +96,21 @@
   text-align: center;
   overflow: hidden;
   height: 41px;
+}
+
+.Bucket__url{
+  position: relative;
+  cursor: pointer;
+}
+
+.Bucket__url_copy {
+  display: none;
+}
+
+.Bucket__url:hover .Bucket__url_copy {
+  display: unset;
+  color: map-get($theme-colors, "primary");
+  transition: 0.3s linear;
 }
 /* BUCKETS PAGE STYLES ENDS HERE */
 

@@ -2,32 +2,63 @@
     <div class="container">
         <h3 class="font-weight-light mb-0">Buckets</h3>
 
-        <div class="Buckets">
-            <div class="Bucket" *ngFor="let bucket of buckets">
-                <img src="../../../assets/icons/empty-bucket.svg" class="Bucket__icon" alt="">
-                <div class="Bucket__name" routerLink="/buckets/{{bucket.bucketName}}">
-                    <h6 class="m-0 text-primary Bucket__info--name">{{bucket.bucketName}}</h6>
-                    <div class="small Bucket__info text-secondary">BLAZ/{{bucket.items}} items totaling {{bucket.size}}
-                    </div>
-                </div>
-                <div class="Bucket__url">https://{{bucket.bucketName}}.blaz.app <span
-                        (click)="copyToClipboard('http://'+bucket.bucketName+'.blaz.app')"
-                        class="Bucket__url_copy small">Copy</span>
-                </div>
-                <div class="Bucket__menu p-3">
-                    <a href="">
-                        <i class="icofont-simple-down"></i>
-                    </a>
-                    <div class="Bucket__menucontent">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action"
-                                routerLink="/buckets/{{bucket.bucketName}}">Show Files</a>
-                            <a class="list-group-item list-group-item-action"
-                                routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings">Settings</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="Buckets mt-4">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th class="Bucket__name">Name</th>
+                        <th class="Bucket__size">Size</th>
+                        <th class="Bucket__created">Created</th>
+                        <th class="Bucket__actions"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bucket of buckets">
+                        <td class="Bucket__name">
+                            <div class="d-flex flex-row">
+                                <div class="align-self-center">
+                                    <img src="../../../assets/icons/empty-bucket.svg" class="Bucket__icon" alt="">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <a class="h6 m-0 text-primary" routerLink="/buckets/{{bucket.bucketName}}">
+                                        {{bucket.bucketName}}</a>
+                                    <div class="small text-secondary Bucket__url">
+                                        https://{{bucket.bucketName}}.blaz.app
+                                        <span (click)="copyToClipboard('http://'+bucket.bucketName+'.blaz.app')"
+                                            class="Bucket__url_copy small">Copy</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="Bucket__size">
+                            <div class="d-flex flex-column">
+                                {{bucket.size}}
+                                <div class="small">
+                                    {{bucket.items}} items
+                                </div>
+                            </div>
+                        </td>
+                        <td class="Bucket__created">
+                            6 days ago
+                        </td>
+                        <td class="Bucket__menu">
+                            <a class="text-primary cursor-pointer">
+                                <span> More </span>
+                                <i class="icofont-simple-down"></i>
+                            </a>
+                            <div class="Bucket__menucontent">
+                                <div class="list-group">
+                                    <a class="list-group-item list-group-item-action"
+                                        routerLink="/buckets/{{bucket.bucketName}}">Show Files</a>
+                                    <a class="list-group-item list-group-item-action"
+                                        routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings">Settings</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
     </div>
 </div>
