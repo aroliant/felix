@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-modal-share',
@@ -7,7 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ShareComponent implements OnInit {
 
-  @Input() show;
+  @Input() show: Boolean;
+  @Output() onHide = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -16,5 +17,6 @@ export class ShareComponent implements OnInit {
 
   hideModal() {
     this.show = false
+    this.onHide.emit(false)
   }
 }
