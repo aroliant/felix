@@ -255,6 +255,13 @@ export class BucketController {
 
     const _path = rootPath + params.path
 
+    if (!fs.pathExistsSync(_path)) {
+      return res.json({
+        success: false,
+        message: "Unable to find Folder"
+      });
+    }
+
     klaw(_path, { depthLimit: 0 })
       .pipe(processObject)
       .on('data', item => objects.push(item))
