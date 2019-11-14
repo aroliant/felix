@@ -203,19 +203,22 @@
   left: 0;
   top: 40px;
   overflow: hidden;
+  width: 100%;
+}
+
+.FileBrowser__infomenu_URL_holder {
+  width: 60%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background-color: map-get($theme-colors, "light_dim");
+  padding: 5px;
 }
 
 .FileBrowser__infomenu_URL {
-  height: 25px;
   overflow: hidden;
-  display: flex;
   flex-direction: row;
   align-items: center;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  width: 250px;
-  background-color: map-get($theme-colors, "light_dim");
-  padding: 5px;
+  white-space: nowrap;
 }
 
 .FileBrowser__sizecolumn {
