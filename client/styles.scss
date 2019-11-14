@@ -98,7 +98,7 @@
   height: 41px;
 }
 
-.Bucket__url{
+.Bucket__url {
   position: relative;
   cursor: pointer;
 }
@@ -189,7 +189,7 @@
 
 .FileBrowser__infomenu {
   display: flex;
-  background: map-get($theme-colors, "white");
+  background-color: map-get($theme-colors, "white");
   padding: 10px;
   border-radius: 3px;
   flex-direction: column;
@@ -202,7 +202,6 @@
   transition: all 0.3s ease-in-out;
   left: 0;
   top: 40px;
-  background-color: #fff;
   overflow: hidden;
 }
 
@@ -227,6 +226,31 @@
 .FileBrowser__timecolumn {
   min-width: 20%;
   text-align: left;
+}
+
+.FileBrowser__timecolumn_menu {
+  position: relative;
+}
+
+.FileBrowser__timecolumn_menuContent {
+  z-index: -1;
+  transform: translate3d(0, -10px, 0);
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  background: map-get($theme-colors, "white");
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid map-get($theme-colors, "primary");
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.FileBrowser__timecolumn_menu:hover .FileBrowser__timecolumn_menuContent {
+  z-index: 10;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
 }
 
 .FileBrowser__optioncolumn {
