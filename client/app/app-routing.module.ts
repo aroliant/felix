@@ -9,6 +9,7 @@ import { BucketsComponent } from './pages/buckets/buckets.component';
 import { BucketSettingsComponent } from './pages/buckets/bucket/bucket-settings/bucket-settings.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { CreateBucketComponent } from './pages/buckets/create-bucket/create-bucket.component';
+import { OtherComponent } from './layouts/other/other.component';
 
 const routes: Routes = [
   {
@@ -19,10 +20,6 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         pathMatch: 'full'
-      },
-      {
-        path: 'sign-in',
-        component: SignInComponent,
       },
       {
         path: 'buckets',
@@ -51,9 +48,14 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'other',
-    component: DefaultComponent,
-    children: []
+    path: '',
+    component: OtherComponent,
+    children: [
+      {
+        path: 'sign-in',
+        component: SignInComponent,
+      },
+    ]
   }
 ];
 

@@ -64,6 +64,15 @@ input:focus {
   position: relative;
 }
 
+.MainContent__full {
+  position: relative;
+  background-color: map-get($theme-colors, "white");
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 table {
   margin-bottom: 0 !important;
   width: 100%;
