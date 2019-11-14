@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'client/app/services/main.service';
 import { HelperService } from 'client/app/services/helper.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bucket-settings',
@@ -22,15 +23,16 @@ export class BucketSettingsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private mainService: MainService,
     private router: Router,
-    private helperService: HelperService
+    private helperService: HelperService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
 
     this.route.params.subscribe((params) => {
       this.bucket.bucketName = params.bucketName
-      this.mainService.getBucket(this.bucket.bucketName).subscribe((getBucketResult:any) => {
-        if(getBucketResult.success){
+      this.mainService.getBucket(this.bucket.bucketName).subscribe((getBucketResult: any) => {
+        if (getBucketResult.success) {
           this.bucket = getBucketResult.bucket
         }
       })
@@ -39,6 +41,7 @@ export class BucketSettingsComponent implements OnInit {
 
   copyToClipboard(string) {
     this.helperService.copyToClipboard(string)
+    this.toastr.success('Copied to Clipboard')
   }
 
   openFileListingPrivacy() {
@@ -55,9 +58,11 @@ export class BucketSettingsComponent implements OnInit {
         fileListing: this.bucket.settings.fileListing
       }
     }
-    this.mainService.updateBucket(bucket).subscribe((UpdateBucketResult : any) => {
-      if(UpdateBucketResult.success){
-        console.log('Updated')
+    this.mainService.updateBucket(bucket).subscribe((updateBucketResult: any) => {
+      if (updateBucketResult.success) {
+        this.toastr.success(updateBucketResult.message, 'Success!')
+      } else {
+        this.toastr.error(updateBucketResult.message)
       }
     })
   }
@@ -79,13 +84,14 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   deleteBucket() {
-    console.log(this.deleteConfirmationBucketName + ' === ' + this.bucket.bucketName)
     if (this.deleteConfirmationBucketName === this.bucket.bucketName) {
       this.mainService.deleteBucket(this.bucket.bucketName).subscribe((deleteBucketStatus: any) => {
         if (deleteBucketStatus.success) {
           this.closeDeleteBucketModal();
-          console.log(deleteBucketStatus.message)
+          this.toastr.success(deleteBucketStatus.message, 'Success!')
           this.router.navigate(['buckets'])
+        } else {
+          this.toastr.error(deleteBucketStatus.message)
         }
       })
     }

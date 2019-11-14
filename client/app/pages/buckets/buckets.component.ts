@@ -26,7 +26,7 @@ export class BucketsComponent implements OnInit {
 
   copyToClipboard(string) {
     this.helperService.copyToClipboard(string)
-    this.toastr.success('URL Copied!');
+    this.toastr.success('Copied to Clipboard');
   }
 
 }

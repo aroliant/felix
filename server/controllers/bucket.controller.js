@@ -385,7 +385,7 @@ export class BucketController {
 
     return res.send({
       success: true,
-      message: messages
+      messages: messages
     })
 
   }
