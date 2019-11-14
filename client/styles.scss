@@ -116,7 +116,7 @@
   position: absolute;
   right: 0;
   top: 40px;
-  min-width: 130px;
+  min-width: 150px;
   background-color: #fff;
   border-radius: 4px;
   border: none;
@@ -424,6 +424,15 @@
   opacity: 1;
 }
 
+.UploadActions__content .list-group .list-group-item {
+  font-size: 0.8rem;
+  padding: 10px;
+  cursor: pointer;
+  height: 41px;
+  overflow: hidden;
+  text-align: center;
+}
+
 .MoveFileBrowser {
   width: 100%;
   border: 0.5px solid #d3d3d3;
@@ -670,10 +679,20 @@
   display: none;
   position: absolute;
   right: 10px;
-  min-width: 130px;
+  min-width: 150px;
 }
+
 .HeaderTopAccount:hover .HeaderTopAccount__menu {
   display: block;
+}
+
+.HeaderTopAccount__menu .list-group .list-group-item {
+  font-size: 0.8rem;
+  padding: 10px;
+  cursor: pointer;
+  height: 41px;
+  overflow: hidden;
+  text-align: center;
 }
 /* HEADER COMPONENT STYLES ENDS HERE */
 
