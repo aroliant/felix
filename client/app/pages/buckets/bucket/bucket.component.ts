@@ -223,6 +223,18 @@ export class BucketComponent implements OnInit {
     this.modalStates.permissions = false
   }
 
+  hideManageMetaModal() {
+    this.modalStates.meta = false
+  }
+
+  hideMoveObjectsModal() {
+    this.modalStates.moveFiles = false
+  }
+
+  hideShareObjectModal() {
+    this.modalStates.share = false
+  }
+
   createNewFolder() {
     this.objectNameBeforeRenaming = '' // folder newly created
     this.objects.unshift({
