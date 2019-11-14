@@ -356,16 +356,16 @@ export class BucketController {
 
     const dest = config.ROOT_FOLDER + '/buckets/' + params.bucketName + params.dest
 
-    var paths = []
-    params.paths.map((path, i) => {
-      paths.push(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path)
-    })
+    // var paths = []
+    // params.paths.map((path, i) => {
+    //   paths.push(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path)
+    // })
 
-    paths.map((path, i) => {
+    params.paths.map((path, i) => {
 
       try {
 
-        fs.moveSync(path, dest, { overwrite: true })
+        fs.moveSync(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path, dest, { overwrite: true })
 
         messages.push({
           success: true,
@@ -377,7 +377,6 @@ export class BucketController {
         messages.push({
           success: false,
           message: path + " not moved Successfully",
-          error: error
         })
 
       }

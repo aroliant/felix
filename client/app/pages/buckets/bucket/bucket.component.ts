@@ -18,10 +18,10 @@ export class BucketComponent implements OnInit {
   newFolderName = ''
   bucket: any
   objects = []
-  noSelected = 0
   actions = {
     objectsToDelete: [],
-    files: []
+    files: [],
+    selectedObjectsCount: 0
   }
 
   states = {
@@ -90,9 +90,9 @@ export class BucketComponent implements OnInit {
 
   selectAll(state) {
     if (state)
-      this.noSelected = this.objects.length
+      this.actions.selectedObjectsCount = this.objects.length
     else
-      this.noSelected = 0
+      this.actions.selectedObjectsCount = 0
     this.objects.map((object, index) => {
       object.isSelected = state
       return object
@@ -102,9 +102,9 @@ export class BucketComponent implements OnInit {
   selectObject(event, index) {
     console.log('[action] -> selectObject')
     if (event.target.checked)
-      ++this.noSelected
+      ++this.actions.selectedObjectsCount
     else
-      --this.noSelected
+      --this.actions.selectedObjectsCount
     this.states.checkedAll = false
     const val = event.target.value === 'on' ? true : false
     this.objects[index].isSelected = val
