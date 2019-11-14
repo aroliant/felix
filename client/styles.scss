@@ -404,6 +404,28 @@
 .HeaderCORS {
   display: none;
 }
+
+.CORS {
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.CORS__origin {
+  width: 40%;
+}
+
+.CORS__method {
+  width: 10%;
+}
+
+.CORS__headers {
+  width: 40%;
+}
+
+.CORS__age {
+  width: 10;
+}
 /* BUCKET SETTINGS PAGE STYLES ENDS HERE */
 
 /* MODAL BUCKET MANAGE META MODAL PAGE STYLES STARTS HERE */

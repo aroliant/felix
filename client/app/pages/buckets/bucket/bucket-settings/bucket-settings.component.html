@@ -61,15 +61,44 @@
                     <button class="btn btn-outline-secondary" (click)="openPurgeModal();">Edit</button>
                 </div>
             </div> -->
-            <div class="BucketSettings__item">
-                <div>
-                    <h5 class="m-0">CORS Configurations</h5>
-                    <p class="m-0">
-                        Rules are processed in order from top to bottom until there is a match - drag and drop rules to
-                        reorder.
-                    </p>
+            <div class="BucketSettings__item BucketSettings__item--column">
+                <div class="w-100 d-flex flex-row align-items-center justify-content-between mb-4">
+                    <div>
+                        <h5 class="m-0">CORS Configurations</h5>
+                        <p class="m-0">
+                            Rules are processed in order from top to bottom until there is a match - drag and drop rules
+                            to
+                            reorder.
+                        </p>
+                    </div>
+                    <button class="btn btn-outline-secondary" (click)="openCORSoptionModal()">Add</button>
                 </div>
-                <button class="btn btn-outline-secondary" (click)="openCORSoptionModal()">Add</button>
+
+                <div class="CORS">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="CORS__origin">Origin</th>
+                                <th class="CORS__method">Method</th>
+                                <th class="CORS__headers">Headers</th>
+                                <th class="CORS__age">Age</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="CORS__origin">
+                                    <a class="text-primary" href="fibon.blaz.app" target="_blank">fibon.blaz.app</a>
+                                </td>
+                                <td class="CORS__method">
+                                    <div class="text-uppercase">PUT</div>
+                                </td>
+                                <td class="CORS__headers">PUT, DELETE, POST</td>
+                                <td class="CORS__age">10s</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
             <div class="BucketSettings__item BucketSettings__item--column">
                 <div>
