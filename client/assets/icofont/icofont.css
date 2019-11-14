@@ -43,11 +43,6 @@ url("./fonts/icofont.woff") format("woff");
   content: "\ed0a";
 }
 
-.icofont-settings-alt:before
-{
-  content: "\efe1";
-}
-
 .icofont-simple-down:before
 {
   content: "\eab2";
@@ -56,6 +51,41 @@ url("./fonts/icofont.woff") format("woff");
 .icofont-thin-down:before
 {
   content: "\eac8";
+}
+
+.icofont-delete-alt:before
+{
+  content: "\edec";
+}
+
+.icofont-home:before
+{
+  content: "\ef47";
+}
+
+.icofont-thin-right:before
+{
+  content: "\eaca";
+}
+
+.icofont-simple-right:before
+{
+  content: "\eab8";
+}
+
+.icofont-thin-left:before
+{
+  content: "\eac9";
+}
+
+.icofont-simple-left:before
+{
+  content: "\eab5";
+}
+
+.icofont-settings:before
+{
+  content: "\efe2";
 }
 
 .icofont-xs
