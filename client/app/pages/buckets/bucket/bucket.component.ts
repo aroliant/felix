@@ -46,7 +46,9 @@ export class BucketComponent implements OnInit {
     private mainService: MainService,
     private router: Router,
     private toast: ToastrService,
-    private helperService: HelperService) { }
+    private helperService: HelperService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
@@ -137,6 +139,7 @@ export class BucketComponent implements OnInit {
 
   copyToClipboard(string) {
     this.helperService.copyToClipboard(string)
+    this.toastr.success('URL Copied!');
   }
 
   searchFilter() {
