@@ -23,11 +23,9 @@ export class DeleteComponent implements OnInit {
   deleteObject() {
 
     var paths = [];
-    this.objects.map((object,i) => {
+    this.objects.map((object, i) => {
       paths.push(this.currentPath + object['name'] + (object['objectType'] == 'folder' ? '/' : ''))
     })
-    console.log(this.bucket)
-    console.log(paths)
 
     this.mainService.deleteObjects({
       bucketName: this.bucket.bucketName,

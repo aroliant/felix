@@ -139,7 +139,7 @@ export class BucketComponent implements OnInit {
 
   copyToClipboard(string) {
     this.helperService.copyToClipboard(string)
-    this.toastr.success('URL Copied!');
+    this.toastr.success('Copied to Clipboard!');
   }
 
   searchFilter() {
@@ -174,11 +174,14 @@ export class BucketComponent implements OnInit {
 
   }
 
-  onDelete($event) {
-    if ($event.success) {
+  onDelete(event) {
+    if (event.success) {
       this.actions.objectsToDelete.map((objectToDelete, i) => {
         this.objects.splice(this.objects.indexOf(this.actions.objectsToDelete[i]), 1)
       })
+      this.toastr.success(event.message, 'Success!');
+    } else {
+      this.toastr.error(event.message);
     }
     this.modalStates.delete = false
     this.actions.objectsToDelete = []
@@ -265,7 +268,9 @@ export class BucketComponent implements OnInit {
         this.mainService.createFolder(newFolder).subscribe((newFolderStatus: any) => {
           if (newFolderStatus.success) {
             this.closeFolderEditMode(i)
-            console.log("Created");
+            this.toastr.success(newFolderStatus.message, 'Success!')
+          } else {
+            this.toastr.error(newFolderStatus.message)
           }
         })
 
@@ -280,7 +285,7 @@ export class BucketComponent implements OnInit {
         this.mainService.moveObject(renameObject).subscribe((renameObjectStatus: any) => {
           if (renameObjectStatus.success) {
             this.closeFolderEditMode(i);
-            console.log("Renamed from " + this.objectNameBeforeRenaming + ' to ' + this.objects[i].name)
+            this.toastr.success('Renamed Sucessfully', 'Success!')
           }
         })
 

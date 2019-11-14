@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'client/app/services/main.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-bucket',
@@ -14,15 +15,20 @@ export class CreateBucketComponent implements OnInit {
     fileListing: 'restricted'
   }
 
-  constructor(private mainService: MainService) { }
+  constructor(
+    private mainService: MainService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
   }
 
   createBucket() {
-    this.mainService.createBucket(this.bucket).subscribe((bucketCreationStatus:any) => {
-      if(bucketCreationStatus.success){
-        console.log(bucketCreationStatus.message)
+    this.mainService.createBucket(this.bucket).subscribe((bucketCreationStatus: any) => {
+      if (bucketCreationStatus.success) {
+        this.toastr.success(bucketCreationStatus.message, 'Success!')
+      } else {
+        this.toastr.error(bucketCreationStatus.message)
       }
     })
   }
