@@ -93,6 +93,45 @@ thead {
   display: block;
 }
 
+.modal .modal-dialog {
+}
+
+.modal.open .modal-dialog {
+  animation: modal-transition-in 0.3s ease-in-out;
+}
+
+@-webkit-keyframes modal-transition-in {
+  0% {
+    transform: translate(0, -700px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+@-moz-keyframes modal-transition-in {
+  0% {
+    transform: translate(0, -700px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes modal-transition-in {
+  0% {
+    transform: translate(0, -700px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

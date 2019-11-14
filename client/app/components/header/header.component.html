@@ -1,7 +1,7 @@
 <div class="HeaderTop shadow-sm">
     <div class="form-group m-0 w-100 HeaderTopSearch d-flex flex-row align-items-center">
         <img src="../../../assets/icons/search.svg" class="HeaderTopSearch__icon ml-4 mr-2" alt="">
-        <input type="text" class="form-control HeaderTop__search" (click)="openSearchMenu();openSearchOverlay();"
+        <input type="text" class="form-control HeaderTop__search mr-5 bg-light_dim" (click)="openSearchMenu();openSearchOverlay();"
             placeholder="Search by file or folder name..." autocomplete="new-password" name="keyword">
         <div class="HeaderTopSearch__content" id="HeaderTopSearch__content">
             <ul class="list-unstyled m-0">
@@ -10,9 +10,9 @@
         </div>
     </div>
     <div class="HeaderTopCreate mr-2">
-        <button class="btn btn-primary" routerLink="/buckets/create">Create</button>
+        <button class="btn btn-primary mr-4" routerLink="/buckets/create">Create</button>
     </div>
-    <div class="HeaderTopAccount pr-2">
+    <div class="HeaderTopAccount pr-2 mr-3">
         <img src="https://img.blaz.app/40x40" class="HeaderTopAccount__icon" alt="">
 
         <div class="HeaderTopAccount__menu">
