@@ -9,7 +9,7 @@
                         <h5 class="m-0">File Listing</h5>
                         <p class="m-0">
                             <strong>Restricted:</strong>
-                            Only users who connect to this Space using access keys can list the contents.
+                            Only users who connect to this Bucket using access keys can list the contents.
                         </p>
                     </div>
                     <button class="btn btn-outline-secondary" (click)="openFileListingPrivacy();">Edit</button>
@@ -19,7 +19,7 @@
                     <div class="d-flex flex-row mb-3">
                         <div class="form-check form-check-inline border p-3 rounded">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                            value="restricted" [(ngModel)]="bucket?.settings['fileListing']">
+                                value="restricted" [(ngModel)]="bucket?.settings['fileListing']">
                             <label class="form-check-label p-3" for="inlineRadio1"><span class="h6">Restrict File
                                     Listing</span><br />
                                 <div class="small">Only users who connect to this Bucket using access keys can list
@@ -30,12 +30,12 @@
                         </div>
                         <div class="form-check form-check-inline border p-3 rounded">
                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                value="enabled" [(ngModel)]="bucket?.settings['fileListing']" >
+                                value="enabled" [(ngModel)]="bucket?.settings['fileListing']">
                             <label class="form-check-label p-3" for="inlineRadio2"><span class="h6">Enable File
                                     Listing
                                 </span>
                                 <br />
-                                <div class="small">Anyone can list the contents of this Space.
+                                <div class="small">Anyone can list the contents of this Bucket.
                                 </div>
                             </label>
                         </div>
@@ -53,11 +53,11 @@
                     <h5 class="m-0">CDN (Content Delivery Network)</h5>
                     <p class="m-0">
                         <strong>Enabled:</strong>
-                        Your Space is being served via the content delivery network.
+                        Your Bucket is being served via the content delivery network.
                     </p>
                 </div>
                 <div>
-                    <button class="btn btn-outline-light mr-3" (click)="openPurgeModal();">Purge Cache</button>
+                    <button class="btn btn-outline-primary mr-3" (click)="openPurgeModal();">Purge Cache</button>
                     <button class="btn btn-outline-secondary" (click)="openPurgeModal();">Edit</button>
                 </div>
             </div>
@@ -73,18 +73,32 @@
             </div>
             <div class="BucketSettings__item BucketSettings__item--column">
                 <div>
-                    <h5 class="m-0">Endpoint</h5>
-                    <p class="m-0">
-                        <strong>Restricted:</strong>
-                        The endpoint is used to configure 3rd party clients, which may refer to it by other names such
-                        as the S3 Endpoint or Server.
-                    </p>
+                    <h5 class="m-0">Domain</h5>
+
                 </div>
                 <div class="w-100 text-left mt-2">
                     <div class="BucketEndpoint">
                         <span class="mx-2">{{bucket.bucketName}}.blaz.app</span>
-                        <button class="btn btn-light"
-                            (click)="copyToClipboard(bucket.bucketName + '.blaz.app')">Copy</button>
+                        <button class="btn btn-outline-primary" disabled>Connected</button>
+                    </div>
+                    <div class="mt-2">
+                        <div class="form-group form-inline m-0">
+                            <input type="text" class="form-control mr-2 w-50"
+                                placeholder="Enter the domain you want to connect">
+                            <button class="btn btn-primary">Connect</button>
+                        </div>
+                        <div class="mt-2">
+                            <strong class="text-uppercase small">List of domains at <code>fibon.blaz.app</code></strong>
+                            <div class="list-group list-group-flush mt-1">
+                                <a class="list-group-item" href="app.your-domain.com"
+                                    target="_blank">http://app.your-domain.com</a>
+                                <a class="list-group-item" href="app.your-domain.com"
+                                    target="_blank">http://app.your-domain.com</a>
+                                <a class="list-group-item" href="app.your-domain.com"
+                                    target="_blank">http://app.your-domain.com</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -92,9 +106,10 @@
                 <div>
                     <h5 class="m-0">Delete this bucket</h5>
                     <p class="m-0">
-                        This will schedule your space to be deleted. Your space and all associated objects will be
+                        This will schedule your bucket to be deleted. Your bucket and all associated objects will be
                         permanently destroyed, scrubbed, and irretrievable after the deletion period. You will NOT be
-                        billed for the Space from the time you requested a delete to time the Space and its contents are
+                        billed for the Bucket from the time you requested a delete to time the Bucket and its contents
+                        are
                         actually deleted.
                     </p>
                 </div>
@@ -234,7 +249,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Choose a directory (or multiple directories) or the entire Space to remove those elements and their
+                <p>Choose a directory (or multiple directories) or the entire Bucket to remove those elements and their
                     children from the cache.</p>
                 <div class="MoveFileBrowser">
                     <div class="list-group">
