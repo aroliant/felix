@@ -44,7 +44,7 @@
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
-.Bucket__icon{
+.Bucket__icon {
   width: 30px;
   background-color: map-get($theme-colors, "white");
   border-radius: 30px;
@@ -210,6 +210,13 @@
   transform: translate3d(0, 0, 0);
   opacity: 1;
   z-index: 10;
+}
+
+.FileBrowser__fileitem {
+  overflow: hidden;
+  width: 400px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .FileBrowser__infomenu {
