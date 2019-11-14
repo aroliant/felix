@@ -45,7 +45,8 @@
             <a (click)="navigateBucketBreadcrumb(crumb.path)" class="FileBrowserHeader__crumb"
               *ngIf="crumb.name != '/'">
               {{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
-            <i class="icofont-home mx-2" (click)="navigateBucketBreadcrumb(crumb.path)" *ngIf="crumb.name == '/'"></i>
+            <i class="icofont-home mx-2 FileBrowserHeader__crumb p-2" (click)="navigateBucketBreadcrumb(crumb.path)"
+              *ngIf="crumb.name == '/'"></i>
           </div>
         </strong>
         <div class="FileBrowserHeader__right">2 items</div>
