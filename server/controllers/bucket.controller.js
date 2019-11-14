@@ -106,24 +106,34 @@ export class BucketController {
 
   static updateBucket(req, res) {
     const bucket = req.body
-    const bucketName = (bucketsDB.get('buckets').find({ bucketID: bucket.bucketID }).value())['bucketName']
-    const adapterBucket = new FileSync(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
-    const bucketDB = low(adapterBucket)
 
-    try {
-      bucketDB.get('bucket').assign(bucket).write()
-    } catch (err) {
+    //Check if bucket exists
+    const bucketDetails = bucketsDB.get('buckets').find({ bucketID: bucket.bucketID }).value()
+    if (bucketDetails) {
+      const bucketName = bucketDetails.bucketName
+      const adapterBucket = new FileSync(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
+      const bucketDB = low(adapterBucket)
+
+      try {
+        bucketDB.get('bucket').assign(bucket).write()
+      } catch (err) {
+        return res.json({
+          success: false,
+          message: "Unable to update Bucket",
+          error: err
+        });
+      }
+
+      return res.json({
+        success: true,
+        message: "Bucket Updated !"
+      })
+    } else {
       return res.json({
         success: false,
-        message: "Unable to update Bucket",
-        error: err
-      });
+        message: "Unable to find bucket!"
+      })
     }
-
-    res.json({
-      success: true,
-      message: "Bucket Updated !"
-    })
   }
 
   static getAllBuckets(req, res) {
