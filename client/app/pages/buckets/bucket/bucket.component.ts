@@ -228,7 +228,7 @@ export class BucketComponent implements OnInit {
   editFolder(event, i) {
     if (event.keyCode == 13) {
 
-      if(this.objectNameBeforeRenaming == ''){
+      if (this.objectNameBeforeRenaming == '') {
 
         const newFolder = {
           path: this.currentPath + this.objects[i].name,
@@ -246,12 +246,12 @@ export class BucketComponent implements OnInit {
 
         const renameObject = {
           bucketName: this.bucket.bucketName,
-          src: this.currentPath + this.objectNameBeforeRenaming,
+          paths: [this.currentPath + this.objectNameBeforeRenaming],
           dest: this.currentPath + this.objects[i].name
         }
 
         this.mainService.moveObject(renameObject).subscribe((renameObjectStatus: any) => {
-          if(renameObjectStatus.success) {
+          if (renameObjectStatus.success) {
             this.closeFolderEditMode(i);
             console.log("Renamed from " + this.objectNameBeforeRenaming + ' to ' + this.objects[i].name)
           }
