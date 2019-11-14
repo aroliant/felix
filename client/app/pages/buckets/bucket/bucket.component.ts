@@ -219,6 +219,10 @@ export class BucketComponent implements OnInit {
     })
   }
 
+  hidePermissionsModal() {
+    this.modalStates.permissions = false
+  }
+
   createNewFolder() {
     this.objectNameBeforeRenaming = '' // folder newly created
     this.objects.unshift({
