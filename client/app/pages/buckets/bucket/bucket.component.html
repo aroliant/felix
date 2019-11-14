@@ -19,7 +19,8 @@
               <div class="list-group">
                 <a Value class="list-group-item list-group-item-action" (click)="openMoveItemModal();">Move to
                   folder</a>
-                <a Value class="list-group-item list-group-item-action text-danger" (click)="showDeletesModel()">Delete</a>
+                <a Value class="list-group-item list-group-item-action text-danger"
+                  (click)="showDeletesModel()">Delete</a>
               </div>
             </div>
           </div>
@@ -40,8 +41,8 @@
       <div class="FileBrowserHeader small">
         <strong class="FileBrowserHeader__left">
           <div *ngFor="let crumb of bucketBreadcrumbs">
-            <a (click)="navigateBucketBreadcrumb(crumb.path)"
-              class="FileBrowserHeader__crumb">{{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
+            <a (click)="navigateBucketBreadcrumb(crumb.path)" class="FileBrowserHeader__crumb">
+              <i class="icofont-home mx-2"></i> {{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
           </div>
         </strong>
         <div class="FileBrowserHeader__right">2 items</div>
@@ -80,7 +81,8 @@
               <!-- editable mode -->
               <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
                 <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
-                <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editFolder($event,i)" placeholder="Folder name" />
+                <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editFolder($event,i)"
+                  placeholder="Folder name" />
                 <!-- <button (click)="closeFolderEditMode(i)">check</button> -->
               </div>
             </td>
@@ -98,7 +100,7 @@
                     <a class="FileBrowser__infomenu_URL mx-2"
                       href="">https://bucket-pradeephareesh.blaz.app/guess-number-game/index.html</a>
                   </div>
-                  <button class="btn btn-light" (click)="copyToClipboard()" >Copy</button>
+                  <button class="btn btn-light" (click)="copyToClipboard()">Copy</button>
                 </div>
                 <table class="table mt-2">
                   <tbody>
