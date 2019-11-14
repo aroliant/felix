@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="CORS">
-                    <table class="table table-hover">
+                    <table class="table table-hover" *ngIf="bucket.cors.length != 0" >
                         <thead>
                             <tr>
                                 <th class="CORS__origin">Origin</th>
@@ -85,15 +85,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let cors of bucket.cors" >
                                 <td class="CORS__origin">
-                                    <a class="text-primary" href="fibon.blaz.app" target="_blank">fibon.blaz.app</a>
+                                    <a class="text-primary" href="fibon.blaz.app" target="_blank">{{cors.origin}}</a>
                                 </td>
                                 <td class="CORS__method">
-                                    <div class="text-uppercase">PUT</div>
+                                    <div class="text-uppercase" *ngFor="let method of cors.allowedMethods" >{{method}} </div>
                                 </td>
-                                <td class="CORS__headers">PUT, DELETE, POST</td>
-                                <td class="CORS__age">10s</td>
+                                <td class="CORS__headers" *ngFor="let header of cors.allowedHeaders" >{{header}} </td>
+                                <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
                             </tr>
                         </tbody>
                     </table>
@@ -108,7 +108,7 @@
                 <div class="w-100 text-left mt-2">
                     <div class="BucketEndpoint">
                         <span class="mx-2">{{bucket.bucketName}}.blaz.app</span>
-                        <button class="btn btn-outline-primary">Copy</button>
+                        <button class="btn btn-outline-primary" (click)="copyToClipboard(bucket.bucketName+'.blaz.app')" >Copy</button>
                     </div>
                     <div class="mt-3 w-50">
                         <div class="form-group form-inline m-0">
@@ -118,45 +118,17 @@
                         </div>
                         <div class="mt-3">
                             <strong class="text-uppercase small">Domains</strong>
-                            <div class="list-group list-group-flush mt-1">
-                                <div class="list-group-item d-flex flex-row align-items-center justify-content-between">
+                            <div class="list-group list-group-flush mt-1" *ngIf="bucket.domains.length != 0" >
+                                <div *ngFor="let domain of bucket.domains" class="list-group-item d-flex flex-row align-items-center justify-content-between">
                                     <a class="text-primary" href="app.your-domain.com"
-                                        target="_blank">http://app.your-domain.com</a>
+                                        target="_blank">{{domain.name}}</a>
                                     <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" checked="checked" name="EnableHTTPS1">
+                                        <input type="checkbox" [(ngModel)]="domain.sslEnabled" name="EnableHTTPS1">
                                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
                                     </label>
                                     <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" checked="checked" name="ForceHTTPS1">
-                                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
-                                    </label>
-                                </div>
-                                <div class="list-group-item d-flex flex-row align-items-center justify-content-between">
-                                    <a class="text-primary" href="app.your-domain.com"
-                                        target="_blank">http://app.your-domain.com</a>
-                                    <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" checked="checked" name="EnableHTTPS22">
-                                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
-                                    </label>
-                                    <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" checked="checked" name="ForceHTTPS22">
-                                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
-                                    </label>
-                                </div>
-                                <div class="list-group-item d-flex flex-row align-items-center justify-content-between">
-                                    <a class="text-primary" href="app.your-domain.com"
-                                        target="_blank">http://app.your-domain.com</a>
-                                    <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" checked="checked" name="EnableHTTPS33">
-                                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
-                                    </label>
-                                    <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" checked="checked" name="ForceHTTPS33">
+                                        <input type="checkbox" [(ngModel)]="domain.forceSSL" name="ForceHTTPS1">
                                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
                                     </label>
