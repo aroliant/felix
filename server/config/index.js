@@ -1,4 +1,4 @@
-const { resolve } = require('./file-resolver')
+import { resolve } from './file-resolver'
 
 const fileName = resolve();
 
