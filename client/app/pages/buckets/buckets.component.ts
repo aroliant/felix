@@ -19,8 +19,15 @@ export class BucketsComponent implements OnInit {
     })
   }
 
-  copyToClipboard(string){
+  copyToClipboard(string) {
     this.helperService.copyToClipboard(string)
+  }
+
+  diffInDays(a) {
+    const date1 = Date.now();
+    const date2 = a;
+    const diffTime = Math.abs(date2 - date1);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   }
 
 }
