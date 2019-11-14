@@ -12,4 +12,12 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  openAddUserModal() {
+    document.getElementById("AddUserModal").style.display = "block";
+  }
+  closeAddUserModal() {
+    document.getElementById("AddUserModal").style.display = "none";
+  }
+
 }
