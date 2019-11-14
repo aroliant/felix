@@ -13,7 +13,8 @@
         </div>
         <div class="col-lg-6 text-right p-0">
           <div class="UploadActions mr-3">
-            <button class="btn btn-outline-secondary" type="button">Actions ({{noSelected}}) <i class="icofont-simple-down"></i>
+            <button class="btn btn-outline-secondary" type="button">Actions ({{noSelected}}) <i
+                class="icofont-simple-down"></i>
             </button>
             <div class="UploadActions__content">
               <div class="list-group">
@@ -116,9 +117,16 @@
                 </table>
               </div>
             </td>
-            <td class="FileBrowser__sizecolumn">{{object.size | bytes}}</td>
+            <td class="FileBrowser__sizecolumn">
+              <div class="text-secondary">{{object.size | bytes}}</div>
+            </td>
             <td class="FileBrowser__timecolumn">
-              <abbr title="{{object.modifiedAt | date: 'full'}}">{{object.modifiedAt | date: 'medium'}}</abbr>
+              <div class="FileBrowser__timecolumn_menu">
+                <span class="text-secondary">{{object.modifiedAt | date: 'medium'}}</span>
+                <div class="FileBrowser__timecolumn_menuContent">
+                  {{object.modifiedAt | date: 'full'}}
+                </div>
+              </div>
             </td>
             <td class="FileBrowser__optioncolumn">
               <div class="FileBrowserOption" (click)="showActions(i)" #action_{{i}}>
