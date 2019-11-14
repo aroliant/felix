@@ -10,6 +10,7 @@ import through2 from 'through2'
 import rimraf from 'rimraf'
 
 import config from '../config'
+import { I18nSelectPipe } from '@angular/common';
 
 const bucketsAdapter = new FileSync(config.ROOT_FOLDER + '/buckets.json')
 const bucketsDB = low(bucketsAdapter)
@@ -351,23 +352,42 @@ export class BucketController {
   static moveObjects(req, res) {
 
     const params = req.body
-    const src = config.ROOT_FOLDER + '/buckets/' + params.bucketName + params.src;
-    const dest = config.ROOT_FOLDER + '/buckets/' + params.bucketName + params.dest;
+    var messages = []
 
-    fs.move(src, dest)
-      .then(() => {
-        return res.send({
+    const dest = config.ROOT_FOLDER + '/buckets/' + params.bucketName + params.dest
+
+    var paths = []
+    params.paths.map((path, i) => {
+      paths.push(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path)
+    })
+
+    paths.map((path, i) => {
+
+      try {
+
+        fs.moveSync(path, dest, { overwrite: true })
+
+        messages.push({
           success: true,
-          message: "Objects moved !"
+          message: path + " moved Successfully"
         })
-      })
-      .catch(err => {
-        return res.send({
+
+      } catch (error) {
+
+        messages.push({
           success: false,
-          message: "Unable to move Objects",
-          error: err
+          message: path + " not moved Successfully",
+          error: error
         })
-      })
+
+      }
+
+    })
+
+    return res.send({
+      success: true,
+      message: messages
+    })
 
   }
 
