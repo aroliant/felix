@@ -28,6 +28,7 @@ export class BucketSettingsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
 
     this.route.params.subscribe((params) => {
       this.bucket.bucketName = params.bucketName

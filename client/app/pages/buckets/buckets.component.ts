@@ -19,6 +19,7 @@ export class BucketsComponent implements OnInit {
   buckets = []
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.mainService.getAllBuckets().subscribe((res: any) => {
       this.buckets = res.buckets;
     })
