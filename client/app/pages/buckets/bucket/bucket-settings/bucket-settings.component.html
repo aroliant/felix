@@ -48,19 +48,19 @@
                 </div>
 
             </div>
-            <div class="BucketSettings__item">
+            <!-- <div class="BucketSettings__item">
                 <div>
                     <h5 class="m-0">CDN (Content Delivery Network)</h5>
                     <p class="m-0">
                         <strong>Enabled:</strong>
-                        Your Bucket is being served via the content delivery network.
+                        CDN
                     </p>
                 </div>
                 <div>
                     <button class="btn btn-outline-primary mr-3" (click)="openPurgeModal();">Purge Cache</button>
                     <button class="btn btn-outline-secondary" (click)="openPurgeModal();">Edit</button>
                 </div>
-            </div>
+            </div> -->
             <div class="BucketSettings__item">
                 <div>
                     <h5 class="m-0">CORS Configurations</h5>
@@ -79,23 +79,61 @@
                 <div class="w-100 text-left mt-2">
                     <div class="BucketEndpoint">
                         <span class="mx-2">{{bucket.bucketName}}.blaz.app</span>
-                        <button class="btn btn-outline-primary" disabled>Connected</button>
+                        <button class="btn btn-outline-primary">Copy</button>
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-3 w-50">
                         <div class="form-group form-inline m-0">
-                            <input type="text" class="form-control mr-2 w-50"
+                            <input type="text" class="form-control mr-2 flex-grow-1"
                                 placeholder="Enter the domain you want to connect">
                             <button class="btn btn-primary">Connect</button>
                         </div>
-                        <div class="mt-2">
-                            <strong class="text-uppercase small">List of domains at <code>fibon.blaz.app</code></strong>
+                        <div class="mt-3">
+                            <strong class="text-uppercase small">Domains</strong>
                             <div class="list-group list-group-flush mt-1">
-                                <a class="list-group-item" href="app.your-domain.com"
-                                    target="_blank">http://app.your-domain.com</a>
-                                <a class="list-group-item" href="app.your-domain.com"
-                                    target="_blank">http://app.your-domain.com</a>
-                                <a class="list-group-item" href="app.your-domain.com"
-                                    target="_blank">http://app.your-domain.com</a>
+                                <div class="list-group-item d-flex flex-row align-items-center justify-content-between">
+                                    <a class="text-primary" href="app.your-domain.com"
+                                        target="_blank">http://app.your-domain.com</a>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="EnableHTTPS1"
+                                            value="option1">
+                                        <label class="form-check-label" for="EnableHTTPS1">Enable HTTPS</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="ForceHTTPS1"
+                                            value="option2">
+                                        <label class="form-check-label" for="ForceHTTPS1">Force HTTPS</label>
+                                    </div>
+                                </div>
+                                <div class="list-group-item d-flex flex-row align-items-center justify-content-between">
+                                    <a class="text-primary" href="app.your-domain.com"
+                                        target="_blank">http://app.your-domain.com</a>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="EnableHTTPS2"
+                                            value="option1">
+                                        <label class="form-check-label" for="EnableHTTPS2">Enable HTTPS</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="ForceHTTPS2"
+                                            value="option2">
+                                        <label class="form-check-label" for="ForceHTTPS2">Force HTTPS</label>
+                                    </div>
+                                </div>
+                                <div class="list-group-item d-flex flex-row align-items-center justify-content-between">
+                                    <a class="text-primary" href="app.your-domain.com"
+                                        target="_blank">http://app.your-domain.com</a>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="EnableHTTPS3"
+                                            value="option1">
+                                        <label class="form-check-label" for="EnableHTTPS3">Enable HTTPS</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="ForceHTTPS3"
+                                            value="option2">
+                                        <label class="form-check-label" for="ForceHTTPS3">Force HTTPS</label>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
 
