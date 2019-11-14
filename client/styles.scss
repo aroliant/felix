@@ -600,6 +600,10 @@
 .SidebarLink {
   padding: 10px;
   cursor: pointer;
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+  margin-right: 20px;
+  height: 44px;
 }
 .SidebarLink:hover {
   background-color: map-get($theme-colors, "dark");
