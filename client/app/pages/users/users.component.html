@@ -2,7 +2,7 @@
     <div class="container">
         <div class="w-100 d-flex flex-row justify-content-between">
             <h3 class="font-weight-light mb-0">Users</h3>
-            <button class="btn btn-primary">Add User</button>
+            <button class="btn btn-primary" (click)="openAddUserModal();">Add User</button>
         </div>
         <div class="w-100 mt-4">
 
@@ -27,13 +27,88 @@
                         <td class="User__role">Admin</td>
                         <td class="User__status">Active</td>
                         <td class="User__actions">
-                            <a class="text-danger cursor-pointer">
+                            <a class="text-danger cursor-pointer" (click)="openDeleteUserModal();">
                                 Delete
                             </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add User Modal-->
+<div class="modal" id="AddUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Add User</h5>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="closeAddUserModal();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="felixUsername">Username</label>
+                    <input type="text" class="form-control" id="felixUsername" placeholder="Enter a unique username">
+                </div>
+                <div class="form-group">
+                    <label for="felixUserRole">Select User Role</label>
+                    <select class="form-control" id="felixUserRole">
+                        <option>Admin</option>
+                        <option>Manager</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="felixUserPassword">Password</label>
+                    <input type="password" class="form-control" id="felixUserPassword" placeholder="Password">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="w-100 text-left">
+                    <button type="button" class="btn btn-primary mr-3" (click)="closeAddUserModal();">
+                        Add</button>
+                    <button type="button" class="btn btn-outline-secondary" (click)="closeAddUserModal();">
+                        Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete User Modal-->
+<div class="modal" id="DeleteUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Delete this ( <code>username</code> ) User?</h5>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="closeDeleteUserModal();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Confirm you want to delete this user below.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100 text-left">
+                    <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeDeleteUserModal();">
+                        Cancel</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="closeDeleteUserModal();">
+                        Delete</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

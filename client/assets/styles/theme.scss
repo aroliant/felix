@@ -96,3 +96,7 @@ thead {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.close:focus {
+  outline: none;
+}
