@@ -77,27 +77,36 @@
               </label>
             </td>
             <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'">
+              <!-- folder normal mode -->
               <span (click)="browseFolder(object.name)" *ngIf="!object.onEditMode">
                 <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
                 {{object.name}}
               </span>
 
-              <!-- editable mode -->
+              <!-- folder editable mode -->
               <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
                 <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
                 <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editFolder($event,i)"
                   placeholder="Folder name" />
-                <!-- <button (click)="closeFolderEditMode(i)">check</button> -->
               </div>
+
             </td>
             <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='file'">
-              <p class="m-0 FileBrowser__fileitem">
+              <!-- file normal mode -->
+              <p class="m-0 FileBrowser__fileitem" *ngIf="!object.onEditMode">
                 <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
                 {{object.name}}
               </p>
 
+              <!-- file editable mode -->
+              <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
+                  <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
+                <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editFile($event,i)"
+                  placeholder="File name" />
+              </div>
+
               <!-- hover menu -->
-              <div class="FileBrowser__infomenu">
+              <div class="FileBrowser__infomenu" *ngIf="!object.onEditMode">
                 <div class="d-flex flex-row align-items-center justify-content-between">
                   <div>Origin</div>
                   <div class="FileBrowser__infomenu_URL_holder">
