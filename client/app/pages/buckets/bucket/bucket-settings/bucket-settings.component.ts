@@ -16,9 +16,27 @@ export class BucketSettingsComponent implements OnInit {
     bucketID: '',
     settings: {
       fileListing: ''
-    }
+    },
+    domains: [],
+    cors: [{
+      origin: "",
+      allowedMethods: [],
+      allowedHeaders: [],
+      accessControlMaxAge: 0
+    }]
   }
   deleteConfirmationBucketName = ''
+  newCORS = {
+    origin: "",
+    allowedMethods: [],
+    allowedHeaders: [],
+    accessControlMaxAge: 0
+  }
+  newDomain = {
+    name: "",
+    sslEnabled: false,
+    forceSSL: false
+  }
 
   constructor(private route: ActivatedRoute,
     private mainService: MainService,
@@ -29,7 +47,6 @@ export class BucketSettingsComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
-
     this.route.params.subscribe((params) => {
       this.bucket.bucketName = params.bucketName
       this.mainService.getBucket(this.bucket.bucketName).subscribe((getBucketResult: any) => {
@@ -98,6 +115,61 @@ export class BucketSettingsComponent implements OnInit {
     }
   }
 
+  addNewHeaderOnEnter(event) {
+    if(event.keyCode == 13){
+      this.addHeaderCORS();
+    }
+  }
+
+  newCORSMethod(event) {
+    if (event.target.checked == true)
+      this.newCORS.allowedMethods.push(event.target.value)
+    else {
+      this.newCORS.allowedMethods.splice(this.newCORS.allowedMethods.indexOf(event.target.value), 1)
+    }
+  }
+
+  newCORSHeaders(event) {
+    if (event.keyCode == 13) {
+      if (this.newCORS.allowedHeaders.indexOf(event.target.value) == -1) { }
+    }
+  }
+
+  updateDomain() {
+    this.bucket.domains.push(this.newDomain)
+    this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
+      if (updateBucketStatus.success) {
+        this.newDomain = {
+          name: "",
+          sslEnabled: false,
+          forceSSL: false
+        }
+        this.toastr.success(updateBucketStatus.message, 'Success!')
+      } else {
+        this.toastr.error(updateBucketStatus.message)
+      }
+    })
+  }
+
+  updateCORS() {
+    this.bucket.cors.push(this.newCORS)
+    console.log(this.bucket)
+    this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
+      if (updateBucketStatus.success) {
+        this.newCORS = {
+          origin: "",
+          allowedMethods: [],
+          allowedHeaders: [],
+          accessControlMaxAge: 0
+        }
+        this.toastr.success(updateBucketStatus.message, 'Success!')
+        this.closeCORSoptionModal()
+      } else {
+        this.toastr.error(updateBucketStatus.message)
+      }
+    })
+  }
+
   openCORSoptionModal() {
     document.getElementById("CORSoptionModal").style.display = "block";
   }
@@ -106,10 +178,12 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   addHeaderCORS() {
-    document.getElementById("HeaderCORS").style.display = "flex";
+    this.newCORS.allowedHeaders.push({ name: '' })
   }
-  removeHeaderCORS() {
-    document.getElementById("HeaderCORS").style.display = "none";
+
+  removeHeaderCORS(index) {
+    console.log(index)
+    this.newCORS.allowedHeaders.splice(index, 1)
   }
 
 }

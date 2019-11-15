@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="CORS">
-                    <table class="table table-hover" *ngIf="bucket.cors.length != 0" >
+                    <table class="table table-hover" *ngIf="bucket.cors.length != 0">
                         <thead>
                             <tr>
                                 <th class="CORS__origin">Origin</th>
@@ -85,14 +85,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let cors of bucket.cors" >
+                            <tr *ngFor="let cors of bucket.cors">
                                 <td class="CORS__origin">
                                     <a class="text-primary" href="fibon.blaz.app" target="_blank">{{cors.origin}}</a>
                                 </td>
                                 <td class="CORS__method">
-                                    <div class="text-uppercase" *ngFor="let method of cors.allowedMethods" >{{method}} </div>
+                                    <div class="text-uppercase" *ngFor="let method of cors.allowedMethods">{{method}}
+                                    </div>
                                 </td>
-                                <td class="CORS__headers" *ngFor="let header of cors.allowedHeaders" >{{header}} </td>
+                                <td class="CORS__headers" *ngFor="let header of cors.allowedHeaders">{{header.name}} </td>
                                 <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
                             </tr>
                         </tbody>
@@ -108,18 +109,20 @@
                 <div class="w-100 text-left mt-2">
                     <div class="BucketEndpoint">
                         <span class="mx-2">{{bucket.bucketName}}.blaz.app</span>
-                        <button class="btn btn-outline-primary" (click)="copyToClipboard(bucket.bucketName+'.blaz.app')" >Copy</button>
+                        <button class="btn btn-outline-primary"
+                            (click)="copyToClipboard(bucket.bucketName+'.blaz.app')">Copy</button>
                     </div>
                     <div class="mt-3 w-50">
                         <div class="form-group form-inline m-0">
                             <input type="text" class="form-control mr-2 flex-grow-1"
-                                placeholder="Enter the domain you want to connect">
-                            <button class="btn btn-primary">Connect</button>
+                                placeholder="Enter the domain you want to connect" [(ngModel)]="newDomain.name">
+                            <button class="btn btn-primary" (click)="updateDomain()">Connect</button>
                         </div>
                         <div class="mt-3">
                             <strong class="text-uppercase small">Domains</strong>
-                            <div class="list-group list-group-flush mt-1" *ngIf="bucket.domains.length != 0" >
-                                <div *ngFor="let domain of bucket.domains" class="list-group-item d-flex flex-row align-items-center justify-content-between">
+                            <div class="list-group list-group-flush mt-1" *ngIf="bucket.domains.length != 0">
+                                <div *ngFor="let domain of bucket.domains"
+                                    class="list-group-item d-flex flex-row align-items-center justify-content-between">
                                     <a class="text-primary" href="app.your-domain.com"
                                         target="_blank">{{domain.name}}</a>
                                     <label class="CheckboxContainer d-flex align-items-center flex-row">
@@ -217,40 +220,48 @@
                 <h6 class="m-0">Origin</h6>
                 <div class="form-group">
                     <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
-                    <input type="text" class="form-control" placeholder="Enter the name of this bucket">
+                    <input type="text" class="form-control" [(ngModel)]="newCORS.origin"
+                        placeholder="Enter the name of this bucket">
                 </div>
 
                 <h6 class="m-0">Allowed Methods</h6>
                 <div class="form-group">
                     <div class="form-check form-check-inline p-2">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox99" value="option1">
+                        <input class="form-check-input" (change)="newCORSMethod($event)" type="checkbox"
+                            id="inlineCheckbox99" value="GET">
                         <label class="form-check-label" for="inlineCheckbox99">GET</label>
                     </div>
                     <div class="form-check form-check-inline p-2">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox98" value="option2">
+                        <input class="form-check-input" (change)="newCORSMethod($event)" type="checkbox"
+                            id="inlineCheckbox98" value="PUT">
                         <label class="form-check-label" for="inlineCheckbox98">PUT</label>
                     </div>
                     <div class="form-check form-check-inline p-2">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox97" value="option3">
+                        <input class="form-check-input" (change)="newCORSMethod($event)" type="checkbox"
+                            id="inlineCheckbox97" value="DELETE">
                         <label class="form-check-label" for="inlineCheckbox97">DELETE</label>
                     </div>
                     <div class="form-check form-check-inline p-2">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox96" value="option4">
+                        <input class="form-check-input" (change)="newCORSMethod($event)" type="checkbox"
+                            id="inlineCheckbox96" value="POST">
                         <label class="form-check-label" for="inlineCheckbox96">POST</label>
                     </div>
                     <div class="form-check form-check-inline p-2">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox95" value="option5">
+                        <input class="form-check-input" (change)="newCORSMethod($event)" type="checkbox"
+                            id="inlineCheckbox95" value="HEAD">
                         <label class="form-check-label" for="inlineCheckbox95">HEAD</label>
                     </div>
                 </div>
 
                 <div class="my-3">
                     <h6 class="mb-2">Allowed Headers</h6>
-                    <div class="w-100 HeaderCORS flex-row align-items-center" id="HeaderCORS">
+                    <div class="w-100 HeaderCORS flex-row align-items-center" id="HeaderCORS"
+                        *ngFor="let header of newCORS.allowedHeaders;let headerIndex = index">
                         <div class="form-group flex-grow-1 mb-0">
-                            <input type="text" class="form-control" placeholder="Header Name">
+                            <input type="text" class="form-control" (keydown)="addNewHeaderOnEnter($event)"
+                                [(ngModel)]="header.name" placeholder="Header Name">
                         </div>
-                        <a (click)="removeHeaderCORS();" class="text-danger p-2">Remove</a>
+                        <a (click)="removeHeaderCORS(headerIndex);" class="text-danger p-2">Remove</a>
                     </div>
                     <a (click)="addHeaderCORS();" class="text-primary">Add Header</a>
                 </div>
@@ -258,12 +269,12 @@
                 <h6 class="m-0">Access Control Max Age</h6>
                 <div class="form-group">
                     <label class="m-0 small text-secondary">Seconds</label>
-                    <input type="text" class="form-control" value="0">
+                    <input type="text" [(ngModel)]="newCORS.accessControlMaxAge" class="form-control" value="0">
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="w-100 text-left">
-                    <button type="button" class="btn btn-success mr-3 text-white" (click)="closeCORSoptionModal();">
+                    <button type="button" class="btn btn-success mr-3 text-white" (click)="updateCORS();">
                         Save Options</button>
                     <button type="button" class="btn btn-outline-secondary" (click)="closeCORSoptionModal();">
                         Cancel</button>
