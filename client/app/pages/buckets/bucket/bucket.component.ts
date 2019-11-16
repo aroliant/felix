@@ -301,6 +301,9 @@ export class BucketComponent implements OnInit {
 
   openFolderEditMode(i) {
     this.objectNameBeforeRenaming = this.objects[i].name
+    this.objects.map((object, index) => {
+      object.onEditMode = false
+    })
     this.objects[i].onEditMode = true
   }
 
