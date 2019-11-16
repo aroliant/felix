@@ -86,7 +86,7 @@
               <!-- folder editable mode -->
               <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
                 <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
-                <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editFolder($event,i)"
+                <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editObject($event,i)"
                   placeholder="Folder name" />
               </div>
 
@@ -101,7 +101,7 @@
               <!-- file editable mode -->
               <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
                   <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
-                <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editFile($event,i)"
+                <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editObject($event,i)"
                   placeholder="File name" />
               </div>
 

@@ -256,7 +256,7 @@ export class BucketComponent implements OnInit {
     })
   }
 
-  editFolder(event, i) {
+  editObject(event, i) {
     if (event.keyCode == 13) {
 
       if (this.objectNameBeforeRenaming == '') {
@@ -293,10 +293,6 @@ export class BucketComponent implements OnInit {
       }
 
     }
-  }
-
-  editFile() {
-    //TODO:
   }
 
   openFolderEditMode(i) {
