@@ -158,6 +158,27 @@ export class BucketController {
       });
     }
 
+    buckets.map((bucket,index) => {
+
+      const path = config.ROOT_FOLDER + '/buckets/' + bucket.bucketName
+      var tree
+
+      try {
+
+        tree = dree.scan(path, dreeOptions)
+  
+      } catch (err){
+        console.log(path)
+      }
+  
+      if(bucket.size != undefined && tree.size != undefined)
+      bucket.size = tree.size
+      if(bucket.items != undefined)
+      bucket.items = Number(this.recursiveTreeParsing(tree))-1
+
+
+    })
+
     return res.json({
       success: true,
       buckets: buckets
