@@ -15,10 +15,13 @@ router.route('/:bucketName').delete((req, res) => BucketController.deleteBucket(
 
 // Objects
 
+router.route('/objects/directories/:bucketName').get((req, res) => BucketController.getAllDirectories(req, res));
+
 router.route('/objects/').post((req, res) => BucketController.searchObjects(req, res));
 router.route('/objects/delete').post((req, res) => BucketController.deleteObjects(req, res));
 
 router.route('/objects/folder').post((req, res) => BucketController.createFolder(req, res));
 router.route('/objects/move').put((req, res) => BucketController.moveObjects(req, res));
+
 
 router.route('/objects/*').put((req, res) => BucketController.uploadObjects(req, res));

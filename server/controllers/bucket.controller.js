@@ -8,8 +8,19 @@ import klaw from 'klaw'
 import path from 'path'
 import through2 from 'through2'
 import rimraf from 'rimraf'
+// import dree from 'dree'
+const dree = require('dree');
 
 import config from '../config'
+import { TruncatePipe } from 'angular-pipes';
+
+const getAllDirectoriesOptions = {
+  stat: false,
+  hash: false,
+  sizeInBytes: false,
+  size: true,
+  normalize: true
+};
 
 const bucketsAdapter = new FileSync(config.ROOT_FOLDER + '/buckets.json')
 const bucketsDB = low(bucketsAdapter)
@@ -403,6 +414,42 @@ export class BucketController {
       success: true,
       messages: messages
     })
+
+  }
+
+  static recursiveAbsolutepathRemoval(tree) {
+    delete tree.path
+    if (tree.children == undefined || tree.children == [])
+      return true;
+    else {
+      tree.children.map((branch, index) => {
+        BucketController.recursiveAbsolutepathRemoval(branch)
+      })
+    }
+  }
+
+  static getAllDirectories(req, res) {
+    const bucketName = req.params.bucketName
+    var tree
+
+    try {
+
+      const path = config.ROOT_FOLDER + '/buckets/' + bucketName
+      tree = dree.scan(path, getAllDirectoriesOptions)
+
+    } catch (err1) {
+
+      return res.send({
+        success: false,
+        error: { mainerror: err1 },
+        err: err1.message
+      })
+
+    }
+
+    this.recursiveAbsolutepathRemoval(tree)
+
+    res.send({ success: true, tree: tree })
 
   }
 
