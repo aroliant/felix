@@ -158,7 +158,7 @@ export class BucketController {
       });
     }
 
-    buckets.map((bucket,index) => {
+    buckets.map((bucket, index) => {
 
       const path = config.ROOT_FOLDER + '/buckets/' + bucket.bucketName
       var tree
@@ -166,16 +166,13 @@ export class BucketController {
       try {
 
         tree = dree.scan(path, dreeOptions)
-  
-      } catch (err){
-        console.log(path)
-      }
-  
-      if(bucket.size != undefined && tree.size != undefined)
-      bucket.size = tree.size
-      if(bucket.items != undefined)
-      bucket.items = Number(this.recursiveTreeParsing(tree))-1
 
+      } catch (err) { }
+
+      if (bucket.size != undefined && tree.size != undefined)
+        bucket.size = tree.size
+      if (bucket.items != undefined)
+        bucket.items = Number(this.recursiveTreeParsing(tree)) - 1
 
     })
 
@@ -218,10 +215,10 @@ export class BucketController {
 
     }
 
-    if(bucket.size != undefined && tree.size != undefined)
-    bucket.size = tree.size
-    if(bucket.items != undefined)
-    bucket.items = Number(this.recursiveTreeParsing(tree))-1
+    if (bucket.size != undefined && tree.size != undefined)
+      bucket.size = tree.size
+    if (bucket.items != undefined)
+      bucket.items = Number(this.recursiveTreeParsing(tree)) - 1
 
     return res.json({
       success: true,
@@ -290,9 +287,10 @@ export class BucketController {
 
     const processObject = through2.obj(function (item, enc, next) {
 
-      const object = {
+      var object = {
         name: path.basename(item.path),
         size: item.stats.size,
+        items: 0,
         createdAt: item.stats.ctime,
         modifiedAt: item.stats.mtime,
         objectType: item.stats.isDirectory() == true ? 'folder' : 'file'
@@ -300,12 +298,36 @@ export class BucketController {
 
       if (!params.name || object.name.indexOf(params.name) > -1) {
 
-
         if (object.objectType == 'file') {
           files.push(object)
         }
 
         else if (object.objectType == 'folder') {
+
+          if (!(object.name == params.bucketName || object.name == path.basename(params.path))) {
+
+            const path = rootPath + params.path + object.name
+            var tree
+
+            try {
+
+              tree = dree.scan(path, dreeOptions)
+
+            } catch (err) {
+              return res.json({
+                success: false,
+                message: "Unable to find Folder",
+                error: err.message,
+                object: object
+              });
+            }
+
+            object.size = tree.size
+
+            object.items = Number(BucketController.recursiveTreeParsing(tree)) - 1
+
+          }
+
           directories.push(object)
         }
 
@@ -459,8 +481,8 @@ export class BucketController {
   }
 
   static recursiveTreeParsing(tree) {
-    if(path != undefined && path != '')
-    delete tree.path
+    if (path != undefined && path != '')
+      delete tree.path
     if (tree.children == undefined || tree.children == [])
       return 1;
     else {
