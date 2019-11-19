@@ -14,16 +14,16 @@ const dree = require('dree');
 import config from '../config'
 import { TruncatePipe } from 'angular-pipes';
 
-const getAllDirectoriesOptions = {
+const bucketsAdapter = new FileSync(config.ROOT_FOLDER + '/buckets.json')
+const bucketsDB = low(bucketsAdapter)
+
+const dreeOptions = {
   stat: false,
   hash: false,
   sizeInBytes: false,
   size: true,
   normalize: true
 };
-
-const bucketsAdapter = new FileSync(config.ROOT_FOLDER + '/buckets.json')
-const bucketsDB = low(bucketsAdapter)
 
 bucketsDB.defaults({ "buckets": [] }).write()
 
@@ -169,7 +169,9 @@ export class BucketController {
     const bucketName = req.params.bucketName
     const adapterBucket = new FileSync(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
     const bucketDB = low(adapterBucket)
+    const path = config.ROOT_FOLDER + '/buckets/' + bucketName
 
+    var tree
     var bucket = {}
 
     try {
@@ -181,6 +183,23 @@ export class BucketController {
         error: err
       });
     }
+
+    try {
+
+      tree = dree.scan(path, dreeOptions)
+
+    } catch (err) {
+
+      return res.send({
+        success: false,
+        message: 'Unable to retrieve Bucket'
+      })
+
+    }
+
+    bucket.size = tree.size
+    console.log("Count = " + this.recursiveTreeParsing(tree))
+    bucket.items = this.recursiveTreeParsing(tree)
 
     return res.json({
       success: true,
@@ -417,14 +436,17 @@ export class BucketController {
 
   }
 
-  static recursiveAbsolutepathRemoval(tree) {
+  static recursiveTreeParsing(tree) {
+    if(path != undefined && path != ''  )
     delete tree.path
     if (tree.children == undefined || tree.children == [])
-      return true;
+      return 1;
     else {
+      var itemsCount = 1
       tree.children.map((branch, index) => {
-        BucketController.recursiveAbsolutepathRemoval(branch)
+        itemsCount += BucketController.recursiveTreeParsing(branch)
       })
+      return itemsCount
     }
   }
 
@@ -435,21 +457,23 @@ export class BucketController {
     try {
 
       const path = config.ROOT_FOLDER + '/buckets/' + bucketName
-      tree = dree.scan(path, getAllDirectoriesOptions)
+      tree = dree.scan(path, dreeOptions)
 
-    } catch (err1) {
+    } catch (err) {
 
       return res.send({
         success: false,
-        error: { mainerror: err1 },
-        err: err1.message
+        message: ''
       })
 
     }
 
-    this.recursiveAbsolutepathRemoval(tree)
+    this.recursiveTreeParsing(tree)
 
-    res.send({ success: true, tree: tree })
+    res.send({
+      success: true,
+      tree: tree
+    })
 
   }
 
