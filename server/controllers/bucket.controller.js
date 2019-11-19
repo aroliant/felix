@@ -197,9 +197,10 @@ export class BucketController {
 
     }
 
+    if(bucket.size != undefined && tree.size != undefined)
     bucket.size = tree.size
-    console.log("Count = " + this.recursiveTreeParsing(tree))
-    bucket.items = this.recursiveTreeParsing(tree)
+    if(bucket.items != undefined)
+    bucket.items = Number(this.recursiveTreeParsing(tree))-1
 
     return res.json({
       success: true,
@@ -437,7 +438,7 @@ export class BucketController {
   }
 
   static recursiveTreeParsing(tree) {
-    if(path != undefined && path != ''  )
+    if(path != undefined && path != '')
     delete tree.path
     if (tree.children == undefined || tree.children == [])
       return 1;
