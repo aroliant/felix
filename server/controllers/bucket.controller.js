@@ -8,6 +8,8 @@ import klaw from 'klaw'
 import path from 'path'
 import through2 from 'through2'
 import rimraf from 'rimraf'
+import mineTypes from 'mime-types'
+
 // import dree from 'dree'
 const dree = require('dree');
 
@@ -294,6 +296,10 @@ export class BucketController {
         createdAt: item.stats.ctime,
         modifiedAt: item.stats.mtime,
         objectType: item.stats.isDirectory() == true ? 'folder' : 'file'
+      }
+
+      if (object.objectType == 'file') {
+        object.mime = mineTypes.lookup(object.name)
       }
 
       if (!params.name || object.name.toLowerCase().indexOf(params.name.toLowerCase()) > -1) {
