@@ -296,7 +296,7 @@ export class BucketController {
         objectType: item.stats.isDirectory() == true ? 'folder' : 'file'
       }
 
-      if (!params.name || object.name.indexOf(params.name) > -1) {
+      if (!params.name || object.name.toLowerCase().indexOf(params.name.toLowerCase()) > -1) {
 
         if (object.objectType == 'file') {
           files.push(object)
