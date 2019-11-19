@@ -20,6 +20,7 @@ export class BucketComponent implements OnInit {
   objects = []
   actions = {
     objectsToDelete: [],
+    objectsToMove: [],
     files: [],
     selectedObjectsCount: 0
   }
@@ -212,18 +213,40 @@ export class BucketComponent implements OnInit {
   }
 
   showDeleteModal(i) {
+    this.actions.objectsToDelete = []
     this.modalStates.delete = true
     this.actions.objectsToDelete.push(this.objects[i])
+    console.log(this.actions.objectsToDelete)
   }
 
   showDeletesModel() {
+    this.actions.objectsToDelete = []
     this.modalStates.delete = true
     this.objects.map((object, index) => {
       if (object.isSelected) {
         this.actions.objectsToDelete.push(object)
       }
-
     })
+    console.log(this.actions.objectsToDelete)
+  }
+
+  showMoveObjectModal(i) {
+    this.modalStates.moveFiles = true
+    this.actions.objectsToMove.push(this.objects[i])
+  }
+
+  showMoveObjectsModel() {
+    this.modalStates.moveFiles = true
+    this.objects.map((object, index) => {
+      if (object.isSelected) {
+        this.actions.objectsToMove.push(object)
+      }
+    })
+  }
+
+  hideDeleteModal() {
+    this.modalStates.meta = false
+    this.actions.objectsToDelete = []
   }
 
   hidePermissionsModal() {
@@ -236,6 +259,7 @@ export class BucketComponent implements OnInit {
 
   hideMoveObjectsModal() {
     this.modalStates.moveFiles = false
+    this.actions.objectsToMove = []
   }
 
   hideShareObjectModal() {

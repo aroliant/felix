@@ -8,6 +8,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class MoveFilesComponent implements OnInit {
 
   @Input() show: Boolean;
+  @Input() objects: [];
+  @Input() bucket: any;
+  @Input() currentPath;
   @Output() onHide = new EventEmitter<boolean>();
 
   constructor() { }
