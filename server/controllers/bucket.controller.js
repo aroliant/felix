@@ -10,21 +10,12 @@ import through2 from 'through2'
 import rimraf from 'rimraf'
 import mineTypes from 'mime-types'
 
-// import dree from 'dree'
-const dree = require('dree');
-
 import config from '../config'
+import Utils from '../utils'
 
 const bucketsAdapter = new FileSync(config.ROOT_FOLDER + '/buckets.json')
 const bucketsDB = low(bucketsAdapter)
 
-const dreeOptions = {
-  stat: false,
-  hash: false,
-  sizeInBytes: false,
-  size: true,
-  normalize: true
-};
 
 bucketsDB.defaults({ "buckets": [] }).write()
 
@@ -166,14 +157,14 @@ export class BucketController {
 
       try {
 
-        tree = dree.scan(path, dreeOptions)
+        tree = Utils.scan(path)
 
       } catch (err) { }
 
       if (bucket.size != undefined && tree.size != undefined)
         bucket.size = tree.size
       if (bucket.items != undefined)
-        bucket.items = Number(this.recursiveTreeParsing(tree)) - 1
+        bucket.items = Number(Utils.recursiveTreeParsing(tree)) - 1
 
     })
 
@@ -205,7 +196,7 @@ export class BucketController {
 
     try {
 
-      tree = dree.scan(path, dreeOptions)
+      tree = Utils.scan(path)
 
     } catch (err) {
 
@@ -219,7 +210,7 @@ export class BucketController {
     if (bucket.size != undefined && tree.size != undefined)
       bucket.size = tree.size
     if (bucket.items != undefined)
-      bucket.items = Number(this.recursiveTreeParsing(tree)) - 1
+      bucket.items = Number(Utils.recursiveTreeParsing(tree)) - 1
 
     return res.json({
       success: true,
@@ -316,7 +307,7 @@ export class BucketController {
 
             try {
 
-              tree = dree.scan(path, dreeOptions)
+              tree = Utils.scan(path)
 
             } catch (err) {
               return res.json({
@@ -329,7 +320,7 @@ export class BucketController {
 
             object.size = tree.size
 
-            object.items = Number(BucketController.recursiveTreeParsing(tree)) - 1
+            object.items = Number(Utils.recursiveTreeParsing(tree)) - 1
 
           }
 
@@ -485,20 +476,6 @@ export class BucketController {
 
   }
 
-  static recursiveTreeParsing(tree) {
-    if (path != undefined && path != '')
-      delete tree.path
-    if (tree.children == undefined || tree.children == [])
-      return 1;
-    else {
-      var itemsCount = 1
-      tree.children.map((branch, index) => {
-        itemsCount += BucketController.recursiveTreeParsing(branch)
-      })
-      return itemsCount
-    }
-  }
-
   static getAllDirectories(req, res) {
     const bucketName = req.params.bucketName
     var tree
@@ -506,7 +483,7 @@ export class BucketController {
     try {
 
       const path = config.ROOT_FOLDER + '/buckets/' + bucketName
-      tree = dree.scan(path, dreeOptions)
+      tree = Utils.scan(path)
 
     } catch (err) {
 
@@ -517,7 +494,7 @@ export class BucketController {
 
     }
 
-    this.recursiveTreeParsing(tree)
+    Utils.recursiveTreeParsing(tree)
 
     res.send({
       success: true,
