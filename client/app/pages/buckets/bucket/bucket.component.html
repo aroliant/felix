@@ -110,10 +110,10 @@
                 <div class="d-flex flex-row align-items-center justify-content-between">
                   <div>Origin</div>
                   <div class="FileBrowser__infomenu_URL_holder">
-                    <a class="FileBrowser__infomenu_URL mx-2"
-                      href="">https://bucket-pradeephareesh.blaz.app/guess-number-game/index.html</a>
+                    <a class="FileBrowser__infomenu_URL mx-2" target="_blank"
+                      href="">https://{{bucket.bucketName}}.blaz.app{{currentPath}}{{object.name}}</a>
                   </div>
-                  <button class="btn btn-light" (click)="copyToClipboard()">Copy</button>
+                  <button class="btn btn-light" (click)="copyToClipboard('https://'+bucket.bucketName+'.blaz.app'+currentPath+object.name)">Copy</button>
                 </div>
                 <table class="table mt-2">
                   <tbody>
