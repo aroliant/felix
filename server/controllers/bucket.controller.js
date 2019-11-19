@@ -14,7 +14,6 @@ import mineTypes from 'mime-types'
 const dree = require('dree');
 
 import config from '../config'
-import { TruncatePipe } from 'angular-pipes';
 
 const bucketsAdapter = new FileSync(config.ROOT_FOLDER + '/buckets.json')
 const bucketsDB = low(bucketsAdapter)
