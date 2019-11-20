@@ -123,7 +123,7 @@
                         <button class="btn btn-outline-primary"
                             (click)="copyToClipboard(bucket.bucketName+'.blaz.app')">Copy</button>
                     </div>
-                    <div class="mt-3 w-50">
+                    <div class="mt-3 w-75">
                         <div class="form-group form-inline m-0">
                             <input type="text" class="form-control mr-2 flex-grow-1"
                                 placeholder="Enter the domain you want to connect" [(ngModel)]="newDomain.name">
@@ -134,7 +134,7 @@
                             <div class="list-group list-group-flush mt-1" *ngIf="bucket.domains.length != 0">
                                 <div *ngFor="let domain of bucket.domains; let domainIndex = index"
                                     class="list-group-item d-flex flex-row align-items-center justify-content-between">
-                                    <a class="text-primary" href="app.your-domain.com"
+                                    <a class="text-primary Domain__name" href="app.your-domain.com"
                                         target="_blank">{{domain.name}}</a>
                                     <label class="CheckboxContainer d-flex align-items-center flex-row">
                                         <input type="checkbox" [(ngModel)]="domain.sslEnabled" name="EnableHTTPS1">

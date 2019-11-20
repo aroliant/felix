@@ -431,6 +431,13 @@
 .CORS__actions {
   width: 10%;
 }
+
+.Domain__name {
+  width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 /* BUCKET SETTINGS PAGE STYLES ENDS HERE */
 
 /* MODAL BUCKET MANAGE META MODAL PAGE STYLES STARTS HERE */
