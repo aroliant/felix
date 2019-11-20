@@ -94,7 +94,7 @@
                                     <div class="text-uppercase" *ngFor="let method of cors.allowedMethods">{{method}} </div>
                                 </td>
                                 <td class="CORS__headers">
-                                    <div class="CORS__headers" *ngFor="let header of cors.allowedHeaders">{{header.name}} </div>
+                                    <div *ngFor="let header of cors.allowedHeaders">{{header.name}} </div>
                                 </td>
                                 <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
                                 <td class="CORS__actions"><a class="text-primary small cursor-pointer" target="_blank"
