@@ -97,10 +97,14 @@
                                 <td class="CORS__headers" *ngFor="let header of cors.allowedHeaders">{{header.name}}
                                 </td>
                                 <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
-                                <td><a class="text-primary" target="_blank"
-                                        (click)="openEditCORSoptionModal(CORSIndex)">Edit</a>
+                                <td class="CORS__actions"><a class="text-primary small cursor-pointer" target="_blank"
+                                        (click)="openEditCORSoptionModal(CORSIndex)">
+                                        <i class="icofont-ui-edit mr-2"></i> <span>Edit</span>
+                                    </a>
                                     <br>
-                                    <a class="text-primary" target="_blank" (click)="removeCORS(CORSIndex)">Remove</a>
+                                    <a class="text-primary small cursor-pointer" target="_blank" (click)="removeCORS(CORSIndex)">
+                                        <i class="icofont-ui-delete mr-2"></i> <span>Remove</span>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

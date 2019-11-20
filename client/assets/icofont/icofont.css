@@ -88,6 +88,16 @@ url("./fonts/icofont.woff") format("woff");
   content: "\efe2";
 }
 
+.icofont-ui-edit:before
+{
+  content: "\ec55";
+}
+
+.icofont-ui-delete:before
+{
+  content: "\ec53";
+}
+
 .icofont-xs
 {
   font-size: .5em;
