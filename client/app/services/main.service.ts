@@ -56,7 +56,7 @@ export class MainService {
 
   // Move Object
 
-  moveObject(data) {
+  moveObjects(data) {
     return this.httpc.put(this.API_URL + '/bucket/objects/move', data);
   }
 

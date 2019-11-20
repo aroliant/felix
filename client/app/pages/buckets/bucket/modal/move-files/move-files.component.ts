@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MainService } from 'client/app/services/main.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal-move-files',
@@ -13,9 +15,21 @@ export class MoveFilesComponent implements OnInit {
   @Input() currentPath;
   @Output() onHide = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private mainService: MainService, private toastr: ToastrService) { }
 
   ngOnInit() {
+  }
+
+  moveObjects() {
+    var moveObjects = {}
+    
+    this.mainService.moveObjects(moveObjects).subscribe((moveObjectsStatus: any) => {
+      if (moveObjectsStatus.success) {
+        this.toastr.success(moveObjectsStatus.message, 'Success!')
+      } else {
+        this.toastr.error(moveObjectsStatus.message)
+      }
+    })
   }
 
   hideModal() {

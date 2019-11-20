@@ -189,6 +189,17 @@ export class BucketComponent implements OnInit {
     this.actions.objectsToDelete = []
   }
 
+  onHide(event) {
+    this.modalStates = {
+      delete: false,
+      meta: false,
+      moveFiles: false,
+      permissions: false,
+      share: false,
+      uploadFiles: false,
+    }
+  }
+
   browseFolder(folderName) {
     const path = this.currentPath + folderName + '/'
     this.router.navigate(['buckets', this.bucketName], { queryParams: { path: path } })
@@ -307,7 +318,7 @@ export class BucketComponent implements OnInit {
           dest: this.currentPath + this.objects[i].name
         }
 
-        this.mainService.moveObject(renameObject).subscribe((renameObjectStatus: any) => {
+        this.mainService.moveObjects(renameObject).subscribe((renameObjectStatus: any) => {
           if (renameObjectStatus.success) {
             this.closeFolderEditMode(i);
             this.toastr.success('Renamed Sucessfully', 'Success!')
