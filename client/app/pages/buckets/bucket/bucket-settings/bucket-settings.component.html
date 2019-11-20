@@ -82,10 +82,11 @@
                                 <th class="CORS__method">Method</th>
                                 <th class="CORS__headers">Headers</th>
                                 <th class="CORS__age">Age</th>
+                                <th class="CORS__actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let cors of bucket.cors">
+                            <tr *ngFor="let cors of bucket.cors;let CORSIndex = index">
                                 <td class="CORS__origin">
                                     <a class="text-primary" href="fibon.blaz.app" target="_blank">{{cors.origin}}</a>
                                 </td>
@@ -96,6 +97,11 @@
                                 <td class="CORS__headers" *ngFor="let header of cors.allowedHeaders">{{header.name}}
                                 </td>
                                 <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
+                                <td><a class="text-primary" target="_blank"
+                                        (click)="openEditCORSoptionModal(CORSIndex)">Edit</a>
+                                    <br>
+                                    <a class="text-primary" target="_blank" (click)="removeCORS(CORSIndex)">Remove</a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -278,9 +284,100 @@
             </div>
             <div class="modal-footer">
                 <div class="w-100 text-left">
-                    <button type="button" class="btn btn-success mr-3 text-white" (click)="updateCORS();">
+                    <button type="button" class="btn btn-success mr-3 text-white" (click)="addCORS();">
                         Save Options</button>
                     <button type="button" class="btn btn-outline-secondary" (click)="closeCORSoptionModal();">
+                        Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit CORS Option Modal-->
+<div class="modal" id="editCORSoptionModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title">Edit - CORS Options</h5>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="closeEditCORSoptionModal();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h6 class="m-0">Origin</h6>
+                <div class="form-group">
+                    <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
+                    <input type="text" class="form-control" [(ngModel)]="bucket.cors[this.editCORSIndex].origin"
+                        placeholder="Enter the name of this bucket">
+                </div>
+
+                <h6 class="m-0">Allowed Methods</h6>
+                <div class="form-group">
+                    <div class="form-check form-check-inline p-2">
+                        <input class="form-check-input" (change)="editCORSMethod($event)" type="checkbox"
+                            id="inlineCheckbox99"
+                            [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('GET') != -1" value="GET">
+                        <label class="form-check-label" for="inlineCheckbox99">GET</label>
+                    </div>
+                    <div class="form-check form-check-inline p-2">
+                        <input class="form-check-input" (change)="editCORSMethod($event)" type="checkbox"
+                            id="inlineCheckbox98"
+                            [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('PUT') != -1" value="PUT">
+                        <label class="form-check-label" for="inlineCheckbox98">PUT</label>
+                    </div>
+                    <div class="form-check form-check-inline p-2">
+                        <input class="form-check-input" (change)="editCORSMethod($event)" type="checkbox"
+                            id="inlineCheckbox97"
+                            [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('DELETE') != -1"
+                            value="DELETE">
+                        <label class="form-check-label" for="inlineCheckbox97">DELETE</label>
+                    </div>
+                    <div class="form-check form-check-inline p-2">
+                        <input class="form-check-input" (change)="editCORSMethod($event)" type="checkbox"
+                            id="inlineCheckbox96"
+                            [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('POST') != -1"
+                            value="POST">
+                        <label class="form-check-label" for="inlineCheckbox96">POST</label>
+                    </div>
+                    <div class="form-check form-check-inline p-2">
+                        <input class="form-check-input" (change)="editCORSMethod($event)" type="checkbox"
+                            id="inlineCheckbox95"
+                            [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('HEAD') != -1"
+                            value="HEAD">
+                        <label class="form-check-label" for="inlineCheckbox95">HEAD</label>
+                    </div>
+                </div>
+
+                <div class="my-3">
+                    <h6 class="mb-2">Allowed Headers</h6>
+                    <div class="w-100 HeaderCORS flex-row align-items-center" id="HeaderCORS"
+                        *ngFor="let header of bucket.cors[this.editCORSIndex].allowedHeaders;let headerIndex = index">
+                        <div class="form-group flex-grow-1 mb-0">
+                            <input type="text" class="form-control" (keydown)="editAddNewHeaderOnEnter($event)"
+                                [(ngModel)]="header.name" placeholder="Header Name">
+                        </div>
+                        <a (click)="editRemoveHeaderCORS(headerIndex);" class="text-danger p-2">Remove</a>
+                    </div>
+                    <a (click)="editHeaderCORS();" class="text-primary">Add Header</a>
+                </div>
+
+                <h6 class="m-0">Access Control Max Age</h6>
+                <div class="form-group">
+                    <label class="m-0 small text-secondary">Seconds</label>
+                    <input type="text" [(ngModel)]="bucket.cors[this.editCORSIndex].accessControlMaxAge"
+                        class="form-control" value="0">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100 text-left">
+                    <button type="button" class="btn btn-success mr-3 text-white" (click)="editCORSOptions();">
+                        Save Options</button>
+                    <button type="button" class="btn btn-outline-secondary" (click)="closeEditCORSoptionModal();">
                         Cancel</button>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'client/app/services/main.service';
 import { HelperService } from 'client/app/services/helper.service';
 import { ToastrService } from 'ngx-toastr';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-bucket-settings',
@@ -32,6 +33,7 @@ export class BucketSettingsComponent implements OnInit {
     allowedHeaders: [],
     accessControlMaxAge: 0
   }
+  editCORSIndex = 0
   newDomain = {
     name: "",
     sslEnabled: false,
@@ -121,6 +123,12 @@ export class BucketSettingsComponent implements OnInit {
     }
   }
 
+  editAddNewHeaderOnEnter(event) {
+    if (event.keyCode == 13) {
+      this.editHeaderCORS();
+    }
+  }
+
   newCORSMethod(event) {
     if (event.target.checked == true)
       this.newCORS.allowedMethods.push(event.target.value)
@@ -130,6 +138,20 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   newCORSHeaders(event) {
+    if (event.keyCode == 13) {
+      if (this.newCORS.allowedHeaders.indexOf(event.target.value) == -1) { }
+    }
+  }
+
+  editCORSMethod(event) {
+    if (event.target.checked == true)
+      this.bucket.cors[this.editCORSIndex].allowedMethods.push(event.target.value)
+    else {
+      this.bucket.cors[this.editCORSIndex].allowedMethods.splice(this.bucket.cors[this.editCORSIndex].allowedMethods.indexOf(event.target.value), 1)
+    }
+  }
+
+  editCORSHeaders(event) {
     if (event.keyCode == 13) {
       if (this.newCORS.allowedHeaders.indexOf(event.target.value) == -1) { }
     }
@@ -162,9 +184,8 @@ export class BucketSettingsComponent implements OnInit {
     })
   }
 
-  updateCORS() {
+  addCORS() {
     this.bucket.cors.push(this.newCORS)
-    console.log(this.bucket)
     this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
       if (updateBucketStatus.success) {
         this.newCORS = {
@@ -173,6 +194,18 @@ export class BucketSettingsComponent implements OnInit {
           allowedHeaders: [],
           accessControlMaxAge: 0
         }
+        this.toastr.success(updateBucketStatus.message, 'Success!')
+        this.closeCORSoptionModal()
+      } else {
+        this.toastr.error(updateBucketStatus.message)
+      }
+    })
+  }
+
+  removeCORS(index) {
+    this.bucket.cors.splice(index, 1)
+    this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
+      if (updateBucketStatus.success) {
         this.toastr.success(updateBucketStatus.message, 'Success!')
         this.closeCORSoptionModal()
       } else {
@@ -192,9 +225,34 @@ export class BucketSettingsComponent implements OnInit {
     this.newCORS.allowedHeaders.push({ name: '' })
   }
 
+  editHeaderCORS() {
+    this.bucket.cors[this.editCORSIndex].allowedHeaders.push({ name: '' })
+  }
+
   removeHeaderCORS(index) {
-    console.log(index)
     this.newCORS.allowedHeaders.splice(index, 1)
+  }
+
+  editRemoveHeaderCORS(index) {
+    this.bucket.cors[this.editCORSIndex].allowedHeaders.splice(index, 1)
+  }
+
+  openEditCORSoptionModal(index) {
+    this.editCORSIndex = index
+    document.getElementById("editCORSoptionModal").style.display = "block";
+  }
+  closeEditCORSoptionModal() {
+    document.getElementById("editCORSoptionModal").style.display = "none";
+  }
+
+  editCORSOptions() {
+    this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
+      if (updateBucketStatus.success) {
+        this.toastr.success(updateBucketStatus.message, 'Success!')
+      } else {
+        this.toastr.error(updateBucketStatus.message)
+      }
+    })
   }
 
 }
