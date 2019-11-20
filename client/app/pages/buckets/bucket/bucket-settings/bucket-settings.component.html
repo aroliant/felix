@@ -93,7 +93,8 @@
                                     <div class="text-uppercase" *ngFor="let method of cors.allowedMethods">{{method}}
                                     </div>
                                 </td>
-                                <td class="CORS__headers" *ngFor="let header of cors.allowedHeaders">{{header.name}} </td>
+                                <td class="CORS__headers" *ngFor="let header of cors.allowedHeaders">{{header.name}}
+                                </td>
                                 <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
                             </tr>
                         </tbody>
@@ -121,7 +122,7 @@
                         <div class="mt-3">
                             <strong class="text-uppercase small">Domains</strong>
                             <div class="list-group list-group-flush mt-1" *ngIf="bucket.domains.length != 0">
-                                <div *ngFor="let domain of bucket.domains"
+                                <div *ngFor="let domain of bucket.domains; let domainIndex = index"
                                     class="list-group-item d-flex flex-row align-items-center justify-content-between">
                                     <a class="text-primary" href="app.your-domain.com"
                                         target="_blank">{{domain.name}}</a>
@@ -134,6 +135,9 @@
                                         <input type="checkbox" [(ngModel)]="domain.forceSSL" name="ForceHTTPS1">
                                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
+                                    </label>
+                                    <label>
+                                        <a class="text-primary" (click)="removeDomain(domainIndex)">Remove</a>
                                     </label>
                                 </div>
 

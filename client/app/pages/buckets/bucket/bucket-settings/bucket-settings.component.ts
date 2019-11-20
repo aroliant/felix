@@ -116,7 +116,7 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   addNewHeaderOnEnter(event) {
-    if(event.keyCode == 13){
+    if (event.keyCode == 13) {
       this.addHeaderCORS();
     }
   }
@@ -147,6 +147,17 @@ export class BucketSettingsComponent implements OnInit {
         this.toastr.success(updateBucketStatus.message, 'Success!')
       } else {
         this.toastr.error(updateBucketStatus.message)
+      }
+    })
+  }
+
+  removeDomain(index) {
+    this.bucket.domains.splice(index, 1)
+    this.mainService.updateBucket(this.bucket).subscribe((domainRemovalStatus: any) => {
+      if (domainRemovalStatus.success) {
+        this.toastr.success(domainRemovalStatus.message, 'Success!')
+      } else {
+        this.toastr.error(domainRemovalStatus.message)
       }
     })
   }
