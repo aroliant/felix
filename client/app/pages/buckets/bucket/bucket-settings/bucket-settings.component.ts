@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'client/app/services/main.service';
 import { HelperService } from 'client/app/services/helper.service';
 import { ToastrService } from 'ngx-toastr';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-bucket-settings',
