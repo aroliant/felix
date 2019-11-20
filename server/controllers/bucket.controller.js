@@ -483,7 +483,7 @@ export class BucketController {
     try {
 
       const path = config.ROOT_FOLDER + '/buckets/' + bucketName
-      tree = Utils.scan(path)
+      tree = Utils.scanDirectories(path)
 
     } catch (err) {
 
