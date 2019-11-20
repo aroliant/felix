@@ -51,13 +51,17 @@ export class BucketComponent implements OnInit {
     private toastr: ToastrService
   ) { }
 
+  setDestination(str) {
+    console.log(str)
+  }
+
   ngOnInit() {
     window.scrollTo(0, 0);
     this.route.params.subscribe((params) => {
       this.bucketName = params.bucketName;
       this.mainService.getBucket(this.bucketName).subscribe((res: any) => {
         if (res.success) {
-          this.bucket = res.bucket;
+          this.bucket = res.bucket;          
         }
       });
 

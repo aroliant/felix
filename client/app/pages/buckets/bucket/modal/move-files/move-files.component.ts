@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, } from '@angular/core';
 import { MainService } from 'client/app/services/main.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,14 +15,30 @@ export class MoveFilesComponent implements OnInit {
   @Input() currentPath;
   @Output() onHide = new EventEmitter<boolean>();
 
+  directoryTree = []
+
   constructor(private mainService: MainService, private toastr: ToastrService) { }
 
   ngOnInit() {
+
+
+
+  }
+
+  ngAfterViewInit() {
+    console.log(this.bucket)
+
+    this.mainService.getAllDirectories(this.bucket.bucketName).subscribe((res: any) => {
+      console.log(res)
+      if (res.success) {
+        this.directoryTree = res.tree
+      }
+    })
   }
 
   moveObjects() {
     var moveObjects = {}
-    
+
     this.mainService.moveObjects(moveObjects).subscribe((moveObjectsStatus: any) => {
       if (moveObjectsStatus.success) {
         this.toastr.success(moveObjectsStatus.message, 'Success!')
@@ -30,6 +46,10 @@ export class MoveFilesComponent implements OnInit {
         this.toastr.error(moveObjectsStatus.message)
       }
     })
+  }
+
+  setDestination(str) {
+    console.log(str)
   }
 
   hideModal() {

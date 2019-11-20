@@ -60,4 +60,10 @@ export class MainService {
     return this.httpc.put(this.API_URL + '/bucket/objects/move', data);
   }
 
+  // GET All Directories
+
+  getAllDirectories(bucketName) {
+    return this.httpc.get(this.API_URL + '/bucket/objects/directories/' + bucketName);
+  }
+
 }

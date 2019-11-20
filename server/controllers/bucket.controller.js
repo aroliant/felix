@@ -495,6 +495,8 @@ export class BucketController {
 
     }
 
+    tree.relativePath = ''
+
     Utils.recursiveTreeParsing(tree)
 
     res.send({

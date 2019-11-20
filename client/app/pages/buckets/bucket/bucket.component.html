@@ -19,7 +19,7 @@
             <div class="UploadActions__content">
               <div class="list-group">
                 <a Value class="list-group-item list-group-item-action" (click)="showMoveObjectsModal();"
-                (click)="showMoveObjectsModel()"  >Move to folder</a>
+                  (click)="showMoveObjectsModel()">Move to folder</a>
                 <a Value class="list-group-item list-group-item-action text-danger"
                   (click)="showDeletesModel()">Delete</a>
               </div>
@@ -100,7 +100,7 @@
 
               <!-- file editable mode -->
               <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
-                  <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
+                <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
                 <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editObject($event,i)"
                   placeholder="File name" />
               </div>
@@ -113,7 +113,8 @@
                     <a class="FileBrowser__infomenu_URL mx-2" target="_blank"
                       href="">https://{{bucket.bucketName}}.blaz.app{{currentPath}}{{object.name}}</a>
                   </div>
-                  <button class="btn btn-light" (click)="copyToClipboard('https://'+bucket.bucketName+'.blaz.app'+currentPath+object.name)">Copy</button>
+                  <button class="btn btn-light"
+                    (click)="copyToClipboard('https://'+bucket.bucketName+'.blaz.app'+currentPath+object.name)">Copy</button>
                 </div>
                 <table class="table mt-2">
                   <tbody>
@@ -158,7 +159,7 @@
                       *ngIf="object.objectType=='file'">Download</a>
                     <a class="list-group-item list-group-item-action" (click)="openFolderEditMode(i)">Rename</a>
                     <a class="list-group-item list-group-item-action" (click)="showMoveObjectsModal()"
-                     (click)="showMoveObjectModal(i)" >Move to folder</a>
+                      (click)="showMoveObjectModal(i)">Move to folder</a>
                     <a class="list-group-item list-group-item-action" (click)="showShareObjectModal()">Share</a>
                     <a class="list-group-item list-group-item-action text-danger"
                       (click)="showDeleteModal(i)">Delete</a>

@@ -13,25 +13,10 @@
       </div>
       <div class="modal-body">
         <div class="MoveFileBrowser">
-          <div class="list-group">
-            <details>
+          <div class="list-group" *ngIf="directoryTree.children != undefined" >
 
-              <summary class="list-group-item list-group-item-action">Folder One</summary>
-              <details class="ml-3">
-                <summary class="list-group-item list-group-item-action">Child of folder one</summary>
-                <div class="list-group-item list-group-item-action ml-3">child-folder-one-file.html</div>
-              </details>
+            <folders *ngFor="let branch of directoryTree.children" [branch]="branch" ></folders>
 
-              <summary class="list-group-item list-group-item-action ml-3">folder-one-file.html</summary>
-
-            </details>
-
-            <details>
-              <summary class="list-group-item list-group-item-action">Folder Two</summary>
-              <div class="list-group-item list-group-item-action ml-3">folder-two-file.html</div>
-            </details>
-
-            <div class="list-group-item list-group-item-action">index.html</div>
           </div>
         </div>
 
