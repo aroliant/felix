@@ -48,7 +48,7 @@ export class BucketController {
       items: "0",
       database: params.bucketName + ".bucket.json",
       createdBy: params.userID,
-      createdAt: Date.now()
+      createdAt: Date.now(),
     }
 
     try {
@@ -74,6 +74,7 @@ export class BucketController {
         createdBy: bucket.createdBy,
         createdAt: bucket.createdAt,
         domains: [],
+        cors: [],
         settings: {
           endPoint: "",
           sslEnabled: false,
