@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'client/app/services/main.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-bucket',
@@ -17,7 +18,8 @@ export class CreateBucketComponent implements OnInit {
 
   constructor(
     private mainService: MainService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class CreateBucketComponent implements OnInit {
     this.mainService.createBucket(this.bucket).subscribe((bucketCreationStatus: any) => {
       if (bucketCreationStatus.success) {
         this.toastr.success(bucketCreationStatus.message, 'Success!')
+        this.router.navigate(['buckets', this.bucket.bucketName])
       } else {
         this.toastr.error(bucketCreationStatus.message)
       }

@@ -61,7 +61,7 @@ export class BucketComponent implements OnInit {
       this.bucketName = params.bucketName;
       this.mainService.getBucket(this.bucketName).subscribe((res: any) => {
         if (res.success) {
-          this.bucket = res.bucket;          
+          this.bucket = res.bucket;
         }
       });
 
