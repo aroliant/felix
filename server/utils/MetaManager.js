@@ -37,22 +37,22 @@ export class MetaManager {
   }
 
   // Remove meta data for a File
-  static removeMetaForFile() {
+  static removeMetaForFile(path, fileName) {
 
   }
 
   // Update meta data for a File
-  static updateMetaDataForFile() {
+  static updateMetaDataForFile(path, fileName, metaData) {
 
   }
 
   // Update visibility for Files
-  static updateMetaVisibility() {
+  static updateMetaVisibility(path, fileName, visibility) {
 
   }
 
   // Removing the meta data in case of renaming / deleting a folder
-  static removeMetaForFolder() {
+  static removeMetaForFolder(path) {
 
   }
 
