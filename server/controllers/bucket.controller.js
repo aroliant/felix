@@ -9,9 +9,10 @@ import path from 'path'
 import through2 from 'through2'
 import rimraf from 'rimraf'
 import mineTypes from 'mime-types'
-
+// Relative Imports
 import config from '../config'
 import Utils from '../utils'
+import { MetaManager } from '../utils/MetaManager'
 
 const bucketsAdapter = new FileSync(config.ROOT_FOLDER + '/buckets.json')
 const bucketsDB = low(bucketsAdapter)
@@ -341,6 +342,13 @@ export class BucketController {
         message: "Unable to find Folder"
       });
     }
+
+    // Meta processing
+    MetaManager.updateMetaData({
+      bucketName: params.bucketName,
+      path: params.path,
+      treeData: Utils.scanAll(_path)
+    })
 
     klaw(_path, { depthLimit: 0 })
       .pipe(processObject)
