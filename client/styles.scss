@@ -107,7 +107,7 @@
   display: none;
 }
 
-.Bucket__url:hover .Bucket__url_copy {
+.Bucket:hover .Bucket__url_copy {
   display: unset;
   color: map-get($theme-colors, "primary");
   transition: 0.3s linear;

@@ -21,19 +21,16 @@ export class MoveFilesComponent implements OnInit {
 
   ngOnInit() {
 
-
-
   }
 
-  ngAfterViewInit() {
-    console.log(this.bucket)
-
-    this.mainService.getAllDirectories(this.bucket.bucketName).subscribe((res: any) => {
-      console.log(res)
-      if (res.success) {
-        this.directoryTree = res.tree
-      }
-    })
+  ngOnChanges() {
+    if (this.bucket) {
+      this.mainService.getAllDirectories(this.bucket.bucketName).subscribe((res: any) => {
+        if (res.success) {
+          this.directoryTree = res.tree
+        }
+      })
+    }
   }
 
   moveObjects() {
