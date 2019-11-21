@@ -163,6 +163,21 @@ export class BucketSettingsComponent implements OnInit {
     }
   }
 
+  updateDomainProperties() {
+    this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
+      if (updateBucketStatus.success) {
+        this.newDomain = {
+          name: "",
+          sslEnabled: false,
+          forceSSL: false
+        }
+        this.toastr.success(updateBucketStatus.message, 'Success!')
+      } else {
+        this.toastr.error(updateBucketStatus.message)
+      }
+    })
+  }
+
   updateDomain() {
     this.bucket.domains.push(this.newDomain)
     this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {

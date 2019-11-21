@@ -140,12 +140,12 @@
                                     <a class="text-primary Domain__name" href="app.your-domain.com"
                                         target="_blank">{{domain.name}}</a>
                                     <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" [(ngModel)]="domain.sslEnabled" name="EnableHTTPS1">
+                                        <input type="checkbox" [(ngModel)]="domain.sslEnabled" (change)="updateDomainProperties()" name="EnableHTTPS1">
                                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
                                     </label>
                                     <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" [(ngModel)]="domain.forceSSL" name="ForceHTTPS1">
+                                        <input type="checkbox" [(ngModel)]="domain.forceSSL" (change)="updateDomainProperties()" name="ForceHTTPS1">
                                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
                                     </label>
