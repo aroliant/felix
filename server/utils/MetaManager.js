@@ -12,6 +12,7 @@ export class MetaManager {
   }
 
   static updateMetaData(data) {
+
     MetaManager.ensureMetaFile(data.bucketName, data.path).then((result) => {
 
       const adapter = new FileSync(config.ROOT_FOLDER + '/meta/' + data.bucketName + data.path + 'meta.json')
@@ -19,7 +20,7 @@ export class MetaManager {
 
       db.defaults({ "meta": {} }).write()
 
-      // TODO: Read Old Data to copy and update for public, sharingExpiresOn & meta
+      // TODO: Read old data to copy and update for public, sharingExpiresOn & meta
 
       data.treeData.children.forEach((_, i) => {
         data.treeData.children[i].public = false
@@ -32,17 +33,26 @@ export class MetaManager {
     }).catch((err) => {
       console.log(err)
     })
+
   }
 
+  // Remove meta data for a File
   static removeMetaForFile() {
 
   }
 
-  static updateMetaData() {
+  // Update meta data for a File
+  static updateMetaDataForFile() {
 
   }
 
+  // Update visibility for Files
   static updateMetaVisibility() {
+
+  }
+
+  // Removing the meta data in case of renaming / deleting a folder
+  static removeMetaForFolder() {
 
   }
 
