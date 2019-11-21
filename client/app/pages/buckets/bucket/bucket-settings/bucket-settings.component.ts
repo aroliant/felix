@@ -157,6 +157,12 @@ export class BucketSettingsComponent implements OnInit {
     }
   }
 
+  addDomainOnEnter(event) {
+    if (event.keyCode == 13) {
+      this.updateDomain();
+    }
+  }
+
   updateDomain() {
     this.bucket.domains.push(this.newDomain)
     this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {

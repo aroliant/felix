@@ -91,7 +91,8 @@
                                     <a class="text-primary" href="fibon.blaz.app" target="_blank">{{cors.origin}}</a>
                                 </td>
                                 <td class="CORS__method">
-                                    <div class="text-uppercase" *ngFor="let method of cors.allowedMethods">{{method}} </div>
+                                    <div class="text-uppercase" *ngFor="let method of cors.allowedMethods">{{method}}
+                                    </div>
                                 </td>
                                 <td class="CORS__headers">
                                     <div *ngFor="let header of cors.allowedHeaders">{{header.name}} </div>
@@ -102,7 +103,8 @@
                                         <i class="icofont-ui-edit mr-2"></i> <span>Edit</span>
                                     </a>
                                     <br>
-                                    <a class="text-primary small cursor-pointer" target="_blank" (click)="removeCORS(CORSIndex)">
+                                    <a class="text-primary small cursor-pointer" target="_blank"
+                                        (click)="removeCORS(CORSIndex)">
                                         <i class="icofont-ui-delete mr-2"></i> <span>Remove</span>
                                     </a>
                                 </td>
@@ -126,7 +128,8 @@
                     <div class="mt-3 w-75">
                         <div class="form-group form-inline m-0">
                             <input type="text" class="form-control mr-2 flex-grow-1"
-                                placeholder="Enter the domain you want to connect" [(ngModel)]="newDomain.name">
+                                (keydown)="addDomainOnEnter($event)" placeholder="Enter the domain you want to connect"
+                                [(ngModel)]="newDomain.name">
                             <button class="btn btn-primary" (click)="updateDomain()">Connect</button>
                         </div>
                         <div class="mt-3">
