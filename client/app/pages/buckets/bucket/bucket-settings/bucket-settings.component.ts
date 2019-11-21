@@ -80,6 +80,7 @@ export class BucketSettingsComponent implements OnInit {
     this.mainService.updateBucket(bucket).subscribe((updateBucketResult: any) => {
       if (updateBucketResult.success) {
         this.toastr.success(updateBucketResult.message, 'Success!')
+        this.closeFileListingPrivacy()
       } else {
         this.toastr.error(updateBucketResult.message)
       }
