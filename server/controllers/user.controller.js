@@ -1,22 +1,22 @@
 export class UserController {
 
-  createDefaultUser() {
+  static createDefaultUser(req, res) {
 
   }
 
-  loginUser() {
+  static loginUser(req, res) {
 
   }
 
-  addUser() {
+  static addUser(req, res) {
 
   }
 
-  removeUser() {
+  static removeUser(req, res) {
 
   }
 
-  updateUser() {
+  static updateUser(req, res) {
 
   }
 }

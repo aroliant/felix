@@ -14,6 +14,8 @@ router.use('/bucket', require('./bucket.route'));
 
 router.use('/settings', require('./settings.route'));
 
+router.use('/user', require('./user.route'));
+
 // Pipe to handle GET Requests of Bucket Objects
 router.get('/:bucketName/**', (req, res) => {
   const bucketName = req.params.bucketName
