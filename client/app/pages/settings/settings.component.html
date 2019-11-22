@@ -9,22 +9,25 @@
                         <h4 class="font-weight-light">Primary Domain</h4>
                         <div class="form-group mb-0">
                             <input type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="inputGroup-sizing-default" placeholder="Enter you primary domain">
+                                [(ngModel)]="settings.primaryDomain" aria-describedby="inputGroup-sizing-default"
+                                placeholder="Enter you primary domain">
                         </div>
                         <div class="d-flex flex-row justify-content-between mt-3">
                             <div class="d-flex flex-row">
                                 <label class="CheckboxContainer d-flex align-items-center flex-row mr-3">
-                                    <input type="checkbox" checked="checked" name="enableHTTPSPrimary">
+                                    <input type="checkbox" [(ngModel)]="settings.sslEnabled" checked="checked"
+                                        name="enableHTTPSPrimary">
                                     <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                                     <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
                                 </label>
                                 <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                    <input type="checkbox" checked="checked" name="forceHTTPSPrimary">
+                                    <input type="checkbox" [(ngModel)]="settings.forceSSL" checked="checked"
+                                        name="forceHTTPSPrimary">
                                     <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                                     <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
                                 </label>
                             </div>
-                            <button class="btn btn-success text-white">Save</button>
+                            <button class="btn btn-success text-white" (click)="updateSettingsDomain()">Save</button>
                         </div>
                     </div>
                 </div>
@@ -42,13 +45,15 @@
                         <div class="form-group row">
                             <label class="h6 col-lg-2 align-self-center">App Key</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="Enter your API key">
+                                <input type="text" class="form-control" [(ngModel)]="settings.keys.apiKey"
+                                    placeholder="Enter your API key">
                             </div>
                         </div>
                         <div class="form-group mb-0 row">
                             <label class="h6 col-lg-2 align-self-center">Access Key</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="Enter your Access key">
+                                <input type="text" class="form-control" [(ngModel)]="settings.keys.accessKey"
+                                    placeholder="Enter your Access key">
                             </div>
                         </div>
 
@@ -58,12 +63,13 @@
                                 <button class="btn btn-primary">Add</button>
                             </div>
 
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter the origin path">
+                            <div class="form-group"
+                                *ngFor="let origin of settings.keys.allowedOrigins;let allowedOriginsIndex = index">
+                                <input type="text"
+                                    [(ngModel)]="settings.keys.allowedOrigins[allowedOriginsIndex].originName"
+                                    class="form-control" placeholder="Enter the origin path">
                             </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter the origin path">
-                            </div>
+
                         </div>
                     </div>
 
