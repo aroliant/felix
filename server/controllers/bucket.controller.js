@@ -202,7 +202,7 @@ export class BucketController {
 
     } catch (err) {
 
-      return res.send({
+      return res.json({
         success: false,
         message: 'Unable to retrieve Bucket'
       })
@@ -478,7 +478,7 @@ export class BucketController {
 
     })
 
-    return res.send({
+    return res.json({
       success: true,
       messages: messages
     })
@@ -496,7 +496,7 @@ export class BucketController {
 
     } catch (err) {
 
-      return res.send({
+      return res.json({
         success: false,
         message: ''
       })
@@ -507,7 +507,7 @@ export class BucketController {
 
     Utils.recursiveTreeParsing(tree)
 
-    res.send({
+    return res.json({
       success: true,
       tree: tree
     })
