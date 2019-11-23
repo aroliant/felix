@@ -76,7 +76,7 @@ import { CustomToastrComponent } from './components/custom-toastr/custom-toastr.
       toastComponent: CustomToastrComponent,
     })
   ],
-  providers: [MainService, HelperService, SettingsService],
+  providers: [MainService, HelperService, SettingsService, UserService],
   bootstrap: [AppComponent],
   entryComponents: [CustomToastrComponent]
 })
