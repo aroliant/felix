@@ -124,7 +124,7 @@ export class UserController {
 
     users.map((user, index) => {
 
-      // delete user.password
+      delete user.password
 
     })
 
