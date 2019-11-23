@@ -26,6 +26,7 @@ import { BucketSettingsComponent } from './pages/buckets/bucket/bucket-settings/
 import { MainService } from './services/main.service';
 import { HelperService } from './services/helper.service';
 import { SettingsService } from './services/settings.service';
+import { UserService } from './services/user.service'
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { CreateBucketComponent } from './pages/buckets/create-bucket/create-bucket.component';
 import { UploadFilesComponent } from './pages/buckets/bucket/modal/upload-files/upload-files.component';
