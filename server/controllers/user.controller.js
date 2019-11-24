@@ -190,8 +190,6 @@ export class UserController {
 
   static removeUser(req, res) {
 
-    console.log("CALLED")
-
     const username = req.params.username
 
     try {

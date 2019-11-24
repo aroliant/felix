@@ -30,8 +30,8 @@ export class UserService {
     return this.httpc.post(this.API_URL + '/user/', user);
   }
 
-  removeUser(user) {
-    return this.httpc.delete(this.API_URL + '/user/', user);
+  removeUser(username) {
+    return this.httpc.delete(this.API_URL + '/user/' + username);
   }
 
   updateUser(user) {

@@ -18,16 +18,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="User__ID">001</td>
-                        <td class="User__name">fibonuserx</td>
+                    <tr *ngFor = "let user of users;let userIndex = index">
+                        <td class="User__ID">{{user.id}}</td>
+                        <td class="User__name">{{user.username}}</td>
                         <td class="User__password">
-                            <input type="password" name="" class="form-control" id="UserPassword">
+                            <input type="password" name="" class="form-control" value="password" id="UserPassword">
                         </td>
-                        <td class="User__role">Admin</td>
-                        <td class="User__status">Active</td>
+                        <td class="User__role">{{user.role}}</td>
+                        <td class="User__status">{{user.status}}</td>
                         <td class="User__actions">
-                            <a class="text-danger cursor-pointer" (click)="openDeleteUserModal();">
+                            <a class="text-danger cursor-pointer" (click)="openDeleteUserModal(userIndex);">
                                 Delete
                             </a>
                         </td>
@@ -105,7 +105,7 @@
                 <div class="w-100 text-left">
                     <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeDeleteUserModal();">
                         Cancel</button>
-                    <button type="button" class="btn btn-outline-danger" (click)="closeDeleteUserModal();">
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteUser();">
                         Delete</button>
                 </div>
             </div>
