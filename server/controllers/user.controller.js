@@ -220,7 +220,7 @@ export class UserController {
 
     try {
 
-      oldUser = usersDB.get('users').find({ username: newUser.username }).value()
+      oldUser = usersDB.get('users').filter({ username: newUser.username }).value()
 
     } catch (err) {
 
@@ -232,10 +232,12 @@ export class UserController {
 
     }
 
-    for ( var key in oldUser, oldUser) {
+    oldUser = oldUser[0]
+
+    for ( var key in oldUser) {
 
       if (key == "password" && newUser.password != undefined) {
-        newUser[key] = crypto.createHmac('sha512', encryptionKey).update(newUser.password).digest('hex')
+        newUser.password = crypto.createHmac('sha512', encryptionKey).update(newUser.password).digest('hex')
       } else {
         if (newUser[key] == undefined) {
           newUser[key] = oldUser[key]
@@ -244,7 +246,7 @@ export class UserController {
 
     }
 
-    console.log(JSON.stringify(newUser))
+    // console.log("Old User: " + JSON.stringify(oldUser) + "\nNew User: " + JSON.stringify(newUser))
 
     try {
 
