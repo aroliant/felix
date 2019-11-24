@@ -190,11 +190,13 @@ export class UserController {
 
   static removeUser(req, res) {
 
-    const user = req.body
+    console.log("CALLED")
+
+    const username = req.params.username
 
     try {
 
-      usersDB.get('users').remove(user).write()
+      usersDB.get('users').remove({ username: username }).write()
 
     } catch (err) {
 
