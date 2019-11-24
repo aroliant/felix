@@ -18,7 +18,7 @@ export class UserController {
 
     const username = 'Admin1'
     const defaultPassword = '123456'
-    const role = 'admin'
+    const role = 'Admin'
 
     try {
 
@@ -45,7 +45,7 @@ export class UserController {
       username: username,
       password: crypto.createHmac('sha512', encryptionKey).update(defaultPassword).digest('hex'),
       role: role,
-      status: "active"
+      status: "Active"
     }
 
     try {
@@ -164,7 +164,7 @@ export class UserController {
       username: params.username,
       password: crypto.createHmac('sha512', encryptionKey).update(params.password).digest('hex'),
       role: params.role,
-      status: "active"
+      status: "Active"
     }
 
     try {
@@ -215,17 +215,40 @@ export class UserController {
 
   static updateUser(req, res) {
 
-    const user = req.body
-
-    if (user.password != undefined) {
-
-      user.password = crypto.createHmac('sha512', encryptionKey).update(user.password).digest('hex')
-
-    }
+    const newUser = req.body
+    var oldUser
 
     try {
 
-      usersDB.get('users').find({ username: user.username }).assign(user).write()
+      oldUser = usersDB.get('users').find({ username: newUser.username }).value()
+
+    } catch (err) {
+
+      return res.json({
+        success: false,
+        message: "Unable to update User",
+        error: err.message
+      });
+
+    }
+
+    for ( var key in oldUser, oldUser) {
+
+      if (key == "password" && newUser.password != undefined) {
+        newUser[key] = crypto.createHmac('sha512', encryptionKey).update(newUser.password).digest('hex')
+      } else {
+        if (newUser[key] == undefined) {
+          newUser[key] = oldUser[key]
+        }
+      }
+
+    }
+
+    console.log(JSON.stringify(newUser))
+
+    try {
+
+      usersDB.get('users').find({ username: newUser.username}).assign(newUser).write()
 
     } catch (err) {
 
