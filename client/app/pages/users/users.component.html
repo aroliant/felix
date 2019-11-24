@@ -55,24 +55,24 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="felixUsername">Username</label>
-                    <input type="text" class="form-control" id="felixUsername" placeholder="Enter a unique username">
+                    <input type="text" [(ngModel)]="actions.userToAdd.username" class="form-control" id="felixUsername" placeholder="Enter a unique username">
                 </div>
                 <div class="form-group">
                     <label for="felixUserRole">Select User Role</label>
-                    <select class="form-control" id="felixUserRole">
-                        <option>Admin</option>
-                        <option>Manager</option>
+                    <select class="form-control" id="felixUserRole" [(ngModel)]="actions.userToAdd.role" >
+                        <option value="Admin" >Admin</option>
+                        <option value="Manager" >Manager</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="felixUserPassword">Password</label>
-                    <input type="password" class="form-control" id="felixUserPassword" placeholder="Password">
+                    <input type="password" [(ngModel)]="actions.userToAdd.password" class="form-control" id="felixUserPassword" placeholder="Password">
                 </div>
 
             </div>
             <div class="modal-footer">
                 <div class="w-100 text-left">
-                    <button type="button" class="btn btn-primary mr-3" (click)="closeAddUserModal();">
+                    <button type="button" class="btn btn-primary mr-3" (click)="addUser();">
                         Add</button>
                     <button type="button" class="btn btn-outline-secondary" (click)="closeAddUserModal();">
                         Cancel</button>

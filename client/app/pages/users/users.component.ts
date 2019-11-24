@@ -11,7 +11,12 @@ export class UsersComponent implements OnInit {
 
   users = []
   actions = {
-    userToDelete: {}
+    userToDelete: {},
+    userToAdd: {
+      username: "",
+      password: "",
+      role: ""
+    }
   }
 
   constructor(
@@ -41,6 +46,26 @@ export class UsersComponent implements OnInit {
         this.closeDeleteUserModal()
       }
     })
+  }
+
+  addUser() {
+
+    this.userService.addUser(this.actions.userToAdd).subscribe((userAddStatus: any) => {
+      if (userAddStatus.success) {
+        this.toastr.success(userAddStatus.message, 'Success!')
+        this.users.push(this.actions.userToAdd)
+        this.closeAddUserModal()
+        this.actions.userToAdd = {
+          username: "",
+          password: "",
+          role: ""
+        }
+      } else {
+        this.toastr.error(userAddStatus.message)
+        this.closeAddUserModal()
+      }
+    })
+
   }
 
 
