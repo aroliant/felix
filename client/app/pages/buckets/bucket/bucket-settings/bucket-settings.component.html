@@ -91,15 +91,24 @@
                                     <a class="text-primary" href="fibon.blaz.app" target="_blank">{{cors.origin}}</a>
                                 </td>
                                 <td class="CORS__method">
-                                    <div class="text-uppercase" *ngFor="let method of cors.allowedMethods">{{method}}
+                                    <span class="text-secondary">Methods</span>
+                                    <div class="CORS__method_menu_content">
+                                        <div *ngFor="let method of cors.allowedMethods" class="p-2">
+                                            {{method}} &nbsp;
+                                        </div>
                                     </div>
                                 </td>
                                 <td class="CORS__headers">
-                                    <div *ngFor="let header of cors.allowedHeaders">{{header.name}} </div>
+                                    <span class="text-secondary">Headers</span>
+                                    <div class="CORS__headers_menu_content">
+                                        <div *ngFor="let header of cors.allowedHeaders" class="p-2">
+                                            {{header.name}} &nbsp;
+                                        </div>
+                                    </div>
                                 </td>
                                 <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
-                                <td class="CORS__actions"><a class="text-primary small cursor-pointer" target="_blank"
-                                        (click)="openEditCORSoptionModal(CORSIndex)">
+                                <td class="CORS__actions"><a class="text-primary small cursor-pointer mr-3"
+                                        target="_blank" (click)="openEditCORSoptionModal(CORSIndex)">
                                         <i class="icofont-ui-edit mr-2"></i> <span>Edit</span>
                                     </a>
                                     <br>
@@ -140,12 +149,14 @@
                                     <a class="text-primary Domain__name" href="app.your-domain.com"
                                         target="_blank">{{domain.name}}</a>
                                     <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" [(ngModel)]="domain.sslEnabled" (change)="updateDomainProperties()" name="EnableHTTPS1">
+                                        <input type="checkbox" [(ngModel)]="domain.sslEnabled"
+                                            (change)="updateDomainProperties()" name="EnableHTTPS1">
                                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
                                     </label>
                                     <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" [(ngModel)]="domain.forceSSL" (change)="updateDomainProperties()" name="ForceHTTPS1">
+                                        <input type="checkbox" [(ngModel)]="domain.forceSSL"
+                                            (change)="updateDomainProperties()" name="ForceHTTPS1">
                                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
                                     </label>
