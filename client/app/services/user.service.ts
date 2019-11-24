@@ -38,12 +38,4 @@ export class UserService {
     return this.httpc.put(this.API_URL + '/user/', user);
   }
 
-  getSettings() {
-    return this.httpc.get(this.API_URL + '/settings/');
-  }
-
-  updateSettings(settings) {
-    return this.httpc.put(this.API_URL + '/settings/', settings);
-  }
-
 }

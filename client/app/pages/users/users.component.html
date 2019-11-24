@@ -22,11 +22,14 @@
                         <td class="User__ID">{{user.id}}</td>
                         <td class="User__name">{{user.username}}</td>
                         <td class="User__password">
-                            <input type="password" name="" class="form-control" value="password" id="UserPassword">
+                            <input type="password" name="password" class="form-control" value="password" id="UserPassword">
                         </td>
                         <td class="User__role">{{user.role}}</td>
                         <td class="User__status">{{user.status}}</td>
                         <td class="User__actions">
+                            <a class="text-danger cursor-pointer" (click)="openEditUserModal(userIndex);">
+                                Edit
+                            </a><br>
                             <a class="text-danger cursor-pointer" (click)="openDeleteUserModal(userIndex);">
                                 Delete
                             </a>
@@ -82,13 +85,66 @@
     </div>
 </div>
 
+
+<!-- Edit User Modal-->
+<div class="modal" id="EditUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title">Edit User</h5>
+                    </div>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        (click)="closeEditUserModal();">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="felixUsername">Username</label>
+                    <input type="text" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control" id="felixUsername" placeholder="Enter a unique username" readonly >
+                </div>
+                <div class="form-group">
+                    <label for="felixUserRole">User Role</label>
+                    <select class="form-control" id="felixUserRole" [(ngModel)]="users[actions.userToEditIndex].role" >
+                        <option value="Admin" >Admin</option>
+                        <option value="Manager" >Manager</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="felixUserRole">User Status</label>
+                    <select class="form-control" id="felixUserRole" [(ngModel)]="users[actions.userToEditIndex].status" >
+                        <option value="Active" >Active</option>
+                        <option value="Inactive" >Inactive</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="felixUserPassword">Password</label>
+                    <input type="password" [(ngModel)]="users[actions.userToEditIndex].password" class="form-control" id="felixUserPassword" placeholder="Password">
+                    <p style="color:red">Leave Password Empty if you wish not to change your password</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100 text-left">
+                    <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeEditUserModal();">
+                        Cancel</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="updateUser()">
+                        Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <!-- Delete User Modal-->
 <div class="modal" id="DeleteUserModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <div>
-                    <h5 class="modal-title">Delete this ( <code>username</code> ) User?</h5>
+                    <h5 class="modal-title">Delete this ( <code>{{actions.userToDelete.username}}</code> ) User?</h5>
                 </div>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"

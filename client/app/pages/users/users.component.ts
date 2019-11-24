@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'client/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { useAnimation } from '@angular/animations';
 
 @Component({
   selector: 'app-users',
@@ -16,7 +17,8 @@ export class UsersComponent implements OnInit {
       username: "",
       password: "",
       role: ""
-    }
+    },
+    userToEditIndex: 0
   }
 
   constructor(
@@ -48,6 +50,43 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  updateUser() {
+
+    var user = {}
+
+    if(this.users[this.actions.userToEditIndex].password == undefined || this.users[this.actions.userToEditIndex].password == ''){
+
+      user = {
+        username: this.users[this.actions.userToEditIndex].username,
+        password: this.users[this.actions.userToEditIndex].password,
+        role: this.users[this.actions.userToEditIndex].role,
+        status: this.users[this.actions.userToEditIndex].status
+      }
+
+      delete this.users[this.actions.userToEditIndex].password
+
+    } else {
+
+      user = {
+        username: this.users[this.actions.userToEditIndex].username,
+        role: this.users[this.actions.userToEditIndex].role,
+        status: this.users[this.actions.userToEditIndex].status
+      }
+
+    }
+
+    this.userService.updateUser(user).subscribe((updateUserResponse:any) => {
+      if(updateUserResponse.success){
+        this.toastr.success(updateUserResponse.message, 'Success!')
+        this.closeEditUserModal()
+      }else{
+        this.toastr.error(updateUserResponse.message)
+        this.closeEditUserModal()
+      }
+    })
+
+  }
+
   addUser() {
 
     this.userService.addUser(this.actions.userToAdd).subscribe((userAddStatus: any) => {
@@ -74,6 +113,14 @@ export class UsersComponent implements OnInit {
   }
   closeAddUserModal() {
     document.getElementById("AddUserModal").style.display = "none";
+  }
+
+  openEditUserModal(userIndex) {
+    this.actions.userToEditIndex = userIndex
+    document.getElementById("EditUserModal").style.display = "block";
+  }
+  closeEditUserModal() {
+    document.getElementById("EditUserModal").style.display = "none";
   }
 
   openDeleteUserModal(userIndex) {
