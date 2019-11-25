@@ -55,4 +55,28 @@ export class SettingsComponent implements OnInit {
 
   }
 
+  addOriginInputBox() {
+
+    this.settings.keys.allowedOrigins.push({ originName: "" })
+
+  }
+
+  addOrigin() {
+
+    this.settingsServie.updateSettings(this.settings).subscribe((updateSettingsResponse: any) => {
+      if (updateSettingsResponse.success) {
+        this.toastr.success(updateSettingsResponse.message, 'Success!')
+      } else {
+        this.toastr.error(updateSettingsResponse.message)
+      }
+    })
+
+  }
+
+  removeOrigin(allowedOriginsIndex) {
+
+    this.settings.keys.allowedOrigins.splice(allowedOriginsIndex, 1)
+
+  }
+
 }
