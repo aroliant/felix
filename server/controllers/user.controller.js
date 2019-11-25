@@ -246,8 +246,6 @@ export class UserController {
 
     }
 
-    // console.log("Old User: " + JSON.stringify(oldUser) + "\nNew User: " + JSON.stringify(newUser))
-
     try {
 
       usersDB.get('users').find({ username: newUser.username}).assign(newUser).write()

@@ -52,7 +52,7 @@ export class BucketComponent implements OnInit {
   ) { }
 
   setDestination(str) {
-    console.log(str)
+    
   }
 
   ngOnInit() {
@@ -108,7 +108,6 @@ export class BucketComponent implements OnInit {
   }
 
   selectObject(event, index) {
-    console.log('[action] -> selectObject')
     if (event.target.checked)
       ++this.actions.selectedObjectsCount
     else
@@ -119,7 +118,6 @@ export class BucketComponent implements OnInit {
   }
 
   showActions(index) {
-    console.log('[action] -> showActions', index)
     if (!this.objects[index].showActions) {
       this.objects[index].showActions = true
     } else {
@@ -134,7 +132,6 @@ export class BucketComponent implements OnInit {
   }
 
   hideAllActions() {
-    console.log('[action] -> hideAllActions')
     this.objects.map((state, i) => {
       if (this.currentActionIndex !== i) {
         state.showActions = false
@@ -231,7 +228,6 @@ export class BucketComponent implements OnInit {
     this.actions.objectsToDelete = []
     this.modalStates.delete = true
     this.actions.objectsToDelete.push(this.objects[i])
-    console.log(this.actions.objectsToDelete)
   }
 
   showDeletesModel() {
@@ -242,7 +238,6 @@ export class BucketComponent implements OnInit {
         this.actions.objectsToDelete.push(object)
       }
     })
-    console.log(this.actions.objectsToDelete)
   }
 
   showMoveObjectModal(i) {
@@ -366,7 +361,6 @@ export class BucketComponent implements OnInit {
 
   upload(file, uploadingIndex) {
     const self = this
-    console.log(file)
 
     const fileLength = file.size;
 
@@ -387,7 +381,6 @@ export class BucketComponent implements OnInit {
     xhr.open('PUT', `${this.API_URL}/bucket/objects/${uploadFilePath}`, true);
     xhr.upload.onprogress = function (e) {
       const percentComplete = Math.ceil((e.loaded / e.total) * 100);
-      console.log(percentComplete)
     };
 
     xhr.onload = function () {

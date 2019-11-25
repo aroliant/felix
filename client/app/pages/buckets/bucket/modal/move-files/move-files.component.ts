@@ -46,7 +46,7 @@ export class MoveFilesComponent implements OnInit {
   }
 
   setDestination(str) {
-    console.log(str)
+    
   }
 
   hideModal() {
