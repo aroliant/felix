@@ -63,12 +63,12 @@
                                 <button class="btn btn-primary" (click)="addOriginInputBox()">Add</button>
                             </div>
 
-                            <div class="form-group"
+                            <div class="form-group form-inline"
                                 *ngFor="let origin of settings.keys.allowedOrigins;let allowedOriginsIndex = index">
                                 <input type="text"
                                     [(ngModel)]="settings.keys.allowedOrigins[allowedOriginsIndex].originName"
-                                    class="form-control" placeholder="Enter the origin path" autocomplete="off">
-                                <a class="text-danger cursor-pointer" (click)="removeOrigin(allowedOriginsIndex)">
+                                    class="form-control flex-grow-1" placeholder="Enter the origin path" autocomplete="off">
+                                <a class="text-danger cursor-pointer ml-3" (click)="removeOrigin(allowedOriginsIndex)">
                                     Remove
                                 </a>
                             </div>
