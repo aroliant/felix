@@ -90,7 +90,7 @@
 
 
 <!-- Edit User Modal-->
-<div class="modal" id="EditUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal" id="EditUserModal" tabindex="-1" role="dialog" aria-hidden="true" *ngIf="users.length > 0">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -107,7 +107,7 @@
                 <div class="form-group">
                     <label for="felixUsername">Username</label>
                     <input type="text" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control"
-                        id="felixUsername" placeholder="Enter a unique username" readonly autocomplete="off">
+                        id="felixUsername" placeholder="Enter a unique username" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="felixUserRole">User Role</label>
@@ -126,7 +126,7 @@
                 <div class="form-group">
                     <label for="felixUserPassword">Password</label>
                     <input type="password" [(ngModel)]="users[actions.userToEditIndex].password" class="form-control"
-                        id="felixUserPassword" placeholder="Password" autocomplete="off" >
+                        id="felixUserPassword" placeholder="Password" autocomplete="off">
                     <p style="color:red">Leave Password Empty if you wish not to change your password</p>
                 </div>
             </div>
