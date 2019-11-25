@@ -18,11 +18,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor = "let user of users;let userIndex = index">
+                    <tr *ngFor="let user of users;let userIndex = index">
                         <td class="User__ID">{{user.id}}</td>
                         <td class="User__name">{{user.username}}</td>
                         <td class="User__password">
-                            <input type="password" name="password" class="form-control" value="password" id="UserPassword">
+                            <input type="password" name="password" class="form-control" value="password"
+                                id="UserPassword" autocomplete="off">
                         </td>
                         <td class="User__role">{{user.role}}</td>
                         <td class="User__status">{{user.status}}</td>
@@ -58,18 +59,20 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="felixUsername">Username</label>
-                    <input type="text" [(ngModel)]="actions.userToAdd.username" class="form-control" id="felixUsername" placeholder="Enter a unique username">
+                    <input type="text" [(ngModel)]="actions.userToAdd.username" class="form-control" id="felixUsername"
+                        placeholder="Enter a unique username" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="felixUserRole">Select User Role</label>
-                    <select class="form-control" id="felixUserRole" [(ngModel)]="actions.userToAdd.role" >
-                        <option value="Admin" >Admin</option>
-                        <option value="Manager" >Manager</option>
+                    <select class="form-control" id="felixUserRole" [(ngModel)]="actions.userToAdd.role">
+                        <option value="Admin">Admin</option>
+                        <option value="Manager">Manager</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="felixUserPassword">Password</label>
-                    <input type="password" [(ngModel)]="actions.userToAdd.password" class="form-control" id="felixUserPassword" placeholder="Password">
+                    <input type="password" [(ngModel)]="actions.userToAdd.password" class="form-control"
+                        id="felixUserPassword" placeholder="Password" autocomplete="off">
                 </div>
 
             </div>
@@ -91,37 +94,39 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                    <div>
-                        <h5 class="modal-title">Edit User</h5>
-                    </div>
+                <div>
+                    <h5 class="modal-title">Edit User</h5>
+                </div>
 
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                        (click)="closeEditUserModal();">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    (click)="closeEditUserModal();">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <label for="felixUsername">Username</label>
-                    <input type="text" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control" id="felixUsername" placeholder="Enter a unique username" readonly >
+                    <input type="text" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control"
+                        id="felixUsername" placeholder="Enter a unique username" readonly autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="felixUserRole">User Role</label>
-                    <select class="form-control" id="felixUserRole" [(ngModel)]="users[actions.userToEditIndex].role" >
-                        <option value="Admin" >Admin</option>
-                        <option value="Manager" >Manager</option>
+                    <select class="form-control" id="felixUserRole" [(ngModel)]="users[actions.userToEditIndex].role">
+                        <option value="Admin">Admin</option>
+                        <option value="Manager">Manager</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="felixUserRole">User Status</label>
-                    <select class="form-control" id="felixUserRole" [(ngModel)]="users[actions.userToEditIndex].status" >
-                        <option value="Active" >Active</option>
-                        <option value="Inactive" >Inactive</option>
+                    <select class="form-control" id="felixUserRole" [(ngModel)]="users[actions.userToEditIndex].status">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="felixUserPassword">Password</label>
-                    <input type="password" [(ngModel)]="users[actions.userToEditIndex].password" class="form-control" id="felixUserPassword" placeholder="Password">
+                    <input type="password" [(ngModel)]="users[actions.userToEditIndex].password" class="form-control"
+                        id="felixUserPassword" placeholder="Password" autocomplete="off" >
                     <p style="color:red">Leave Password Empty if you wish not to change your password</p>
                 </div>
             </div>

@@ -1,115 +1,118 @@
 <!-- Modal Manage Meta Data-->
 <div class="modal" id="ManageMetaModal" tabindex="-1" role="dialog" aria-hidden="true" [class.open]="show">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div>
-            <h5 class="modal-title">Manage metadata for <code class="p-1 rounded">filename.extn</code></h5>
-          </div>
-  
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideModal()">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Manage metadata for <code class="p-1 rounded">filename.extn</code></h5>
         </div>
-        <div class="modal-body">
-          <div class="ManageMeta">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th class="ManageMeta__key">Key</th>
-                  <th class="ManageMeta__value">Value</th>
-                  <th class="ManageMeta__option"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="ManageMeta__key">Content-Type</td>
-                  <td class="ManageMeta__value">
-                    <div class="form-group mb-0">
-                      <label for="content-type-choice" class="m-0 small text-secondary">select a value or add your
-                        own</label>
-                      <input list="content-type-datalist" class="form-control" placeholder="text/html"
-                        id="content-type-choice" name="content-type-choice" />
-  
-                      <datalist id="content-type-datalist">
-                        <option value="text/html">
-                        <option value="text/vue">
-                        <option value="text/js">
-                      </datalist>
-                    </div>
-                  </td>
-                  <td class="ManageMeta__option">
-                    <a href="" class="text-danger">Clear</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="ManageMeta__key">Cache-Control</td>
-                  <td class="ManageMeta__value">
-                    <div class="form-group mb-0">
-                      <input type="text" class="form-control" name="" placeholder="Enter Value (e.g. max-age=60)">
-                    </div>
-                  </td>
-                  <td class="ManageMeta__option">
-                    <a href="" class="text-danger">Clear</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="ManageMeta__key">Content-Encoding</td>
-                  <td class="ManageMeta__value">
-                    <div class="form-group mb-0">
-                      <input type="text" class="form-control" name="" placeholder="Enter Value (e.g. gzip)">
-                    </div>
-                  </td>
-                  <td class="ManageMeta__option">
-                    <a href="" class="text-danger">Clear</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="ManageMeta__key">Content-Disposition</td>
-                  <td class="ManageMeta__value">
-                    <div class="form-group mb-0">
-                      <input type="text" class="form-control" name="" placeholder="Enter Value (e.g. attachment)">
-                    </div>
-                  </td>
-                  <td class="ManageMeta__option">
-                    <a href="" class="text-danger">Clear</a>
-                  </td>
-                </tr>
-                <tr class="ManageMeta__custompairing" id="ManageMeta__custompairing">
-                  <td class="ManageMeta__key">
-                    <div class="form-group mb-0">
-                      <label class="m-0 small text-secondary">key must start with x-amz-meta and be unique</label>
-                      <input type="text" class="form-control" placeholder="" value="x-amz-meta-">
-                    </div>
-                  </td>
-                  <td class="ManageMeta__value">
-                    <div class="form-group mb-0">
-                      <input type="text" class="form-control" name="" placeholder="Enter Value">
-                    </div>
-                  </td>
-                  <td class="ManageMeta__option">
-                    <a (click)="hideManageMeta__custompairing()" class="text-danger">Remove</a>
-                  </td>
-                </tr>
-                <tr>
-                  <div class="list-group-item list-group-item-action text-primary"
-                    (click)="showManageMeta__custompairing();">Add
-                    Custom Pairing
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="ManageMeta">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="ManageMeta__key">Key</th>
+                <th class="ManageMeta__value">Value</th>
+                <th class="ManageMeta__option"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ManageMeta__key">Content-Type</td>
+                <td class="ManageMeta__value">
+                  <div class="form-group mb-0">
+                    <label for="content-type-choice" class="m-0 small text-secondary">select a value or add your
+                      own</label>
+                    <input list="content-type-datalist" class="form-control" placeholder="text/html"
+                      id="content-type-choice" name="content-type-choice" />
+
+                    <datalist id="content-type-datalist">
+                      <option value="text/html">
+                      <option value="text/vue">
+                      <option value="text/js">
+                    </datalist>
                   </div>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-  
+                </td>
+                <td class="ManageMeta__option">
+                  <a href="" class="text-danger">Clear</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="ManageMeta__key">Cache-Control</td>
+                <td class="ManageMeta__value">
+                  <div class="form-group mb-0">
+                    <input type="text" class="form-control" name="" autocomplete="off"
+                      placeholder="Enter Value (e.g. max-age=60)">
+                  </div>
+                </td>
+                <td class="ManageMeta__option">
+                  <a href="" class="text-danger">Clear</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="ManageMeta__key">Content-Encoding</td>
+                <td class="ManageMeta__value">
+                  <div class="form-group mb-0">
+                    <input type="text" class="form-control" name="" autocomplete="off"
+                      placeholder="Enter Value (e.g. gzip)">
+                  </div>
+                </td>
+                <td class="ManageMeta__option">
+                  <a href="" class="text-danger">Clear</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="ManageMeta__key">Content-Disposition</td>
+                <td class="ManageMeta__value">
+                  <div class="form-group mb-0">
+                    <input type="text" class="form-control" name="" autocomplete="off"
+                      placeholder="Enter Value (e.g. attachment)">
+                  </div>
+                </td>
+                <td class="ManageMeta__option">
+                  <a href="" class="text-danger">Clear</a>
+                </td>
+              </tr>
+              <tr class="ManageMeta__custompairing" id="ManageMeta__custompairing">
+                <td class="ManageMeta__key">
+                  <div class="form-group mb-0">
+                    <label class="m-0 small text-secondary">key must start with x-amz-meta and be unique</label>
+                    <input type="text" class="form-control" placeholder="" autocomplete="off" value="x-amz-meta-">
+                  </div>
+                </td>
+                <td class="ManageMeta__value">
+                  <div class="form-group mb-0">
+                    <input type="text" class="form-control" name="" autocomplete="off" placeholder="Enter Value">
+                  </div>
+                </td>
+                <td class="ManageMeta__option">
+                  <a (click)="hideManageMeta__custompairing()" class="text-danger">Remove</a>
+                </td>
+              </tr>
+              <tr>
+                <div class="list-group-item list-group-item-action text-primary"
+                  (click)="showManageMeta__custompairing();">Add
+                  Custom Pairing
+                </div>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="modal-footer">
-          <div class="w-100 text-left">
-            <button type="button" class="btn btn-success mr-3 text-white" (click)="hideModal()">
-              Save</button>
-            <button type="button" class="btn btn-outline-secondary mr-3" (click)="hideModal()">
-              Cancel</button>
-          </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="w-100 text-left">
+          <button type="button" class="btn btn-success mr-3 text-white" (click)="hideModal()">
+            Save</button>
+          <button type="button" class="btn btn-outline-secondary mr-3" (click)="hideModal()">
+            Cancel</button>
         </div>
       </div>
     </div>
   </div>
+</div>

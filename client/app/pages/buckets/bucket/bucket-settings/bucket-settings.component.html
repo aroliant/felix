@@ -136,7 +136,7 @@
                     </div>
                     <div class="mt-3 w-75">
                         <div class="form-group form-inline m-0">
-                            <input type="text" class="form-control mr-2 flex-grow-1"
+                            <input type="text" class="form-control mr-2 flex-grow-1" autocomplete="off"
                                 (keydown)="addDomainOnEnter($event)" placeholder="Enter the domain you want to connect"
                                 [(ngModel)]="newDomain.name">
                             <button class="btn btn-primary" (click)="updateDomain()">Connect</button>
@@ -210,12 +210,12 @@
                 </p>
                 <p>Confirm you want to permanently delete this Bucket by entering its name below.</p>
                 <div class="form-group">
-                    <input type="text" class="form-control" value="{{bucket.bucketName}}" disabled>
+                    <input type="text" class="form-control" value="{{bucket.bucketName}}" autocomplete="off" disabled>
                 </div>
                 <div class="form-group mb-0">
                     <label class="m-0 small text-secondary">enter the name of this bucket to enable deletion</label>
                     <input type="text" class="form-control" [(ngModel)]="deleteConfirmationBucketName"
-                        placeholder="Enter the name of this bucket">
+                        autocomplete="off" placeholder="Enter the name of this bucket">
                 </div>
             </div>
             <div class="modal-footer">
@@ -249,7 +249,7 @@
                 <div class="form-group">
                     <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
                     <input type="text" class="form-control" [(ngModel)]="newCORS.origin"
-                        placeholder="Enter the name of this bucket">
+                        placeholder="Enter the name of this bucket" autocomplete="off">
                 </div>
 
                 <h6 class="m-0">Allowed Methods</h6>
@@ -297,7 +297,8 @@
                 <h6 class="m-0">Access Control Max Age</h6>
                 <div class="form-group">
                     <label class="m-0 small text-secondary">Seconds</label>
-                    <input type="text" [(ngModel)]="newCORS.accessControlMaxAge" class="form-control" value="0">
+                    <input type="text" [(ngModel)]="newCORS.accessControlMaxAge" class="form-control" autocomplete="off"
+                        value="0">
                 </div>
             </div>
             <div class="modal-footer">
@@ -331,7 +332,7 @@
                 <div class="form-group">
                     <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
                     <input type="text" class="form-control" [(ngModel)]="bucket.cors[this.editCORSIndex].origin"
-                        placeholder="Enter the name of this bucket">
+                        placeholder="Enter the name of this bucket" autocomplete="off">
                 </div>
 
                 <h6 class="m-0">Allowed Methods</h6>
@@ -377,7 +378,7 @@
                         *ngFor="let header of bucket.cors[this.editCORSIndex].allowedHeaders;let headerIndex = index">
                         <div class="form-group flex-grow-1 mb-0">
                             <input type="text" class="form-control" (keydown)="editAddNewHeaderOnEnter($event)"
-                                [(ngModel)]="header.name" placeholder="Header Name">
+                                [(ngModel)]="header.name" placeholder="Header Name" autocomplete="off">
                         </div>
                         <a (click)="editRemoveHeaderCORS(headerIndex);" class="text-danger p-2">Remove</a>
                     </div>
@@ -388,7 +389,7 @@
                 <div class="form-group">
                     <label class="m-0 small text-secondary">Seconds</label>
                     <input type="text" [(ngModel)]="bucket.cors[this.editCORSIndex].accessControlMaxAge"
-                        class="form-control" value="0">
+                        autocomplete="off" class="form-control" value="0">
                 </div>
             </div>
             <div class="modal-footer">

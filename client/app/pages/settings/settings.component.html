@@ -10,7 +10,7 @@
                         <div class="form-group mb-0">
                             <input type="text" class="form-control" aria-label="Sizing example input"
                                 [(ngModel)]="settings.primaryDomain" aria-describedby="inputGroup-sizing-default"
-                                placeholder="Enter you primary domain">
+                                placeholder="Enter you primary domain" autocomplete="off">
                         </div>
                         <div class="d-flex flex-row justify-content-between mt-3">
                             <div class="d-flex flex-row">
@@ -45,13 +45,15 @@
                         <div class="form-group row">
                             <label class="h6 col-lg-2 align-self-center">App Key</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" [(ngModel)]="settings.keys.apiKey" readonly>
+                                <input type="text" class="form-control" [(ngModel)]="settings.keys.apiKey"
+                                    autocomplete="off" readonly>
                             </div>
                         </div>
                         <div class="form-group mb-0 row">
                             <label class="h6 col-lg-2 align-self-center">Access Key</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" [(ngModel)]="settings.keys.accessKey" readonly>
+                                <input type="text" class="form-control" [(ngModel)]="settings.keys.accessKey"
+                                    autocomplete="off" readonly>
                             </div>
                         </div>
 
@@ -65,7 +67,7 @@
                                 *ngFor="let origin of settings.keys.allowedOrigins;let allowedOriginsIndex = index">
                                 <input type="text"
                                     [(ngModel)]="settings.keys.allowedOrigins[allowedOriginsIndex].originName"
-                                    class="form-control" placeholder="Enter the origin path">
+                                    class="form-control" placeholder="Enter the origin path" autocomplete="off">
                             </div>
                             <button class="btn btn-success text-white">Save</button>
 
