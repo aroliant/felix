@@ -16,6 +16,9 @@ export class UserController {
 
   static createDefaultUser(req, res) {
 
+    const usersAdapter = new FileSync(config.ROOT_FOLDER + '/users.json')
+    const usersDB = low(usersAdapter)
+
     const username = 'Admin1'
     const defaultPassword = '123456'
     const role = 'Admin'
@@ -71,6 +74,9 @@ export class UserController {
 
   static loginUser(req, res) {
 
+    const usersAdapter = new FileSync(config.ROOT_FOLDER + '/users.json')
+    const usersDB = low(usersAdapter)
+
     const params = req.body
 
     var user = {
@@ -111,6 +117,9 @@ export class UserController {
 
   static getAllUsers(req, res) {
 
+    const usersAdapter = new FileSync(config.ROOT_FOLDER + '/users.json')
+    const usersDB = low(usersAdapter)
+
     var users = []
     try {
       users = usersDB.get('users').value()
@@ -136,6 +145,9 @@ export class UserController {
   }
 
   static addUser(req, res) {
+
+    const usersAdapter = new FileSync(config.ROOT_FOLDER + '/users.json')
+    const usersDB = low(usersAdapter)
 
     const params = req.body
 
@@ -190,6 +202,9 @@ export class UserController {
 
   static removeUser(req, res) {
 
+    const usersAdapter = new FileSync(config.ROOT_FOLDER + '/users.json')
+    const usersDB = low(usersAdapter)
+
     const username = req.params.username
 
     try {
@@ -215,12 +230,15 @@ export class UserController {
 
   static updateUser(req, res) {
 
+    const usersAdapter = new FileSync(config.ROOT_FOLDER + '/users.json')
+    const usersDB = low(usersAdapter)
+
     const newUser = req.body
     var oldUser
 
     try {
 
-      oldUser = usersDB.get('users').filter({ username: newUser.username }).value()
+      oldUser = usersDB.get('users').filter({ username: newUser.username}).value()
 
     } catch (err) {
 
