@@ -8,12 +8,12 @@
                 </a>
                 <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="userName" placeholder="Enter your username"
-                            autocomplete="off">
+                        <input type="text" class="form-control" name="userName" placeholder="Enter your username"
+                            autocomplete="off" [(ngModel)]="user.username">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password"
-                            autocomplete="off">
+                        <input type="password" class="form-control" name="inputPassword3" placeholder="Password"
+                            autocomplete="off" [(ngModel)]="user.password">
                     </div>
                     <div class="form-group mb-0 d-flex align-items-center justify-content-between">
                         <label class="CheckboxContainer d-flex align-items-center flex-row">
@@ -21,7 +21,8 @@
                             <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                             <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Keep me signed in</div>
                         </label>
-                        <button type="submit" class="btn btn-primary" routerLink="/">Sign in</button>
+                        <button type="submit" class="btn btn-primary" routerLink="/"
+                            (click)="login()">{{logInText}}</button>
                     </div>
                 </form>
             </div>

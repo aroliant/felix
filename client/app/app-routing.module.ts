@@ -10,6 +10,7 @@ import { BucketSettingsComponent } from './pages/buckets/bucket/bucket-settings/
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { CreateBucketComponent } from './pages/buckets/create-bucket/create-bucket.component';
 import { OtherComponent } from './layouts/other/other.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,31 +20,38 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [AuthGuard]
       },
       {
         path: 'buckets',
         component: BucketsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'buckets/create',
         component: CreateBucketComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'buckets/:bucketName',
         component: BucketComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'buckets/:bucketName/bucket-settings',
         component: BucketSettingsComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'users',
         component: UsersComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'settings',
         component: SettingsComponent,
+        canActivate: [AuthGuard]
       },
     ]
   },
