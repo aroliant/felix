@@ -14,6 +14,7 @@ export class SettingsComponent implements OnInit {
     sslEnabled: false,
     forceSSL: false,
     keys: {
+      enableKey: false,
       accessKey: "",
       apiKey: "",
       allowedOrigins: []

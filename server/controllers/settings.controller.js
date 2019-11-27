@@ -12,6 +12,7 @@ const defaultsSettingsDB = {
     sslEnabled: false,
     forceSSL: false,
     keys: {
+      enableKey: false,
       accessKey: "",
       apiKey: "",
       allowedOrigins: []
@@ -26,7 +27,11 @@ export class SettingsController {
 
   static getSettings(req, res) {
 
+    const settingsAdapter = new FileSync(config.ROOT_FOLDER + '/settings.json')
+    const settingsDB = low(settingsAdapter)
+
     var settings = {}
+
     try {
       settings = settingsDB.get('settings').value()
     } catch (err) {
@@ -46,6 +51,9 @@ export class SettingsController {
   }
 
   static updateSettings(req, res) {
+
+    const settingsAdapter = new FileSync(config.ROOT_FOLDER + '/settings.json')
+    const settingsDB = low(settingsAdapter)
 
     const settings = req.body
 
