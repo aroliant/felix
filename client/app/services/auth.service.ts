@@ -14,6 +14,7 @@ export class AuthService {
 
   API_URL = environment.API_URL;
 
+
   constructor(
     private httpc: HttpClient,
     private userService: UserService,
@@ -37,7 +38,7 @@ export class AuthService {
   }
 
 
-  loginUser(user) {
+  login(user) {
 
     this.userService.loginUser(user).subscribe((loginResponse: any) => {
 

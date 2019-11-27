@@ -25,7 +25,7 @@ export class SignInComponent implements OnInit {
     private toastr: ToastrService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   login() {
 
@@ -41,7 +41,7 @@ export class SignInComponent implements OnInit {
 
     this.logInText = 'Signing In Please Wait';
 
-    this.authService.loginUser(this.user)
+    this.authService.login(this.user)
 
     this.logInText = 'Sign In'
 
