@@ -56,6 +56,22 @@ export class SettingsComponent implements OnInit {
 
   }
 
+  updateEnableAPI() {
+
+    this.settingsServie.updateSettings(this.settings).subscribe(() => {})
+
+  }
+
+  refreshAPIKeys() {
+
+    this.settingsServie.generateKeys(this.settings).subscribe((refreshAPIKeysResponse:any) => {
+      if(refreshAPIKeysResponse.success){
+        this.settings = refreshAPIKeysResponse.settings
+      }
+    })
+
+  }
+
   addOriginInputBox() {
 
     this.settings.keys.allowedOrigins.push({ originName: "" })

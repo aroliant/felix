@@ -60,7 +60,7 @@ const routes: Routes = [
     component: OtherComponent,
     children: [
       {
-        path: 'sign-in',
+        path: 'login',
         component: SignInComponent,
       },
     ]
