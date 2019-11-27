@@ -19,27 +19,17 @@ export class UserController {
     const usersAdapter = new FileSync(config.ROOT_FOLDER + '/users.json')
     const usersDB = low(usersAdapter)
 
-    const username = 'Admin1'
-    const defaultPassword = '123456'
-    const role = 'Admin'
+    const username = 'admin'
+    const defaultPassword = 'admin'
+    const role = 'admin'
 
     try {
 
       if (usersDB.get('users').filter({ username: username }).value().length != 0) {
-        return res.json({
-          success: false,
-          message: "User Name already exists"
-        })
+        return console.log('default user already exists')
       }
 
-    } catch (err) {
-
-      return res.json({
-        success: false,
-        message: "Error occured while creating User"
-      })
-
-    }
+    } catch (err) { }
 
     const id = uuidv4()
 
@@ -48,28 +38,16 @@ export class UserController {
       username: username,
       password: crypto.createHmac('sha512', encryptionKey).update(defaultPassword).digest('hex'),
       role: role,
-      status: "Active"
+      status: "active"
     }
 
     try {
-
       usersDB.get('users').push(user).write()
-
     } catch (err) {
-
-      return res.json({
-        success: false,
-        message: "Unable to create User",
-        error: err
-      })
-
+      return console.log('unable to write default user')
     }
 
-    return res.json({
-      success: true,
-      message: "User " + username + " with Password " + defaultPassword + " created successfully",
-    })
-
+    return console.log('default user created')
   }
 
   static loginUser(req, res) {
@@ -238,7 +216,7 @@ export class UserController {
 
     try {
 
-      oldUser = usersDB.get('users').filter({ username: newUser.username}).value()
+      oldUser = usersDB.get('users').filter({ username: newUser.username }).value()
 
     } catch (err) {
 
@@ -252,7 +230,7 @@ export class UserController {
 
     oldUser = oldUser[0]
 
-    for ( var key in oldUser) {
+    for (var key in oldUser) {
 
       if (key == "password" && newUser.password != undefined) {
         newUser.password = crypto.createHmac('sha512', encryptionKey).update(newUser.password).digest('hex')
@@ -266,7 +244,7 @@ export class UserController {
 
     try {
 
-      usersDB.get('users').find({ username: newUser.username}).assign(newUser).write()
+      usersDB.get('users').find({ username: newUser.username }).assign(newUser).write()
 
     } catch (err) {
 
