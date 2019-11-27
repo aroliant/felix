@@ -327,4 +327,13 @@ thead {
   padding: 5px;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+}
+.CopyBtn span {
+  overflow: hidden;
+  white-space: nowrap;
+  height: 41px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 }
