@@ -38,11 +38,11 @@
                         <div class="d-flex flex-row justify-content-between align-items-center mb-2">
                             <div class="d-flex flex-row justify-content-start align-items-center">
                                 <h4 class="font-weight-light m-0">API and Access Keys</h4>
-                                <a class="RefreshBtn"><i class="icofont-refresh mx-2 RefreshBtn__icon"></i></a>
+                                <a (click)="refreshAPIKeys()" class="RefreshBtn"><i class="icofont-refresh mx-2 RefreshBtn__icon"></i></a>
                             </div>
 
                             <label class="SwitchContainer">
-                                <input type="checkbox" class="SwitchContainer__input" checked
+                                <input type="checkbox" class="SwitchContainer__input" checked (click)="updateEnableAPI()"
                                     [(ngModel)]="settings.keys.enableKey" name="enableAPIaccess">
                                 <span class="SwitchSlider RoundedToggle"></span>
                             </label>
@@ -70,7 +70,7 @@
                             </div>
                         </div>
 
-                        <div class="w-100 mt-3">
+                        <div class="w-100 mt-3" *ngIf="settings.keys.enableKey" >
                             <div class="d-flex align-items-center justify-content-start my-2 row mx-0">
                                 <label class="h6 mt-2 mb-0 col-lg-2 p-0 align-self-start">Allowed Origins</label>
                                 <div class="col-lg-10 p-0">
