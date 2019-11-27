@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from 'client/app/services/settings.service';
 import { ToastrService } from 'ngx-toastr';
+import { HelperService } from 'client/app/services/helper.service';
 
 @Component({
   selector: 'app-settings',
@@ -23,6 +24,7 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     private settingsServie: SettingsService,
+    private helperService: HelperService,
     private toastr: ToastrService
   ) { }
 
@@ -35,6 +37,12 @@ export class SettingsComponent implements OnInit {
         this.toastr.error(getSettingsResponse.message)
       }
     })
+
+  }
+
+  copyToClipBoard(key) {
+
+    this.helperService.copyToClipboard(key);
 
   }
 

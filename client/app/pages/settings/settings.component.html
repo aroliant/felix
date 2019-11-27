@@ -50,22 +50,18 @@
                         <div class="form-group row" *ngIf="settings.keys.enableKey">
                             <label class="h6 col-lg-2 align-self-center">App Key</label>
                             <div class="col-lg-10">
-                                <!-- <input type="text" class="form-control" [(ngModel)]="settings.keys.apiKey"
-                                    autocomplete="off" readonly> -->
                                 <div class="w-100 CopyBtn">
-                                    <span class="mx-2 text-secondary">bind key here</span>
-                                    <button class="btn btn-outline-primary">Copy</button>
+                                    <span class="mx-2 text-secondary">{{settings.keys.apiKey}}</span>
+                                    <button class="btn btn-outline-primary" (click)="copyToClipBoard(settings.keys.apiKey)" >Copy</button>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group mb-0 row" *ngIf="settings.keys.enableKey">
                             <label class="h6 col-lg-2 align-self-center">Access Key</label>
                             <div class="col-lg-10">
-                                <!-- <input type="text" class="form-control" [(ngModel)]="settings.keys.accessKey"
-                                    autocomplete="off" readonly> -->
                                 <div class="w-100 CopyBtn">
-                                    <span class="mx-2 text-secondary">bind key here</span>
-                                    <button class="btn btn-outline-primary">Copy</button>
+                                    <span class="mx-2 text-secondary">{{settings.keys.accessKey}}</span>
+                                    <button class="btn btn-outline-primary" (click)="copyToClipBoard(settings.keys.accessKey)" >Copy</button>
                                 </div>
                             </div>
                         </div>
