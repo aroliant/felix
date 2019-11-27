@@ -19,7 +19,9 @@ export class UserService {
   }
 
   loginUser(user) {
+
     return this.httpc.put(this.API_URL + '/user/login', user);
+
   }
 
   getAllUsers() {
