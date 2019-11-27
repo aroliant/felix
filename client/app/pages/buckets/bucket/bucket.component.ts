@@ -52,7 +52,7 @@ export class BucketComponent implements OnInit {
   ) { }
 
   setDestination(str) {
-    
+
   }
 
   ngOnInit() {
@@ -321,6 +321,19 @@ export class BucketComponent implements OnInit {
           if (renameObjectStatus.success) {
             this.closeFolderEditMode(i);
             this.toastr.success('Renamed Sucessfully', 'Success!')
+
+            const objectToSearch = {
+              bucketName: this.bucket.bucketName,
+              path: this.currentPath,
+              name: this.objects[i].name
+            }
+
+            this.mainService.searchObjects(objectToSearch).subscribe((searchObjectResponse: any) => {
+
+              this.objects[i] = searchObjectResponse.objects[0]
+
+            })
+
           }
         })
 
