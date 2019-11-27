@@ -9,9 +9,7 @@
             <table class="table table-hover">
                 <thead class="thead-inverse">
                     <tr>
-                        <th class="User__ID">ID</th>
-                        <th class="User__name">Username</th>
-                        <th class="User__password">Password</th>
+                        <th class="User__name">User</th>
                         <th class="User__role">Role</th>
                         <th class="User__status">Status</th>
                         <th class="User__actions">Actions</th>
@@ -19,12 +17,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let user of users;let userIndex = index">
-                        <td class="User__ID">{{user.id}}</td>
-                        <td class="User__name">{{user.username}}</td>
-                        <td class="User__password">
-                            <input type="password" name="password" class="form-control" value="password"
-                                id="UserPassword" autocomplete="off">
-                        </td>
+                        <td class="User__name">Name: {{user.username}}<br />ID: {{user.id}}</td>
                         <td class="User__role">{{user.role}}</td>
                         <td class="User__status">{{user.status}}</td>
                         <td class="User__actions">
@@ -66,7 +59,7 @@
                     <label for="felixUserRole">Select User Role</label>
                     <select class="form-control" id="felixUserRole" [(ngModel)]="actions.userToAdd.role">
                         <option value="admin">admin</option>
-                        <option value="manager" selected >manager</option>
+                        <option value="manager" selected>manager</option>
                     </select>
                 </div>
                 <div class="form-group">
