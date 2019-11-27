@@ -4,7 +4,7 @@
 
         <div class="row">
             <div class="col-lg-12 p-2">
-                <div class="card card-body shadow-sm border-0">
+                <div class="card card-body shadow-sm border">
                     <div class="form-group mb-0">
                         <h4 class="font-weight-light">Primary Domain</h4>
                         <div class="form-group mb-0">
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="col-lg-12 p-2">
-                <div class="card card-body shadow-sm border-0">
+                <div class="card card-body shadow-sm border">
                     <div class="w-100">
                         <div class="d-flex flex-row justify-content-between align-items-center mb-2">
                             <div class="d-flex flex-row justify-content-start align-items-center">
@@ -50,21 +50,25 @@
                         <div class="form-group row" *ngIf="settings.keys.enableKey">
                             <label class="h6 col-lg-2 align-self-center">App Key</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" [(ngModel)]="settings.keys.apiKey"
-                                    autocomplete="off" readonly>
+                                <div class="w-100 CopyBtn">
+                                    <span class="mx-2 text-secondary">{{settings.keys.apiKey}}</span>
+                                    <button class="btn btn-outline-primary" (click)="copyToClipBoard(settings.keys.apiKey)" >Copy</button>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group mb-0 row" *ngIf="settings.keys.enableKey">
                             <label class="h6 col-lg-2 align-self-center">Access Key</label>
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" [(ngModel)]="settings.keys.accessKey"
-                                    autocomplete="off" readonly>
+                                <div class="w-100 CopyBtn">
+                                    <span class="mx-2 text-secondary">{{settings.keys.accessKey}}</span>
+                                    <button class="btn btn-outline-primary" (click)="copyToClipBoard(settings.keys.accessKey)" >Copy</button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="w-100 mt-3" *ngIf="settings.keys.enableKey" >
                             <div class="d-flex align-items-center justify-content-start my-2 row mx-0">
-                                <label class="h6 m-0 col-lg-2 p-0 align-self-start">Allowed Origins</label>
+                                <label class="h6 mt-2 mb-0 col-lg-2 p-0 align-self-start">Allowed Origins</label>
                                 <div class="col-lg-10 p-0">
                                     <div class="form-group form-inline w-50 ml-1"
                                         *ngFor="let origin of settings.keys.allowedOrigins;let allowedOriginsIndex = index">
