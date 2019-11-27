@@ -36,20 +36,25 @@
                 <div class="card card-body shadow-sm border-0">
                     <div class="w-100">
                         <div class="d-flex flex-row justify-content-between align-items-center mb-2">
-                            <h4 class="font-weight-light m-0">API and Access Keys</h4>
-                            <label class="CheckboxContainer">
-                                <input type="checkbox" checked="checked" [(ngModel)]="settings.keys.enableKey" name="enableAPIaccess">
-                                <span class="CheckboxContainer__checkmark"></span>
+                            <div class="d-flex flex-row justify-content-start align-items-center">
+                                <h4 class="font-weight-light m-0">API and Access Keys</h4>
+                                <a class="RefreshBtn"><i class="icofont-refresh mx-2 RefreshBtn__icon"></i></a>
+                            </div>
+
+                            <label class="SwitchContainer">
+                                <input type="checkbox" class="SwitchContainer__input" checked
+                                    [(ngModel)]="settings.keys.enableKey" name="enableAPIaccess">
+                                <span class="SwitchSlider RoundedToggle"></span>
                             </label>
                         </div>
-                        <div class="form-group row" *ngIf="settings.keys.enableKey" >
+                        <div class="form-group row" *ngIf="settings.keys.enableKey">
                             <label class="h6 col-lg-2 align-self-center">App Key</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" [(ngModel)]="settings.keys.apiKey"
                                     autocomplete="off" readonly>
                             </div>
                         </div>
-                        <div class="form-group mb-0 row" *ngIf="settings.keys.enableKey" >
+                        <div class="form-group mb-0 row" *ngIf="settings.keys.enableKey">
                             <label class="h6 col-lg-2 align-self-center">Access Key</label>
                             <div class="col-lg-10">
                                 <input type="text" class="form-control" [(ngModel)]="settings.keys.accessKey"

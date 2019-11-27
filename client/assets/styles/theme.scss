@@ -222,3 +222,98 @@ thead {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+// Toggle radio btn
+.SwitchContainer {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  margin: 0;
+}
+
+.SwitchContainer .SwitchContainer__input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.SwitchSlider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: map-get($theme-colors, "light");
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.SwitchSlider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 3px;
+  background-color: map-get($theme-colors, "white");
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.SwitchContainer__input:checked + .SwitchSlider {
+  background-color: map-get($theme-colors, "primary");
+}
+
+.SwitchContainer__input:focus + .SwitchSlider {
+  box-shadow: 0 0 1px map-get($theme-colors, "primary");
+}
+
+.SwitchContainer__input:checked + .SwitchSlider:before {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+}
+
+/* Rounded SwitchSliders */
+.SwitchSlider.RoundedToggle {
+  border-radius: 25px;
+}
+
+.SwitchSlider.RoundedToggle:before {
+  border-radius: 50%;
+}
+
+// Refresh Btn
+.RefreshBtn__icon {
+  cursor: pointer;
+  padding: 10px;
+  color: map-get($theme-colors, "primary");
+  font-size: 20px;
+}
+.RefreshBtn__icon:hover {
+  font-size: 25px;
+}
+.RefreshBtn {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  transform-origin: center;
+  height: 40px;
+}
+.RefreshBtn:hover {
+  transition: all 0.3s linear;
+  animation: rotation 1s infinite linear;
+  transform-origin: center;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
