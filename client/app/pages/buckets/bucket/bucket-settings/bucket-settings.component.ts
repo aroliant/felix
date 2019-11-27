@@ -32,7 +32,7 @@ export class BucketSettingsComponent implements OnInit {
     allowedHeaders: [],
     accessControlMaxAge: 0
   }
-  editCORSIndex = 0
+  editCORSIndex = -1
   newDomain = {
     name: "",
     sslEnabled: false,
@@ -270,6 +270,7 @@ export class BucketSettingsComponent implements OnInit {
     this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
       if (updateBucketStatus.success) {
         this.toastr.success(updateBucketStatus.message, 'Success!')
+        this.closeEditCORSoptionModal()
       } else {
         this.toastr.error(updateBucketStatus.message)
       }
