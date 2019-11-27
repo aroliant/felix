@@ -91,18 +91,21 @@
                                     <a class="text-primary" href="fibon.blaz.app" target="_blank">{{cors.origin}}</a>
                                 </td>
                                 <td class="CORS__method">
-                                    <span class="text-secondary">Methods</span>
-                                    <div class="CORS__method_menu_content">
-                                        <div *ngFor="let method of cors.allowedMethods" class="p-2">
+                                    <span class="text-secondary">
+                                        <span *ngFor="let method of cors.allowedMethods" class="p-2">
                                             {{method}} &nbsp;
-                                        </div>
-                                    </div>
+                                        </span>
+                                    </span>
                                 </td>
                                 <td class="CORS__headers">
-                                    <span class="text-secondary">Headers</span>
+                                    <span class="text-secondary">
+                                        <span *ngIf="cors.allowedHeaders.length == 0">No headers</span>
+                                        <span *ngIf="cors.allowedHeaders.length > 0">{{cors.allowedHeaders.length}}
+                                            headers</span>
+                                    </span>
                                     <div class="CORS__headers_menu_content">
                                         <div *ngFor="let header of cors.allowedHeaders" class="p-2">
-                                            {{header.name}} &nbsp;
+                                            {{header.name}} <br />
                                         </div>
                                     </div>
                                 </td>
