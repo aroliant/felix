@@ -18,7 +18,7 @@ const defaultsSettingsDB = {
     sslEnabled: false,
     forceSSL: false,
     keys: {
-      enableKey: false,
+      enableAPI: false,
       accessKey: crypto.createHmac('sha512', accessEncryptionKey).update(date.toString()).digest('hex'),
       apiKey: crypto.createHmac('sha512', apiEncryptionKey).update(date.toString()).digest('hex'),
       allowedOrigins: []
@@ -64,13 +64,17 @@ export class SettingsController {
     const settings = req.body
 
     try {
+
       settingsDB.get('settings').assign(settings).write()
+
     } catch (err) {
+
       return res.json({
         success: false,
         message: "Unable to update Settings",
         error: err
       });
+
     }
 
     return res.json({
@@ -78,6 +82,41 @@ export class SettingsController {
       message: "Settings Updated !"
     })
 
+
+  }
+
+  static generateKeys(req, res) {
+
+    const settingsAdapter = new FileSync(config.ROOT_FOLDER + '/settings.json')
+    const settingsDB = low(settingsAdapter)
+
+    var settings = req.body
+
+    const date = new Date()
+
+    settings.keys.accessKey= crypto.createHmac('sha512', accessEncryptionKey).update(date.toString()).digest('hex')
+    settings.keys.apiKey= crypto.createHmac('sha512', apiEncryptionKey).update(date.toString()).digest('hex')
+
+    try {
+
+      settingsDB.get('settings').assign(settings).write()
+      settings = settingsDB.get('settings').value()
+
+    } catch (err) {
+
+      return res.json({
+        success: false,
+        message: "Unable to generate keys",
+        error: err.message
+      });
+
+    }
+
+    return res.json({
+      success: true,
+      message: "Keys Generated !",
+      settings: settings
+    })
 
   }
 
