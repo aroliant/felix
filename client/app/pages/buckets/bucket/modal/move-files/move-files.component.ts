@@ -16,7 +16,9 @@ export class MoveFilesComponent implements OnInit, OnChanges {
   @Input() currentPath;
   @Output() onHide = new EventEmitter<boolean>();
 
-  directoryTree = []
+  directoryTree = {
+    children: []
+  }
 
   constructor(private mainService: MainService, private toastr: ToastrService) { }
 
@@ -29,6 +31,7 @@ export class MoveFilesComponent implements OnInit, OnChanges {
       this.mainService.getAllDirectories(this.bucket.bucketName).subscribe((res: any) => {
         if (res.success) {
           this.directoryTree = res.tree
+          console.log(this.directoryTree)
         }
       })
     }

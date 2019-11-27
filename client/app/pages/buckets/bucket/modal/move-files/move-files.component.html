@@ -13,10 +13,8 @@
       </div>
       <div class="modal-body">
         <div class="MoveFileBrowser">
-          <div class="list-group" *ngIf="directoryTree.children != undefined" >
-
-            <folders *ngFor="let branch of directoryTree.children" [branch]="branch" ></folders>
-
+          <div class="list-group">
+            <folders *ngFor="let branch of directoryTree.children" [branch]="branch"></folders>
           </div>
         </div>
 

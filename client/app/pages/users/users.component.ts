@@ -12,7 +12,9 @@ export class UsersComponent implements OnInit {
 
   users = []
   actions = {
-    userToDelete: {},
+    userToDelete: {
+      username: ''
+    },
     userToAdd: {
       username: "",
       password: "",
@@ -54,7 +56,7 @@ export class UsersComponent implements OnInit {
 
     var user = {}
 
-    if(this.users[this.actions.userToEditIndex].password == undefined || this.users[this.actions.userToEditIndex].password == ''){
+    if (this.users[this.actions.userToEditIndex].password == undefined || this.users[this.actions.userToEditIndex].password == '') {
 
       user = {
         username: this.users[this.actions.userToEditIndex].username,
@@ -75,11 +77,11 @@ export class UsersComponent implements OnInit {
 
     }
 
-    this.userService.updateUser(user).subscribe((updateUserResponse:any) => {
-      if(updateUserResponse.success){
+    this.userService.updateUser(user).subscribe((updateUserResponse: any) => {
+      if (updateUserResponse.success) {
         this.toastr.success(updateUserResponse.message, 'Success!')
         this.closeEditUserModal()
-      }else{
+      } else {
         this.toastr.error(updateUserResponse.message)
         this.closeEditUserModal()
       }
