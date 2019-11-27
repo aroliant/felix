@@ -24,10 +24,24 @@ export class AuthService {
 
     try {
 
-      if (localStorage.getItem('token') != null)
-        this.router.navigate(['/']);
-      else
+      if (localStorage.getItem('token') != null){
+
+        const token = localStorage.getItem('token')
+
+        if(!jwtHelper.isTokenExpired(token)){
+          this.router.navigate(['/']);
+        }else{
+          this.router.navigate(['/login']);
+        }
+
+      }
+
+      else{
+
         this.router.navigate(['/login']);
+
+      }
+
 
     } catch (e) {
 
