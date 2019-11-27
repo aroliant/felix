@@ -1,6 +1,7 @@
-import { Component, Input, } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, } from '@angular/core';
+import Bus from '../../../../../../../app/services/Bus.service';
 
-  export interface Branch {
+export interface Branch {
   name: string;
   relativePath: string,
   type: string,
@@ -10,11 +11,23 @@ import { Component, Input, } from '@angular/core';
 }
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'folders',
   templateUrl: './folder-component.component.html',
 })
-export class FoldersComponent{
+export class FoldersComponent implements OnInit {
 
   @Input() branch: Branch
+
+  ngOnInit() {
+
+  }
+
+  selectFolder(folder) {
+    // Broadcast to Move Files Component
+    Bus.FILE_MOV_PATH = folder
+  }
+
+
 
 }
