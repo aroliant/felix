@@ -31,7 +31,7 @@ export default class Utils {
     const dreeDirectoriesOptions = {
       stat: false,
       hash: false,
-      sizeInBytes: false,
+      sizeInBytes: true,
       size: true,
       normalize: true,
       extensions: []

@@ -45,7 +45,7 @@ export class BucketController {
     const bucket = {
       bucketID: id,
       bucketName: params.bucketName,
-      size: "0KB",
+      size: "0",
       items: "0",
       database: params.bucketName + ".bucket.json",
       createdBy: params.userID,
@@ -69,7 +69,7 @@ export class BucketController {
       bucketDB.set('bucket', {
         bucketName: req.body.bucketName,
         bucketID: id,
-        size: "0KB",
+        size: "0",
         items: "0",
         database: bucket.database,
         createdBy: bucket.createdBy,
@@ -152,23 +152,24 @@ export class BucketController {
       });
     }
 
-    buckets.map((bucket, index) => {
+    // TODO: These should be preprocesses / size should be in bytes
+    // buckets.map((bucket, index) => {
 
-      const path = config.ROOT_FOLDER + '/buckets/' + bucket.bucketName
-      var tree
+    //   const path = config.ROOT_FOLDER + '/buckets/' + bucket.bucketName
+    //   var tree
 
-      try {
+    //   try {
 
-        tree = Utils.scan(path)
+    //     tree = Utils.scan(path)
 
-      } catch (err) { }
+    //   } catch (err) { }
 
-      if (bucket.size != undefined && tree.size != undefined)
-        bucket.size = tree.size
-      if (bucket.items != undefined)
-        bucket.items = Number(Utils.recursiveTreeParsing(tree)) - 1
+    //   if (bucket.size != undefined && tree.size != undefined)
+    //     bucket.size = tree.size
+    //   if (bucket.items != undefined)
+    //     bucket.items = Number(Utils.recursiveTreeParsing(tree)) - 1
 
-    })
+    // })
 
     return res.json({
       success: true,
@@ -305,24 +306,25 @@ export class BucketController {
           if (!(object.name == params.bucketName || object.name == path.basename(params.path))) {
 
             const path = rootPath + params.path + object.name
-            var tree
+            // TODO: These should be preprocessed with MetaManager
+            // var tree
 
-            try {
+            // try {
 
-              tree = Utils.scan(path)
+            //   tree = Utils.scan(path)
 
-            } catch (err) {
-              return res.json({
-                success: false,
-                message: "Unable to find Folder",
-                error: err.message,
-                object: object
-              });
-            }
+            // } catch (err) {
+            //   return res.json({
+            //     success: false,
+            //     message: "Unable to find Folder",
+            //     error: err.message,
+            //     object: object
+            //   });
+            // }
 
-            object.size = tree.size
+            // object.size = tree.size
 
-            object.items = Number(Utils.recursiveTreeParsing(tree)) - 1
+            // object.items = Number(Utils.recursiveTreeParsing(tree)) - 1
 
           }
 

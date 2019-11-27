@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter, } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, } from '@angular/core';
 import { MainService } from 'client/app/services/main.service';
 import { ToastrService } from 'ngx-toastr';
+import Bus from '../../../../../../app/services/Bus.service';
 
 @Component({
   selector: 'app-modal-move-files',
   templateUrl: './move-files.component.html',
   styleUrls: ['./move-files.component.scss']
 })
-export class MoveFilesComponent implements OnInit {
+export class MoveFilesComponent implements OnInit, OnChanges {
 
   @Input() show: Boolean;
   @Input() objects: [];
@@ -33,6 +34,10 @@ export class MoveFilesComponent implements OnInit {
     }
   }
 
+  _moveObjects() {
+    console.log(Bus.FILE_MOV_PATH)
+  }
+
   moveObjects() {
     var moveObjects = {}
 
@@ -46,7 +51,7 @@ export class MoveFilesComponent implements OnInit {
   }
 
   setDestination(str) {
-    
+
   }
 
   hideModal() {
