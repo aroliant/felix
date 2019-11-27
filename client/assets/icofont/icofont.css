@@ -98,6 +98,11 @@ url("./fonts/icofont.woff") format("woff");
   content: "\ec53";
 }
 
+.icofont-refresh:before
+{
+  content: "\efd1";
+}
+
 .icofont-xs
 {
   font-size: .5em;
