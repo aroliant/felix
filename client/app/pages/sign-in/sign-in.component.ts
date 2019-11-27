@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
     if (localStorage.getItem('token') != null)
       this.router.navigate(['/']);
     else
-      this.router.navigate(['/sign-in']);
+      this.router.navigate(['/login']);
 
   }
 
