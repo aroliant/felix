@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors');
+import { UserController } from './server/controllers'
+
 
 const routes = require('./server/routes/index.route');
 
@@ -27,6 +29,9 @@ app.get('/', function (req, res) {
 });
 
 app.use('/', routes);
+
+// Create Default User
+UserController.createDefaultUser()
 
 app.listen(PORT, function () {
     console.log('The API Server is Listening on Port : ', PORT);
