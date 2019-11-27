@@ -1,10 +1,16 @@
 import FileSync from 'lowdb/adapters/FileSync'
 import low from 'lowdb'
+import crypto from 'crypto';
 
 import config from '../config'
 
 const settingsAdapter = new FileSync(config.ROOT_FOLDER + '/settings.json')
 const settingsDB = low(settingsAdapter)
+
+const accessEncryptionKey = '=77FJJ*4ZyjgzsK@'
+const apiEncryptionKey = '&ncGzV5LvqX6VygA'
+
+const date = new Date()
 
 const defaultsSettingsDB = {
   settings: {
@@ -13,8 +19,8 @@ const defaultsSettingsDB = {
     forceSSL: false,
     keys: {
       enableKey: false,
-      accessKey: "",
-      apiKey: "",
+      accessKey: crypto.createHmac('sha512', accessEncryptionKey).update(date.toString()).digest('hex'),
+      apiKey: crypto.createHmac('sha512', apiEncryptionKey).update(date.toString()).digest('hex'),
       allowedOrigins: []
     }
   }
