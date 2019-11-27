@@ -2,8 +2,10 @@ import FileSync from 'lowdb/adapters/FileSync'
 import low from 'lowdb'
 import uuidv4 from 'uuid/v4'
 import crypto from 'crypto';
-
 import config from '../config'
+
+const jwt = require('jsonwebtoken')
+const jwtSignature = ';k9Ugd-/U#{3WUg>'
 
 const usersAdapter = new FileSync(config.ROOT_FOLDER + '/users.json')
 const usersDB = low(usersAdapter)
@@ -88,7 +90,7 @@ export class UserController {
 
     return res.json({
       success: true,
-      user: user
+      token: jwt.sign(user, jwtSignature)
     })
 
   }
