@@ -22,4 +22,8 @@ export class SettingsService {
     return this.httpc.put(this.API_URL + '/settings/', settings);
   }
 
+  generateKeys(settings) {
+    return this.httpc.put(this.API_URL + '/settings/generateKeys', settings);
+  }
+
 }
