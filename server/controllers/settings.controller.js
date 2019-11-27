@@ -94,8 +94,8 @@ export class SettingsController {
 
     const date = new Date()
 
-    settings.keys.accessKey= crypto.createHmac('sha512', accessEncryptionKey).update(date.toString()).digest('hex')
-    settings.keys.apiKey= crypto.createHmac('sha512', apiEncryptionKey).update(date.toString()).digest('hex')
+    settings.keys.accessKey = crypto.createHmac('sha512', accessEncryptionKey).update(date.toString()).digest('hex')
+    settings.keys.apiKey = crypto.createHmac('sha512', apiEncryptionKey).update(date.toString()).digest('hex')
 
     try {
 

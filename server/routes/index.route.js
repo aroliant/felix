@@ -22,7 +22,7 @@ router.get('/:bucketName/**', (req, res) => {
   const relativePath = req.params[0]
   const filePath = config.ROOT_FOLDER + "/buckets/" + bucketName + "/" + relativePath
   const fileName = path.basename(filePath)
-  
+
 
   fs.exists(filePath, function (exists) {
     if (exists) {
