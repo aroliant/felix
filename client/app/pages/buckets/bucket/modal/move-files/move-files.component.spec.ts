@@ -8,9 +8,9 @@ describe('MoveFilesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MoveFilesComponent ]
+      declarations: [MoveFilesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

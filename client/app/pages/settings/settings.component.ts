@@ -66,14 +66,14 @@ export class SettingsComponent implements OnInit {
 
   updateEnableAPI() {
 
-    this.settingsServie.updateSettings(this.settings).subscribe(() => {})
+    this.settingsServie.updateSettings(this.settings).subscribe(() => { })
 
   }
 
   refreshAPIKeys() {
 
-    this.settingsServie.generateKeys(this.settings).subscribe((refreshAPIKeysResponse:any) => {
-      if(refreshAPIKeysResponse.success){
+    this.settingsServie.generateKeys(this.settings).subscribe((refreshAPIKeysResponse: any) => {
+      if (refreshAPIKeysResponse.success) {
         this.settings = refreshAPIKeysResponse.settings
       }
     })

@@ -1,8 +1,8 @@
 <details class="ml-3">
   <summary class="list-group-item list-group-item-action" (click)="selectFolder(branch)">{{ branch.name }}</summary>
-  <div *ngIf="branch.children != undefined" >
+  <div *ngIf="branch.children != undefined">
     <div *ngFor="let branch of branch.children">
-    <folders [branch]="branch"></folders>
+      <folders [branch]="branch"></folders>
     </div>
   </div>
 </details>

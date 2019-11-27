@@ -330,9 +330,9 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" *ngIf="editCORSIndex != -1" >
+            <div class="modal-body" *ngIf="editCORSIndex != -1">
                 <h6 class="m-0">Origin</h6>
-                <div class="form-group" >
+                <div class="form-group">
                     <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
                     <input type="text" class="form-control" [(ngModel)]="bucket.cors[this.editCORSIndex].origin"
                         placeholder="Enter the name of this bucket" autocomplete="off">
