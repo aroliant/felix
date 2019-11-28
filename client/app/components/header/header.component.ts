@@ -27,16 +27,16 @@ export class HeaderComponent implements OnInit {
 
 
   openSearchOverlay() {
-    document.getElementById("HeaderTopSearch__contentOverlay").style.display = "block";
+    document.getElementById('HeaderTopSearch__contentOverlay').style.display = 'block';
   }
   openSearchMenu() {
-    document.getElementById("HeaderTopSearch__content").style.display = "block";
+    document.getElementById('HeaderTopSearch__content').style.display = 'block';
   }
 
   // close search and overlay
   closeSearchAndOverlay() {
-    document.getElementById("HeaderTopSearch__content").style.display = "none";
-    document.getElementById("HeaderTopSearch__contentOverlay").style.display = "none";
+    document.getElementById('HeaderTopSearch__content').style.display = 'none';
+    document.getElementById('HeaderTopSearch__contentOverlay').style.display = 'none';
   }
 
 }

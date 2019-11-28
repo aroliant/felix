@@ -108,10 +108,13 @@ export class BucketComponent implements OnInit {
   }
 
   selectObject(event, index) {
-    if (event.target.checked)
+    if (event.target.checked) {
       ++this.actions.selectedObjectsCount
-    else
+    } else {
       --this.actions.selectedObjectsCount
+    }
+
+
     this.states.checkedAll = false
     const val = event.target.value === 'on' ? true : false
     this.objects[index].isSelected = val

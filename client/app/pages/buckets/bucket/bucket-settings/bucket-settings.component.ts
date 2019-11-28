@@ -19,7 +19,7 @@ export class BucketSettingsComponent implements OnInit {
     },
     domains: [],
     cors: [{
-      origin: "",
+      origin: '',
       allowedMethods: [],
       allowedHeaders: [],
       accessControlMaxAge: 0
@@ -27,14 +27,14 @@ export class BucketSettingsComponent implements OnInit {
   }
   deleteConfirmationBucketName = ''
   newCORS = {
-    origin: "",
+    origin: '',
     allowedMethods: [],
     allowedHeaders: [],
     accessControlMaxAge: 0
   }
   editCORSIndex = -1
   newDomain = {
-    name: "",
+    name: '',
     sslEnabled: false,
     forceSSL: false
   }
@@ -64,10 +64,10 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   openFileListingPrivacy() {
-    document.getElementById("FileListingPrivacy").style.display = "flex";
+    document.getElementById('FileListingPrivacy').style.display = 'flex';
   }
   closeFileListingPrivacy() {
-    document.getElementById("FileListingPrivacy").style.display = "none";
+    document.getElementById('FileListingPrivacy').style.display = 'none';
   }
 
   saveAndCloseFileListingPrivacy() {
@@ -89,18 +89,18 @@ export class BucketSettingsComponent implements OnInit {
 
   openDeleteBucketModal() {
     this.deleteConfirmationBucketName = ''
-    document.getElementById("DeleteBucketModal").style.display = "block";
+    document.getElementById('DeleteBucketModal').style.display = 'block';
   }
   closeDeleteBucketModal() {
-    document.getElementById("DeleteBucketModal").style.display = "none";
+    document.getElementById('DeleteBucketModal').style.display = 'none';
   }
 
   openPurgeModal() {
     this.deleteConfirmationBucketName = ''
-    document.getElementById("PurgeModal").style.display = "block";
+    document.getElementById('PurgeModal').style.display = 'block';
   }
   closePurgeModal() {
-    document.getElementById("PurgeModal").style.display = "none";
+    document.getElementById('PurgeModal').style.display = 'none';
   }
 
   deleteBucket() {
@@ -167,7 +167,7 @@ export class BucketSettingsComponent implements OnInit {
     this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
       if (updateBucketStatus.success) {
         this.newDomain = {
-          name: "",
+          name: '',
           sslEnabled: false,
           forceSSL: false
         }
@@ -183,7 +183,7 @@ export class BucketSettingsComponent implements OnInit {
     this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
       if (updateBucketStatus.success) {
         this.newDomain = {
-          name: "",
+          name: '',
           sslEnabled: false,
           forceSSL: false
         }
@@ -210,7 +210,7 @@ export class BucketSettingsComponent implements OnInit {
     this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
       if (updateBucketStatus.success) {
         this.newCORS = {
-          origin: "",
+          origin: '',
           allowedMethods: [],
           allowedHeaders: [],
           accessControlMaxAge: 0
@@ -236,10 +236,10 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   openCORSoptionModal() {
-    document.getElementById("CORSoptionModal").style.display = "block";
+    document.getElementById('CORSoptionModal').style.display = 'block';
   }
   closeCORSoptionModal() {
-    document.getElementById("CORSoptionModal").style.display = "none";
+    document.getElementById('CORSoptionModal').style.display = 'none';
   }
 
   addHeaderCORS() {
@@ -260,10 +260,10 @@ export class BucketSettingsComponent implements OnInit {
 
   openEditCORSoptionModal(index) {
     this.editCORSIndex = index
-    document.getElementById("editCORSoptionModal").style.display = "block";
+    document.getElementById('editCORSoptionModal').style.display = 'block';
   }
   closeEditCORSoptionModal() {
-    document.getElementById("editCORSoptionModal").style.display = "none";
+    document.getElementById('editCORSoptionModal').style.display = 'none';
   }
 
   editCORSOptions() {

@@ -29,8 +29,8 @@ export class SignInComponent implements OnInit {
 
   login() {
 
-    if (!(this.user.username == null || this.user.username == "")) {
-      if ((this.user.password == null || this.user.password == "")) {
+    if (!(this.user.username == null || this.user.username == '')) {
+      if ((this.user.password == null || this.user.password == '')) {
         this.toastr.error('Enter Password')
         return false;
       }

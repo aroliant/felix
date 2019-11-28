@@ -16,9 +16,9 @@ export class UsersComponent implements OnInit {
       username: ''
     },
     userToAdd: {
-      username: "",
-      password: "",
-      role: ""
+      username: '',
+      password: '',
+      role: ''
     },
     userToEditIndex: 0
   }
@@ -97,9 +97,9 @@ export class UsersComponent implements OnInit {
         this.users.push(this.actions.userToAdd)
         this.closeAddUserModal()
         this.actions.userToAdd = {
-          username: "",
-          password: "",
-          role: ""
+          username: '',
+          password: '',
+          role: ''
         }
       } else {
         this.toastr.error(userAddStatus.message)
@@ -111,26 +111,26 @@ export class UsersComponent implements OnInit {
 
 
   openAddUserModal() {
-    document.getElementById("AddUserModal").style.display = "block";
+    document.getElementById('AddUserModal').style.display = 'block';
   }
   closeAddUserModal() {
-    document.getElementById("AddUserModal").style.display = "none";
+    document.getElementById('AddUserModal').style.display = 'none';
   }
 
   openEditUserModal(userIndex) {
     this.actions.userToEditIndex = userIndex
-    document.getElementById("EditUserModal").style.display = "block";
+    document.getElementById('EditUserModal').style.display = 'block';
   }
   closeEditUserModal() {
-    document.getElementById("EditUserModal").style.display = "none";
+    document.getElementById('EditUserModal').style.display = 'none';
   }
 
   openDeleteUserModal(userIndex) {
     this.actions.userToDelete = this.users[userIndex]
-    document.getElementById("DeleteUserModal").style.display = "block";
+    document.getElementById('DeleteUserModal').style.display = 'block';
   }
   closeDeleteUserModal() {
-    document.getElementById("DeleteUserModal").style.display = "none";
+    document.getElementById('DeleteUserModal').style.display = 'none';
   }
 
 }
