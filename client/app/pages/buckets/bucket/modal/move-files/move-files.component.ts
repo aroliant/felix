@@ -38,18 +38,21 @@ export class MoveFilesComponent implements OnInit, OnChanges {
   }
 
   _moveObjects() {
-    console.log(Bus.FILE_MOV_PATH)
-  }
+    console.log("Destination Path: " + Bus.FILE_MOV_PATH['relativePath'])
+    var moveObjects = {
+      bucketName: this.bucket.bucketName,
+      dest: '/' + Bus.FILE_MOV_PATH['relativePath'],
+      paths: []
+    }
 
-  moveObjects() {
-    var moveObjects = {}
+    this.objects.map((object, i) => {
+      moveObjects.paths.push(this.currentPath + object['name'])
+    })
+
+    console.log(moveObjects)
 
     this.mainService.moveObjects(moveObjects).subscribe((moveObjectsStatus: any) => {
-      if (moveObjectsStatus.success) {
-        this.toastr.success(moveObjectsStatus.message, 'Success!')
-      } else {
-        this.toastr.error(moveObjectsStatus.message)
-      }
+      this.onHide.emit(moveObjectsStatus);
     })
   }
 

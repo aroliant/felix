@@ -193,6 +193,19 @@ export class BucketComponent implements OnInit {
     this.actions.objectsToDelete = []
   }
 
+  onHideMoveFiles(event) {
+    if (event.success) {
+      this.actions.objectsToMove.map((objectToMove, i) => {
+        this.objects.splice(this.objects.indexOf(objectToMove), 1)
+      })
+      this.actions.selectedObjectsCount -= this.actions.objectsToMove.length
+      this.toastr.success(event.message, 'Success!');
+    } else {
+      this.toastr.error(event.message);
+    }
+    this.hideMoveObjectsModal()
+  }
+
   onHide(event) {
     this.modalStates = {
       delete: false,
