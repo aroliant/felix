@@ -451,18 +451,15 @@ export class BucketController {
     const params = req.body
     var messages = []
 
-    const dest = config.ROOT_FOLDER + '/buckets/' + params.bucketName + params.dest
+    const dest = config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + params.dest
 
-    // var paths = []
-    // params.paths.map((path, i) => {
-    //   paths.push(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path)
-    // })
+    const pathLib = require('path')
 
     params.paths.map((path, i) => {
 
       try {
 
-        fs.moveSync(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path, dest, { overwrite: true })
+        fs.moveSync(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path, dest + '/' + pathLib.basename(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path), { overwrite: true })
 
         messages.push({
           success: true,
