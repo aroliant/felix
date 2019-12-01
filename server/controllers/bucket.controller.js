@@ -350,38 +350,42 @@ export class BucketController {
       bucketName: params.bucketName,
       path: params.path,
       treeData: Utils.scanAll(_path)
+    }).then(() => {
+
+      klaw(_path, { depthLimit: 0 })
+        .pipe(processObject)
+        .on('data', item => objects.push(item))
+        .on('error', (err, item) => {
+          return res.json({
+            success: false,
+            message: "Unable to search Objects",
+            error: err
+          });
+        })
+        .on('end', () => {
+          if (!params.name) {
+            directories = directories.splice(1)
+          }
+
+          // Fill the meta manager data
+
+          const metas = MetaManager.getMetaData(params.bucketName, params.path)
+
+          files.forEach((file, index) => {
+            files[index].public = metas[file.name].public
+            files[index].sharingExpiresOn = metas[file.name].sharingExpiresOn
+            files[index].meta = metas[file.name].meta
+          })
+
+          return res.json({
+            success: true,
+            objects: directories.concat(files)
+          })
+        })
+
     })
 
-    klaw(_path, { depthLimit: 0 })
-      .pipe(processObject)
-      .on('data', item => objects.push(item))
-      .on('error', (err, item) => {
-        return res.json({
-          success: false,
-          message: "Unable to search Objects",
-          error: err
-        });
-      })
-      .on('end', () => {
-        if (!params.name) {
-          directories = directories.splice(1)
-        }
 
-        // Fill the meta manager data
-
-        const metas = MetaManager.getMetaData(params.bucketName, params.path)
-
-        files.forEach((file, index) => {
-          files[index].public = metas[file.name].public
-          files[index].sharingExpiresOn = metas[file.name].sharingExpiresOn
-          files[index].meta = metas[file.name].meta
-        })
-
-        return res.json({
-          success: true,
-          objects: directories.concat(files)
-        })
-      })
 
   }
 
