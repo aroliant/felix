@@ -28,10 +28,19 @@ export class MetaManager {
 
         const meta = oldMeta.find({ name: _.name }).value()
 
-        data.treeData.children[i].id = data.treeData.children[i].name
-        data.treeData.children[i].public = meta.public ? meta.public : false
-        data.treeData.children[i].sharingExpiresOn = meta.sharingExpiresOn ? sharingExpiresOn : ''
-        data.treeData.children[i].meta = meta.meta ? meta.meta : {}
+        if (meta) {
+          data.treeData.children[i].id = data.treeData.children[i].name
+          data.treeData.children[i].public = meta.public ? meta.public : false
+          data.treeData.children[i].sharingExpiresOn = meta.sharingExpiresOn ? meta.sharingExpiresOn : ''
+          data.treeData.children[i].meta = meta.meta ? meta.meta : {}
+        } else {
+          data.treeData.children[i].id = data.treeData.children[i].name
+          data.treeData.children[i].public = false
+          data.treeData.children[i].sharingExpiresOn = ''
+          data.treeData.children[i].meta = {}
+        }
+
+
       })
 
       db.get('meta').assign(data.treeData).write()
