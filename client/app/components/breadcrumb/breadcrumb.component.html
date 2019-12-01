@@ -6,12 +6,13 @@
         <div>
             <h4 class="m-0 PresentBucket__name">{{bucket?.bucketName}}</h4>
             <div class="PresentBucket__info">{{bucket?.size}} / {{bucket?.items}} items</div>
-            <div class="small"><a href="http://{{bucket?.bucketName}}.blaz.app" target="_blank">https://{{bucket?.bucketName}}.blaz.app</a></div>
+            <div class="small"><a href="http://{{bucket?.bucketName}}.blaz.app"
+                    target="_blank">https://{{bucket?.bucketName}}.blaz.app</a></div>
         </div>
     </div>
 
     <div class="BucketNaviation pt-3">
-        <a routerLink="/buckets/{{bucket?.bucketName}}" [class.BucketNaviation__itemActive]="isFilesTabActive"
+        <a (click)="navigateToRoot(bucket?.bucketName)" [class.BucketNaviation__itemActive]="isFilesTabActive"
             class="BucketNaviation__item">Files</a>
         <a routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings" routerLinkActive="BucketNaviation__itemActive"
             class="BucketNaviation__item">Settings</a>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -12,10 +12,14 @@ export class BreadcrumbComponent implements OnInit, OnChanges {
 
   isFilesTabActive = false
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
+  }
+
+  navigateToRoot(bucketName) {
+    this.router.navigate([`/buckets/${bucketName}`], { queryParams: { path: '/' } })
   }
 
   ngOnChanges() {
