@@ -31,14 +31,12 @@ export class MoveFilesComponent implements OnInit, OnChanges {
       this.mainService.getAllDirectories(this.bucket.bucketName).subscribe((res: any) => {
         if (res.success) {
           this.directoryTree = res.tree
-          console.log(this.directoryTree)
         }
       })
     }
   }
 
   _moveObjects() {
-    console.log("Destination Path: " + Bus.FILE_MOV_PATH['relativePath'])
     var moveObjects = {
       bucketName: this.bucket.bucketName,
       dest: '/' + Bus.FILE_MOV_PATH['relativePath'],
@@ -49,9 +47,8 @@ export class MoveFilesComponent implements OnInit, OnChanges {
       moveObjects.paths.push(this.currentPath + object['name'])
     })
 
-    console.log(moveObjects)
-
     this.mainService.moveObjects(moveObjects).subscribe((moveObjectsStatus: any) => {
+      moveObjectsStatus['spliceMoveObjects'] = ('/' + Bus.FILE_MOV_PATH['relativePath'] + '/' != this.currentPath)
       this.onHide.emit(moveObjectsStatus);
     })
   }

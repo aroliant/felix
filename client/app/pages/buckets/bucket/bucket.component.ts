@@ -195,10 +195,18 @@ export class BucketComponent implements OnInit {
 
   onHideMoveFiles(event) {
     if (event.success) {
-      this.actions.objectsToMove.map((objectToMove, i) => {
-        this.objects.splice(this.objects.indexOf(objectToMove), 1)
-      })
-      this.actions.selectedObjectsCount -= this.actions.objectsToMove.length
+      if (event.spliceMoveObjects) {
+        this.actions.objectsToMove.map((objectToMove, i) => {
+          this.objects.splice(this.objects.indexOf(objectToMove), 1)
+        })
+        this.actions.selectedObjectsCount -= this.actions.objectsToMove.length
+      } else {
+        this.objects.map((object, index) => {
+          object.isSelected = false
+          return object
+        })
+        this.actions.selectedObjectsCount = 0
+      }
       this.toastr.success(event.message, 'Success!');
     } else {
       this.toastr.error(event.message);
