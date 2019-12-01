@@ -22,7 +22,11 @@ router.route('/objects/').post((req, res) => BucketController.searchObjects(req,
 router.route('/objects/delete').post((req, res) => BucketController.deleteObjects(req, res));
 
 router.route('/objects/folder').post((req, res) => BucketController.createFolder(req, res));
+
 router.route('/objects/move').put((req, res) => BucketController.moveObjects(req, res));
+router.route('/objects/share').put((req, res) => BucketController.shareObject(req, res));
+router.route('/objects/filepermissions').put((req, res) => BucketController.updateObjectPermission(req, res));
+router.route('/objects/meta').put((req, res) => BucketController.updateObjectMeta(req, res));
 
-
+// File Upload
 router.route('/objects/*').put((req, res) => BucketController.uploadObjects(req, res));

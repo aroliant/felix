@@ -20,12 +20,18 @@ export class MetaManager {
 
       db.defaults({ "meta": {} }).write()
 
-      // TODO: Read old data to copy and update for public, sharingExpiresOn & meta
+      // Read old data to copy and update for public, sharingExpiresOn & meta
+
+      const oldMeta = db.get('meta').get('children')
 
       data.treeData.children.forEach((_, i) => {
-        data.treeData.children[i].public = false
-        data.treeData.children[i].sharingExpiresOn = ''
-        data.treeData.children[i].meta = {}
+
+        const meta = oldMeta.find({ name: _.name }).value()
+
+        data.treeData.children[i].id = data.treeData.children[i].name
+        data.treeData.children[i].public = meta.public ? meta.public : false
+        data.treeData.children[i].sharingExpiresOn = meta.sharingExpiresOn ? sharingExpiresOn : ''
+        data.treeData.children[i].meta = meta.meta ? meta.meta : {}
       })
 
       db.get('meta').assign(data.treeData).write()
@@ -36,24 +42,60 @@ export class MetaManager {
 
   }
 
+  static getMetaData(bucketName, path) {
+    const adapter = new FileSync(config.ROOT_FOLDER + '/meta/' + bucketName + path + 'meta.json')
+    const db = low(adapter)
+    const metas = db.get('meta').get('children').value()
+    const result = {}
+    metas.forEach((meta, index) => {
+      result[meta.id] = meta
+    })
+    return result
+  }
+
   // Remove meta data for a File
-  static removeMetaForFile(path, fileName) {
+  static removeMetaForFile(bucketName, path, fileName) {
+
+    const adapter = new FileSync(config.ROOT_FOLDER + '/meta/' + bucketName + path + 'meta.json')
+    const db = low(adapter)
+
+    db.get('meta').get('children').remove({ id: fileName }).write()
 
   }
 
   // Update meta data for a File
-  static updateMetaDataForFile(path, fileName, metaData) {
+  static updateMetaDataForFile(bucketName, path, fileName, metaData) {
+
+    const adapter = new FileSync(config.ROOT_FOLDER + '/meta/' + bucketName + path + 'meta.json')
+    const db = low(adapter)
+
+    db.get('meta').get('children').find({ id: fileName }).assign({ meta: metaData }).write()
 
   }
 
   // Update visibility for Files
-  static updateMetaVisibility(path, fileName, visibility) {
+  static updateMetaVisibility(bucketName, path, fileName, isPublic) {
+
+    const adapter = new FileSync(config.ROOT_FOLDER + '/meta/' + bucketName + path + 'meta.json')
+    const db = low(adapter)
+
+    db.get('meta').get('children').find({ id: fileName }).assign({ public: isPublic }).write()
+
+  }
+
+  // Update visibility for Files
+  static updateFileSharing(bucketName, path, fileName, sharingExpiresOn) {
+
+    const adapter = new FileSync(config.ROOT_FOLDER + '/meta/' + bucketName + path + 'meta.json')
+    const db = low(adapter)
+
+    db.get('meta').get('children').find({ id: fileName }).assign({ sharingExpiresOn: sharingExpiresOn }).write()
 
   }
 
   // Removing the meta data in case of renaming / deleting a folder
-  static removeMetaForFolder(path) {
-
+  static removeMetaForFolder(bucketName, path) {
+    fs.unlink(config.ROOT_FOLDER + '/meta/' + bucketName + path)
   }
 
 }

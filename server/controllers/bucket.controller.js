@@ -366,6 +366,17 @@ export class BucketController {
         if (!params.name) {
           directories = directories.splice(1)
         }
+
+        // Fill the meta manager data
+
+        const metas = MetaManager.getMetaData(params.bucketName, params.path)
+
+        files.forEach((file, index) => {
+          files[index].public = metas[file.name].public
+          files[index].sharingExpiresOn = metas[file.name].sharingExpiresOn
+          files[index].meta = metas[file.name].meta
+        })
+
         return res.json({
           success: true,
           objects: directories.concat(files)
@@ -480,6 +491,34 @@ export class BucketController {
     return res.json({
       success: true,
       messages: messages
+    })
+
+  }
+
+  static updateObjectMeta(req, res) {
+    const bucket = req.body
+    MetaManager.updateMetaDataForFile(bucket.bucketName, bucket.path, bucket.fileName, bucket.meta)
+
+    return res.json({
+      success: true,
+    })
+  }
+
+  static updateObjectPermission(req, res) {
+    const bucket = req.body
+    MetaManager.updateMetaVisibility(bucket.bucketName, bucket.path, bucket.fileName, bucket.public)
+
+    return res.json({
+      success: true,
+    })
+  }
+
+  static shareObject(req, res) {
+    const bucket = req.body
+    MetaManager.updateFileSharing(bucket.bucketName, bucket.path, bucket.fileName, bucket.sharingExpiresOn)
+
+    return res.json({
+      success: true,
     })
 
   }
