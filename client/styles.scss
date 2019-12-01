@@ -368,7 +368,7 @@
   border: 0;
 }
 .MoveFileBrowser .list-group-item-action:hover {
-  background-color: #e7f4ff;
+  background-color: transparent;
 }
 .MoveFileBrowser .list-group-item-action:focus {
   background-color: map-get($theme-colors, "primary");
