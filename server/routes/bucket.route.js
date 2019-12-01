@@ -7,11 +7,12 @@ module.exports = router;
 
 // Buckets
 
-router.route('/').post((req, res) => BucketController.createBucket(req, res));
-router.route('/').put((req, res) => BucketController.updateBucket(req, res));
-router.route('/').get((req, res) => BucketController.getAllBuckets(req, res));
-router.route('/:bucketName').get((req, res) => BucketController.getBucket(req, res));
-router.route('/:bucketName').delete((req, res) => BucketController.deleteBucket(req, res));
+router.route('/').post((req, res) => BucketController.createBucket(req, res))
+  .put((req, res) => BucketController.updateBucket(req, res))
+  .get((req, res) => BucketController.getAllBuckets(req, res));
+
+router.route('/:bucketName').get((req, res) => BucketController.getBucket(req, res))
+  .delete((req, res) => BucketController.deleteBucket(req, res));
 
 // Objects
 
