@@ -371,7 +371,8 @@
   background-color: #e7f4ff;
 }
 .MoveFileBrowser .list-group-item-action:focus {
-  background-color: #cfe3f3;
+  background-color: map-get($theme-colors, "primary");
+  color: map-get($theme-colors, "white");
 }
 /* BUCKET PAGE STYLES ENDS HERE */
 
