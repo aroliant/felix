@@ -367,6 +367,13 @@
 .MoveFileBrowser .list-group-item {
   border: 0;
 }
+.MoveFileBrowser .list-group-item-action:hover {
+  background-color: transparent;
+}
+.MoveFileBrowser .list-group-item-action:focus {
+  background-color: map-get($theme-colors, "primary");
+  color: map-get($theme-colors, "white");
+}
 /* BUCKET PAGE STYLES ENDS HERE */
 
 /* BUCKET SETTINGS PAGE STYLES STARTS HERE */
