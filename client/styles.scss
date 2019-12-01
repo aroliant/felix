@@ -367,6 +367,12 @@
 .MoveFileBrowser .list-group-item {
   border: 0;
 }
+.MoveFileBrowser .list-group-item-action:hover {
+  background-color: #e7f4ff;
+}
+.MoveFileBrowser .list-group-item-action:focus {
+  background-color: #cfe3f3;
+}
 /* BUCKET PAGE STYLES ENDS HERE */
 
 /* BUCKET SETTINGS PAGE STYLES STARTS HERE */
