@@ -160,7 +160,7 @@
                     <a class="list-group-item list-group-item-action" (click)="openFolderEditMode(i)">Rename</a>
                     <a class="list-group-item list-group-item-action" (click)="showMoveObjectsModal()"
                       (click)="showMoveObjectModal(i)">Move to folder</a>
-                    <a class="list-group-item list-group-item-action" (click)="showShareObjectModal()">Share</a>
+                    <a class="list-group-item list-group-item-action" (click)="showShareObjectModal(i)">Share</a>
                     <a class="list-group-item list-group-item-action text-danger"
                       (click)="showDeleteModal(i)">Delete</a>
                   </div>
@@ -181,5 +181,6 @@
 <app-modal-move-files [show]="modalStates.moveFiles" [objects]="actions.objectsToMove" [bucket]="bucket"
   [currentPath]="currentPath" (onHide)="onHideMoveFiles($event)"></app-modal-move-files>
 <app-modal-permissions [show]="modalStates.permissions" (onHide)="hidePermissionsModal()"></app-modal-permissions>
-<app-modal-share [show]="modalStates.share" (onHide)="hideShareObjectModal"></app-modal-share>
+<app-modal-share [show]="modalStates.share" [object]="actions.objectToShare" [bucket]="bucket"
+  [currentPath]="currentPath" (onHide)="hideShareObjectModal($event)"></app-modal-share>
 <app-modal-upload-files [show]="modalStates.uploadFiles" [files]="actions.files"></app-modal-upload-files>

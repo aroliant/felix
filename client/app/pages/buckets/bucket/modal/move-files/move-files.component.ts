@@ -32,12 +32,11 @@ export class MoveFilesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (this.bucket && this.directoryTree.children.length == 0 ) {
+    if (this.bucket && this.directoryTree.children.length == 0) {
       this.mainService.getAllDirectories(this.bucket.bucketName).subscribe((directoryTreeResponse: any) => {
         if (directoryTreeResponse.success) {
           this.directoryTree.children.push(directoryTreeResponse.tree)
         }
-        console.log(this.directoryTree)
       })
     }
   }
@@ -54,7 +53,7 @@ export class MoveFilesComponent implements OnInit, OnChanges {
     })
 
     this.mainService.moveObjects(moveObjects).subscribe((moveObjectsStatus: any) => {
-      moveObjectsStatus['spliceMoveObjects'] = Bus.FILE_MOV_PATH['relativePath'] == '' ? ( this.currentPath != '/' ) : ('/' + Bus.FILE_MOV_PATH['relativePath'] + '/' != this.currentPath)
+      moveObjectsStatus['spliceMoveObjects'] = Bus.FILE_MOV_PATH['relativePath'] == '' ? (this.currentPath != '/') : ('/' + Bus.FILE_MOV_PATH['relativePath'] + '/' != this.currentPath)
       this.onHide.emit(moveObjectsStatus);
     })
   }

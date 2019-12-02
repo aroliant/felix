@@ -22,7 +22,8 @@ export class BucketComponent implements OnInit {
     objectsToDelete: [],
     objectsToMove: [],
     files: [],
-    selectedObjectsCount: 0
+    selectedObjectsCount: 0,
+    objectToShare: {}
   }
 
   states = {
@@ -244,14 +245,14 @@ export class BucketComponent implements OnInit {
     this.modalStates.moveFiles = true
   }
 
-  showShareObjectModal() {
+  showShareObjectModal(index) {
+    this.actions.objectToShare = this.objects[index]
     this.modalStates.share = true
   }
 
   showDeleteModal(i) {
     this.actions.objectsToDelete = []
     this.modalStates.delete = true
-    this.actions.objectsToDelete.push(this.objects[i])
   }
 
   showDeletesModel() {
@@ -296,7 +297,13 @@ export class BucketComponent implements OnInit {
     this.actions.objectsToMove = []
   }
 
-  hideShareObjectModal() {
+  hideShareObjectModal(event) {
+    if (event.success) {
+      this.toastr.success('Success')
+    }
+    else {
+      this.toastr.error(event.message)
+    }
     this.modalStates.share = false
   }
 

@@ -48,6 +48,18 @@ export class MainService {
     return this.httpc.put(this.API_URL + '/bucket/objects/' + path, file);
   }
 
+  shareObject(data) {
+    return this.httpc.put(this.API_URL + '/bucket/objects/share', data);
+  }
+
+  updateObjectPermission(data) {
+    return this.httpc.put(this.API_URL + '/bucket/objects/filepermissions', data);
+  }
+
+  updateObjectMeta(data) {
+    return this.httpc.put(this.API_URL + '/bucket/objects/meta', data);
+  }
+
   // New Folder
 
   createFolder(data) {
