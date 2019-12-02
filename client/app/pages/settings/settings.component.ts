@@ -15,7 +15,7 @@ export class SettingsComponent implements OnInit {
     sslEnabled: false,
     forceSSL: false,
     keys: {
-      enableKey: false,
+      enableAPI: false,
       accessKey: "",
       apiKey: "",
       allowedOrigins: []
@@ -65,6 +65,8 @@ export class SettingsComponent implements OnInit {
   }
 
   updateEnableAPI() {
+
+    this.settings.keys.enableAPI = !this.settings.keys.enableAPI
 
     this.settingsServie.updateSettings(this.settings).subscribe(() => { })
 
