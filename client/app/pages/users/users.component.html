@@ -97,31 +97,36 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label for="felixUsername">Username</label>
-                    <input type="text" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control"
-                        id="felixUsername" placeholder="Enter a unique username" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label for="felixUserRole">User Role</label>
-                    <select class="form-control" id="felixUserRole" [(ngModel)]="users[actions.userToEditIndex].role">
-                        <option value="admin">admin</option>
-                        <option value="manager">manager</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="felixUserRole">User Status</label>
-                    <select class="form-control" id="felixUserRole" [(ngModel)]="users[actions.userToEditIndex].status">
-                        <option value="active">active</option>
-                        <option value="inactive">inactive</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="felixUserPassword">Password</label>
-                    <input type="password" [(ngModel)]="users[actions.userToEditIndex].password" class="form-control"
-                        id="felixUserPassword" placeholder="Password" autocomplete="off">
-                    <p style="color:red">Leave Password Empty if you wish not to change your password</p>
-                </div>
+                <form class="needs-validation">
+                    <div class="form-group">
+                        <label for="felixUsername">Username</label>
+                        <input type="text" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control"
+                            id="felixUsername" placeholder="Enter a unique username" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="felixUserRole">User Role</label>
+                        <select class="form-control" id="felixUserRole"
+                            [(ngModel)]="users[actions.userToEditIndex].role">
+                            <option value="admin">admin</option>
+                            <option value="manager">manager</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="felixUserRole">User Status</label>
+                        <select class="form-control" id="felixUserRole"
+                            [(ngModel)]="users[actions.userToEditIndex].status">
+                            <option value="active">active</option>
+                            <option value="inactive">inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="felixUserPassword">Password</label>
+                        <input type="password" [(ngModel)]="users[actions.userToEditIndex].password"
+                            class="form-control" id="felixUserPassword" placeholder="Password" autocomplete="off">
+                        <p class="invalid-feedback d-block">Leave Password Empty if you wish not to change your password</p>
+
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <div class="w-100 text-left">
