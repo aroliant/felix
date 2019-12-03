@@ -40,6 +40,10 @@ export class SettingsComponent implements OnInit {
 
   }
 
+  toggleRefresh() {
+    document.getElementById("toggleRefresh").style.animation = "rotation 1s 1 linear";
+  }
+
   copyToClipBoard(key) {
 
     this.helperService.copyToClipboard(key);
