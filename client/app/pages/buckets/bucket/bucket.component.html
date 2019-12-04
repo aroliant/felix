@@ -150,7 +150,7 @@
                 </span>
                 <div class="FileBrowserOption__menu" [class.open]="object.showActions === true" #action_menu_{{i}}>
                   <div class="list-group">
-                    <a class="list-group-item list-group-item-action" (click)="showManagePermissionsModal()">Manage
+                    <a class="list-group-item list-group-item-action" (click)="showManagePermissionsModal(i)">Manage
                       Permissions</a>
                     <a class="list-group-item list-group-item-action" (click)="showManageMetaModal()">Manage
                       Metadata</a>
@@ -180,7 +180,8 @@
 <app-modal-meta [show]="modalStates.meta" (onHide)='hideManageMetaModal()'></app-modal-meta>
 <app-modal-move-files [show]="modalStates.moveFiles" [objects]="actions.objectsToMove" [bucket]="bucket"
   [currentPath]="currentPath" (onHide)="onHideMoveFiles($event)"></app-modal-move-files>
-<app-modal-permissions [show]="modalStates.permissions" (onHide)="hidePermissionsModal()"></app-modal-permissions>
+<app-modal-permissions [show]="modalStates.permissions" [object]="actions.objectForPermissions" [bucket]="bucket"
+  [currentPath]="currentPath" (onHide)="hidePermissionsModal($event)"></app-modal-permissions>
 <app-modal-share [show]="modalStates.share" [object]="actions.objectToShare" [bucket]="bucket"
   [currentPath]="currentPath" (onHide)="hideShareObjectModal($event)"></app-modal-share>
 <app-modal-upload-files [show]="modalStates.uploadFiles" [files]="actions.files"></app-modal-upload-files>

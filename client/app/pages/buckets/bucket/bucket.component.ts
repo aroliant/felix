@@ -23,7 +23,8 @@ export class BucketComponent implements OnInit {
     objectsToMove: [],
     files: [],
     selectedObjectsCount: 0,
-    objectToShare: {}
+    objectToShare: {},
+    objectForPermissions: {}
   }
 
   states = {
@@ -233,7 +234,8 @@ export class BucketComponent implements OnInit {
 
   // Show Modals
 
-  showManagePermissionsModal() {
+  showManagePermissionsModal(index) {
+    this.actions.objectForPermissions = this.objects[index]
     this.modalStates.permissions = true
   }
 
@@ -284,7 +286,13 @@ export class BucketComponent implements OnInit {
     this.actions.objectsToDelete = []
   }
 
-  hidePermissionsModal() {
+  hidePermissionsModal(event) {
+    if (event.success) {
+      this.toastr.success('Success')
+    }
+    else {
+      this.toastr.error(event.message)
+    }
     this.modalStates.permissions = false
   }
 
