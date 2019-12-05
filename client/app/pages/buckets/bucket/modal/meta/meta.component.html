@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <div>
-          <h5 class="modal-title">Manage metadata for <code class="p-1 rounded">filename.extn</code></h5>
+          <h5 class="modal-title">Manage metadata for <code class="p-1 rounded">{{object.name}}</code></h5>
         </div>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideModal()">
@@ -29,7 +29,7 @@
                     <label for="content-type-choice" class="m-0 small text-secondary">select a value or add your
                       own</label>
                     <input list="content-type-datalist" class="form-control" placeholder="text/html"
-                      id="content-type-choice" name="content-type-choice" />
+                      id="content-type-choice" name="content-type-choice" [(ngModel)]="data.meta['Content-Type']" />
 
                     <datalist id="content-type-datalist">
                       <option value="text/html">
@@ -46,8 +46,8 @@
                 <td class="ManageMeta__key">Cache-Control</td>
                 <td class="ManageMeta__value">
                   <div class="form-group mb-0">
-                    <input type="text" class="form-control" name="" autocomplete="off"
-                      placeholder="Enter Value (e.g. max-age=60)">
+                    <input type="text" class="form-control" autocomplete="off" name=""
+                      placeholder="Enter Value (e.g. max-age=60)" [(ngModel)]="data.meta['Cache-Control']" >
                   </div>
                 </td>
                 <td class="ManageMeta__option">
@@ -59,7 +59,7 @@
                 <td class="ManageMeta__value">
                   <div class="form-group mb-0">
                     <input type="text" class="form-control" name="" autocomplete="off"
-                      placeholder="Enter Value (e.g. gzip)">
+                      placeholder="Enter Value (e.g. gzip)" [(ngModel)]="data.meta['Content-Encoding']" >
                   </div>
                 </td>
                 <td class="ManageMeta__option">
@@ -71,7 +71,7 @@
                 <td class="ManageMeta__value">
                   <div class="form-group mb-0">
                     <input type="text" class="form-control" name="" autocomplete="off"
-                      placeholder="Enter Value (e.g. attachment)">
+                      placeholder="Enter Value (e.g. attachment)" [(ngModel)]="data.meta['Content-Disposition']" >
                   </div>
                 </td>
                 <td class="ManageMeta__option">
@@ -107,7 +107,7 @@
       </div>
       <div class="modal-footer">
         <div class="w-100 text-left">
-          <button type="button" class="btn btn-success mr-3 text-white" (click)="hideModal()">
+          <button type="button" class="btn btn-success mr-3 text-white" (click)="updateObjectMeta()">
             Save</button>
           <button type="button" class="btn btn-outline-secondary mr-3" (click)="hideModal()">
             Cancel</button>

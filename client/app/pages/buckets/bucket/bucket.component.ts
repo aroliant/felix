@@ -24,7 +24,8 @@ export class BucketComponent implements OnInit {
     files: [],
     selectedObjectsCount: 0,
     objectToShare: {},
-    objectForPermissions: {}
+    objectForPermissions: {},
+    objectForMeta: {}
   }
 
   states = {
@@ -239,7 +240,8 @@ export class BucketComponent implements OnInit {
     this.modalStates.permissions = true
   }
 
-  showManageMetaModal() {
+  showManageMetaModal(index) {
+    this.actions.objectForMeta = this.objects[index]
     this.modalStates.meta = true
   }
 
@@ -296,7 +298,13 @@ export class BucketComponent implements OnInit {
     this.modalStates.permissions = false
   }
 
-  hideManageMetaModal() {
+  hideManageMetaModal(event) {
+    if (event.success) {
+      this.toastr.success('Success')
+    }
+    else {
+      this.toastr.error(event.message)
+    }
     this.modalStates.meta = false
   }
 
