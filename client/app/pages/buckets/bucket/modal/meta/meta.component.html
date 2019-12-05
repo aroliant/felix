@@ -47,7 +47,7 @@
                 <td class="ManageMeta__value">
                   <div class="form-group mb-0">
                     <input type="text" class="form-control" autocomplete="off" name=""
-                      placeholder="Enter Value (e.g. max-age=60)" [(ngModel)]="data.meta['Cache-Control']" >
+                      placeholder="Enter Value (e.g. max-age=60)" [(ngModel)]="data.meta['Cache-Control']">
                   </div>
                 </td>
                 <td class="ManageMeta__option">
@@ -59,7 +59,7 @@
                 <td class="ManageMeta__value">
                   <div class="form-group mb-0">
                     <input type="text" class="form-control" name="" autocomplete="off"
-                      placeholder="Enter Value (e.g. gzip)" [(ngModel)]="data.meta['Content-Encoding']" >
+                      placeholder="Enter Value (e.g. gzip)" [(ngModel)]="data.meta['Content-Encoding']">
                   </div>
                 </td>
                 <td class="ManageMeta__option">
@@ -71,33 +71,37 @@
                 <td class="ManageMeta__value">
                   <div class="form-group mb-0">
                     <input type="text" class="form-control" name="" autocomplete="off"
-                      placeholder="Enter Value (e.g. attachment)" [(ngModel)]="data.meta['Content-Disposition']" >
+                      placeholder="Enter Value (e.g. attachment)" [(ngModel)]="data.meta['Content-Disposition']">
                   </div>
                 </td>
                 <td class="ManageMeta__option">
                   <a href="" class="text-danger">Clear</a>
                 </td>
               </tr>
-              <tr class="ManageMeta__custompairing" id="ManageMeta__custompairing">
-                <td class="ManageMeta__key">
-                  <div class="form-group mb-0">
-                    <label class="m-0 small text-secondary">key must start with x-amz-meta and be unique</label>
-                    <input type="text" class="form-control" placeholder="" autocomplete="off" value="x-amz-meta-">
-                  </div>
-                </td>
-                <td class="ManageMeta__value">
-                  <div class="form-group mb-0">
-                    <input type="text" class="form-control" name="" autocomplete="off" placeholder="Enter Value">
-                  </div>
-                </td>
-                <td class="ManageMeta__option">
-                  <a (click)="hideManageMeta__custompairing()" class="text-danger">Remove</a>
-                </td>
-              </tr>
+              <div *ngIf="metaArray.length != 0">
+                <tr class="ManageMeta__custompairin" *ngFor="let meta of metaArray; let metaArrayIndex = index">
+                  <td class="ManageMeta__key">
+                    <div class="form-group mb-0">
+                      <label class="m-0 small text-secondary">key must start with x-amz-meta and be unique</label>
+                      <input type="text" class="form-control" name="" placeholder="" autocomplete="off"
+                        [(ngModel)]="metaArray[metaArrayIndex].key">
+                    </div>
+                  </td>
+                  <td class="ManageMeta__value">
+                    <div class="form-group mb-0">
+                      <label class="m-0 small text-secondary">Enter text for the key value</label>
+                      <input type="text" class="form-control" name="" [(ngModel)]="metaArray[metaArrayIndex].value"
+                        autocomplete="off" placeholder="Enter Value">
+                    </div>
+                  </td>
+                  <td class="ManageMeta__option">
+                    <a (click)="removeMeta(metaArrayIndex)" class="text-danger">Remove</a>
+                  </td>
+                </tr>
+              </div>
               <tr>
-                <div class="list-group-item list-group-item-action text-primary"
-                  (click)="showManageMeta__custompairing();">Add
-                  Custom Pairing
+                <div class="list-group-item list-group-item-action text-primary" (click)="addInMetaArray();">Add Custom
+                  Pairing
                 </div>
               </tr>
             </tbody>

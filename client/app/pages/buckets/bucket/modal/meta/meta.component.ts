@@ -26,22 +26,41 @@ export class MetaComponent implements OnInit {
     }
   }
 
+  metaArray = []
+
   constructor(private mainService: MainService) { }
 
   ngOnInit() {
-    this.data.meta['Content-Type']= ""
-    this.data.meta['Cache-Control']= ""
-    this.data.meta['Content-Encoding']= ""
-    this.data.meta['Content-Disposition']= ""
+    this.data.meta['Content-Type'] = ""
+    this.data.meta['Cache-Control'] = ""
+    this.data.meta['Content-Encoding'] = ""
+    this.data.meta['Content-Disposition'] = ""
+  }
+
+  addInMetaArray() {
+    this.metaArray.push({
+      "key": '',
+      "value": ''
+    })
+  }
+
+  removeMeta(index) {
+    this.metaArray.splice(index, 1)
   }
 
   updateObjectMeta() {
 
-    this.data.bucketName = this.bucket.bucketName
-    this.data.bucketName = this.currentPath
-    this.data.fileName = this.object['name']
+    let data = this.data
+    this.metaArray.map((meta, i) => {
+      data.meta[meta.key] = meta.value
+    })
 
-    this.mainService.updateObjectMeta(this.data).subscribe((updateMetaResponse: any) => {
+    this.mainService.updateObjectMeta(data).subscribe((updateMetaResponse: any) => {
+      this.data.meta['Content-Type'] = ""
+      this.data.meta['Cache-Control'] = ""
+      this.data.meta['Content-Encoding'] = ""
+      this.data.meta['Content-Disposition'] = ""
+      this.metaArray = []
       this.onHide.emit(updateMetaResponse)
     })
 

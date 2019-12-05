@@ -90,7 +90,6 @@ export class UsersComponent implements OnInit {
   }
 
   addUser() {
-
     this.userService.addUser(this.actions.userToAdd).subscribe((userAddStatus: any) => {
       if (userAddStatus.success) {
         this.toastr.success(userAddStatus.message, 'Success!')
