@@ -401,6 +401,30 @@ export class BucketComponent implements OnInit {
     this.objects[i].onEditMode = false
   }
 
+  getObjectsPushToUI(name, isFolder, currentFolderName) {
+
+    const objectToSearch = {
+      bucketName: this.bucket.bucketName,
+      path: this.currentPath,
+      name: name
+    }
+
+    if (isFolder) {
+      const object = {
+        name: currentFolderName,
+        objectType: 'folder',
+        size: 0,
+        createdAt: new Date(),
+        modifiedAt: new Date()
+      }
+      return this.objects.unshift(object)
+    }
+
+    this.mainService.searchObjects(objectToSearch).subscribe((res: any) => {
+      this.objects.push({ ...res.objects[0], onEditMode: false })
+    })
+  }
+
   uploadFiles(event) {
     const files = event.target.files
 
@@ -425,11 +449,17 @@ export class BucketComponent implements OnInit {
     const fileLength = file.size;
 
     let uploadFilePath = ''
+    let isFolder = false
+    let currentFolderName = ''
 
     if (file.webkitRelativePath) {
       uploadFilePath = `${this.bucketName}${this.currentPath}${file.webkitRelativePath}`
+      isFolder = true
+      currentFolderName = file.webkitRelativePath.split('/')[0]
     } else if (file.mozRelativePath) {
       uploadFilePath = `${this.bucketName}${this.currentPath}${file.mozRelativePath}`
+      isFolder = true
+      currentFolderName = file.mozRelativePath.split('/')[0]
     } else {
       uploadFilePath = `${this.bucketName}${this.currentPath}${file.name}`
     }
@@ -446,6 +476,7 @@ export class BucketComponent implements OnInit {
     xhr.onload = function () {
       if (this.status === 200) {
         self.toast.success('', 'File Uploaded')
+        self.getObjectsPushToUI(file.name, isFolder, currentFolderName)
       }
     }
 
