@@ -148,7 +148,6 @@ export class BucketComponent implements OnInit {
 
   copyToClipboard(string) {
     this.helperService.copyToClipboard(string)
-    this.toastr.success('Copied to Clipboard!');
   }
 
   searchFilter() {

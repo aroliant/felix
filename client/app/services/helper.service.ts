@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class HelperService {
 
-  constructor() {
+  constructor(private toastr: ToastrService) {
   }
 
   copyToClipboard(string) {
@@ -13,6 +14,7 @@ export class HelperService {
       document.removeEventListener('copy', null);
     });
     document.execCommand('copy');
+    this.toastr.success('Copied to Clipboard!');
   }
 
 }
