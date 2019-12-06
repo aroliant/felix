@@ -16,6 +16,9 @@ $enable-gradients: false;
   outline: none;
   box-shadow: none;
 }
+a {
+  cursor: pointer;
+}
 a:hover {
   text-decoration: none;
 }
