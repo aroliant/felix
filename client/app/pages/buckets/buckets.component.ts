@@ -29,15 +29,7 @@ export class BucketsComponent implements OnInit {
   }
 
   toggleMenu(index) {
-
-    this.buckets.map((bucket, i) => {
-      if (i != index) {
-        bucket.showMenu = false
-      } else {
-        bucket.showMenu = !bucket.showMenu
-      }
-    })
-
+    this.buckets[index].showMenu = !this.buckets[index].showMenu
   }
 
   copyToClipboard(string) {
