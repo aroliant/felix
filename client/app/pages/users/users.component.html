@@ -4,7 +4,7 @@
             <h3 class="font-weight-light mb-0">Users</h3>
             <button class="btn btn-primary" (click)="openAddUserModal();">Add User</button>
         </div>
-        <div class="w-100 mt-4">
+        <div class="Users mt-4">
 
             <table class="table table-hover">
                 <thead class="thead-inverse">
@@ -17,11 +17,15 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let user of users;let userIndex = index">
-                        <td class="User__name">Name: {{user.username}}<br />ID: {{user.id}}</td>
+                        <td class="User__name">
+                            <span class="small text-secondary">Name:
+                            </span>{{user.username}}<br />
+                            <span class="small text-secondary">ID: </span>{{user.id}}
+                        </td>
                         <td class="User__role">{{user.role}}</td>
                         <td class="User__status">{{user.status}}</td>
                         <td class="User__actions">
-                            <a class="text-danger cursor-pointer" (click)="openEditUserModal(userIndex);">
+                            <a class="text-primary cursor-pointer mr-3" (click)="openEditUserModal(userIndex);">
                                 Edit
                             </a><br>
                             <a class="text-danger cursor-pointer" (click)="openDeleteUserModal(userIndex);">

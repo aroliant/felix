@@ -572,20 +572,17 @@
 /* SIGN-IN PAGE STYLES ENDS HERE */
 
 /* USERS PAGE STYLES STARTS HERE */
-.User__ID {
-  width: 10%;
+.Users{
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  width: 100%;
 }
-
 .User__name {
-  width: 40%;
-}
-
-.User__password {
-  width: 25%;
+  width: 55%;
 }
 
 .User__role {
-  width: 20%;
+  width: 15%;
 }
 
 .User__status {
@@ -593,7 +590,9 @@
 }
 
 .User__actions {
-  width: 10%;
+  width: 15%;
+  display: flex;
+  flex-direction: row;
 }
 /* USERS PAGE STYLES ENDS HERE */
 
