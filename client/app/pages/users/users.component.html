@@ -52,12 +52,12 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="felixUsername">Username</label>
-                    <input type="text" [(ngModel)]="actions.userToAdd.username" class="form-control" id="felixUsername"
+                    <input type="text" [(ngModel)]="actions.userToAdd.username" class="form-control"
                         placeholder="Enter a unique username" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="felixUserRole">Select User Role</label>
-                    <select class="form-control" id="felixUserRole" [(ngModel)]="actions.userToAdd.role">
+                    <select class="form-control" [(ngModel)]="actions.userToAdd.role">
                         <option value="admin">admin</option>
                         <option value="manager" selected>manager</option>
                     </select>
@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <label for="felixUserPassword">Password</label>
                     <input type="password" [(ngModel)]="actions.userToAdd.password" class="form-control"
-                        id="felixUserPassword" placeholder="Password" autocomplete="off">
+                        placeholder="Password" autocomplete="off">
                 </div>
 
             </div>
@@ -101,20 +101,18 @@
                     <div class="form-group">
                         <label for="felixUsername">Username</label>
                         <input type="text" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control"
-                            id="felixUsername" placeholder="Enter a unique username" autocomplete="off">
+                            placeholder="Enter a unique username" autocomplete="off" name="username">
                     </div>
                     <div class="form-group">
                         <label for="felixUserRole">User Role</label>
-                        <select class="form-control" id="felixUserRole"
-                            [(ngModel)]="users[actions.userToEditIndex].role">
+                        <select class="form-control" [(ngModel)]="users[actions.userToEditIndex].role" name="role">
                             <option value="admin">admin</option>
                             <option value="manager">manager</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="felixUserRole">User Status</label>
-                        <select class="form-control" id="felixUserRole" name=""
-                            [(ngModel)]="users[actions.userToEditIndex].status">
+                        <select class="form-control" name="status" [(ngModel)]="users[actions.userToEditIndex].status">
                             <option value="active">active</option>
                             <option value="inactive">inactive</option>
                         </select>
@@ -122,10 +120,11 @@
                     <div class="form-group">
                         <label for="felixUserPassword">Password</label>
                         <input type="password" [(ngModel)]="users[actions.userToEditIndex].password"
-                            class="form-control" id="felixUserPassword" placeholder="Password" autocomplete="off">
-                        <p class="invalid-feedback d-block">Leave Password Empty if you wish not to change your password</p>
-                        <p class="valid-feedback d-block">Looks good!</p>
-
+                            class="form-control" placeholder="Password" autocomplete="off" name="password">
+                        <p class="invalid-feedback d-block">Leaveing empty will not change your password.
+                        </p>
+                        <!-- A sample valid message -->
+                        <!-- <p class="valid-feedback d-block">Looks good!</p> -->
                     </div>
                 </form>
             </div>
