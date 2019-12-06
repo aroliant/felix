@@ -572,7 +572,7 @@
 /* SIGN-IN PAGE STYLES ENDS HERE */
 
 /* USERS PAGE STYLES STARTS HERE */
-.Users{
+.Users {
   border: 1px solid #d3d3d3;
   border-radius: 4px;
   width: 100%;
@@ -683,6 +683,16 @@
   z-index: 7;
 }
 
+.HeaderTopAccount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px;
+}
+.HeaderTopAccount:hover{
+  background-color: map-get($theme-colors, "light_dim");
+}
+
 .HeaderTopAccount__icon {
   width: 40px;
   height: 40px;
@@ -701,6 +711,7 @@
   position: absolute;
   right: 10px;
   min-width: 150px;
+  top: 40px;
 }
 
 .HeaderTopAccount:hover .HeaderTopAccount__menu {
