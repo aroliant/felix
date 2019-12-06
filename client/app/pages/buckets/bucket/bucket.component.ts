@@ -4,7 +4,6 @@ import { MainService } from 'client/app/services/main.service';
 import { environment } from '../../../../environments/environment'
 import { ToastrService } from 'ngx-toastr';
 import { HelperService } from 'client/app/services/helper.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-bucket',
   templateUrl: './bucket.component.html',
