@@ -102,10 +102,12 @@ export class BucketComponent implements OnInit {
   }
 
   selectAll(state) {
-    if (state)
+    if (state) {
       this.actions.selectedObjectsCount = this.objects.length
-    else
+    } else {
       this.actions.selectedObjectsCount = 0
+    }
+
     this.objects.map((object, index) => {
       object.isSelected = state
       return object
@@ -292,8 +294,7 @@ export class BucketComponent implements OnInit {
   hidePermissionsModal(event) {
     if (event.success) {
       this.toastr.success('Success')
-    }
-    else {
+    } else {
       this.toastr.error(event.message)
     }
     this.modalStates.permissions = false
@@ -302,8 +303,7 @@ export class BucketComponent implements OnInit {
   hideManageMetaModal(event) {
     if (event.success) {
       this.toastr.success('Success')
-    }
-    else {
+    } else {
       this.toastr.error(event.message)
     }
     this.modalStates.meta = false
@@ -317,8 +317,7 @@ export class BucketComponent implements OnInit {
   hideShareObjectModal(event) {
     if (event.success) {
       this.toastr.success('Success')
-    }
-    else {
+    } else {
       this.toastr.error(event.message)
     }
     this.modalStates.share = false
@@ -339,9 +338,9 @@ export class BucketComponent implements OnInit {
   }
 
   editObject(event, i) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
 
-      if (this.objectNameBeforeRenaming == '') {
+      if (this.objectNameBeforeRenaming === '') {
 
         const newFolder = {
           path: this.currentPath + this.objects[i].name,
