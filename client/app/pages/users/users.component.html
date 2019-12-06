@@ -101,7 +101,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="needs-validation">
+                <form class="needs-validation" autocomplete="off">
                     <div class="form-group">
                         <label for="felixUsername">Username</label>
                         <input type="text" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control"
@@ -124,8 +124,8 @@
                     <div class="form-group">
                         <label for="felixUserPassword">Password</label>
                         <input type="password" [(ngModel)]="users[actions.userToEditIndex].password"
-                            class="form-control" placeholder="Password" autocomplete="off" name="password">
-                        <p class="invalid-feedback d-block">Leaveing empty will not change your password.
+                            class="form-control" placeholder="Password" name="password" autocomplete="new-password">
+                        <p class="invalid-feedback d-block">Leaving empty will not change your password.
                         </p>
                         <!-- A sample valid message -->
                         <!-- <p class="valid-feedback d-block">Looks good!</p> -->
@@ -136,8 +136,8 @@
                 <div class="w-100 text-left">
                     <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeEditUserModal();">
                         Cancel</button>
-                    <button type="button" class="btn btn-outline-danger" (click)="updateUser()">
-                        Edit</button>
+                    <button type="button" class="btn btn-outline-success" (click)="updateUser()">
+                        Save</button>
                 </div>
             </div>
         </div>
