@@ -10,7 +10,7 @@ import { HelperService } from 'client/app/services/helper.service';
 export class ShareComponent implements OnInit {
 
   @Input() show: Boolean;
-  @Input() object: {};
+  @Input() object: any;
   @Input() bucket: any;
   @Input() currentPath;
   @Output() onHide = new EventEmitter<boolean>();

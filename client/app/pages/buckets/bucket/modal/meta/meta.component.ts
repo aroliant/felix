@@ -9,7 +9,7 @@ import { MainService } from 'client/app/services/main.service';
 export class MetaComponent implements OnInit {
 
   @Input() show: Boolean;
-  @Input() object: {};
+  @Input() object: any;
   @Input() bucket: any;
   @Input() currentPath;
   @Output() onHide = new EventEmitter<boolean>();
