@@ -13,7 +13,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="Bucket" *ngFor="let bucket of buckets">
+                    <tr class="Bucket" *ngFor="let bucket of buckets;let i = index">
                         <td class="Bucket__name">
                             <div class="d-flex flex-row">
                                 <div class="align-self-center">
@@ -42,11 +42,11 @@
                             {{bucket.createdAt | date: 'medium'}}
                         </td>
                         <td class="Bucket__menu">
-                            <a class="text-primary cursor-pointer">
+                            <a class="text-primary cursor-pointer" (click)="toggleMenu(i)" >
                                 <span> More </span>
                                 <i class="icofont-simple-down"></i>
                             </a>
-                            <div class="Bucket__menucontent">
+                            <div class="Bucket__menucontent" [hidden]="!buckets[i].showMenu" >
                                 <div class="list-group">
                                     <a class="list-group-item list-group-item-action"
                                         routerLink="/buckets/{{bucket.bucketName}}">Show Files</a>

@@ -23,6 +23,21 @@ export class BucketsComponent implements OnInit {
     this.mainService.getAllBuckets().subscribe((res: any) => {
       this.buckets = res.buckets;
     })
+    this.buckets.map((bucket, i) => {
+      bucket['showMenu'] = false
+    })
+  }
+
+  toggleMenu(index) {
+
+    this.buckets.map((bucket, i) => {
+      if (i != index) {
+        bucket.showMenu = false
+      } else {
+        bucket.showMenu = !bucket.showMenu
+      }
+    })
+
   }
 
   copyToClipboard(string) {

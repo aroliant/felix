@@ -83,7 +83,7 @@
   z-index: -1;
 }
 
-.Bucket__menu:hover .Bucket__menucontent {
+.Bucket__menu .Bucket__menucontent {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   opacity: 1;
   transform: translate3d(0, 0, 0);
@@ -342,7 +342,7 @@
   z-index: -1;
 }
 
-.UploadActions:hover .UploadActions__content {
+.UploadActions .UploadActions__content {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   transform: translate3d(0, 0, 0);
   z-index: 10;
