@@ -42,7 +42,7 @@ export class MoveFilesComponent implements OnInit, OnChanges {
   }
 
   _moveObjects() {
-    var moveObjects = {
+    const moveObjects = {
       bucketName: this.bucket.bucketName,
       dest: '/' + Bus.FILE_MOV_PATH['relativePath'],
       paths: []

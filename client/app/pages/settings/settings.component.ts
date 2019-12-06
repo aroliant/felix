@@ -11,13 +11,13 @@ import { HelperService } from 'client/app/services/helper.service';
 export class SettingsComponent implements OnInit {
 
   settings = {
-    primaryDomain: "",
+    primaryDomain: '',
     sslEnabled: false,
     forceSSL: false,
     keys: {
       enableAPI: false,
-      accessKey: "",
-      apiKey: "",
+      accessKey: '',
+      apiKey: '',
       allowedOrigins: []
     }
   }
@@ -41,7 +41,7 @@ export class SettingsComponent implements OnInit {
   }
 
   toggleRefresh() {
-    document.getElementById("toggleRefresh").style.animation = "rotation 1s 1 linear";
+    document.getElementById('toggleRefresh').style.animation = 'rotation 1s 1 linear';
   }
 
   copyToClipBoard(key) {
@@ -88,7 +88,7 @@ export class SettingsComponent implements OnInit {
 
   addOriginInputBox() {
 
-    this.settings.keys.allowedOrigins.push({ originName: "" })
+    this.settings.keys.allowedOrigins.push({ originName: '' })
 
   }
 

@@ -24,19 +24,17 @@ export class AuthService {
 
     try {
 
-      if (localStorage.getItem('token') != null){
+      if (localStorage.getItem('token') != null) {
 
         const token = localStorage.getItem('token')
 
-        if(!jwtHelper.isTokenExpired(token)){
-          this.router.navigate(['/']);
-        }else{
+        if (!jwtHelper.isTokenExpired(token)) {
+          // this.router.navigate(['/']); This will force user to root path on every reload
+        } else {
           this.router.navigate(['/login']);
         }
 
-      }
-
-      else{
+      } else {
 
         this.router.navigate(['/login']);
 
@@ -60,7 +58,7 @@ export class AuthService {
 
         localStorage.setItem('token', loginResponse.token);
         this.toastr.success('Logged In', 'Success!')
-        this.router.navigate(['/']);
+        this.router.navigate(['/buckets']);
 
       } else {
 

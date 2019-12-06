@@ -54,9 +54,9 @@ export class UsersComponent implements OnInit {
 
   updateUser() {
 
-    var user = {}
+    let user = {}
 
-    if (this.users[this.actions.userToEditIndex].password == undefined || this.users[this.actions.userToEditIndex].password == '') {
+    if (this.users[this.actions.userToEditIndex].password === undefined || this.users[this.actions.userToEditIndex].password === '') {
 
       user = {
         username: this.users[this.actions.userToEditIndex].username,

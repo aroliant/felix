@@ -32,7 +32,7 @@ export class ShareComponent implements OnInit {
 
   shareObject() {
 
-    var now = new Date();
+    const now = new Date();
 
     const data = {
       bucketName: this.bucket.bucketName,

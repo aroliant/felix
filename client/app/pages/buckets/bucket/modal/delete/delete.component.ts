@@ -22,9 +22,9 @@ export class DeleteComponent implements OnInit {
 
   deleteObject() {
 
-    var paths = [];
+    const paths = [];
     this.objects.map((object, i) => {
-      paths.push(this.currentPath + object['name'] + (object['objectType'] == 'folder' ? '/' : ''))
+      paths.push(this.currentPath + object['name'] + (object['objectType'] === 'folder' ? '/' : ''))
     })
 
     this.mainService.deleteObjects({

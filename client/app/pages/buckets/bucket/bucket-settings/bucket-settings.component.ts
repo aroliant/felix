@@ -70,7 +70,7 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   saveAndCloseFileListingPrivacy() {
-    var bucket = {
+    const bucket = {
       bucketID: this.bucket.bucketID,
       settings: {
         fileListing: this.bucket.settings.fileListing
@@ -117,47 +117,48 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   addNewHeaderOnEnter(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       this.addHeaderCORS();
     }
   }
 
   editAddNewHeaderOnEnter(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       this.editHeaderCORS();
     }
   }
 
   newCORSMethod(event) {
-    if (event.target.checked == true)
+    if (event.target.checked === true) {
       this.newCORS.allowedMethods.push(event.target.value)
-    else {
+    } else {
       this.newCORS.allowedMethods.splice(this.newCORS.allowedMethods.indexOf(event.target.value), 1)
     }
   }
 
   newCORSHeaders(event) {
-    if (event.keyCode == 13) {
-      if (this.newCORS.allowedHeaders.indexOf(event.target.value) == -1) { }
+    if (event.keyCode === 13) {
+      if (this.newCORS.allowedHeaders.indexOf(event.target.value) === -1) { }
     }
   }
 
   editCORSMethod(event) {
-    if (event.target.checked == true)
+    if (event.target.checked === true) {
       this.bucket.cors[this.editCORSIndex].allowedMethods.push(event.target.value)
-    else {
-      this.bucket.cors[this.editCORSIndex].allowedMethods.splice(this.bucket.cors[this.editCORSIndex].allowedMethods.indexOf(event.target.value), 1)
+    } else {
+      const index = this.bucket.cors[this.editCORSIndex].allowedMethods.indexOf(event.target.value)
+      this.bucket.cors[this.editCORSIndex].allowedMethods.splice(index, 1)
     }
   }
 
   editCORSHeaders(event) {
-    if (event.keyCode == 13) {
-      if (this.newCORS.allowedHeaders.indexOf(event.target.value) == -1) { }
+    if (event.keyCode === 13) {
+      if (this.newCORS.allowedHeaders.indexOf(event.target.value) === -1) { }
     }
   }
 
   addDomainOnEnter(event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       this.updateDomain();
     }
   }

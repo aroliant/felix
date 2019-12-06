@@ -19,10 +19,10 @@ export class MetaComponent implements OnInit {
     path: '',
     fileName: '',
     meta: {
-      "Content-Type": "",
-      "Cache-Control": '',
-      "Content-Encoding": '',
-      "Content-Disposition": ""
+      'Content-Type': '',
+      'Cache-Control': '',
+      'Content-Encoding': '',
+      'Content-Disposition': ''
     }
   }
 
@@ -31,16 +31,13 @@ export class MetaComponent implements OnInit {
   constructor(private mainService: MainService) { }
 
   ngOnInit() {
-    this.data.meta['Content-Type'] = ""
-    this.data.meta['Cache-Control'] = ""
-    this.data.meta['Content-Encoding'] = ""
-    this.data.meta['Content-Disposition'] = ""
+
   }
 
   addInMetaArray() {
     this.metaArray.push({
-      "key": '',
-      "value": ''
+      'key': '',
+      'value': ''
     })
   }
 
@@ -50,16 +47,16 @@ export class MetaComponent implements OnInit {
 
   updateObjectMeta() {
 
-    let data = this.data
+    const data = this.data
     this.metaArray.map((meta, i) => {
       data.meta[meta.key] = meta.value
     })
 
     this.mainService.updateObjectMeta(data).subscribe((updateMetaResponse: any) => {
-      this.data.meta['Content-Type'] = ""
-      this.data.meta['Cache-Control'] = ""
-      this.data.meta['Content-Encoding'] = ""
-      this.data.meta['Content-Disposition'] = ""
+      this.data.meta['Content-Type'] = ''
+      this.data.meta['Cache-Control'] = ''
+      this.data.meta['Content-Encoding'] = ''
+      this.data.meta['Content-Disposition'] = ''
       this.metaArray = []
       this.onHide.emit(updateMetaResponse)
     })
