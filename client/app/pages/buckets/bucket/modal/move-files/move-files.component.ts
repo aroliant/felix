@@ -18,10 +18,10 @@ export class MoveFilesComponent implements OnInit, OnChanges {
 
   directoryTree = {
     name: '',
-    relativePath: "",
-    type: "directory",
+    relativePath: '',
+    type: 'directory',
     isSymbolicLink: false,
-    size: "0 B",
+    size: '0 B',
     children: []
   }
 
@@ -32,7 +32,7 @@ export class MoveFilesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (this.bucket && this.directoryTree.children.length == 0) {
+    if (this.bucket && this.directoryTree.children.length === 0) {
       this.mainService.getAllDirectories(this.bucket.bucketName).subscribe((directoryTreeResponse: any) => {
         if (directoryTreeResponse.success) {
           this.directoryTree.children.push(directoryTreeResponse.tree)
@@ -44,7 +44,7 @@ export class MoveFilesComponent implements OnInit, OnChanges {
   _moveObjects() {
     const moveObjects = {
       bucketName: this.bucket.bucketName,
-      dest: '/' + Bus.FILE_MOV_PATH['relativePath'],
+      dest: '/' + Bus.FILE_MOV_PATH.relativePath,
       paths: []
     }
 
@@ -53,7 +53,9 @@ export class MoveFilesComponent implements OnInit, OnChanges {
     })
 
     this.mainService.moveObjects(moveObjects).subscribe((moveObjectsStatus: any) => {
-      moveObjectsStatus['spliceMoveObjects'] = Bus.FILE_MOV_PATH['relativePath'] == '' ? (this.currentPath != '/') : ('/' + Bus.FILE_MOV_PATH['relativePath'] + '/' != this.currentPath)
+      // TODO @techieph Explain this logic
+      const path = Bus.FILE_MOV_PATH.relativePath == '' ? (this.currentPath != '/') : ('/' + Bus.FILE_MOV_PATH.relativePath + '/' != this.currentPath)
+      moveObjectsStatus['spliceMoveObjects'] = path
       this.onHide.emit(moveObjectsStatus);
     })
   }
