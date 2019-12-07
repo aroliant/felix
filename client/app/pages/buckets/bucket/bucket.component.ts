@@ -259,6 +259,7 @@ export class BucketComponent implements OnInit {
 
   showDeleteModal(i) {
     this.actions.objectsToDelete = []
+    this.actions.objectsToDelete.push(this.objects[i])
     this.modalStates.delete = true
   }
 
@@ -342,7 +343,7 @@ export class BucketComponent implements OnInit {
 
       if (this.objectNameBeforeRenaming === '') {
 
-        if(this.objects[i].name == ''){
+        if (this.objects[i].name == '') {
           this.toastr.warning('Enter New Folder Name')
           return false;
         }
