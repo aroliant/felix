@@ -342,6 +342,11 @@ export class BucketComponent implements OnInit {
 
       if (this.objectNameBeforeRenaming === '') {
 
+        if(this.objects[i].name == ''){
+          this.toastr.warning('Enter New Folder Name')
+          return false;
+        }
+
         const newFolder = {
           path: this.currentPath + this.objects[i].name,
           bucketName: this.bucket.bucketName

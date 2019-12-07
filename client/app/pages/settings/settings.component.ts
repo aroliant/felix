@@ -45,12 +45,15 @@ export class SettingsComponent implements OnInit {
   }
 
   copyToClipBoard(key) {
-
     this.helperService.copyToClipboard(key);
-
   }
 
   updateSettingsDomain() {
+
+    if (this.settings.primaryDomain == '') {
+      this.toastr.warning('Enter Primary Domain')
+      return false;
+    }
 
     const settings = {
       primaryDomain: this.settings.primaryDomain,
@@ -93,6 +96,12 @@ export class SettingsComponent implements OnInit {
   }
 
   addOrigin() {
+
+    this.settings.keys.allowedOrigins.map((allowedOrigin, i) => {
+      if (allowedOrigin['originName'] == '') {
+        this.settings.keys.allowedOrigins.splice(this.settings.keys.allowedOrigins.indexOf(allowedOrigin), 1)
+      }
+    })
 
     this.settingsServie.updateSettings(this.settings).subscribe((updateSettingsResponse: any) => {
       if (updateSettingsResponse.success) {

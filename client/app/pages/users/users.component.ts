@@ -18,7 +18,8 @@ export class UsersComponent implements OnInit {
     userToAdd: {
       username: '',
       password: '',
-      role: ''
+      role: '',
+      status: ''
     },
     userToEditIndex: 0
   }
@@ -53,6 +54,11 @@ export class UsersComponent implements OnInit {
   }
 
   updateUser() {
+
+    if (this.users[this.actions.userToEditIndex].username == '') {
+      this.toastr.warning('Enter User Name')
+      return false
+    }
 
     let user = {}
 
@@ -90,6 +96,23 @@ export class UsersComponent implements OnInit {
   }
 
   addUser() {
+
+    if (this.actions.userToAdd.username == '') {
+      this.toastr.warning('Enter User Name')
+      return false
+    }
+
+    if (this.actions.userToAdd.role == '') {
+      this.toastr.warning('Select Role')
+      return false
+    }
+
+    if (this.actions.userToAdd.password == '') {
+      this.toastr.warning('Enter Password')
+      return false
+    }
+
+
     this.userService.addUser(this.actions.userToAdd).subscribe((userAddStatus: any) => {
       if (userAddStatus.success) {
         this.toastr.success(userAddStatus.message, 'Success!')
@@ -98,7 +121,8 @@ export class UsersComponent implements OnInit {
         this.actions.userToAdd = {
           username: '',
           password: '',
-          role: ''
+          role: '',
+          status: 'active'
         }
       } else {
         this.toastr.error(userAddStatus.message)

@@ -26,6 +26,12 @@ export class CreateBucketComponent implements OnInit {
   }
 
   createBucket() {
+
+    if (this.bucket.bucketName == '') {
+      this.toastr.warning('Enter Bucket Name')
+      return false
+    }
+
     this.mainService.createBucket(this.bucket).subscribe((bucketCreationStatus: any) => {
       if (bucketCreationStatus.success) {
         this.toastr.success(bucketCreationStatus.message, 'Success!')

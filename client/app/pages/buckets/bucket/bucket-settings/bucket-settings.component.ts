@@ -179,6 +179,10 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   updateDomain() {
+    if (this.newDomain.name == '') {
+      this.toastr.warning('Enter Domain Name')
+      return false;
+    }
     this.bucket.domains.push(this.newDomain)
     this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
       if (updateBucketStatus.success) {
@@ -206,6 +210,15 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   addCORS() {
+    if (this.newCORS.origin == '') {
+      this.toastr.warning('Enter Origin')
+      return false;
+    }
+    this.newCORS.allowedHeaders.map((allowedHeader, i) => {
+      if (allowedHeader['name'] == '') {
+        this.newCORS.allowedHeaders.splice(this.newCORS.allowedHeaders.indexOf(allowedHeader), 1)
+      }
+    })
     this.bucket.cors.push(this.newCORS)
     this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
       if (updateBucketStatus.success) {
@@ -267,6 +280,15 @@ export class BucketSettingsComponent implements OnInit {
   }
 
   editCORSOptions() {
+    if (this.bucket.cors[this.editCORSIndex].origin == '') {
+      this.toastr.warning('Enter Origin')
+      return false
+    }
+    this.bucket.cors[this.editCORSIndex].allowedHeaders.map((allowedHeader, i) => {
+      if (allowedHeader['name'] == '') {
+        this.bucket.cors[this.editCORSIndex].allowedHeaders.splice(this.bucket.cors[this.editCORSIndex].allowedHeaders.indexOf(allowedHeader), 1)
+      }
+    })
     this.mainService.updateBucket(this.bucket).subscribe((updateBucketStatus: any) => {
       if (updateBucketStatus.success) {
         this.toastr.success(updateBucketStatus.message, 'Success!')
