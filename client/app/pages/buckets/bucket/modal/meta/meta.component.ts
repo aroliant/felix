@@ -47,6 +47,10 @@ export class MetaComponent implements OnInit {
 
   updateObjectMeta() {
 
+    this.data.bucketName = this.bucket.bucketName
+    this.data.path = this.currentPath
+    this.data.fileName = this.object['name']
+
     const data = this.data
     this.metaArray.map((meta, i) => {
       data.meta[meta.key] = meta.value

@@ -13,11 +13,11 @@
         </div>
         <div class="col-lg-6 text-right p-0">
           <div class="UploadActions mr-3">
-            <button class="btn btn-outline-secondary" (click)="showMainActions()" type="button">Actions ({{actions.selectedObjectsCount}}) <i
-                class="icofont-simple-down"></i>
+            <button class="btn btn-outline-secondary" (click)="showMainActions()" type="button">Actions
+              ({{actions.selectedObjectsCount}}) <i class="icofont-simple-down"></i>
             </button>
             <div class="UploadActions__content">
-              <div class="list-group" [hidden]="!showMainAction === true" >
+              <div class="list-group" [hidden]="!showMainAction === true">
                 <a Value class="list-group-item list-group-item-action" (click)="showMoveObjectsModal();"
                   (click)="showMoveObjectsModel()">Move to folder</a>
                 <a Value class="list-group-item list-group-item-action text-danger"

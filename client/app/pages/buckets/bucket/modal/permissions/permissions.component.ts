@@ -32,18 +32,17 @@ export class PermissionsComponent implements OnInit {
   updatePermission() {
 
     this.data.bucketName = this.bucket.bucketName
-    this.data.bucketName = this.currentPath
+    this.data.path = this.currentPath
     this.data.fileName = this.object['name']
 
     this.mainService.updateObjectPermission(this.data).subscribe((updatePermissionResponse: any) => {
-      this.bucket.onHide.emit(updatePermissionResponse)
+      this.onHide.emit(updatePermissionResponse)
     })
 
   }
 
   hideModal() {
     this.show = false
-    this.onHide.emit(false)
   }
 
 }
