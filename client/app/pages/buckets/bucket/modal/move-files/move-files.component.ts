@@ -60,12 +60,7 @@ export class MoveFilesComponent implements OnInit, OnChanges {
     })
   }
 
-  setDestination(str) {
-
-  }
-
   hideModal() {
     this.show = false
-    this.onHide.emit(false)
   }
 }
