@@ -30,6 +30,8 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
 
+    window.scrollTo(0, 0);
+
     this.settingsServie.getSettings().subscribe((getSettingsResponse: any) => {
       if (getSettingsResponse.success) {
         this.settings = getSettingsResponse.settings
