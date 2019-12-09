@@ -371,11 +371,24 @@ export class BucketController {
 
           const metas = MetaManager.getMetaData(params.bucketName, params.path)
 
-          files.forEach((file, index) => {
-            files[index].public = metas[file.name].public
-            files[index].sharingExpiresOn = metas[file.name].sharingExpiresOn
-            files[index].meta = metas[file.name].meta
-          })
+          try {
+
+            files.forEach((file, index) => {
+              files[index]['public'] = metas[file.name]['public']
+              files[index]['sharingExpiresOn'] = metas[file.name]['sharingExpiresOn']
+              files[index]['meta'] = metas[file.name]['meta']
+            })
+
+          } catch (err) {
+
+            return res.json({
+              success: false,
+              objects: 'Failed updating Meta'
+            })
+
+          }
+
+
 
           return res.json({
             success: true,
@@ -466,15 +479,33 @@ export class BucketController {
     const params = req.body
     var messages = []
 
-    const dest = config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + params.dest
+    const dest = config.ROOT_FOLDER + '/buckets/' + params.bucketName + params.dest
 
     const pathLib = require('path')
 
     params.paths.map((path, i) => {
 
+      console.log("Dest: " + dest)
+
       try {
 
-        fs.moveSync(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path, dest + '/' + pathLib.basename(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path), { overwrite: true })
+        var isDirectory
+
+        try {
+          isDirectory = fs.lstatSync(dest).isDirectory()
+        } catch (err) {
+          isDirectory = false
+        }
+
+        if (isDirectory) {
+
+          fs.moveSync(config.ROOT_FOLDER + '/buckets/' + params.bucketName + path, dest + '/' + pathLib.basename(config.ROOT_FOLDER + '/buckets/' + params.bucketName + '/' + path), { overwrite: true })
+
+        } else {
+
+          fs.moveSync(config.ROOT_FOLDER + '/buckets/' + params.bucketName + path, dest, { overwrite: true })
+
+        }
 
         messages.push({
           success: true,
