@@ -66,7 +66,6 @@ export class UsersComponent implements OnInit {
 
       user = {
         username: this.users[this.actions.userToEditIndex].username,
-        password: this.users[this.actions.userToEditIndex].password,
         role: this.users[this.actions.userToEditIndex].role,
         status: this.users[this.actions.userToEditIndex].status
       }
@@ -77,6 +76,7 @@ export class UsersComponent implements OnInit {
 
       user = {
         username: this.users[this.actions.userToEditIndex].username,
+        password: this.users[this.actions.userToEditIndex].password,
         role: this.users[this.actions.userToEditIndex].role,
         status: this.users[this.actions.userToEditIndex].status
       }

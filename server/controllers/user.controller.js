@@ -233,16 +233,14 @@ export class UserController {
 
     oldUser = oldUser[0]
 
+    if(newUser.password != undefined){
+      newUser['password'] = crypto.createHmac('sha512', encryptionKey).update(newUser.password).digest('hex')
+    }
+
     for (var key in oldUser) {
-
-      if (key == "password" && newUser.password != undefined) {
-        newUser.password = crypto.createHmac('sha512', encryptionKey).update(newUser.password).digest('hex')
-      } else {
-        if (newUser[key] == undefined) {
-          newUser[key] = oldUser[key]
-        }
+      if (newUser[key] == undefined) {
+        newUser[key] = oldUser[key]
       }
-
     }
 
     try {
