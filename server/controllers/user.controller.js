@@ -61,7 +61,8 @@ export class UserController {
 
     var user = {
       username: params.username,
-      password: crypto.createHmac('sha512', encryptionKey).update(params.password).digest('hex')
+      password: crypto.createHmac('sha512', encryptionKey).update(params.password).digest('hex'),
+      status: 'active'
     }
 
     try {
@@ -71,7 +72,7 @@ export class UserController {
       if (users.length == 0) {
         return res.json({
           success: false,
-          message: "Invalid Username or Password"
+          message: "Invalid Username or Password or User Inactive"
         })
       }
 
