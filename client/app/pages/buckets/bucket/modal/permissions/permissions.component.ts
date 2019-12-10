@@ -42,7 +42,7 @@ export class PermissionsComponent implements OnInit {
   }
 
   hideModal() {
-    this.show = false
+    this.onHide.emit(false)
   }
 
 }

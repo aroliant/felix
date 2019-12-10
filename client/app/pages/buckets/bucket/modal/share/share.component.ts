@@ -47,6 +47,6 @@ export class ShareComponent implements OnInit {
   }
 
   hideModal() {
-    this.show = false
+    this.onHide.emit(false)
   }
 }

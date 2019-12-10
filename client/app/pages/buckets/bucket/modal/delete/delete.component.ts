@@ -38,7 +38,7 @@ export class DeleteComponent implements OnInit {
   }
 
   hideModal() {
-    this.show = false
+    this.onDelete.emit("")
   }
 
 }

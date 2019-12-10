@@ -485,8 +485,6 @@ export class BucketController {
 
     params.paths.map((path, i) => {
 
-      console.log("Dest: " + dest)
-
       try {
 
         var isDirectory

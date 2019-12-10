@@ -187,35 +187,39 @@ export class BucketComponent implements OnInit {
   }
 
   onDelete(event) {
-    if (event.success) {
-      this.actions.objectsToDelete.map((objectToDelete, i) => {
-        this.objects.splice(this.objects.indexOf(this.actions.objectsToDelete[i]), 1)
-      })
-      this.toastr.success(event.message, 'Success!');
-    } else {
-      this.toastr.error(event.message);
+    if (event.success != undefined) {
+      if (event.success) {
+        this.actions.objectsToDelete.map((objectToDelete, i) => {
+          this.objects.splice(this.objects.indexOf(this.actions.objectsToDelete[i]), 1)
+        })
+        this.toastr.success(event.message, 'Success!');
+      } else {
+        this.toastr.error(event.message);
+      }
     }
     this.modalStates.delete = false
     this.actions.objectsToDelete = []
   }
 
   onHideMoveFiles(event) {
-    if (event.success) {
-      if (event.spliceMoveObjects) {
-        this.actions.objectsToMove.map((objectToMove, i) => {
-          this.objects.splice(this.objects.indexOf(objectToMove), 1)
-        })
-        this.actions.selectedObjectsCount -= this.actions.objectsToMove.length
+    if (event.success != undefined) {
+      if (event.success) {
+        if (event.spliceMoveObjects) {
+          this.actions.objectsToMove.map((objectToMove, i) => {
+            this.objects.splice(this.objects.indexOf(objectToMove), 1)
+          })
+          this.actions.selectedObjectsCount -= this.actions.objectsToMove.length
+        } else {
+          this.objects.map((object, index) => {
+            object.isSelected = false
+            return object
+          })
+          this.actions.selectedObjectsCount = 0
+        }
+        this.toastr.success(event.message, 'Success!');
       } else {
-        this.objects.map((object, index) => {
-          object.isSelected = false
-          return object
-        })
-        this.actions.selectedObjectsCount = 0
+        this.toastr.error(event.message);
       }
-      this.toastr.success(event.message, 'Success!');
-    } else {
-      this.toastr.error(event.message);
     }
     this.hideMoveObjectsModal()
   }
@@ -293,19 +297,25 @@ export class BucketComponent implements OnInit {
   }
 
   hidePermissionsModal(event) {
-    if (event.success) {
-      this.toastr.success('Success')
-    } else {
-      this.toastr.error(event.message)
+
+    if (event.success != undefined) {
+      if (event.success) {
+        this.toastr.success('Success')
+      } else {
+        this.toastr.error(event.message)
+      }
     }
+
     this.modalStates.permissions = false
   }
 
   hideManageMetaModal(event) {
-    if (event.success) {
-      this.toastr.success('Success')
-    } else {
-      this.toastr.error(event.message)
+    if (event.success != undefined) {
+      if (event.success) {
+        this.toastr.success('Success')
+      } else {
+        this.toastr.error(event.message)
+      }
     }
     this.modalStates.meta = false
   }
@@ -316,10 +326,12 @@ export class BucketComponent implements OnInit {
   }
 
   hideShareObjectModal(event) {
-    if (event.success) {
-      this.toastr.success('Success')
-    } else {
-      this.toastr.error(event.message)
+    if (event.success != undefined) {
+      if (event.success) {
+        this.toastr.success('Success')
+      } else {
+        this.toastr.error(event.message)
+      }
     }
     this.modalStates.share = false
   }

@@ -53,14 +53,13 @@ export class MoveFilesComponent implements OnInit, OnChanges {
     })
 
     this.mainService.moveObjects(moveObjects).subscribe((moveObjectsStatus: any) => {
-      // TODO @techieph Explain this logic
-      const path = Bus.FILE_MOV_PATH.relativePath == '' ? (this.currentPath != '/') : ('/' + Bus.FILE_MOV_PATH.relativePath + '/' != this.currentPath)
-      moveObjectsStatus['spliceMoveObjects'] = path
+      const boolRemoveFromUI = Bus.FILE_MOV_PATH.relativePath == '' ? (this.currentPath != '/') : ('/' + Bus.FILE_MOV_PATH.relativePath + '/' != this.currentPath)
+      moveObjectsStatus['spliceMoveObjects'] = boolRemoveFromUI
       this.onHide.emit(moveObjectsStatus);
     })
   }
 
   hideModal() {
-    this.show = false
+    this.onHide.emit(false)
   }
 }

@@ -68,7 +68,7 @@ export class MetaComponent implements OnInit {
   }
 
   hideModal() {
-    this.show = false
+    this.onHide.emit(false)
   }
 
 }
