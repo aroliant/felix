@@ -124,6 +124,15 @@ export class UsersComponent implements OnInit {
           role: '',
           status: 'active'
         }
+
+        this.userService.getAllUsers().subscribe((getUsersStatus: any) => {
+          if (getUsersStatus.success) {
+            this.users = getUsersStatus.users
+          } else {
+            this.toastr.error(getUsersStatus.message)
+          }
+        })
+
       } else {
         this.toastr.error(userAddStatus.message)
         this.closeAddUserModal()

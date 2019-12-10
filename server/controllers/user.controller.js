@@ -157,7 +157,7 @@ export class UserController {
       username: params.username,
       password: crypto.createHmac('sha512', encryptionKey).update(params.password).digest('hex'),
       role: params.role,
-      status: "Active"
+      status: "active"
     }
 
     try {
