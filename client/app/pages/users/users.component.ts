@@ -116,7 +116,6 @@ export class UsersComponent implements OnInit {
     this.userService.addUser(this.actions.userToAdd).subscribe((userAddStatus: any) => {
       if (userAddStatus.success) {
         this.toastr.success(userAddStatus.message, 'Success!')
-        this.users.push(this.actions.userToAdd)
         this.closeAddUserModal()
         this.actions.userToAdd = {
           username: '',
@@ -124,14 +123,7 @@ export class UsersComponent implements OnInit {
           role: '',
           status: 'active'
         }
-
-        this.userService.getAllUsers().subscribe((getUsersStatus: any) => {
-          if (getUsersStatus.success) {
-            this.users = getUsersStatus.users
-          } else {
-            this.toastr.error(getUsersStatus.message)
-          }
-        })
+        this.users.push(userAddStatus.user)
 
       } else {
         this.toastr.error(userAddStatus.message)

@@ -145,7 +145,8 @@ export class UserController {
 
       return res.json({
         success: false,
-        message: "Error occured while creating User"
+        message: "Error occured while creating User",
+        err: err.message
       })
 
     }
@@ -160,23 +161,27 @@ export class UserController {
       status: "active"
     }
 
+    var userAdded
+
     try {
 
       usersDB.get('users').push(user).write()
+      userAdded = (usersDB.get('users').find(user).value())
 
     } catch (err) {
 
       return res.json({
         success: false,
         message: "Unable to create User",
-        error: err
+        error: err.message
       })
 
     }
 
     return res.json({
       success: true,
-      message: "User Created Successfully",
+      user: userAdded,
+      message: "User Created Successfully"
     })
 
   }
@@ -233,7 +238,7 @@ export class UserController {
 
     oldUser = oldUser[0]
 
-    if(newUser.password != undefined){
+    if (newUser.password != undefined) {
       newUser['password'] = crypto.createHmac('sha512', encryptionKey).update(newUser.password).digest('hex')
     }
 
