@@ -204,7 +204,7 @@ export class BucketComponent implements OnInit {
   onHideMoveFiles(event) {
     if (event.success != undefined) {
       if (event.success) {
-        if (event.spliceMoveObjects) {
+        if (event.removeFromUI) {
           this.actions.objectsToMove.map((objectToMove, i) => {
             this.objects.splice(this.objects.indexOf(objectToMove), 1)
           })

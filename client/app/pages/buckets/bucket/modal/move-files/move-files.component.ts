@@ -54,8 +54,8 @@ export class MoveFilesComponent implements OnInit, OnChanges {
 
     this.mainService.moveObjects(moveObjects).subscribe((moveObjectsStatus: any) => {
       // Determining if there is a need to remove the delete the moved objects from current page. Remove from UI only when the move folder and currently opened folder are not the same
-      const removeFromUI = Bus.FILE_MOV_PATH.relativePath == '' ? (this.currentPath != '/') : ('/' + Bus.FILE_MOV_PATH.relativePath + '/' != this.currentPath)
-      moveObjectsStatus['spliceMoveObjects'] = removeFromUI
+      const _removeFromUI = Bus.FILE_MOV_PATH.relativePath == '' ? (this.currentPath != '/') : ('/' + Bus.FILE_MOV_PATH.relativePath + '/' != this.currentPath)
+      moveObjectsStatus['removeFromUI'] = _removeFromUI
       this.onHide.emit(moveObjectsStatus);
     })
   }
