@@ -41,7 +41,8 @@
                 </div>
                 <div class="d-flex flex-row">
                     <button class="btn btn-outline-secondary m-1" (click)="closeFileListingPrivacy()">Cancel</button>
-                    <button class="btn btn-success text-white m-1" (click)="saveAndCloseFileListingPrivacy()">Save</button>
+                    <button class="btn btn-success text-white m-1"
+                        (click)="saveAndCloseFileListingPrivacy()">Save</button>
                 </div>
             </div>
 
@@ -253,32 +254,32 @@
                 </div>
 
                 <h6 class="m-0">Allowed Methods</h6>
-                <div class="form-group">
-                    <div class="form-check form-check-inline p-2">
-                        <input class="form-check-input" (change)="newCORSMethod($event)" type="checkbox"
-                            id="inlineCheckbox99" value="GET">
-                        <label class="form-check-label" for="inlineCheckbox99">GET</label>
-                    </div>
-                    <div class="form-check form-check-inline p-2">
-                        <input class="form-check-input" (change)="newCORSMethod($event)" type="checkbox"
-                            id="inlineCheckbox98" value="PUT">
-                        <label class="form-check-label" for="inlineCheckbox98">PUT</label>
-                    </div>
-                    <div class="form-check form-check-inline p-2">
-                        <input class="form-check-input" (change)="newCORSMethod($event)" type="checkbox"
-                            id="inlineCheckbox97" value="DELETE">
-                        <label class="form-check-label" for="inlineCheckbox97">DELETE</label>
-                    </div>
-                    <div class="form-check form-check-inline p-2">
-                        <input class="form-check-input" (change)="newCORSMethod($event)" type="checkbox"
-                            id="inlineCheckbox96" value="POST">
-                        <label class="form-check-label" for="inlineCheckbox96">POST</label>
-                    </div>
-                    <div class="form-check form-check-inline p-2">
-                        <input class="form-check-input" (change)="newCORSMethod($event)" type="checkbox"
-                            id="inlineCheckbox95" value="HEAD">
-                        <label class="form-check-label" for="inlineCheckbox95">HEAD</label>
-                    </div>
+                <div class="form-group d-flex flex-row justify-content-between mt-2">
+                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox99">
+                        <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox99" value="GET">
+                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">GET</div>
+                    </label>
+                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox98">
+                        <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox98" value="PUT">
+                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">PUT</div>
+                    </label>
+                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox97">
+                        <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox97" value="DELETE">
+                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">DELETE</div>
+                    </label>
+                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox96">
+                        <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox96" value="POST">
+                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">POST</div>
+                    </label>
+                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox95">
+                        <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox95" value="HEAD">
+                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">HEAD</div>
+                    </label>
                 </div>
 
                 <div class="my-3">
@@ -336,40 +337,45 @@
                 </div>
 
                 <h6 class="m-0">Allowed Methods</h6>
-                <div class="form-group">
-                    <div class="form-check form-check-inline p-2">
+                <div class="form-group d-flex flex-row justify-content-between mt-2">
+                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox99">
                         <input class="form-check-input" (change)="editCORSMethod($event)" type="checkbox"
                             id="inlineCheckbox99"
                             [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('GET') != -1" value="GET">
-                        <label class="form-check-label" for="inlineCheckbox99">GET</label>
-                    </div>
-                    <div class="form-check form-check-inline p-2">
+                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">GET</div>
+                    </label>
+                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox98">
                         <input class="form-check-input" (change)="editCORSMethod($event)" type="checkbox"
                             id="inlineCheckbox98"
                             [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('PUT') != -1" value="PUT">
-                        <label class="form-check-label" for="inlineCheckbox98">PUT</label>
-                    </div>
-                    <div class="form-check form-check-inline p-2">
+                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">PUT</div>
+                    </label>
+                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox97">
                         <input class="form-check-input" (change)="editCORSMethod($event)" type="checkbox"
                             id="inlineCheckbox97"
                             [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('DELETE') != -1"
                             value="DELETE">
-                        <label class="form-check-label" for="inlineCheckbox97">DELETE</label>
-                    </div>
-                    <div class="form-check form-check-inline p-2">
+                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">DELETE</div>
+                    </label>
+                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox96">
                         <input class="form-check-input" (change)="editCORSMethod($event)" type="checkbox"
                             id="inlineCheckbox96"
                             [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('POST') != -1"
                             value="POST">
-                        <label class="form-check-label" for="inlineCheckbox96">POST</label>
-                    </div>
-                    <div class="form-check form-check-inline p-2">
+                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">POST</div>
+                    </label>
+                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox95">
                         <input class="form-check-input" (change)="editCORSMethod($event)" type="checkbox"
                             id="inlineCheckbox95"
                             [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('HEAD') != -1"
                             value="HEAD">
-                        <label class="form-check-label" for="inlineCheckbox95">HEAD</label>
-                    </div>
+                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">HEAD</div>
+                    </label>
                 </div>
 
                 <div class="my-3">
