@@ -34,7 +34,7 @@
 
 .Bucket__name {
   position: relative;
-  width: 200px;
+  min-width: 230px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -44,16 +44,19 @@
 
 .Bucket__size {
   width: 10%;
+  min-width: 100px;
 }
 
 .Bucket__created {
   width: 25%;
+  min-width: 200px;
 }
 
 .Bucket__menu {
   width: 10%;
   position: relative;
   text-align: right;
+  min-width: 100px;
 }
 
 .Bucket__icon {
@@ -165,10 +168,11 @@
 .FileBrowser__selectcolumn {
   text-align: center;
   max-width: 50px;
+  width: 5%;
 }
 
 .FileBrowser__namecolumn {
-  min-width: 50%;
+  width: 40%;
   text-align: left;
   cursor: pointer;
   position: relative;
@@ -182,8 +186,7 @@
 
 .FileBrowser__fileitem {
   overflow: hidden;
-  min-width: 200px;
-  max-width: 400px;
+  max-width: 200px;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -223,12 +226,15 @@
 }
 
 .FileBrowser__sizecolumn {
-  min-width: 10%;
+  width: 10%;
+  min-width: 210px;
   text-align: left;
+  min-width: 100px;
+  overflow: hidden;
 }
 
 .FileBrowser__timecolumn {
-  min-width: 20%;
+  width: 30%;
   text-align: left;
 }
 
@@ -258,8 +264,9 @@
 }
 
 .FileBrowser__optioncolumn {
-  min-width: 14%;
+  width: 15%;
   text-align: right;
+  min-width: 100px;
 }
 
 .FileBrowserOption {

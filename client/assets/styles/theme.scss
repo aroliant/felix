@@ -68,12 +68,13 @@ input:focus {
   background-color: map-get($theme-colors, "white");
   display: flex;
   flex-direction: column;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
+  margin: 0 auto;
+  padding: 1.5rem;
   margin-top: 6rem;
   min-height: 90vh;
   min-width: 680px;
   max-width: 1200px;
+  width: auto;
   overflow: hidden;
   padding-bottom: 20rem;
 }
