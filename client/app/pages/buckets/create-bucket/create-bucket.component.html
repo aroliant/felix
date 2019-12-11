@@ -11,21 +11,24 @@
     </div>
     <div class="w-100 mt-4">
         <h4 class="font-weight-light">Allow file listing?</h4>
-        <div class="form-check form-check-inline border p-3 rounded">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="restricted"
-                checked [(ngModel)]="bucket.fileListing">
-            <label class="form-check-label p-3" for="inlineRadio1"><span class="h6">Restrict File
-                    Listing</span><br />
-                <div class="small">Only users who connect to this Bucket using access keys can list the contents.
+        <div class="d-flex flex-row mt-2 mb-3">
+            <label class="RadioOptionContainer" for="inlineRadio1">
+                <h6 class="m-0">Restrict File Listing</h6>
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="restricted" checked
+                    [(ngModel)]="bucket.fileListing">
+                <span class="RadioOptionContainer__checkmark"></span>
+                <div class="h6 font-weight-normal d-inline-flex">
+                    Only users who connect to this Bucket using access keys can list the
+                    contents.
                 </div>
             </label>
-        </div>
-        <div class="form-check form-check-inline border p-3 rounded">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="enabled"
-                [(ngModel)]="bucket.fileListing">
-            <label class="form-check-label p-3" for="inlineRadio2"><span class="h6">Enable File Listing </span>
-                <br />
-                <div class="small">Anyone can list the contents of this Space.
+            <label class="RadioOptionContainer" for="inlineRadio2">
+                <h6 class="m-0">Enable File Listing</h6>
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="enabled"
+                    [(ngModel)]="bucket.fileListing">
+                <span class="RadioOptionContainer__checkmark"></span>
+                <div class="h6 font-weight-normal d-inline-flex">
+                    Anyone can list the contents of this Bucket.
                 </div>
             </label>
         </div>
