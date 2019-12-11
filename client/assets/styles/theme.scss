@@ -357,6 +357,13 @@ thead {
   border-radius: 50%;
   background-color: map-get($theme-colors, "primary");
 }
+/* flex variant */
+.RadioOptionContainer_flex {
+  display: flex;
+  flex-direction: row;
+  padding-left: 25px;
+  align-items: center;
+}
 
 // Refresh Btn
 .RefreshBtn__icon {
