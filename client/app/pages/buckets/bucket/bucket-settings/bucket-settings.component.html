@@ -1,54 +1,52 @@
-<div class="MainContent">
-    <div class="container">
-        <app-breadcrumb [bucket]="bucket"></app-breadcrumb>
+<div class="AppContent">
+    <app-breadcrumb [bucket]="bucket"></app-breadcrumb>
 
-        <div class="BucketSettings">
-            <div class="BucketSettings__item BucketSettings__item--column">
-                <div class="d-flex flex-row justify-content-between w-100">
-                    <div>
-                        <h5 class="m-0">File Listing</h5>
-                        <p class="m-0">
-                            <strong>Restricted:</strong>
-                            Only users who connect to this Bucket using access keys can list the contents.
-                        </p>
-                    </div>
-                    <button class="btn btn-outline-secondary" (click)="openFileListingPrivacy();">Edit</button>
+    <div class="BucketSettings">
+        <div class="BucketSettings__item BucketSettings__item--column">
+            <div class="d-flex flex-row justify-content-between w-100">
+                <div>
+                    <h5 class="m-0">File Listing</h5>
+                    <p class="m-0">
+                        <strong>Restricted:</strong>
+                        Only users who connect to this Bucket using access keys can list the contents.
+                    </p>
                 </div>
-
-                <div class="w-100 mt-3 FileListingPrivacy flex-column" id="FileListingPrivacy">
-                    <div class="d-flex flex-row mb-3">
-                        <div class="form-check form-check-inline border p-3 rounded">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                                value="restricted" [(ngModel)]="bucket?.settings['fileListing']">
-                            <label class="form-check-label p-3" for="inlineRadio1"><span class="h6">Restrict File
-                                    Listing</span><br />
-                                <div class="small">Only users who connect to this Bucket using access keys can list
-                                    the
-                                    contents.
-                                </div>
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline border p-3 rounded">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                                value="enabled" [(ngModel)]="bucket?.settings['fileListing']">
-                            <label class="form-check-label p-3" for="inlineRadio2"><span class="h6">Enable File
-                                    Listing
-                                </span>
-                                <br />
-                                <div class="small">Anyone can list the contents of this Bucket.
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row">
-                        <button class="btn btn-primary m-1" (click)="saveAndCloseFileListingPrivacy()">Save</button>
-                        <button class="btn btn-outline-secondary m-1"
-                            (click)="closeFileListingPrivacy()">Cancel</button>
-                    </div>
-                </div>
-
+                <button class="btn btn-outline-secondary" (click)="openFileListingPrivacy();">Edit</button>
             </div>
-            <!-- <div class="BucketSettings__item">
+
+            <div class="w-100 mt-3 FileListingPrivacy flex-column" id="FileListingPrivacy">
+                <div class="d-flex flex-row mb-3">
+                    <div class="form-check form-check-inline border p-3 rounded">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                            value="restricted" [(ngModel)]="bucket?.settings['fileListing']">
+                        <label class="form-check-label p-3" for="inlineRadio1"><span class="h6">Restrict File
+                                Listing</span><br />
+                            <div class="small">Only users who connect to this Bucket using access keys can list
+                                the
+                                contents.
+                            </div>
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline border p-3 rounded">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                            value="enabled" [(ngModel)]="bucket?.settings['fileListing']">
+                        <label class="form-check-label p-3" for="inlineRadio2"><span class="h6">Enable File
+                                Listing
+                            </span>
+                            <br />
+                            <div class="small">Anyone can list the contents of this Bucket.
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="d-flex flex-row">
+                    <button class="btn btn-primary m-1" (click)="saveAndCloseFileListingPrivacy()">Save</button>
+                    <button class="btn btn-outline-secondary m-1" (click)="closeFileListingPrivacy()">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- <div class="BucketSettings__item">
                 <div>
                     <h5 class="m-0">CDN (Content Delivery Network)</h5>
                     <p class="m-0">
@@ -61,133 +59,132 @@
                     <button class="btn btn-outline-secondary" (click)="openPurgeModal();">Edit</button>
                 </div>
             </div> -->
-            <div class="BucketSettings__item BucketSettings__item--column">
-                <div class="w-100 d-flex flex-row align-items-center justify-content-between mb-4">
-                    <div>
-                        <h5 class="m-0">CORS Configurations</h5>
-                        <p class="m-0">
-                            Rules are processed in order from top to bottom until there is a match - drag and drop rules
-                            to
-                            reorder.
-                        </p>
-                    </div>
-                    <button class="btn btn-outline-secondary" (click)="openCORSoptionModal()">Add</button>
-                </div>
-
-                <div class="CORS">
-                    <table class="table table-hover" *ngIf="bucket.cors.length != 0">
-                        <thead>
-                            <tr>
-                                <th class="CORS__origin">Origin</th>
-                                <th class="CORS__method">Method</th>
-                                <th class="CORS__headers">Headers</th>
-                                <th class="CORS__age">Age</th>
-                                <th class="CORS__actions">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let cors of bucket.cors;let CORSIndex = index">
-                                <td class="CORS__origin">
-                                    <a class="text-primary" href="fibon.blaz.app" target="_blank">{{cors?.origin}}</a>
-                                </td>
-                                <td class="CORS__method">
-                                    <span class="text-secondary">
-                                        <span *ngFor="let method of cors.allowedMethods" class="p-2">
-                                            {{method}} &nbsp;
-                                        </span>
-                                    </span>
-                                </td>
-                                <td class="CORS__headers">
-                                    <span class="text-secondary">
-                                        <span *ngIf="cors.allowedHeaders.length == 0">No headers</span>
-                                        <span *ngIf="cors.allowedHeaders.length > 0">{{cors.allowedHeaders.length}}
-                                            headers</span>
-                                    </span>
-                                    <div class="CORS__headers_menu_content">
-                                        <div *ngFor="let header of cors.allowedHeaders" class="p-2">
-                                            {{header.name}} <br />
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
-                                <td class="CORS__actions"><a class="text-primary small cursor-pointer mr-3"
-                                        target="_blank" (click)="openEditCORSoptionModal(CORSIndex)">
-                                        <i class="icofont-ui-edit mr-2"></i> <span>Edit</span>
-                                    </a>
-                                    <br>
-                                    <a class="text-danger small cursor-pointer" target="_blank"
-                                        (click)="removeCORS(CORSIndex)">
-                                        <i class="icofont-ui-delete mr-2"></i> <span>Remove</span>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-            <div class="BucketSettings__item BucketSettings__item--column">
+        <div class="BucketSettings__item BucketSettings__item--column">
+            <div class="w-100 d-flex flex-row align-items-center justify-content-between mb-4">
                 <div>
-                    <h5 class="m-0">Domains</h5>
-
-                </div>
-                <div class="w-100 text-left mt-2">
-                    <div class="BucketEndpoint CopyBtn">
-                        <span class="mx-2 text-secondary">{{bucket.bucketName}}.blaz.app</span>
-                        <button class="btn btn-outline-primary"
-                            (click)="copyToClipboard(bucket.bucketName+'.blaz.app')">Copy</button>
-                    </div>
-                    <div class="mt-3 w-75">
-                        <div class="form-group form-inline m-0">
-                            <input type="text" class="form-control mr-2 flex-grow-1" autocomplete="off"
-                                (keydown)="addDomainOnEnter($event)" placeholder="Enter the domain you want to connect"
-                                [(ngModel)]="newDomain.name">
-                            <button class="btn btn-primary" (click)="updateDomain()">Connect</button>
-                        </div>
-                        <div class="mt-3">
-                            <strong class="text-uppercase small">Domains</strong>
-                            <div class="list-group list-group-flush mt-1" *ngIf="bucket.domains.length != 0">
-                                <div *ngFor="let domain of bucket.domains; let domainIndex = index"
-                                    class="list-group-item d-flex flex-row align-items-center justify-content-between">
-                                    <a class="text-primary Domain__name" href="app.your-domain.com"
-                                        target="_blank">{{domain.name}}</a>
-                                    <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" [(ngModel)]="domain.sslEnabled"
-                                            (change)="updateDomainProperties()" name="EnableHTTPS1">
-                                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
-                                    </label>
-                                    <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                        <input type="checkbox" [(ngModel)]="domain.forceSSL"
-                                            (change)="updateDomainProperties()" name="ForceHTTPS1">
-                                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
-                                    </label>
-                                    <label>
-                                        <a class="text-primary" (click)="removeDomain(domainIndex)">Remove</a>
-                                    </label>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="BucketSettings__item">
-                <div>
-                    <h5 class="m-0">Delete this bucket</h5>
+                    <h5 class="m-0">CORS Configurations</h5>
                     <p class="m-0">
-                        This will schedule your bucket to be deleted. Your bucket and all associated objects will be
-                        permanently destroyed, scrubbed, and irretrievable after the deletion period. You will NOT be
-                        billed for the Bucket from the time you requested a delete to time the Bucket and its contents
-                        are
-                        actually deleted.
+                        Rules are processed in order from top to bottom until there is a match - drag and drop rules
+                        to
+                        reorder.
                     </p>
                 </div>
-                <button class="btn btn-outline-danger ml-3" (click)="openDeleteBucketModal();">Delete</button>
+                <button class="btn btn-outline-secondary" (click)="openCORSoptionModal()">Add</button>
             </div>
+
+            <div class="CORS">
+                <table class="table table-hover" *ngIf="bucket.cors.length != 0">
+                    <thead>
+                        <tr>
+                            <th class="CORS__origin">Origin</th>
+                            <th class="CORS__method">Method</th>
+                            <th class="CORS__headers">Headers</th>
+                            <th class="CORS__age">Age</th>
+                            <th class="CORS__actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cors of bucket.cors;let CORSIndex = index">
+                            <td class="CORS__origin">
+                                <a class="text-primary" href="fibon.blaz.app" target="_blank">{{cors?.origin}}</a>
+                            </td>
+                            <td class="CORS__method">
+                                <span class="text-secondary">
+                                    <span *ngFor="let method of cors.allowedMethods" class="p-2">
+                                        {{method}} &nbsp;
+                                    </span>
+                                </span>
+                            </td>
+                            <td class="CORS__headers">
+                                <span class="text-secondary">
+                                    <span *ngIf="cors.allowedHeaders.length == 0">No headers</span>
+                                    <span *ngIf="cors.allowedHeaders.length > 0">{{cors.allowedHeaders.length}}
+                                        headers</span>
+                                </span>
+                                <div class="CORS__headers_menu_content">
+                                    <div *ngFor="let header of cors.allowedHeaders" class="p-2">
+                                        {{header.name}} <br />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
+                            <td class="CORS__actions"><a class="text-primary small cursor-pointer mr-3" target="_blank"
+                                    (click)="openEditCORSoptionModal(CORSIndex)">
+                                    <i class="icofont-ui-edit mr-2"></i> <span>Edit</span>
+                                </a>
+                                <br>
+                                <a class="text-danger small cursor-pointer" target="_blank"
+                                    (click)="removeCORS(CORSIndex)">
+                                    <i class="icofont-ui-delete mr-2"></i> <span>Remove</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="BucketSettings__item BucketSettings__item--column">
+            <div>
+                <h5 class="m-0">Domains</h5>
+
+            </div>
+            <div class="w-100 text-left mt-2">
+                <div class="BucketEndpoint CopyBtn">
+                    <span class="mx-2 text-secondary">{{bucket.bucketName}}.blaz.app</span>
+                    <button class="btn btn-outline-primary"
+                        (click)="copyToClipboard(bucket.bucketName+'.blaz.app')">Copy</button>
+                </div>
+                <div class="mt-3 w-75">
+                    <div class="form-group form-inline m-0">
+                        <input type="text" class="form-control mr-2 flex-grow-1" autocomplete="off"
+                            (keydown)="addDomainOnEnter($event)" placeholder="Enter the domain you want to connect"
+                            [(ngModel)]="newDomain.name">
+                        <button class="btn btn-primary" (click)="updateDomain()">Connect</button>
+                    </div>
+                    <div class="mt-3">
+                        <strong class="text-uppercase small">Domains</strong>
+                        <div class="list-group list-group-flush mt-1" *ngIf="bucket.domains.length != 0">
+                            <div *ngFor="let domain of bucket.domains; let domainIndex = index"
+                                class="list-group-item d-flex flex-row align-items-center justify-content-between">
+                                <a class="text-primary Domain__name" href="app.your-domain.com"
+                                    target="_blank">{{domain.name}}</a>
+                                <label class="CheckboxContainer d-flex align-items-center flex-row">
+                                    <input type="checkbox" [(ngModel)]="domain.sslEnabled"
+                                        (change)="updateDomainProperties()" name="EnableHTTPS1">
+                                    <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                                    <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
+                                </label>
+                                <label class="CheckboxContainer d-flex align-items-center flex-row">
+                                    <input type="checkbox" [(ngModel)]="domain.forceSSL"
+                                        (change)="updateDomainProperties()" name="ForceHTTPS1">
+                                    <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                                    <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
+                                </label>
+                                <label>
+                                    <a class="text-primary" (click)="removeDomain(domainIndex)">Remove</a>
+                                </label>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="BucketSettings__item">
+            <div>
+                <h5 class="m-0">Delete this bucket</h5>
+                <p class="m-0">
+                    This will schedule your bucket to be deleted. Your bucket and all associated objects will be
+                    permanently destroyed, scrubbed, and irretrievable after the deletion period. You will NOT be
+                    billed for the Bucket from the time you requested a delete to time the Bucket and its contents
+                    are
+                    actually deleted.
+                </p>
+            </div>
+            <button class="btn btn-outline-danger ml-3" (click)="openDeleteBucketModal();">Delete</button>
         </div>
     </div>
 </div>

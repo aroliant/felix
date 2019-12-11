@@ -1,109 +1,103 @@
-<div class="MainContent">
-    <div class="container">
-        <h3 class="font-weight-light mb-0">Settings</h3>
+<div class="AppContent">
+    <h3 class="font-weight-light mb-0">Settings</h3>
 
-        <div class="row">
-            <div class="col-lg-12 p-2">
-                <div class="card card-body shadow-sm border">
+    <div class="row">
+        <div class="col-lg-12 p-2">
+            <div class="card card-body shadow-sm border">
+                <div class="form-group mb-0">
+                    <h4 class="font-weight-light">Primary Domain</h4>
                     <div class="form-group mb-0">
-                        <h4 class="font-weight-light">Primary Domain</h4>
-                        <div class="form-group mb-0">
-                            <input type="text" class="form-control" aria-label="Sizing example input"
-                                [(ngModel)]="settings.primaryDomain" aria-describedby="inputGroup-sizing-default"
-                                placeholder="Enter you primary domain" autocomplete="off">
-                        </div>
-                        <div class="d-flex flex-row justify-content-between mt-3">
-                            <div class="d-flex flex-row">
-                                <label class="CheckboxContainer d-flex align-items-center flex-row mr-3">
-                                    <input type="checkbox" [(ngModel)]="settings.sslEnabled" checked="checked"
-                                        name="enableHTTPSPrimary">
-                                    <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                                    <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
-                                </label>
-                                <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                    <input type="checkbox" [(ngModel)]="settings.forceSSL" checked="checked"
-                                        name="forceHTTPSPrimary">
-                                    <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                                    <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
-                                </label>
-                            </div>
-                            <button class="btn btn-success text-white" (click)="updateSettingsDomain()">Save</button>
-                        </div>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            [(ngModel)]="settings.primaryDomain" aria-describedby="inputGroup-sizing-default"
+                            placeholder="Enter you primary domain" autocomplete="off">
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-12 p-2">
-                <div class="card card-body shadow-sm border">
-                    <div class="w-100">
-                        <div class="d-flex flex-row justify-content-between align-items-center mb-2">
-                            <div class="d-flex flex-row justify-content-start align-items-center">
-                                <h4 class="font-weight-light m-0">API and Access Keys</h4>
-                                <a (click)="refreshAPIKeys();toggleRefresh();" class="RefreshBtn" id="toggleRefresh"><i
-                                        class="icofont-refresh mx-2 RefreshBtn__icon"></i></a>
-                            </div>
-
-                            <label class="SwitchContainer">
-                                <input type="checkbox" class="SwitchContainer__input" checked
-                                    (click)="updateEnableAPI()" [(ngModel)]="settings.keys.enableAPI"
-                                    name="enableAPIaccess">
-                                <span class="SwitchSlider RoundedToggle"></span>
+                    <div class="d-flex flex-row justify-content-between mt-3">
+                        <div class="d-flex flex-row">
+                            <label class="CheckboxContainer d-flex align-items-center flex-row mr-3">
+                                <input type="checkbox" [(ngModel)]="settings.sslEnabled" checked="checked"
+                                    name="enableHTTPSPrimary">
+                                <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                                <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
+                            </label>
+                            <label class="CheckboxContainer d-flex align-items-center flex-row">
+                                <input type="checkbox" [(ngModel)]="settings.forceSSL" checked="checked"
+                                    name="forceHTTPSPrimary">
+                                <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                                <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
                             </label>
                         </div>
-                        <div class="form-group row" *ngIf="settings.keys.enableAPI">
-                            <label class="h6 col-lg-2 align-self-center">App Key</label>
-                            <div class="col-lg-10">
-                                <div class="w-100 CopyBtn">
-                                    <span class="mx-2 text-secondary">{{settings.keys.apiKey}}</span>
-                                    <button class="btn btn-outline-primary"
-                                        (click)="copyToClipBoard(settings.keys.apiKey)">Copy</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group mb-0 row" *ngIf="settings.keys.enableAPI">
-                            <label class="h6 col-lg-2 align-self-center">Access Key</label>
-                            <div class="col-lg-10">
-                                <div class="w-100 CopyBtn">
-                                    <span class="mx-2 text-secondary">{{settings.keys.accessKey}}</span>
-                                    <button class="btn btn-outline-primary"
-                                        (click)="copyToClipBoard(settings.keys.accessKey)">Copy</button>
-                                </div>
-                            </div>
+                        <button class="btn btn-success text-white" (click)="updateSettingsDomain()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 p-2">
+            <div class="card card-body shadow-sm border">
+                <div class="w-100">
+                    <div class="d-flex flex-row justify-content-between align-items-center mb-2">
+                        <div class="d-flex flex-row justify-content-start align-items-center">
+                            <h4 class="font-weight-light m-0">API and Access Keys</h4>
+                            <a (click)="refreshAPIKeys();toggleRefresh();" class="RefreshBtn" id="toggleRefresh"><i
+                                    class="icofont-refresh mx-2 RefreshBtn__icon"></i></a>
                         </div>
 
-                        <div class="w-100 mt-3" *ngIf="settings.keys.enableAPI">
-                            <div class="d-flex align-items-center justify-content-start my-2 row mx-0">
-                                <label class="h6 mt-2 mb-0 col-lg-2 p-0 align-self-start">Allowed Origins</label>
-                                <div class="col-lg-10 p-0">
-                                    <div class="form-group form-inline w-50 ml-1"
-                                        *ngFor="let origin of settings.keys.allowedOrigins;let allowedOriginsIndex = index">
-                                        <input type="text"
-                                            [(ngModel)]="settings.keys.allowedOrigins[allowedOriginsIndex].originName"
-                                            class="form-control flex-grow-1" placeholder="Enter the origin path"
-                                            autocomplete="off">
-                                        <a class="text-danger cursor-pointer ml-3"
-                                            (click)="removeOrigin(allowedOriginsIndex)">
-                                            Remove
-                                        </a>
-                                    </div>
-                                    <button class="btn btn-primary ml-1" (click)="addOriginInputBox()">Add</button>
-                                </div>
+                        <label class="SwitchContainer">
+                            <input type="checkbox" class="SwitchContainer__input" checked (click)="updateEnableAPI()"
+                                [(ngModel)]="settings.keys.enableAPI" name="enableAPIaccess">
+                            <span class="SwitchSlider RoundedToggle"></span>
+                        </label>
+                    </div>
+                    <div class="form-group row" *ngIf="settings.keys.enableAPI">
+                        <label class="h6 col-lg-2 align-self-center">App Key</label>
+                        <div class="col-lg-10">
+                            <div class="w-100 CopyBtn">
+                                <span class="mx-2 text-secondary">{{settings.keys.apiKey}}</span>
+                                <button class="btn btn-outline-primary"
+                                    (click)="copyToClipBoard(settings.keys.apiKey)">Copy</button>
                             </div>
-
-
-
-                            <button class="btn btn-success text-white" (click)="addOrigin()">Save</button>
-
+                        </div>
+                    </div>
+                    <div class="form-group mb-0 row" *ngIf="settings.keys.enableAPI">
+                        <label class="h6 col-lg-2 align-self-center">Access Key</label>
+                        <div class="col-lg-10">
+                            <div class="w-100 CopyBtn">
+                                <span class="mx-2 text-secondary">{{settings.keys.accessKey}}</span>
+                                <button class="btn btn-outline-primary"
+                                    (click)="copyToClipBoard(settings.keys.accessKey)">Copy</button>
+                            </div>
                         </div>
                     </div>
 
+                    <div class="w-100 mt-3" *ngIf="settings.keys.enableAPI">
+                        <div class="d-flex align-items-center justify-content-start my-2 row mx-0">
+                            <label class="h6 mt-2 mb-0 col-lg-2 p-0 align-self-start">Allowed Origins</label>
+                            <div class="col-lg-10 p-0">
+                                <div class="form-group form-inline w-50 ml-1"
+                                    *ngFor="let origin of settings.keys.allowedOrigins;let allowedOriginsIndex = index">
+                                    <input type="text"
+                                        [(ngModel)]="settings.keys.allowedOrigins[allowedOriginsIndex].originName"
+                                        class="form-control flex-grow-1" placeholder="Enter the origin path"
+                                        autocomplete="off">
+                                    <a class="text-danger cursor-pointer ml-3"
+                                        (click)="removeOrigin(allowedOriginsIndex)">
+                                        Remove
+                                    </a>
+                                </div>
+                                <button class="btn btn-primary ml-1" (click)="addOriginInputBox()">Add</button>
+                            </div>
+                        </div>
 
+
+
+                        <button class="btn btn-success text-white" (click)="addOrigin()">Save</button>
+
+                    </div>
                 </div>
-            </div>
 
+
+            </div>
         </div>
 
-
-
-
     </div>
+
 </div>

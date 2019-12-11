@@ -53,22 +53,29 @@ input:focus {
 // $font-size-base: 1.3rem;
 
 // Theme Customization (Bootstrap)
-.MainContent {
-  margin-top: 67px;
+// AppBody
+.AppBody {
   margin-left: 200px;
-  width: calc(100% - 200px);
-  min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-top: 2rem;
-  padding-right: 2rem;
-  padding-left: 2rem;
-  padding-bottom: 20rem;
+  min-height: 100vh;
+  // background-color: map-get($theme-colors, "gray");
   position: relative;
-  // min-width: 1400px;
 }
 
-.MainContent__full {
+.AppContent {
+  border-radius: 6px;
+  background-color: map-get($theme-colors, "white");
+  display: flex;
+  flex-direction: column;
+  margin: 5rem 2.5rem;
+  min-height: 90vh;
+  padding: 1rem;
+  min-width: 680px;
+  max-width: 1200px;
+}
+
+.AppContent__full {
   position: relative;
   background-color: map-get($theme-colors, "white");
   min-height: 100vh;

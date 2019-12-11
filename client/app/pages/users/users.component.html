@@ -1,41 +1,39 @@
-<div class="MainContent">
-    <div class="container">
-        <div class="w-100 d-flex flex-row justify-content-between">
-            <h3 class="font-weight-light mb-0">Users</h3>
-            <button class="btn btn-primary" (click)="openAddUserModal();">Add User</button>
-        </div>
-        <div class="Users mt-4">
+<div class="AppContent">
+    <div class="w-100 d-flex flex-row justify-content-between">
+        <h3 class="font-weight-light mb-0">Users</h3>
+        <button class="btn btn-primary" (click)="openAddUserModal();">Add User</button>
+    </div>
+    <div class="Users mt-4">
 
-            <table class="table table-hover">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th class="User__name">User</th>
-                        <th class="User__role">Role</th>
-                        <th class="User__status">Status</th>
-                        <th class="User__actions">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let user of users;let userIndex = index">
-                        <td class="User__name">
-                            <span class="small text-secondary">Name:
-                            </span>{{user.username}}<br />
-                            <span class="small text-secondary">ID: </span>{{user.id}}
-                        </td>
-                        <td class="User__role">{{user.role}}</td>
-                        <td class="User__status">{{user.status}}</td>
-                        <td class="User__actions">
-                            <a class="text-primary cursor-pointer mr-3" (click)="openEditUserModal(userIndex);">
-                                <i class="icofont-ui-edit mr-2"></i> <span>Edit</span>
-                            </a><br>
-                            <a class="text-danger cursor-pointer" (click)="openDeleteUserModal(userIndex);">
-                                <i class="icofont-ui-delete mr-2"></i> <span>Delete</span>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <table class="table table-hover">
+            <thead class="thead-inverse">
+                <tr>
+                    <th class="User__name">User</th>
+                    <th class="User__role">Role</th>
+                    <th class="User__status">Status</th>
+                    <th class="User__actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users;let userIndex = index">
+                    <td class="User__name">
+                        <span class="small text-secondary">Name:
+                        </span>{{user.username}}<br />
+                        <span class="small text-secondary">ID: </span>{{user.id}}
+                    </td>
+                    <td class="User__role">{{user.role}}</td>
+                    <td class="User__status">{{user.status}}</td>
+                    <td class="User__actions">
+                        <a class="text-primary cursor-pointer mr-3" (click)="openEditUserModal(userIndex);">
+                            <i class="icofont-ui-edit mr-2"></i> <span>Edit</span>
+                        </a><br>
+                        <a class="text-danger cursor-pointer" (click)="openDeleteUserModal(userIndex);">
+                            <i class="icofont-ui-delete mr-2"></i> <span>Delete</span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

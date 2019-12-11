@@ -1,177 +1,173 @@
-<div class="MainContent overflow-hidden" (click)="hideAllActions()">
-  <div class="container">
-    <app-breadcrumb [bucket]="bucket"></app-breadcrumb>
+<div class="AppContent" (click)="hideAllActions()">
+  <app-breadcrumb [bucket]="bucket"></app-breadcrumb>
 
-    <div class="FileBrowserControls">
-      <div class="row w-100 my-3 mx-0">
-        <div class="col-md-12 col-lg-12 col-xl-5 p-0 d-flex flex-row">
-          <button class="btn btn-primary mr-2" (click)="createNewFolder()">New Folder</button>
-          <div class="form-group mb-0 flex-grow-1">
-            <input type="text" class="form-control" name="" (input)="searchFilter()" [(ngModel)]="searchInput"
-              placeholder="Start typing to filter the list of files and folders" autocomplete="off">
-          </div>
+  <div class="FileBrowserControls">
+    <div class="row w-100 my-3 mx-0">
+      <div class="col-md-12 col-lg-12 col-xl-5 p-0 d-flex flex-row">
+        <button class="btn btn-primary mr-2" (click)="createNewFolder()">New Folder</button>
+        <div class="form-group mb-0 flex-grow-1">
+          <input type="text" class="form-control" name="" (input)="searchFilter()" [(ngModel)]="searchInput"
+            placeholder="Start typing to filter the list of files and folders" autocomplete="off">
         </div>
-        <div class="col-md-12 col-lg-12 col-xl-7 text-right p-0 mt-md-2 mt-xl-0">
-          <div class="UploadActions mr-3">
-            <button class="btn btn-outline-secondary" (click)="showMainActions()" type="button">Actions
-              ({{actions.selectedObjectsCount}}) <i class="icofont-simple-down"></i>
-            </button>
-            <div class="UploadActions__content">
-              <div class="list-group" [hidden]="!showMainAction === true">
-                <a Value class="list-group-item list-group-item-action" (click)="showMoveObjectsModal();"
-                  (click)="showMoveObjectsModel()">Move to folder</a>
-                <a Value class="list-group-item list-group-item-action text-danger"
-                  (click)="showDeletesModel()">Delete</a>
-              </div>
+      </div>
+      <div class="col-md-12 col-lg-12 col-xl-7 text-right p-0 mt-md-2 mt-xl-0">
+        <div class="UploadActions mr-3">
+          <button class="btn btn-outline-secondary" (click)="showMainActions()" type="button">Actions
+            ({{actions.selectedObjectsCount}}) <i class="icofont-simple-down"></i>
+          </button>
+          <div class="UploadActions__content">
+            <div class="list-group" [hidden]="!showMainAction === true">
+              <a Value class="list-group-item list-group-item-action" (click)="showMoveObjectsModal();"
+                (click)="showMoveObjectsModel()">Move to folder</a>
+              <a Value class="list-group-item list-group-item-action text-danger"
+                (click)="showDeletesModel()">Delete</a>
             </div>
           </div>
-
-          <button class="btn btn-primary UploadFile mr-3" type="button">Upload Files
-            <input type="file" class="UploadFile__input" multiple (change)="uploadFiles($event)">
-          </button>
-
-          <button class="btn btn-primary UploadFolder" type="button">Upload Folders
-            <input type="file" class="UploadFolder__input" webkitdirectory mozdirectory multiple
-              (change)="uploadFolders($event)">
-          </button>
         </div>
+
+        <button class="btn btn-primary UploadFile mr-3" type="button">Upload Files
+          <input type="file" class="UploadFile__input" multiple (change)="uploadFiles($event)">
+        </button>
+
+        <button class="btn btn-primary UploadFolder" type="button">Upload Folders
+          <input type="file" class="UploadFolder__input" webkitdirectory mozdirectory multiple
+            (change)="uploadFolders($event)">
+        </button>
       </div>
     </div>
+  </div>
 
-    <div class="FileBrowser">
-      <div class="FileBrowserHeader small">
-        <strong class="FileBrowserHeader__left">
-          <div *ngFor="let crumb of bucketBreadcrumbs">
-            <a (click)="navigateBucketBreadcrumb(crumb.path)" class="FileBrowserHeader__crumb"
-              *ngIf="crumb.name != '/'">
-              {{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
-            <i class="icofont-home FileBrowserHeader__crumb p-2" (click)="navigateBucketBreadcrumb(crumb.path)"
-              *ngIf="crumb.name == '/'"></i>
-          </div>
-        </strong>
-        <div class="FileBrowserHeader__right">{{objects.length}} item(s)</div>
-      </div>
-      <table class="table table-hover">
-        <thead class="FileBrowser__titlebar">
-          <tr>
-            <th scope="col" class="FileBrowser__selectcolumn">
-              <label class="CheckboxContainer">
-                <input type="checkbox" [(ngModel)]="states.checkedAll" (ngModelChange)="selectAll($event)">
-                <span class="CheckboxContainer__checkmark"></span>
-              </label>
-            </th>
-            <th scope="col" class="FileBrowser__namecolumn">Name</th>
-            <th scope="col" class="FileBrowser__sizecolumn">Size</th>
-            <th scope="col" class="FileBrowser__timecolumn">Last Modified</th>
-            <th scope="col" class="FileBrowser__optioncolumn"></th>
-          </tr>
-        </thead>
-        <tbody class="FileBrowser__content">
+  <div class="FileBrowser">
+    <div class="FileBrowserHeader small">
+      <strong class="FileBrowserHeader__left">
+        <div *ngFor="let crumb of bucketBreadcrumbs">
+          <a (click)="navigateBucketBreadcrumb(crumb.path)" class="FileBrowserHeader__crumb" *ngIf="crumb.name != '/'">
+            {{crumb.name != '/' ? crumb.name + '/' : crumb.name}}</a>
+          <i class="icofont-home FileBrowserHeader__crumb p-2" (click)="navigateBucketBreadcrumb(crumb.path)"
+            *ngIf="crumb.name == '/'"></i>
+        </div>
+      </strong>
+      <div class="FileBrowserHeader__right">{{objects.length}} item(s)</div>
+    </div>
+    <table class="table table-hover">
+      <thead class="FileBrowser__titlebar">
+        <tr>
+          <th scope="col" class="FileBrowser__selectcolumn">
+            <label class="CheckboxContainer">
+              <input type="checkbox" [(ngModel)]="states.checkedAll" (ngModelChange)="selectAll($event)">
+              <span class="CheckboxContainer__checkmark"></span>
+            </label>
+          </th>
+          <th scope="col" class="FileBrowser__namecolumn">Name</th>
+          <th scope="col" class="FileBrowser__sizecolumn">Size</th>
+          <th scope="col" class="FileBrowser__timecolumn">Last Modified</th>
+          <th scope="col" class="FileBrowser__optioncolumn"></th>
+        </tr>
+      </thead>
+      <tbody class="FileBrowser__content">
 
-          <tr *ngFor="let object of objects; let i = index">
-            <td class="FileBrowser__selectcolumn">
-              <label class="CheckboxContainer">
-                <input type="checkbox" [checked]="object.isSelected" name="select_{{i}}"
-                  (change)="selectObject($event, i)">
-                <span class="CheckboxContainer__checkmark"></span>
-              </label>
-            </td>
-            <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'">
-              <!-- folder normal mode -->
-              <span (click)="browseFolder(object.name)" *ngIf="!object.onEditMode">
-                <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
-                {{object.name}}
+        <tr *ngFor="let object of objects; let i = index">
+          <td class="FileBrowser__selectcolumn">
+            <label class="CheckboxContainer">
+              <input type="checkbox" [checked]="object.isSelected" name="select_{{i}}"
+                (change)="selectObject($event, i)">
+              <span class="CheckboxContainer__checkmark"></span>
+            </label>
+          </td>
+          <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'">
+            <!-- folder normal mode -->
+            <span (click)="browseFolder(object.name)" *ngIf="!object.onEditMode">
+              <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
+              {{object.name}}
+            </span>
+
+            <!-- folder editable mode -->
+            <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
+              <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
+              <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editObject($event,i)"
+                placeholder="Folder name" autocomplete="off" />
+            </div>
+
+          </td>
+          <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='file'">
+            <!-- file normal mode -->
+            <p class="m-0 FileBrowser__fileitem" *ngIf="!object.onEditMode">
+              <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
+              {{object.name}}
+            </p>
+
+            <!-- file editable mode -->
+            <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
+              <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
+              <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editObject($event,i)"
+                placeholder="File name" autocomplete="off" />
+            </div>
+
+            <!-- hover menu -->
+            <div class="FileBrowser__infomenu" *ngIf="!object.onEditMode">
+              <div class="d-flex flex-row align-items-center justify-content-between">
+                <div>Origin</div>
+                <div class="FileBrowser__infomenu_URL_holder">
+                  <a class="FileBrowser__infomenu_URL mx-2" target="_blank"
+                    href="https://{{bucket.bucketName}}.blaz.app{{currentPath}}{{object.name}}">https://{{bucket.bucketName}}.blaz.app{{currentPath}}{{object.name}}</a>
+                </div>
+                <button class="btn btn-light"
+                  (click)="copyToClipboard('https://'+bucket.bucketName+'.blaz.app'+currentPath+object.name)">Copy</button>
+              </div>
+              <table class="table mt-2">
+                <tbody>
+                  <tr>
+                    <th>Permission</th>
+                    <td>Public</td>
+                  </tr>
+                  <tr *ngIf="object.mime != false">
+                    <th>Content-type</th>
+                    <td>{{object.mime}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </td>
+          <td class="FileBrowser__sizecolumn">
+            <div class="text-secondary">{{object.size | bytes}}</div>
+          </td>
+          <td class="FileBrowser__timecolumn">
+            <div class="FileBrowser__timecolumn_menu">
+              <span class="text-secondary">{{object.modifiedAt | date: 'medium'}}</span>
+              <div class="FileBrowser__timecolumn_menuContent">
+                {{object.modifiedAt | date: 'full'}}
+              </div>
+            </div>
+          </td>
+          <td class="FileBrowser__optioncolumn">
+            <div class="FileBrowserOption" (click)="showActions(i)" #action_{{i}}>
+              <span class="text-primary">
+                More <i class="icofont-simple-down"></i>
+                <!-- Enable this up icon with ngIf @jacobsamro -->
+                <!-- <i class="icofont-simple-up"></i> -->
               </span>
-
-              <!-- folder editable mode -->
-              <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
-                <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
-                <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editObject($event,i)"
-                  placeholder="Folder name" autocomplete="off" />
-              </div>
-
-            </td>
-            <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='file'">
-              <!-- file normal mode -->
-              <p class="m-0 FileBrowser__fileitem" *ngIf="!object.onEditMode">
-                <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
-                {{object.name}}
-              </p>
-
-              <!-- file editable mode -->
-              <div *ngIf="object.onEditMode" class="d-flex flex-row align-items-center">
-                <img src="../../../assets/icons/file.svg" class="FileBrowser__icon mr-2" alt="">
-                <input type="text" class="form-control" [(ngModel)]="object.name" (keydown)="editObject($event,i)"
-                  placeholder="File name" autocomplete="off" />
-              </div>
-
-              <!-- hover menu -->
-              <div class="FileBrowser__infomenu" *ngIf="!object.onEditMode">
-                <div class="d-flex flex-row align-items-center justify-content-between">
-                  <div>Origin</div>
-                  <div class="FileBrowser__infomenu_URL_holder">
-                    <a class="FileBrowser__infomenu_URL mx-2" target="_blank"
-                      href="https://{{bucket.bucketName}}.blaz.app{{currentPath}}{{object.name}}">https://{{bucket.bucketName}}.blaz.app{{currentPath}}{{object.name}}</a>
-                  </div>
-                  <button class="btn btn-light"
-                    (click)="copyToClipboard('https://'+bucket.bucketName+'.blaz.app'+currentPath+object.name)">Copy</button>
-                </div>
-                <table class="table mt-2">
-                  <tbody>
-                    <tr>
-                      <th>Permission</th>
-                      <td>Public</td>
-                    </tr>
-                    <tr *ngIf="object.mime != false">
-                      <th>Content-type</th>
-                      <td>{{object.mime}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </td>
-            <td class="FileBrowser__sizecolumn">
-              <div class="text-secondary">{{object.size | bytes}}</div>
-            </td>
-            <td class="FileBrowser__timecolumn">
-              <div class="FileBrowser__timecolumn_menu">
-                <span class="text-secondary">{{object.modifiedAt | date: 'medium'}}</span>
-                <div class="FileBrowser__timecolumn_menuContent">
-                  {{object.modifiedAt | date: 'full'}}
+              <div class="FileBrowserOption__menu" [class.open]="object.showActions === true" #action_menu_{{i}}>
+                <div class="list-group">
+                  <a class="list-group-item list-group-item-action" (click)="showManagePermissionsModal(i)">Manage
+                    Permissions</a>
+                  <a class="list-group-item list-group-item-action" (click)="showManageMetaModal(i)">Manage
+                    Metadata</a>
+                  <a class="list-group-item list-group-item-action"
+                    href="{{API_URL}}/{{bucketName}}{{currentPath}}{{object.name}}" target="_blank"
+                    *ngIf="object.objectType=='file'">Download</a>
+                  <a class="list-group-item list-group-item-action" (click)="openFolderEditMode(i)">Rename</a>
+                  <a class="list-group-item list-group-item-action" (click)="showMoveObjectsModal()"
+                    (click)="showMoveObjectModal(i)">Move to folder</a>
+                  <a class="list-group-item list-group-item-action" (click)="showShareObjectModal(i)">Share</a>
+                  <a class="list-group-item list-group-item-action text-danger" (click)="showDeleteModal(i)">Delete</a>
                 </div>
               </div>
-            </td>
-            <td class="FileBrowser__optioncolumn">
-              <div class="FileBrowserOption" (click)="showActions(i)" #action_{{i}}>
-                <span class="text-primary">
-                  More <i class="icofont-simple-down"></i>
-                  <!-- Enable this up icon with ngIf @jacobsamro -->
-                  <!-- <i class="icofont-simple-up"></i> -->
-                </span>
-                <div class="FileBrowserOption__menu" [class.open]="object.showActions === true" #action_menu_{{i}}>
-                  <div class="list-group">
-                    <a class="list-group-item list-group-item-action" (click)="showManagePermissionsModal(i)">Manage
-                      Permissions</a>
-                    <a class="list-group-item list-group-item-action" (click)="showManageMetaModal(i)">Manage
-                      Metadata</a>
-                    <a class="list-group-item list-group-item-action"
-                      href="{{API_URL}}/{{bucketName}}{{currentPath}}{{object.name}}" target="_blank"
-                      *ngIf="object.objectType=='file'">Download</a>
-                    <a class="list-group-item list-group-item-action" (click)="openFolderEditMode(i)">Rename</a>
-                    <a class="list-group-item list-group-item-action" (click)="showMoveObjectsModal()"
-                      (click)="showMoveObjectModal(i)">Move to folder</a>
-                    <a class="list-group-item list-group-item-action" (click)="showShareObjectModal(i)">Share</a>
-                    <a class="list-group-item list-group-item-action text-danger"
-                      (click)="showDeleteModal(i)">Delete</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
+            </div>
+          </td>
+        </tr>
 
-        </tbody>
-      </table>
-    </div>
+      </tbody>
+    </table>
   </div>
 </div>
 

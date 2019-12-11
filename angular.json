@@ -27,8 +27,6 @@
               "client/assets"
             ],
             "styles": [
-              "client/assets/styles/theme.scss",
-              "client/assets/icofont/icofont.min.css",
               "node_modules/ngx-toastr/toastr.css",
               "client/styles.scss"
             ],
@@ -86,8 +84,6 @@
             "tsConfig": "client/tsconfig.spec.json",
             "karmaConfig": "client/karma.conf.js",
             "styles": [
-              "client/assets/styles/theme.scss",
-              "client/assets/icofont/icofont.min.css",
               "client/styles.scss"
             ],
             "scripts": [],
