@@ -68,11 +68,14 @@ input:focus {
   background-color: map-get($theme-colors, "white");
   display: flex;
   flex-direction: column;
-  margin: 5rem 2.5rem;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  margin-top: 5rem;
   min-height: 90vh;
-  padding: 1rem;
   min-width: 680px;
   max-width: 1200px;
+  overflow: hidden;
+  padding-bottom: 20rem;
 }
 
 .AppContent__full {
