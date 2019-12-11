@@ -499,7 +499,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.Domains{
+.Domains {
   min-width: 680px;
 }
 /* BUCKET SETTINGS PAGE STYLES ENDS HERE */
@@ -513,7 +513,7 @@
 
 .ManageMeta__key {
   text-align: left;
-  width: 40%;
+  width: 35%;
 }
 
 .ManageMeta__value {
@@ -523,7 +523,7 @@
 
 .ManageMeta__option {
   text-align: center;
-  width: 10%;
+  width: 15%;
 }
 
 .ManageMeta__custompairing {
@@ -617,7 +617,8 @@
   top: 0;
   height: 100vh;
   overflow: hidden;
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
   background-color: map-get($theme-colors, "primary");
   z-index: 5;
 }
