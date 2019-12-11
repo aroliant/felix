@@ -13,7 +13,7 @@ export class DeleteComponent implements OnInit {
   @Input() objects: [];
   @Input() bucket: any;
   @Input() currentPath;
-  @Output() public onDelete = new EventEmitter<String>();
+  @Output() public onDelete = new EventEmitter<any>();
 
   constructor(private mainService: MainService) { }
 
@@ -38,7 +38,7 @@ export class DeleteComponent implements OnInit {
   }
 
   hideModal() {
-    this.onDelete.emit("")
+    this.onDelete.emit({ success: false })
   }
 
 }

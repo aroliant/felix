@@ -13,7 +13,7 @@ export class ShareComponent implements OnInit {
   @Input() object: any;
   @Input() bucket: any;
   @Input() currentPath;
-  @Output() onHide = new EventEmitter<boolean>();
+  @Output() onHide = new EventEmitter<any>();
 
   expireTime = 0
 
@@ -47,6 +47,6 @@ export class ShareComponent implements OnInit {
   }
 
   hideModal() {
-    this.onHide.emit(false)
+    this.onHide.emit({ success: false })
   }
 }

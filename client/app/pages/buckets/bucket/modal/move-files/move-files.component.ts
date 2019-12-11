@@ -14,7 +14,7 @@ export class MoveFilesComponent implements OnInit, OnChanges {
   @Input() objects: [];
   @Input() bucket: any;
   @Input() currentPath;
-  @Output() onHide = new EventEmitter<boolean>();
+  @Output() onHide = new EventEmitter<any>();
 
   directoryTree = {
     name: '',
@@ -53,7 +53,7 @@ export class MoveFilesComponent implements OnInit, OnChanges {
     })
 
     this.mainService.moveObjects(moveObjects).subscribe((moveObjectsStatus: any) => {
-      // Determining if there is a need to remove the delete the moved objects from current page. Remove from UI only when the move folder and currently opened folder are not the same
+      // Determining if there is a need to remove the moved objects from current page. Remove from UI only when the move folder and currently opened folder are not the same
       const _removeFromUI = Bus.FILE_MOV_PATH.relativePath == '' ? (this.currentPath != '/') : ('/' + Bus.FILE_MOV_PATH.relativePath + '/' != this.currentPath)
       moveObjectsStatus['removeFromUI'] = _removeFromUI
       this.onHide.emit(moveObjectsStatus);
@@ -61,6 +61,6 @@ export class MoveFilesComponent implements OnInit, OnChanges {
   }
 
   hideModal() {
-    this.onHide.emit(false)
+    this.onHide.emit({ success: false })
   }
 }

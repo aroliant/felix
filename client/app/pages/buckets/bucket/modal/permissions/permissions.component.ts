@@ -12,7 +12,7 @@ export class PermissionsComponent implements OnInit {
   @Input() object: any;
   @Input() bucket: any;
   @Input() currentPath;
-  @Output() onHide = new EventEmitter<boolean>();
+  @Output() onHide = new EventEmitter<any>();
 
   data = {
     bucketName: '',
@@ -42,7 +42,7 @@ export class PermissionsComponent implements OnInit {
   }
 
   hideModal() {
-    this.onHide.emit(false)
+    this.onHide.emit({ success: false })
   }
 
 }
