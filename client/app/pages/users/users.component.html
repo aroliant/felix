@@ -19,7 +19,10 @@
                     <td class="User__name">
                         <span class="small text-secondary">Name:
                         </span>{{user.username}}<br />
-                        <span class="small text-secondary">ID: </span>{{user.id}}
+                        <div class="d-flex flex-row align-items-center">
+                            <span class="small text-secondary mr-1">ID:</span>
+                            <span class="User__name_id">{{user.id}}</span>
+                        </div>
                     </td>
                     <td class="User__role">{{user.role}}</td>
                     <td class="User__status">{{user.status}}</td>
