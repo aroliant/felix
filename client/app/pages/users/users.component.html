@@ -61,6 +61,11 @@
                         placeholder="Enter a unique username" autocomplete="off">
                 </div>
                 <div class="form-group">
+                    <label for="felixUsername">E-Mail</label>
+                    <input type="text" [(ngModel)]="actions.userToAdd.email" class="form-control"
+                        placeholder="Enter your email" autocomplete="off">
+                </div>
+                <div class="form-group">
                     <label for="felixUserRole">Select User Role</label>
                     <select class="form-control" [(ngModel)]="actions.userToAdd.role">
                         <option value="admin">admin</option>
@@ -107,6 +112,11 @@
                         <label for="felixUsername">Username</label>
                         <input type="text" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control"
                             placeholder="Enter a unique username" autocomplete="off" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="felixUsername">E-Mail</label>
+                        <input type="text" [(ngModel)]="users[actions.userToEditIndex].email" class="form-control"
+                            placeholder="Enter your email" autocomplete="off" name="email">
                     </div>
                     <div class="form-group">
                         <label for="felixUserRole">User Role</label>

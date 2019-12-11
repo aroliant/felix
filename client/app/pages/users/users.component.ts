@@ -18,6 +18,7 @@ export class UsersComponent implements OnInit {
     userToAdd: {
       username: '',
       password: '',
+      email: '',
       role: '',
       status: ''
     },
@@ -60,12 +61,18 @@ export class UsersComponent implements OnInit {
       return false
     }
 
+    if (this.users[this.actions.userToEditIndex].email == '') {
+      this.toastr.warning('Enter E-Mail')
+      return false
+    }
+
     let user = {}
 
     if (this.users[this.actions.userToEditIndex].password === undefined || this.users[this.actions.userToEditIndex].password === '') {
 
       user = {
         username: this.users[this.actions.userToEditIndex].username,
+        email: this.users[this.actions.userToEditIndex].email,
         role: this.users[this.actions.userToEditIndex].role,
         status: this.users[this.actions.userToEditIndex].status
       }
@@ -77,6 +84,7 @@ export class UsersComponent implements OnInit {
       user = {
         username: this.users[this.actions.userToEditIndex].username,
         password: this.users[this.actions.userToEditIndex].password,
+        email: this.users[this.actions.userToEditIndex].email,
         role: this.users[this.actions.userToEditIndex].role,
         status: this.users[this.actions.userToEditIndex].status
       }
@@ -102,6 +110,11 @@ export class UsersComponent implements OnInit {
       return false
     }
 
+    if (this.actions.userToAdd.email == '') {
+      this.toastr.warning('Enter E-Mail')
+      return false
+    }
+
     if (this.actions.userToAdd.role == '') {
       this.toastr.warning('Select Role')
       return false
@@ -120,6 +133,7 @@ export class UsersComponent implements OnInit {
         this.actions.userToAdd = {
           username: '',
           password: '',
+          email: '',
           role: '',
           status: 'active'
         }
