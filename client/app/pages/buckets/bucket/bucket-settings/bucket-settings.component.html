@@ -16,28 +16,25 @@
 
             <div class="w-100 mt-3 FileListingPrivacy flex-column" id="FileListingPrivacy">
                 <div class="d-flex flex-row mb-3">
-                    <div class="form-check form-check-inline border p-3 rounded">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                            value="restricted" [(ngModel)]="bucket?.settings['fileListing']">
-                        <label class="form-check-label p-3" for="inlineRadio1"><span class="h6">Restrict File
-                                Listing</span><br />
-                            <div class="small">Only users who connect to this Bucket using access keys can list
-                                the
-                                contents.
-                            </div>
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline border p-3 rounded">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                            value="enabled" [(ngModel)]="bucket?.settings['fileListing']">
-                        <label class="form-check-label p-3" for="inlineRadio2"><span class="h6">Enable File
-                                Listing
-                            </span>
-                            <br />
-                            <div class="small">Anyone can list the contents of this Bucket.
-                            </div>
-                        </label>
-                    </div>
+                    <label class="RadioOptionContainer" for="inlineRadio1">
+                        <h6 class="m-0">Restrict File Listing</h6>
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="restricted"
+                            [(ngModel)]="bucket?.settings['fileListing']">
+                        <span class="RadioOptionContainer__checkmark"></span>
+                        <div class="h6 font-weight-normal d-inline-flex">
+                            Only users who connect to this Bucket using access keys can list the
+                            contents.
+                        </div>
+                    </label>
+                    <label class="RadioOptionContainer" for="inlineRadio2">
+                        <h6 class="m-0">Enable File Listing</h6>
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="enabled"
+                            [(ngModel)]="bucket?.settings['fileListing']">
+                        <span class="RadioOptionContainer__checkmark"></span>
+                        <div class="h6 font-weight-normal d-inline-flex">
+                            Anyone can list the contents of this Bucket.
+                        </div>
+                    </label>
                 </div>
                 <div class="d-flex flex-row">
                     <button class="btn btn-outline-secondary m-1" (click)="closeFileListingPrivacy()">Cancel</button>
@@ -339,38 +336,33 @@
                 <h6 class="m-0">Allowed Methods</h6>
                 <div class="form-group d-flex flex-row justify-content-between mt-2">
                     <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox99">
-                        <input (change)="editCORSMethod($event)" type="checkbox"
-                            id="inlineCheckbox99"
+                        <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox99"
                             [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('GET') != -1" value="GET">
                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">GET</div>
                     </label>
                     <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox98">
-                        <input (change)="editCORSMethod($event)" type="checkbox"
-                            id="inlineCheckbox98"
+                        <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox98"
                             [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('PUT') != -1" value="PUT">
                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">PUT</div>
                     </label>
                     <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox97">
-                        <input (change)="editCORSMethod($event)" type="checkbox"
-                            id="inlineCheckbox97"
+                        <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox97"
                             [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('DELETE') != -1"
                             value="DELETE">
                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">DELETE</div>
                     </label>
                     <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox96">
-                        <input (change)="editCORSMethod($event)" type="checkbox"
-                            id="inlineCheckbox96"
+                        <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox96"
                             [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('POST') != -1"
                             value="POST">
                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>
                         <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">POST</div>
                     </label>
                     <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox95">
-                        <input (change)="editCORSMethod($event)" type="checkbox"
-                            id="inlineCheckbox95"
+                        <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox95"
                             [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('HEAD') != -1"
                             value="HEAD">
                         <span class="CheckboxContainer__checkmark d-inline-flex"></span>

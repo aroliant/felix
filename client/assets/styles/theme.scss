@@ -300,6 +300,64 @@ thead {
   border-radius: 50%;
 }
 
+/* The container */
+.RadioOptionContainer {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Hide the browser's default radio button */
+.RadioOptionContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+/* Create a custom radio button */
+.RadioOptionContainer__checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: map-get($theme-colors, "white");
+  border: 1px solid #d3d3d3;
+  border-radius: 50%;
+}
+/* On mouse-over, add a grey background color */
+.RadioOptionContainer:hover input ~ .RadioOptionContainer__checkmark {
+  border: 1px solid map-get($theme-colors, "primary");
+}
+/* When the radio button is checked, add a blue background */
+.RadioOptionContainer input:checked ~ .RadioOptionContainer__checkmark {
+  border: 1px solid map-get($theme-colors, "primary");
+}
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.RadioOptionContainer__checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Show the indicator (dot/circle) when checked */
+.RadioOptionContainer input:checked ~ .RadioOptionContainer__checkmark:after {
+  display: block;
+}
+/* Style the indicator (dot/circle) */
+.RadioOptionContainer .RadioOptionContainer__checkmark:after {
+  top: 7px;
+  left: 7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: map-get($theme-colors, "primary");
+}
+
 // Refresh Btn
 .RefreshBtn__icon {
   cursor: pointer;
