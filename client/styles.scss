@@ -182,7 +182,8 @@
 
 .FileBrowser__fileitem {
   overflow: hidden;
-  width: 400px;
+  min-width: 200px;
+  max-width: 400px;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -537,12 +538,12 @@
 }
 
 .UploadReadyFiles__name {
-  width: 70%;
+  width: 60%;
   text-align: left;
 }
 
 .UploadReadyFiles__size {
-  width: 10%;
+  width: 20%;
   text-align: left;
 }
 
