@@ -24,6 +24,7 @@ export class UserController {
     const username = 'admin'
     const defaultPassword = 'admin'
     const role = 'admin'
+    const email = 'example@example.com'
 
     try {
 
@@ -40,6 +41,7 @@ export class UserController {
       username: username,
       password: crypto.createHmac('sha512', encryptionKey).update(defaultPassword).digest('hex'),
       role: role,
+      email: email,
       status: "active"
     }
 
@@ -158,6 +160,7 @@ export class UserController {
       username: params.username,
       password: crypto.createHmac('sha512', encryptionKey).update(params.password).digest('hex'),
       role: params.role,
+      email: params.email,
       status: "active"
     }
 
