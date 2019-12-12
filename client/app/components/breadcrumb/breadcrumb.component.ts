@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -14,6 +15,7 @@ export class BreadcrumbComponent implements OnInit, OnChanges, OnDestroy {
   private clickOutsideSubscription: Subscription;
 
   isFilesTabActive = false
+  API_URL = environment.API_URL
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 

@@ -110,10 +110,10 @@
                 <div>Origin</div>
                 <div class="FileBrowser__infomenu_URL_holder">
                   <a class="FileBrowser__infomenu_URL mx-2" target="_blank"
-                    href="https://{{bucket.bucketName}}.blaz.app{{currentPath}}{{object.name}}">https://{{bucket.bucketName}}.blaz.app{{currentPath}}{{object.name}}</a>
+                    href="{{API_URL}}/{{bucket.bucketName}}{{currentPath}}{{object.name}}">{{API_URL}}/{{bucket.bucketName}}{{currentPath}}{{object.name}}</a>
                 </div>
                 <button class="btn btn-outline-primary"
-                  (click)="copyToClipboard('https://'+bucket.bucketName+'.blaz.app'+currentPath+object.name)">Copy</button>
+                  (click)="copyToClipboard(API_URL +'/'+ bucket.bucketName + currentPath+object.name)">Copy</button>
               </div>
               <table class="table mt-2">
                 <tbody>
