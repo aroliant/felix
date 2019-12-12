@@ -1,5 +1,6 @@
-<div class="AppContent" (click)="hideAllActions()">
+<div class="AppContent" (click)="hideAllActions($event)">
   <app-breadcrumb [bucket]="bucket"></app-breadcrumb>
+  <!-- <app-breadcrumb [bucket]="bucket" [clickOutside]="clickOutsideSubject.asObservable()"></app-breadcrumb> -->
 
   <div class="FileBrowserControls">
     <div class="row w-100 my-3 mx-0">
@@ -12,8 +13,8 @@
       </div>
       <div class="col-md-12 col-lg-12 col-xl-7 text-right p-0 mt-md-2 mt-xl-0">
         <div class="UploadActions mr-3">
-          <button class="btn btn-outline-secondary" (click)="showMainActions()" type="button">Actions
-            ({{actions.selectedObjectsCount}}) <i class="icofont-simple-down"></i>
+          <button class="btn btn-outline-secondary" type="button" id="batchActionsMenu">Actions
+            ({{actions.selectedObjectsCount}}) <i class="icofont-simple-down" id="batchActionsMenuIcon"></i>
           </button>
           <div class="UploadActions__content">
             <div class="list-group" [hidden]="!showMainAction === true">

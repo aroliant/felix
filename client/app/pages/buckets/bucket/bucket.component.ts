@@ -4,6 +4,7 @@ import { MainService } from 'client/app/services/main.service';
 import { environment } from '../../../../environments/environment'
 import { ToastrService } from 'ngx-toastr';
 import { HelperService } from 'client/app/services/helper.service';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-bucket',
   templateUrl: './bucket.component.html',
@@ -13,9 +14,11 @@ export class BucketComponent implements OnInit {
 
   bucketName = ''
   currentPath = '/'
+
   bucketBreadcrumbs = [{ path: '/', name: '/' }]
   searchInput = ''
   newFolderName = ''
+
   bucket: any
   objects = []
   actions = {
@@ -42,6 +45,8 @@ export class BucketComponent implements OnInit {
     uploadFiles: false,
   }
 
+  clickOutsideSubject: Subject<void> = new Subject<void>();
+
   objectNameBeforeRenaming = ''
 
   currentActionIndex = 0
@@ -55,10 +60,6 @@ export class BucketComponent implements OnInit {
     private helperService: HelperService,
     private toastr: ToastrService
   ) { }
-
-  showMainActions() {
-    this.showMainAction = !this.showMainAction
-  }
 
   ngOnInit() {
     window.scrollTo(0, 0);
@@ -141,7 +142,18 @@ export class BucketComponent implements OnInit {
     }, 500)
   }
 
-  hideAllActions() {
+  hideAllActions(event) {
+
+    this.clickOutsideSubject.next()
+
+    console.log(event.target)
+
+    if (event.target.id === 'batchActionsMenu' || event.target.id === 'batchActionsMenuIcon') {
+      this.showMainAction = !this.showMainAction
+    } else {
+      this.showMainAction = false
+    }
+
     this.objects.map((state, i) => {
       if (this.currentActionIndex !== i) {
         state.showActions = false
