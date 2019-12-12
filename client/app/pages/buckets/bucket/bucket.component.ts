@@ -61,10 +61,6 @@ export class BucketComponent implements OnInit {
     private toastr: ToastrService
   ) { }
 
-  showMainActions() {
-    this.showMainAction = !this.showMainAction
-  }
-
   ngOnInit() {
     window.scrollTo(0, 0);
     this.route.params.subscribe((params) => {
@@ -150,7 +146,11 @@ export class BucketComponent implements OnInit {
 
     this.clickOutsideSubject.next()
 
-    if (event.target.id !== 'batchActionsMenu' || event.target.id !== 'batchActionsMenuIcon') {
+    console.log(event.target)
+
+    if (event.target.id === 'batchActionsMenu' || event.target.id === 'batchActionsMenuIcon') {
+      this.showMainAction = !this.showMainAction
+    } else {
       this.showMainAction = false
     }
 
