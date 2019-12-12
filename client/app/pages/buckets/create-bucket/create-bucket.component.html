@@ -5,30 +5,28 @@
         <div class="form-group mb-0">
             <label class="h6">Choose a unique name</label>
             <input type="text" class="form-control" aria-label="Sizing example input" [(ngModel)]="bucket.bucketName"
-                aria-describedby="inputGroup-sizing-default" placeholder="Choose a unique name for your bucket"
-                autocomplete="off">
+                aria-describedby="inputGroup-sizing-default" placeholder="Choose a unique name" autocomplete="off">
         </div>
     </div>
     <div class="w-100 mt-4">
         <h4 class="font-weight-light">Allow file listing?</h4>
         <div class="d-flex flex-row mt-2 mb-3">
-            <label class="RadioOptionContainer" for="inlineRadio1">
+            <label class="RadioOptionContainer" for="filelistingRadio1">
                 <h6 class="m-0">Restrict File Listing</h6>
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="restricted" checked
+                <input type="radio" name="filelisting" id="filelistingRadio1" value="restricted" checked
                     [(ngModel)]="bucket.fileListing">
                 <span class="RadioOptionContainer__checkmark"></span>
                 <div class="h6 font-weight-normal d-inline-flex">
-                    Only users who connect to this Bucket using access keys can list the
-                    contents.
+                    Access keys are needed to list the contents
                 </div>
             </label>
-            <label class="RadioOptionContainer" for="inlineRadio2">
+            <label class="RadioOptionContainer" for="filelistingRadio2">
                 <h6 class="m-0">Enable File Listing</h6>
-                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="enabled"
+                <input type="radio" name="filelisting" id="filelistingRadio2" value="enabled"
                     [(ngModel)]="bucket.fileListing">
                 <span class="RadioOptionContainer__checkmark"></span>
                 <div class="h6 font-weight-normal d-inline-flex">
-                    Anyone can list the contents of this Bucket.
+                    Anyone can list the contents
                 </div>
             </label>
         </div>
