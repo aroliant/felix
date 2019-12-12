@@ -43,7 +43,7 @@ export class UsersComponent implements OnInit {
 
   deleteUser() {
 
-    if(this.users.length == 1){
+    if (this.users.length == 1) {
       this.toastr.error('Atleast 1 user must exists', 'Failed')
       this.closeDeleteUserModal()
       return false

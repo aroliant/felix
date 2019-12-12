@@ -198,6 +198,19 @@ export class UserController {
 
     try {
 
+      const usersLength = (usersDB.get('users').value()).length
+
+      if (usersLength == 1) {
+
+        res.json({
+          success: false,
+          message: 'Atleast one user must exists'
+        })
+
+        return false
+
+      }
+
       usersDB.get('users').remove({ username: username }).write()
 
     } catch (err) {
