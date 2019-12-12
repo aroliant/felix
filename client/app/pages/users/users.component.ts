@@ -42,6 +42,13 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser() {
+
+    if(this.users.length == 1){
+      this.toastr.error('Atleast 1 user must exists', 'Failed')
+      this.closeDeleteUserModal()
+      return false
+    }
+
     this.userService.removeUser(this.actions.userToDelete['username']).subscribe((userDeletionStatus: any) => {
       if (userDeletionStatus.success) {
         this.toastr.success(userDeletionStatus.message, 'Success!')
