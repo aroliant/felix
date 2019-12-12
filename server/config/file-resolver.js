@@ -8,7 +8,7 @@ function resolve() {
     switch (profile) {
         case "test":
             return ".env.test";
-        case "dev":
+        case "development":
             return ".env.dev";
         default:
             return ".env";
