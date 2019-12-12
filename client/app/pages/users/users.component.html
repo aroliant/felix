@@ -61,12 +61,12 @@
                         placeholder="Enter a unique username" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <label for="felixUsername">E-Mail</label>
+                    <label for="felixUsername">Email</label>
                     <input type="text" [(ngModel)]="actions.userToAdd.email" class="form-control"
                         placeholder="Enter your email" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <label for="felixUserRole">Select User Role</label>
+                    <label for="felixUserRole">Role</label>
                     <select class="form-control" [(ngModel)]="actions.userToAdd.role">
                         <option value="admin">admin</option>
                         <option value="manager" selected>manager</option>
@@ -75,7 +75,7 @@
                 <div class="form-group">
                     <label for="felixUserPassword">Password</label>
                     <input type="password" [(ngModel)]="actions.userToAdd.password" class="form-control"
-                        placeholder="Password" autocomplete="off">
+                        placeholder="Password" autocomplete="new-password">
                 </div>
 
             </div>
@@ -114,19 +114,19 @@
                             placeholder="Enter a unique username" autocomplete="off" name="username">
                     </div>
                     <div class="form-group">
-                        <label for="felixUsername">E-Mail</label>
+                        <label for="felixUsername">Email</label>
                         <input type="text" [(ngModel)]="users[actions.userToEditIndex].email" class="form-control"
                             placeholder="Enter your email" autocomplete="off" name="email">
                     </div>
                     <div class="form-group">
-                        <label for="felixUserRole">User Role</label>
+                        <label for="felixUserRole">Role</label>
                         <select class="form-control" [(ngModel)]="users[actions.userToEditIndex].role" name="role">
                             <option value="admin">admin</option>
                             <option value="manager">manager</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="felixUserRole">User Status</label>
+                        <label for="felixUserRole">Status</label>
                         <select class="form-control" name="status" [(ngModel)]="users[actions.userToEditIndex].status">
                             <option value="active">active</option>
                             <option value="inactive">inactive</option>
