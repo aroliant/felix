@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MainService } from 'client/app/services/main.service';
 import { HelperService } from 'client/app/services/helper.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-bucket-settings',
@@ -38,6 +39,8 @@ export class BucketSettingsComponent implements OnInit {
     sslEnabled: false,
     forceSSL: false
   }
+
+  API_URL = environment.API_URL
 
   constructor(private route: ActivatedRoute,
     private mainService: MainService,

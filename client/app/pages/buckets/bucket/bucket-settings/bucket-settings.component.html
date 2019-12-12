@@ -1,50 +1,52 @@
 <div class="AppContent">
-    <app-breadcrumb [bucket]="bucket"></app-breadcrumb>
+  <app-breadcrumb [bucket]="bucket"></app-breadcrumb>
 
-    <div class="BucketSettings">
-        <div class="BucketSettings__item BucketSettings__item--column">
-            <div class="d-flex flex-row justify-content-between w-100">
-                <div>
-                    <h5 class="m-0">File Listing</h5>
-                    <p class="m-0">
-                        <strong>Restricted:</strong>
-                        Only users who connect to this Bucket using access keys can list the contents.
-                    </p>
-                </div>
-                <button class="btn btn-outline-secondary" (click)="openFileListingPrivacy();">Edit</button>
-            </div>
-
-            <div class="w-100 mt-3 FileListingPrivacy flex-column" id="FileListingPrivacy">
-                <div class="d-flex flex-row my-3">
-                    <label class="RadioOptionContainer" for="inlineRadio1">
-                        <h6 class="m-0">Restrict File Listing</h6>
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="restricted"
-                            [(ngModel)]="bucket?.settings['fileListing']">
-                        <span class="RadioOptionContainer__checkmark"></span>
-                        <div class="h6 font-weight-normal d-inline-flex">
-                            Only users who connect to this Bucket using access keys can list the
-                            contents.
-                        </div>
-                    </label>
-                    <label class="RadioOptionContainer" for="inlineRadio2">
-                        <h6 class="m-0">Enable File Listing</h6>
-                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="enabled"
-                            [(ngModel)]="bucket?.settings['fileListing']">
-                        <span class="RadioOptionContainer__checkmark"></span>
-                        <div class="h6 font-weight-normal d-inline-flex">
-                            Anyone can list the contents of this Bucket.
-                        </div>
-                    </label>
-                </div>
-                <div class="d-flex flex-row">
-                    <button class="btn btn-outline-secondary m-1" (click)="closeFileListingPrivacy()">Cancel</button>
-                    <button class="btn btn-success text-white m-1"
-                        (click)="saveAndCloseFileListingPrivacy()">Save</button>
-                </div>
-            </div>
-
+  <div class="BucketSettings">
+    <div class="BucketSettings__item BucketSettings__item--column">
+      <div class="d-flex flex-row justify-content-between w-100">
+        <div>
+          <h5 class="m-0">File Listing</h5>
+          <p class="m-0" *ngIf="bucket?.settings.fileListing=='restricted'">
+            <strong>Restricted:</strong>
+            Access keys are needed to list the contents
+          </p>
+          <p class="m-0" *ngIf="bucket?.settings.fileListing=='enabled'">
+            <strong>Enabled:</strong>
+            Anyone can list the contents
+          </p>
         </div>
-        <!-- <div class="BucketSettings__item">
+        <button class="btn btn-outline-secondary" (click)="openFileListingPrivacy();">Edit</button>
+      </div>
+
+      <div class="w-100 mt-3 FileListingPrivacy flex-column" id="FileListingPrivacy">
+        <div class="d-flex flex-row my-3">
+          <label class="RadioOptionContainer" for="filelistingRadio1">
+            <h6 class="m-0">Restrict File Listing</h6>
+            <input type="radio" name="filelisting" value="restricted" id="filelistingRadio1"
+              [(ngModel)]="bucket?.settings.fileListing">
+            <span class="RadioOptionContainer__checkmark"></span>
+            <div class="h6 font-weight-normal d-inline-flex">
+              Access keys are needed to list the contents
+            </div>
+          </label>
+          <label class="RadioOptionContainer" for="filelistingRadio2">
+            <h6 class="m-0">Enable File Listing</h6>
+            <input type="radio" name="filelisting" value="enabled" id="filelistingRadio2"
+              [(ngModel)]="bucket?.settings.fileListing">
+            <span class="RadioOptionContainer__checkmark"></span>
+            <div class="h6 font-weight-normal d-inline-flex">
+              Anyone can list the contents
+            </div>
+          </label>
+        </div>
+        <div class="d-flex flex-row">
+          <button class="btn btn-outline-secondary m-1" (click)="closeFileListingPrivacy()">Cancel</button>
+          <button class="btn btn-success text-white m-1" (click)="saveAndCloseFileListingPrivacy()">Save</button>
+        </div>
+      </div>
+
+    </div>
+    <!-- <div class="BucketSettings__item">
                 <div>
                     <h5 class="m-0">CDN (Content Delivery Network)</h5>
                     <p class="m-0">
@@ -57,401 +59,394 @@
                     <button class="btn btn-outline-secondary" (click)="openPurgeModal();">Edit</button>
                 </div>
             </div> -->
-        <div class="BucketSettings__item BucketSettings__item--column">
-            <div class="w-100 d-flex flex-row align-items-center justify-content-between mb-4">
-                <div>
-                    <h5 class="m-0">CORS Configurations</h5>
-                    <p class="m-0">
-                        Rules are processed in order from top to bottom until there is a match - drag and drop rules
-                        to
-                        reorder.
-                    </p>
-                </div>
-                <button class="btn btn-outline-secondary" (click)="openCORSoptionModal()">Add</button>
-            </div>
-
-            <div class="CORS">
-                <table class="table table-hover" *ngIf="bucket.cors.length != 0">
-                    <thead>
-                        <tr>
-                            <th class="CORS__origin">Origin</th>
-                            <th class="CORS__method">Method</th>
-                            <th class="CORS__headers">Headers</th>
-                            <th class="CORS__age">Age</th>
-                            <th class="CORS__actions">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let cors of bucket.cors;let CORSIndex = index">
-                            <td class="CORS__origin">
-                                <a class="text-primary" href="fibon.blaz.app" target="_blank">{{cors?.origin}}</a>
-                            </td>
-                            <td class="CORS__method">
-                                <span class="text-secondary">
-                                    <span *ngFor="let method of cors.allowedMethods" class="p-2">
-                                        {{method}} &nbsp;
-                                    </span>
-                                </span>
-                            </td>
-                            <td class="CORS__headers">
-                                <span class="text-secondary">
-                                    <span *ngIf="cors.allowedHeaders.length == 0">No headers</span>
-                                    <span *ngIf="cors.allowedHeaders.length > 0">{{cors.allowedHeaders.length}}
-                                        headers</span>
-                                </span>
-                                <div class="CORS__headers_menu_content">
-                                    <div *ngFor="let header of cors.allowedHeaders" class="p-2">
-                                        {{header.name}} <br />
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
-                            <td class="CORS__actions"><a class="text-primary small cursor-pointer mr-3" target="_blank"
-                                    (click)="openEditCORSoptionModal(CORSIndex)">
-                                    <i class="icofont-ui-edit mr-2"></i> <span>Edit</span>
-                                </a>
-                                <br>
-                                <a class="text-danger small cursor-pointer" target="_blank"
-                                    (click)="removeCORS(CORSIndex)">
-                                    <i class="icofont-ui-delete mr-2"></i> <span>Remove</span>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
+    <div class="BucketSettings__item BucketSettings__item--column">
+      <div class="w-100 d-flex flex-row align-items-center justify-content-between mb-4">
+        <div>
+          <h5 class="m-0">CORS Configurations</h5>
+          <p class="m-0">
+            CORS Rules are processed from top.
+          </p>
         </div>
-        <div class="BucketSettings__item BucketSettings__item--column">
-            <div>
-                <h5 class="m-0">Domains</h5>
+        <button class="btn btn-outline-secondary" (click)="openCORSoptionModal()">Add</button>
+      </div>
 
-            </div>
-            <div class="w-100 text-left mt-2">
-                <div class="BucketEndpoint CopyBtn">
-                    <span class="mx-2 text-secondary">{{bucket.bucketName}}.blaz.app</span>
-                    <button class="btn btn-outline-primary"
-                        (click)="copyToClipboard(bucket.bucketName+'.blaz.app')">Copy</button>
+
+      <div class="CORS">
+
+        <table class="table table-hover" *ngIf="bucket.cors.length != 0">
+          <thead>
+            <tr>
+              <th class="CORS__origin">Origin</th>
+              <th class="CORS__method">Method</th>
+              <th class="CORS__headers">Headers</th>
+              <th class="CORS__age">Age</th>
+              <th class="CORS__actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cors of bucket.cors;let CORSIndex = index">
+              <td class="CORS__origin">
+                <a class="text-primary" href="//{{cors?.origin}}" target="_blank">{{cors?.origin}}</a>
+              </td>
+              <td class="CORS__method">
+                <span class="text-secondary">
+                  <span *ngFor="let method of cors.allowedMethods" class="p-2">
+                    {{method}} &nbsp;
+                  </span>
+                </span>
+              </td>
+              <td class="CORS__headers">
+                <span class="text-secondary">
+                  <span *ngIf="cors.allowedHeaders.length == 0">No headers</span>
+                  <span *ngIf="cors.allowedHeaders.length > 0">{{cors.allowedHeaders.length}}
+                    headers</span>
+                </span>
+                <div class="CORS__headers_menu_content">
+                  <div *ngFor="let header of cors.allowedHeaders" class="p-2">
+                    {{header.name}} <br />
+                  </div>
                 </div>
-                <div class="mt-3 w-75">
-                    <div class="form-group form-inline m-0">
-                        <input type="text" class="form-control mr-2 flex-grow-1" autocomplete="off"
-                            (keydown)="addDomainOnEnter($event)" placeholder="Enter the domain you want to connect"
-                            [(ngModel)]="newDomain.name">
-                        <button class="btn btn-primary" (click)="updateDomain()">Connect</button>
-                    </div>
-                    <div class="mt-3 Domains">
-                        <strong class="text-uppercase small">Domains</strong>
-                        <div class="list-group list-group-flush mt-1" *ngIf="bucket.domains.length != 0">
-                            <div *ngFor="let domain of bucket.domains; let domainIndex = index"
-                                class="list-group-item d-flex flex-row align-items-center justify-content-between">
-                                <a class="text-primary Domain__name" href="app.your-domain.com"
-                                    target="_blank">{{domain.name}}</a>
-                                <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                    <input type="checkbox" [(ngModel)]="domain.sslEnabled"
-                                        (change)="updateDomainProperties()" name="EnableHTTPS1">
-                                    <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                                    <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
-                                </label>
-                                <label class="CheckboxContainer d-flex align-items-center flex-row">
-                                    <input type="checkbox" [(ngModel)]="domain.forceSSL"
-                                        (change)="updateDomainProperties()" name="ForceHTTPS1">
-                                    <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                                    <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
-                                </label>
-                                <label>
-                                    <a class="text-primary" (click)="removeDomain(domainIndex)">Remove</a>
-                                </label>
-                            </div>
+              </td>
+              <td class="CORS__age">{{cors.accessControlMaxAge}}s</td>
+              <td class="CORS__actions"><a class="text-primary small cursor-pointer mr-3" target="_blank"
+                  (click)="openEditCORSoptionModal(CORSIndex)">
+                  <i class="icofont-ui-edit mr-2"></i> <span>Edit</span>
+                </a>
+                <br>
+                <a class="text-danger small cursor-pointer" target="_blank" (click)="removeCORS(CORSIndex)">
+                  <i class="icofont-ui-delete mr-2"></i> <span>Remove</span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
+      <div *ngIf="bucket.cors.length == 0">
+        <span>There are no rules</span>
+      </div>
 
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="BucketSettings__item">
-            <div>
-                <h5 class="m-0">Delete this bucket</h5>
-                <p class="m-0">
-                    This will schedule your bucket to be deleted. Your bucket and all associated objects will be
-                    permanently destroyed, scrubbed, and irretrievable after the deletion period. You will NOT be
-                    billed for the Bucket from the time you requested a delete to time the Bucket and its contents
-                    are
-                    actually deleted.
-                </p>
-            </div>
-            <button class="btn btn-outline-danger ml-3" (click)="openDeleteBucketModal();">Delete</button>
-        </div>
     </div>
+    <div class="BucketSettings__item BucketSettings__item--column">
+      <div>
+        <h5 class="m-0">Domains</h5>
+
+      </div>
+      <div class="w-100 text-left mt-2">
+        <div class="BucketEndpoint CopyBtn">
+          <span class="mx-2 text-secondary">{{API_URL}}/{{bucket.bucketName}}</span>
+          <button class="btn btn-outline-primary"
+            (click)="copyToClipboard(API_URL + '/' + bucket.bucketName)">Copy</button>
+        </div>
+        <div class="mt-3 w-75">
+          <div class="form-group form-inline m-0">
+            <input type="text" class="form-control mr-2 flex-grow-1" autocomplete="off"
+              (keydown)="addDomainOnEnter($event)" placeholder="Enter the domain you want to connect"
+              [(ngModel)]="newDomain.name">
+            <button class="btn btn-primary" (click)="updateDomain()">Connect</button>
+          </div>
+          <div class="mt-3 Domains">
+            <strong class="text-uppercase small">Domains</strong>
+
+            <div *ngIf="bucket.domains.length == 0">
+              <span>No domains connected</span>
+            </div>
+
+            <div class="list-group list-group-flush mt-1" *ngIf="bucket.domains.length != 0">
+              <div *ngFor="let domain of bucket.domains; let domainIndex = index"
+                class="list-group-item d-flex flex-row align-items-center justify-content-between">
+                <a class="text-primary Domain__name" href="//{{domain.name}}" target="_blank">{{domain.name}}</a>
+                <label class="CheckboxContainer d-flex align-items-center flex-row">
+                  <input type="checkbox" [(ngModel)]="domain.sslEnabled" (change)="updateDomainProperties()"
+                    name="EnableHTTPS1">
+                  <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                  <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Enable HTTPS</div>
+                </label>
+                <label class="CheckboxContainer d-flex align-items-center flex-row">
+                  <input type="checkbox" [(ngModel)]="domain.forceSSL" (change)="updateDomainProperties()"
+                    name="ForceHTTPS1">
+                  <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+                  <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
+                </label>
+                <label>
+                  <a class="text-primary" (click)="removeDomain(domainIndex)">Remove</a>
+                </label>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="BucketSettings__item">
+      <div>
+        <h5 class="m-0">Delete this bucket</h5>
+        <p class="m-0">
+          This will delete all files and folders inside your bucket. This operation is not reversible.
+        </p>
+      </div>
+      <button class="btn btn-outline-danger ml-3" (click)="openDeleteBucketModal();">Delete</button>
+    </div>
+  </div>
 </div>
 
 
 
 <!-- Delete Bucket Modal-->
 <div class="modal" id="DeleteBucketModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Delete this bucket <code>bucket-name</code> ?</h5>
-                </div>
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                    (click)="closeDeleteBucketModal();">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Destroying a bucket will schedule the Bucket and all the objects inside to be permanently deleted.
-                </p>
-                <p>Confirm you want to permanently delete this Bucket by entering its name below.</p>
-                <div class="form-group">
-                    <input type="text" class="form-control" value="{{bucket.bucketName}}" autocomplete="off" disabled>
-                </div>
-                <div class="form-group mb-0">
-                    <label class="m-0 small text-secondary">enter the name of this bucket to enable deletion</label>
-                    <input type="text" class="form-control" [(ngModel)]="deleteConfirmationBucketName"
-                        autocomplete="off" placeholder="Enter the name of this bucket">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="w-100 text-left">
-                    <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeDeleteBucketModal();">
-                        Cancel</button>
-                    <button type="button" class="btn btn-outline-danger" (click)="deleteBucket()">
-                        Delete</button>
-                </div>
-            </div>
+  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Delete this bucket <code>{{bucket.bucketName}}</code> ?</h5>
         </div>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDeleteBucketModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Destroying a bucket will permanently delete files inside it.
+        </p>
+        <p>Enter bucket name below to confirm : <span><strong>{{bucket.bucketName}}</strong></span></p>
+        <div class="form-group mb-0">
+          <input type="text" class="form-control" [(ngModel)]="deleteConfirmationBucketName" autocomplete="off"
+            placeholder="Enter the name of this bucket">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="w-100 text-left">
+          <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeDeleteBucketModal();">
+            Cancel</button>
+          <button type="button" class="btn btn-outline-danger" (click)="deleteBucket()">
+            Delete</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- CORS Option Modal-->
 <div class="modal" id="CORSoptionModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md modal-dialog-scrollable modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Advanced CORS Options</h5>
-                </div>
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                    (click)="closeCORSoptionModal();">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h6 class="m-0">Origin</h6>
-                <div class="form-group">
-                    <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
-                    <input type="text" class="form-control" [(ngModel)]="newCORS.origin"
-                        placeholder="Enter the name of this bucket" autocomplete="off">
-                </div>
-
-                <h6 class="m-0">Allowed Methods</h6>
-                <div class="form-group d-flex flex-row justify-content-between mt-2">
-                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox94">
-                        <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox94" value="GET">
-                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">GET</div>
-                    </label>
-                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox93">
-                        <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox93" value="PUT">
-                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">PUT</div>
-                    </label>
-                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox92">
-                        <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox92" value="DELETE">
-                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">DELETE</div>
-                    </label>
-                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox91">
-                        <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox91" value="POST">
-                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">POST</div>
-                    </label>
-                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox90">
-                        <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox90" value="HEAD">
-                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">HEAD</div>
-                    </label>
-                </div>
-
-                <div class="my-3">
-                    <h6 class="mb-2">Allowed Headers</h6>
-                    <div class="w-100 HeaderCORS flex-row align-items-center" id="HeaderCORS"
-                        *ngFor="let header of newCORS.allowedHeaders;let headerIndex = index">
-                        <div class="form-group flex-grow-1 mb-0">
-                            <input type="text" class="form-control" (keydown)="addNewHeaderOnEnter($event)"
-                                [(ngModel)]="header.name" placeholder="Header Name">
-                        </div>
-                        <a (click)="removeHeaderCORS(headerIndex);" class="text-danger p-2">Remove</a>
-                    </div>
-                    <a (click)="addHeaderCORS();" class="text-primary">Add Header</a>
-                </div>
-
-                <h6 class="m-0">Access Control Max Age</h6>
-                <div class="form-group">
-                    <label class="m-0 small text-secondary">Seconds</label>
-                    <input type="text" [(ngModel)]="newCORS.accessControlMaxAge" class="form-control" autocomplete="off"
-                        value="0">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="w-100 text-left">
-                    <button type="button" class="btn btn-success mr-3 text-white" (click)="addCORS();">
-                        Save Options</button>
-                    <button type="button" class="btn btn-outline-secondary" (click)="closeCORSoptionModal();">
-                        Cancel</button>
-                </div>
-            </div>
+  <div class="modal-dialog modal-md modal-dialog-scrollable modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Advanced CORS Options</h5>
         </div>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeCORSoptionModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h6 class="m-0">Origin</h6>
+        <div class="form-group">
+          <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
+          <input type="text" class="form-control" [(ngModel)]="newCORS.origin"
+            placeholder="Enter the name of this bucket" autocomplete="off">
+        </div>
+
+        <h6 class="m-0">Allowed Methods</h6>
+        <div class="form-group d-flex flex-row justify-content-between mt-2">
+          <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox94">
+            <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox94" value="GET">
+            <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+            <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">GET</div>
+          </label>
+          <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox93">
+            <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox93" value="PUT">
+            <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+            <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">PUT</div>
+          </label>
+          <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox92">
+            <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox92" value="DELETE">
+            <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+            <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">DELETE</div>
+          </label>
+          <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox91">
+            <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox91" value="POST">
+            <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+            <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">POST</div>
+          </label>
+          <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox90">
+            <input (change)="newCORSMethod($event)" type="checkbox" id="inlineCheckbox90" value="HEAD">
+            <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+            <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">HEAD</div>
+          </label>
+        </div>
+
+        <div class="my-3">
+          <h6 class="mb-2">Allowed Headers</h6>
+          <div class="w-100 HeaderCORS flex-row align-items-center" id="HeaderCORS"
+            *ngFor="let header of newCORS.allowedHeaders;let headerIndex = index">
+            <div class="form-group flex-grow-1 mb-0">
+              <input type="text" class="form-control" (keydown)="addNewHeaderOnEnter($event)" [(ngModel)]="header.name"
+                placeholder="Header Name">
+            </div>
+            <a (click)="removeHeaderCORS(headerIndex);" class="text-danger p-2">Remove</a>
+          </div>
+          <a (click)="addHeaderCORS();" class="text-primary">Add Header</a>
+        </div>
+
+        <h6 class="m-0">Access Control Max Age</h6>
+        <div class="form-group">
+          <label class="m-0 small text-secondary">Seconds</label>
+          <input type="text" [(ngModel)]="newCORS.accessControlMaxAge" class="form-control" autocomplete="off"
+            value="0">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="w-100 text-left">
+          <button type="button" class="btn btn-success mr-3 text-white" (click)="addCORS();">
+            Save Options</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="closeCORSoptionModal();">
+            Cancel</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- Edit CORS Option Modal-->
 <div class="modal" id="editCORSoptionModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-md modal-dialog-scrollable modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Edit - CORS Options</h5>
-                </div>
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                    (click)="closeEditCORSoptionModal();">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" *ngIf="editCORSIndex != -1">
-                <h6 class="m-0">Origin</h6>
-                <div class="form-group">
-                    <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
-                    <input type="text" class="form-control" [(ngModel)]="bucket.cors[this.editCORSIndex].origin"
-                        placeholder="Enter the name of this bucket" autocomplete="off">
-                </div>
-
-                <h6 class="m-0">Allowed Methods</h6>
-                <div class="form-group d-flex flex-row justify-content-between mt-2">
-                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox99">
-                        <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox99" 
-                        [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('GET') != -1" value="GET">
-                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">GET</div>
-                    </label>
-                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox98">
-                        <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox98"
-                            [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('PUT') != -1" value="PUT">
-                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">PUT</div>
-                    </label>
-                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox97">
-                        <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox97"
-                            [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('DELETE') != -1"
-                            value="DELETE">
-                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">DELETE</div>
-                    </label>
-                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox96">
-                        <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox96"
-                            [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('POST') != -1"
-                            value="POST">
-                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">POST</div>
-                    </label>
-                    <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox95">
-                        <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox95"
-                            [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('HEAD') != -1"
-                            value="HEAD">
-                        <span class="CheckboxContainer__checkmark d-inline-flex"></span>
-                        <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">HEAD</div>
-                    </label>
-                </div>
-
-                <div class="my-3">
-                    <h6 class="mb-2">Allowed Headers</h6>
-                    <div class="w-100 HeaderCORS flex-row align-items-center" id="HeaderCORS"
-                        *ngFor="let header of bucket.cors[this.editCORSIndex].allowedHeaders;let headerIndex = index">
-                        <div class="form-group flex-grow-1 mb-0">
-                            <input type="text" class="form-control" (keydown)="editAddNewHeaderOnEnter($event)"
-                                [(ngModel)]="header.name" placeholder="Header Name" autocomplete="off">
-                        </div>
-                        <a (click)="editRemoveHeaderCORS(headerIndex);" class="text-danger p-2">Remove</a>
-                    </div>
-                    <a (click)="editHeaderCORS();" class="text-primary">Add Header</a>
-                </div>
-
-                <h6 class="m-0">Access Control Max Age</h6>
-                <div class="form-group">
-                    <label class="m-0 small text-secondary">Seconds</label>
-                    <input type="text" [(ngModel)]="bucket.cors[this.editCORSIndex].accessControlMaxAge"
-                        autocomplete="off" class="form-control" value="0">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="w-100 text-left">
-                    <button type="button" class="btn btn-success mr-3 text-white" (click)="editCORSOptions();">
-                        Save Options</button>
-                    <button type="button" class="btn btn-outline-secondary" (click)="closeEditCORSoptionModal();">
-                        Cancel</button>
-                </div>
-            </div>
+  <div class="modal-dialog modal-md modal-dialog-scrollable modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Edit - CORS Options</h5>
         </div>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          (click)="closeEditCORSoptionModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="editCORSIndex != -1">
+        <h6 class="m-0">Origin</h6>
+        <div class="form-group">
+          <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
+          <input type="text" class="form-control" [(ngModel)]="bucket.cors[this.editCORSIndex].origin"
+            placeholder="Enter the name of this bucket" autocomplete="off">
+        </div>
+
+        <h6 class="m-0">Allowed Methods</h6>
+        <div class="form-group d-flex flex-row justify-content-between mt-2">
+          <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox99">
+            <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox99"
+              [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('GET') != -1" value="GET">
+            <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+            <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">GET</div>
+          </label>
+          <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox98">
+            <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox98"
+              [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('PUT') != -1" value="PUT">
+            <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+            <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">PUT</div>
+          </label>
+          <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox97">
+            <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox97"
+              [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('DELETE') != -1" value="DELETE">
+            <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+            <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">DELETE</div>
+          </label>
+          <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox96">
+            <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox96"
+              [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('POST') != -1" value="POST">
+            <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+            <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">POST</div>
+          </label>
+          <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox95">
+            <input (change)="editCORSMethod($event)" type="checkbox" id="inlineCheckbox95"
+              [checked]="bucket.cors[this.editCORSIndex].allowedMethods.indexOf('HEAD') != -1" value="HEAD">
+            <span class="CheckboxContainer__checkmark d-inline-flex"></span>
+            <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">HEAD</div>
+          </label>
+        </div>
+
+        <div class="my-3">
+          <h6 class="mb-2">Allowed Headers</h6>
+          <div class="w-100 HeaderCORS flex-row align-items-center" id="HeaderCORS"
+            *ngFor="let header of bucket.cors[this.editCORSIndex].allowedHeaders;let headerIndex = index">
+            <div class="form-group flex-grow-1 mb-0">
+              <input type="text" class="form-control" (keydown)="editAddNewHeaderOnEnter($event)"
+                [(ngModel)]="header.name" placeholder="Header Name" autocomplete="off">
+            </div>
+            <a (click)="editRemoveHeaderCORS(headerIndex);" class="text-danger p-2">Remove</a>
+          </div>
+          <a (click)="editHeaderCORS();" class="text-primary">Add Header</a>
+        </div>
+
+        <h6 class="m-0">Access Control Max Age</h6>
+        <div class="form-group">
+          <label class="m-0 small text-secondary">Seconds</label>
+          <input type="text" [(ngModel)]="bucket.cors[this.editCORSIndex].accessControlMaxAge" autocomplete="off"
+            class="form-control" value="0">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="w-100 text-left">
+          <button type="button" class="btn btn-success mr-3 text-white" (click)="editCORSOptions();">
+            Save Options</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="closeEditCORSoptionModal();">
+            Cancel</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- PURGE Option Modal-->
 <div class="modal" id="PurgeModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div>
-                    <h5 class="modal-title">Purge Cache</h5>
-                </div>
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                    (click)="closePurgeModal();">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Choose a directory (or multiple directories) or the entire Bucket to remove those elements and their
-                    children from the cache.</p>
-                <div class="MoveFileBrowser">
-                    <div class="list-group">
-                        <details>
-
-                            <summary class="list-group-item list-group-item-action">Folder One</summary>
-                            <details class="ml-3">
-                                <summary class="list-group-item list-group-item-action">Child of folder one</summary>
-                                <div class="list-group-item list-group-item-action ml-3">child-folder-one-file.html
-                                </div>
-                            </details>
-
-                            <summary class="list-group-item list-group-item-action ml-3">folder-one-file.html</summary>
-
-                        </details>
-
-                        <details>
-                            <summary class="list-group-item list-group-item-action">Folder Two</summary>
-                            <div class="list-group-item list-group-item-action ml-3">folder-two-file.html</div>
-                        </details>
-
-                        <div class="list-group-item list-group-item-action">index.html</div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <div class="w-100 text-left">
-                    <button type="button" class="btn btn-primary mr-3" (click)="closePurgeModal();">
-                        Purge Selected Directories</button>
-                    <button type="button" class="btn btn-outline-secondary" (click)="closePurgeModal();">
-                        Cancel</button>
-                </div>
-            </div>
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h5 class="modal-title">Purge Cache</h5>
         </div>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePurgeModal();">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Choose a directory (or multiple directories) or the entire Bucket to remove those elements and their
+          children from the cache.</p>
+        <div class="MoveFileBrowser">
+          <div class="list-group">
+            <details>
+
+              <summary class="list-group-item list-group-item-action">Folder One</summary>
+              <details class="ml-3">
+                <summary class="list-group-item list-group-item-action">Child of folder one</summary>
+                <div class="list-group-item list-group-item-action ml-3">child-folder-one-file.html
+                </div>
+              </details>
+
+              <summary class="list-group-item list-group-item-action ml-3">folder-one-file.html</summary>
+
+            </details>
+
+            <details>
+              <summary class="list-group-item list-group-item-action">Folder Two</summary>
+              <div class="list-group-item list-group-item-action ml-3">folder-two-file.html</div>
+            </details>
+
+            <div class="list-group-item list-group-item-action">index.html</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <div class="w-100 text-left">
+          <button type="button" class="btn btn-primary mr-3" (click)="closePurgeModal();">
+            Purge Selected Directories</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="closePurgeModal();">
+            Cancel</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
