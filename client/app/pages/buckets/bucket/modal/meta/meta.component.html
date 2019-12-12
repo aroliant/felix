@@ -82,14 +82,14 @@
                 <tr class="ManageMeta__custompairin" *ngFor="let meta of metaArray; let metaArrayIndex = index">
                   <td class="ManageMeta__key">
                     <div class="form-group mb-0">
-                      <label class="m-0 small text-secondary">key must start with x-amz-meta and be unique</label>
+                      <label class="m-0 small text-secondary">key should be unique</label>
                       <input type="text" class="form-control" name="" placeholder="" autocomplete="off"
                         [(ngModel)]="metaArray[metaArrayIndex].key">
                     </div>
                   </td>
                   <td class="ManageMeta__value">
                     <div class="form-group mb-0">
-                      <label class="m-0 small text-secondary">Enter text for the key value</label>
+                      <label class="m-0 small text-secondary"></label>
                       <input type="text" class="form-control" name="" [(ngModel)]="metaArray[metaArrayIndex].value"
                         autocomplete="off" placeholder="Enter Value">
                     </div>

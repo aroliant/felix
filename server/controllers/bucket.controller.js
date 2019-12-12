@@ -9,6 +9,7 @@ import path from 'path'
 import through2 from 'through2'
 import rimraf from 'rimraf'
 import mineTypes from 'mime-types'
+import crypto from 'crypto'
 // Relative Imports
 import config from '../config'
 import Utils from '../utils'
@@ -550,8 +551,11 @@ export class BucketController {
     const bucket = req.body
     MetaManager.updateFileSharing(bucket.bucketName, bucket.path, bucket.fileName, bucket.sharingExpiresOn)
 
+    const token = crypto.createHash('md5').update(bucket.sharingExpiresOn).digest('hex')
+
     return res.json({
       success: true,
+      token: token,
     })
 
   }

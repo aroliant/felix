@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MainService } from 'client/app/services/main.service';
 import { HelperService } from 'client/app/services/helper.service';
+import { environment } from '../../../../../../environments/environment'
 
 @Component({
   selector: 'app-modal-share',
@@ -16,6 +17,9 @@ export class ShareComponent implements OnInit {
   @Output() onHide = new EventEmitter<any>();
 
   expireTime = 0
+  shareToken: any = ''
+
+  API_URL = environment.API_URL
 
   constructor(private mainService: MainService, private helperService: HelperService) { }
 
@@ -30,19 +34,23 @@ export class ShareComponent implements OnInit {
     this.helperService.copyToClipboard(path)
   }
 
-  shareObject() {
+  shareObject(objectName) {
 
     const now = new Date();
 
     const data = {
       bucketName: this.bucket.bucketName,
       path: this.currentPath,
-      fileName: this.object['name'],
+      fileName: objectName,
       sharingExpiresOn: now.setHours(now.getHours() + this.expireTime).toString()
     }
 
-    this.mainService.shareObject(data).subscribe((shareObjectResponse: any) => {
-      this.onHide.emit(shareObjectResponse)
+    this.mainService.shareObject(data).subscribe((res: any) => {
+
+      if (res.success) {
+        this.shareToken = res.token
+      }
+
     })
   }
 

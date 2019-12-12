@@ -146,8 +146,6 @@ export class BucketComponent implements OnInit {
 
     this.clickOutsideSubject.next()
 
-    console.log(event.target)
-
     if (event.target.id === 'batchActionsMenu' || event.target.id === 'batchActionsMenuIcon') {
       this.showMainAction = !this.showMainAction
     } else {

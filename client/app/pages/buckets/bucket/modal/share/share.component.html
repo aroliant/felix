@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <div>
-          <h5 class="modal-title">Share <code>file</code></h5>
+          <h5 class="modal-title">Share <code>{{object?.name}}</code></h5>
         </div>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hideModal()">
@@ -15,28 +15,33 @@
         <p>Anyone with the URL below will be able to view your file.</p>
         <strong class="text-uppercase small">Sharing Duration</strong> <br />
         <div class="d-flex flex-row align-items-center justify-content-between mt-2 mb-3">
-          <label class="RadioOptionContainer RadioOptionContainer_flex" for="exampleRadios11">
-            <input type="radio" name="exampleRadios" id="exampleRadios11" value="1" [(ngModel)]='expireTime' checked>
+          <label class="RadioOptionContainer RadioOptionContainer_flex" for="shareRadio1">
+            <input type="radio" name="shareRadio" id="shareRadio1" value="1" [(ngModel)]='expireTime'
+              (ngModelChange)="shareObject(object.name)">
             <span class="RadioOptionContainer__checkmark"></span>
             <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">1 hour</div>
           </label>
-          <label class="RadioOptionContainer RadioOptionContainer_flex" for="exampleRadios22">
-            <input type="radio" name="exampleRadios" id="exampleRadios22" value="6" [(ngModel)]='expireTime'>
+          <label class="RadioOptionContainer RadioOptionContainer_flex" for="shareRadio6">
+            <input type="radio" name="shareRadio" id="shareRadio6" value="6" [(ngModel)]='expireTime'
+              (ngModelChange)="shareObject(object.name)">
             <span class="RadioOptionContainer__checkmark"></span>
             <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">6 hour</div>
           </label>
-          <label class="RadioOptionContainer RadioOptionContainer_flex" for="exampleRadios23">
-            <input type="radio" name="exampleRadios" id="exampleRadios23" value="24" [(ngModel)]='expireTime'>
+          <label class="RadioOptionContainer RadioOptionContainer_flex" for="shareRadio24">
+            <input type="radio" name="shareRadio" id="shareRadio24" value="24" [(ngModel)]='expireTime'
+              (ngModelChange)="shareObject(object.name)">
             <span class="RadioOptionContainer__checkmark"></span>
             <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">1 day</div>
           </label>
-          <label class="RadioOptionContainer RadioOptionContainer_flex" for="exampleRadios24">
-            <input type="radio" name="exampleRadios" id="exampleRadios24" value="72" [(ngModel)]='expireTime'>
+          <label class="RadioOptionContainer RadioOptionContainer_flex" for="shareRadio1d">
+            <input type="radio" name="shareRadio" id="shareRadio1d" value="72" [(ngModel)]='expireTime'
+              (ngModelChange)="shareObject(object.name)">
             <span class="RadioOptionContainer__checkmark"></span>
             <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">3 days</div>
           </label>
-          <label class="RadioOptionContainer RadioOptionContainer_flex" for="exampleRadios25">
-            <input type="radio" name="exampleRadios" id="exampleRadios25" value="168" [(ngModel)]='expireTime'>
+          <label class="RadioOptionContainer RadioOptionContainer_flex" for="shareRadio7d">
+            <input type="radio" name="shareRadio" id="shareRadio7d" value="168" [(ngModel)]='expireTime'
+              (ngModelChange)="shareObject(object.name)">
             <span class="RadioOptionContainer__checkmark"></span>
             <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">7 days</div>
           </label>
@@ -44,18 +49,11 @@
         <div class="mt-3 d-flex flex-row align-items-center">
           <strong class="text-uppercase small mr-2">File URL</strong>
           <div class="CopyBtn flex-grow-1">
-            <span class="mx-2 w-75">{{bucket?.bucketName}}.blaz.app{{currentPath}}{{object?.name}}</span>
+            <span
+              class="mx-2 w-75">{{API_URL}}/{{bucket?.bucketName}}{{currentPath}}{{object?.name}}?share={{shareToken}}</span>
             <button class="btn btn-outline-primary d-flex w-25 justify-content-center"
-              (click)="copyToClipBoard(bucket.bucketName+'.blaz.app'+currentPath+object.name)">Copy</button>
+              (click)="copyToClipBoard(API_URL + '/' + bucket.bucketName + currentPath+object.name + '?share=' + shareToken )">Copy</button>
           </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <div class="w-100 text-left">
-          <button type="button" class="btn btn-outline-secondary mr-3" (click)="hideModal()">
-            Cancel</button>
-          <button type="button" class="btn btn-success text-white" (click)="shareObject()">
-            Save</button>
         </div>
       </div>
     </div>
