@@ -48,7 +48,12 @@
             *ngIf="crumb.name == '/'"></i>
         </div>
       </strong>
-      <div class="FileBrowserHeader__right">{{objects.length}} item(s)</div>
+      <div class="FileBrowserHeader__right">
+        <span>{{objects.length}} item(s)</span>
+        <a (click)="toggleRefresh();" class="FileBrowser__RefreshBtn" id="toggleRefresh2"><i
+            class="icofont-refresh mx-2 FileBrowser__RefreshBtn_icon"></i></a>
+      </div>
+
     </div>
     <table class="table table-hover">
       <thead class="FileBrowser__titlebar">

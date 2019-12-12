@@ -159,6 +159,14 @@
 
 .FileBrowserHeader__right {
   color: map-get($theme-colors, "secondary");
+  display: flex;
+  flex-direction: row;
+}
+.FileBrowser__RefreshBtn{
+
+}
+.FileBrowser__RefreshBtn_icon{
+
 }
 
 .FileBrowser__icon {

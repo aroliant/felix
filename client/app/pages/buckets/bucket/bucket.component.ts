@@ -542,4 +542,7 @@ export class BucketComponent implements OnInit {
     return crumbs
   }
 
+  toggleRefresh() {
+    document.getElementById('toggleRefresh2').style.animation = 'rotation 1s 1 linear';
+  }
 }
