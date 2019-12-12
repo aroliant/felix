@@ -191,6 +191,12 @@
   text-overflow: ellipsis;
 }
 
+@include media-breakpoint-up(xl) {
+  .FileBrowser__fileitem {
+    max-width: 300px;
+  }
+}
+
 .FileBrowser__infomenu {
   display: flex;
   background-color: map-get($theme-colors, "white");
