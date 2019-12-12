@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "client": "ng serve",
-    "server": "babel-node app.js",
-    "server:dev": "nodemon --exec 'babel-node app.js'",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "client:dev": "ng serve",
+    "client:build": "ng build",
+    "client:test": "ng test",
+    "client:lint": "ng lint",
+    "client:e2e": "ng e2e",
+    "server": "node dist/server/app.js",
+    "server:dev": "nodemon --exec 'babel-node server/app.js'",
+    "server:build": "babel server -d dist/server --copy-files"
   },
   "private": true,
   "dependencies": {

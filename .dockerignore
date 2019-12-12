@@ -1,0 +1,17 @@
+# add git-ignore syntax here of things you don't want copied into docker image
+
+.git
+
+/coverage
+/temp_upload
+/currentdirectory
+/node_modules
+/built
+/dist
+
+# Debug log from npm
+npm-debug.log
+
+
+.DS_Store
+app.bin

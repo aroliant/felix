@@ -3,10 +3,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors');
-import { UserController } from './server/controllers'
+import { UserController } from './controllers'
 
 
-const routes = require('./server/routes/index.route');
+const routes = require('./routes/index.route');
 
 const PORT = process.env.PORT || 3000
 
