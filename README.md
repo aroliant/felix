@@ -9,6 +9,19 @@ File Manager that runs on Docker with better UI/UX
 * Permissions - ( Public / Private)
 * Loadbalancer with NGINX
 
+## Install
+
+1. Clone this Repo
+2. Build the App 
+```
+docker-compose build
+```
+3. Run the App 
+```
+docker-compose up
+```
+
+Note : Use `docker-compose up -d` to run in detached mode
 
 ## Features Planned
 
