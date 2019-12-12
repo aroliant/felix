@@ -16,8 +16,11 @@ RUN yarn ng build --prod
 RUN yarn server:build
 
 ENV NODE_ENV production
+
 ENV PORT 3000
 
 EXPOSE 3000
+EXPOSE 80
+EXPOSE 443
 
 CMD ["node", "dist/server/app.js"]

@@ -10,10 +10,6 @@ function resolve() {
             return ".env.test";
         case "dev":
             return ".env.dev";
-        case "prod":
-            return ".env.prod";
-        case "production":
-            return ".env.prod";
         default:
             return ".env";
     }

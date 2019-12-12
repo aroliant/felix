@@ -3,7 +3,8 @@ import { resolve } from './file-resolver'
 const fileName = resolve();
 
 console.log(`Resolve config filename ${fileName}`);
-require('dotenv').config({ path: fileName });
+
+require('dotenv').config({ path: `./server/${fileName}` });
 
 const REQUIRED_KEYS = [
     'ROOT_FOLDER',
