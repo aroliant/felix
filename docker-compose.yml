@@ -9,7 +9,7 @@ services:
       - 3000:3000
       - 443:443
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
     volumes:
       - ./data:/data
       - ./data/letsencrypt:/etc/letsencrypt

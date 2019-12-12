@@ -1,4 +1,7 @@
-FROM node:10.16.2-alpine
+FROM nginx:alpine
+
+# Adding Node.JS 
+RUN apk add --update nodejs yarn
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -15,6 +18,8 @@ RUN yarn ng build --prod
 # Babel JavaScript Transcompile - Server
 RUN yarn server:build
 
+COPY ./configs/nginx.conf /etc/nginx/nginx.conf
+
 ENV NODE_ENV production
 
 ENV PORT 3000
@@ -23,4 +28,4 @@ EXPOSE 3000
 EXPOSE 80
 EXPOSE 443
 
-CMD ["node", "dist/server/app.js"]
+CMD nginx; node dist/server/app.js
