@@ -41,6 +41,23 @@ export class MoveFilesComponent implements OnInit, OnChanges {
     }
   }
 
+  createNewFolder() {
+    const data = {
+      bucketName: this.bucket.bucketName,
+      path: `/${Bus.FILE_MOV_PATH.relativePath}/new_folder`
+    }
+    this.mainService.createFolder(data).subscribe((res: any) => {
+      if (res.success) {
+        this.mainService.getAllDirectories(this.bucket.bucketName).subscribe((directoryTreeResponse: any) => {
+          this.directoryTree.children = []
+          if (directoryTreeResponse.success) {
+            this.directoryTree.children.push(directoryTreeResponse.tree)
+          }
+        })
+      }
+    })
+  }
+
   _moveObjects() {
     const moveObjects = {
       bucketName: this.bucket.bucketName,
@@ -53,8 +70,12 @@ export class MoveFilesComponent implements OnInit, OnChanges {
     })
 
     this.mainService.moveObjects(moveObjects).subscribe((moveObjectsStatus: any) => {
-      // Determining if there is a need to remove the moved objects from current page. Remove from UI only when the move folder and currently opened folder are not the same
-      const _removeFromUI = Bus.FILE_MOV_PATH.relativePath == '' ? (this.currentPath != '/') : ('/' + Bus.FILE_MOV_PATH.relativePath + '/' != this.currentPath)
+      // Determining if there is a need to remove the moved objects from current page.
+      // Remove from UI only when the move folder and currently opened folder are not the same
+
+      const _removeFromUI = Bus.FILE_MOV_PATH.relativePath === '' ?
+        (this.currentPath !== '/') : ('/' + Bus.FILE_MOV_PATH.relativePath + '/' !== this.currentPath)
+
       moveObjectsStatus['removeFromUI'] = _removeFromUI
       this.onHide.emit(moveObjectsStatus);
     })
