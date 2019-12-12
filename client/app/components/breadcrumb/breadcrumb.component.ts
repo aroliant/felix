@@ -18,9 +18,9 @@ export class BreadcrumbComponent implements OnInit, OnChanges, OnDestroy {
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.clickOutsideSubscription = this.clickOutside.subscribe(() => {
-      // Click Outside Event
-    })
+    // this.clickOutsideSubscription = this.clickOutside.subscribe(() => {
+    //   // Click Outside Event
+    // })
   }
 
   navigateToRoot(bucketName) {
@@ -38,7 +38,7 @@ export class BreadcrumbComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.clickOutsideSubscription.unsubscribe();
+    // this.clickOutsideSubscription.unsubscribe();
   }
 
 }
