@@ -547,5 +547,23 @@ export class BucketComponent implements OnInit {
 
   toggleRefresh() {
     document.getElementById('toggleRefresh2').style.animation = 'rotation 1s 1 linear';
+    this.getObjects();
   }
+
+  getObjects() {
+
+    const objectToSearch = {
+      bucketName: this.bucket.bucketName,
+      path: this.currentPath
+    }
+
+    this.mainService.searchObjects(objectToSearch).subscribe((searchObjectResponse: any) => {
+      if (searchObjectResponse.success) {
+        this.objects = searchObjectResponse.objects
+      }
+    })
+
+  }
+
+
 }
