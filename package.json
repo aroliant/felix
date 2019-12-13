@@ -27,7 +27,8 @@
     "mime-types": "^2.1.25",
     "rimraf": "^3.0.0",
     "through2": "^3.0.1",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "vhost": "^3.0.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.17",

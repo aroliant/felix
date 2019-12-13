@@ -27,10 +27,6 @@ app.options("*", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get('/', function (req, res) {
-    res.send("...")
-});
-
 app.use('/', routes);
 
 // Create Default User

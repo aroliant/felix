@@ -20,16 +20,40 @@ router.use('/settings', require('./settings.route'));
 
 router.use('/user', require('./user.route'));
 
+// Domain Handling Middleware
+router.use('/', (req, res, next) => {
+
+  // TODO: Handle Domains from Domain Registry
+  const host = req.hostname
+  if (host.includes(config.PRIMARY_DOMAIN)) {
+    const bucketName = host.split('.')[0]
+    const relativePath = decodeURIComponent(req.url.replace('/', ''))
+    return processFileDownload(bucketName, relativePath, req, res)
+  }
+
+  next()
+})
+
 // Pipe to handle GET Requests of Bucket Objects
 router.get('/:bucketName/**', (req, res) => {
+
   const bucketName = req.params.bucketName
   const relativePath = req.params[0]
+
+  processFileDownload(bucketName, relativePath, req, res)
+
+})
+
+function processFileDownload(bucketName, relativePath, req, res) {
+
   const shareParam = req.query.share
   const filePath = config.ROOT_FOLDER + "/buckets/" + bucketName + "/" + relativePath
   const fileName = path.basename(filePath)
 
+  // TODO : Check if bucket name exists
+
   // Read the file's meta before sending the response
-  const metaFilePath = config.ROOT_FOLDER + "/meta/" + bucketName + "/" + relativePath.substring(0, relativePath.lastIndexOf('/')) + "/meta.json"
+  const metaFilePath = config.ROOT_FOLDER + "/meta/" + bucketName + "/" + relativePath.substring(0, relativePath.lastIndexOf('/')) + "meta.json"
 
   const adapter = new FileSync(metaFilePath)
   const db = low(adapter)
@@ -72,7 +96,7 @@ router.get('/:bucketName/**', (req, res) => {
     }
   });
 
-})
+}
 
 
 module.exports = router;

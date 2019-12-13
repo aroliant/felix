@@ -25,6 +25,7 @@ const {
 const config = {
     ROOT_FOLDER,
     PORT,
+    PRIMARY_DOMAIN : '127.0.0.1.xip.io'
 }
 
-module.exports = config;
+export default config;
