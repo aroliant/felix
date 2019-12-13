@@ -18,22 +18,23 @@ export class PermissionsComponent implements OnInit {
     bucketName: '',
     path: '',
     fileName: '',
-    public: true
+    public: false
   }
 
   constructor(private mainService: MainService) { }
 
   ngOnInit() { }
 
-  setPrivacyPrivate() { this.data.public = false }
+  setPrivacyPrivate() { this.object.public = false }
 
-  setPrivacyPublic() { this.data.public = true }
+  setPrivacyPublic() { this.object.public = true }
 
   updatePermission() {
 
     this.data.bucketName = this.bucket.bucketName
     this.data.path = this.currentPath
     this.data.fileName = this.object['name']
+    this.data.public = this.object.public
 
     this.mainService.updateObjectPermission(this.data).subscribe((updatePermissionResponse: any) => {
       this.onHide.emit(updatePermissionResponse)
