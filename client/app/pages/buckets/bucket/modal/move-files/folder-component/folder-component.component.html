@@ -1,5 +1,6 @@
-<details class="ml-3">
-  <summary class="list-group-item list-group-item-action" (click)="selectFolder(branch)">{{ branch.name }}</summary>
+<details class="ml-3" [attr.open]="branch.open">
+  <summary class="list-group-item list-group-item-action" (click)="selectFolder(branch)">
+    {{ branch.name }}</summary>
   <div *ngIf="branch.children != undefined">
     <div *ngFor="let branch of branch.children">
       <folders [branch]="branch"></folders>

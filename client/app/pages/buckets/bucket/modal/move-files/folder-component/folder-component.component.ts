@@ -20,12 +20,13 @@ export class FoldersComponent implements OnInit {
   @Input() branch: Branch
 
   ngOnInit() {
-
+    this.branch['open'] = false
   }
 
   selectFolder(folder) {
     // Broadcast to Move Files Component
     Bus.FILE_MOV_PATH = folder
+    this.branch['open'] = true
   }
 
 
