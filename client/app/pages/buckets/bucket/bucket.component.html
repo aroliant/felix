@@ -80,9 +80,9 @@
               <span class="CheckboxContainer__checkmark"></span>
             </label>
           </td>
-          <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'">
+          <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'" (click)="browseFolder(object.name)">
             <!-- folder normal mode -->
-            <span (click)="browseFolder(object.name)" *ngIf="!object.onEditMode">
+            <span *ngIf="!object.onEditMode">
               <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
               {{object.name}}
             </span>
@@ -124,7 +124,7 @@
                 <tbody>
                   <tr>
                     <th>Permission</th>
-                    <td>Public</td>
+                    <td>{{object.public == true ? 'Public' : 'Private'}}</td>
                   </tr>
                   <tr *ngIf="object.mime != false">
                     <th>Content-type</th>
