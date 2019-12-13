@@ -203,7 +203,7 @@ export class BucketComponent implements OnInit {
       })
       this.toastr.success(event.message, 'Success!');
     } else {
-      if (event.message != undefined) {
+      if (event.message !== undefined) {
         this.toastr.error(event.message)
       }
     }
@@ -227,8 +227,8 @@ export class BucketComponent implements OnInit {
       }
       this.toastr.success(event.message, 'Success!');
     } else {
-      if (event.message != undefined) {
-        if (event.message != undefined) {
+      if (event.message !== undefined) {
+        if (event.message !== undefined) {
           this.toastr.error(event.message)
         }
       }
@@ -313,7 +313,7 @@ export class BucketComponent implements OnInit {
     if (event.success) {
       this.toastr.success('Success')
     } else {
-      if (event.message != undefined) {
+      if (event.message !== undefined) {
         this.toastr.error(event.message)
       }
     }
@@ -325,7 +325,7 @@ export class BucketComponent implements OnInit {
     if (event.success) {
       this.toastr.success('Success')
     } else {
-      if (event.message != undefined) {
+      if (event.message !== undefined) {
         this.toastr.error(event.message)
       }
     }
@@ -341,7 +341,7 @@ export class BucketComponent implements OnInit {
     if (event.success) {
       this.toastr.success('Success')
     } else {
-      if (event.message != undefined) {
+      if (event.message !== undefined) {
         this.toastr.error(event.message)
       }
     }
@@ -367,7 +367,7 @@ export class BucketComponent implements OnInit {
 
       if (this.objectNameBeforeRenaming === '') {
 
-        if (this.objects[i].name == '') {
+        if (this.objects[i].name === '') {
           this.toastr.warning('Enter New Folder Name')
           return false;
         }
