@@ -9,11 +9,8 @@ RUN yarn install
 
 COPY ./ /app
 
-# Client
-RUN yarn ng build --prod
-
-# Server
-RUN yarn server:build
+# Build Client & Server
+RUN yarn ng build --prod && yarn server:build
 
 
 FROM nginx:alpine
@@ -37,4 +34,6 @@ ENV PORT 3000
 
 EXPOSE 3000 80 443
 
-CMD nginx; node dist/server/app.js
+WORKDIR /usr/src/app/dist
+
+CMD nginx; node server/app.js
