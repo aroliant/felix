@@ -247,7 +247,10 @@ export class BucketComponent implements OnInit {
     }
   }
 
-  browseFolder(folderName) {
+  browseFolder(folderName, onEditMode) {
+    if (onEditMode) {
+      return
+    }
     const path = this.currentPath + folderName + '/'
     this.router.navigate(['buckets', this.bucketName], { queryParams: { path: path } })
   }

@@ -80,7 +80,8 @@
               <span class="CheckboxContainer__checkmark"></span>
             </label>
           </td>
-          <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'" (click)="browseFolder(object.name)">
+          <td class="FileBrowser__namecolumn" *ngIf="object.objectType=='folder'"
+            (click)="browseFolder(object.name,object.onEditMode)">
             <!-- folder normal mode -->
             <span *ngIf="!object.onEditMode">
               <img src="../../../assets/icons/folder-close.svg" class="FileBrowser__icon mr-2" alt="">
