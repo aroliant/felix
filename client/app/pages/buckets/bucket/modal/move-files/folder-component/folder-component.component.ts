@@ -8,6 +8,7 @@ export interface Branch {
   isSymbolicLink: boolean,
   size: string,
   children: Branch[];
+  open: Boolean
 }
 
 @Component({
@@ -20,13 +21,13 @@ export class FoldersComponent implements OnInit {
   @Input() branch: Branch
 
   ngOnInit() {
-    this.branch['open'] = false
+    this.branch.open = false
   }
 
   selectFolder(folder) {
     // Broadcast to Move Files Component
     Bus.FILE_MOV_PATH = folder
-    this.branch['open'] = true
+    this.branch.open = true
   }
 
 
