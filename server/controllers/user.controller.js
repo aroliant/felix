@@ -198,13 +198,20 @@ export class UserController {
 
     try {
 
-      const usersLength = (usersDB.get('users').value()).length
+      const allUsers = (usersDB.get('users').filter({ status: 'active', role: 'admin' }).value())
+      var usersLength
 
-      if (usersLength == 1) {
+      if (allUsers.indexOf((usersDB.get('users').filter({ username: username }).value())[0]) == -1) {
+        usersLength = allUsers.length
+      } else {
+        usersLength = allUsers.length - 1
+      }
+
+      if (usersLength <= 0) {
 
         res.json({
           success: false,
-          message: 'Atleast one user must exists'
+          message: 'Atleast one active admin user must exists after deleting user ' + req.params.username
         })
 
         return false
