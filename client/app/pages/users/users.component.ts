@@ -48,7 +48,7 @@ export class UsersComponent implements OnInit {
       if (user['role'] == 'admin' && user['status'] == 'active' && this.actions.userToDelete.username != user['username']) {
         activeAdminUsers = activeAdminUsers + 1
       }
-    }) 
+    })
 
     if (activeAdminUsers <= 0) {
       this.toastr.error('Atleast 1 active admin user must exists', 'Failed')
@@ -69,6 +69,20 @@ export class UsersComponent implements OnInit {
   }
 
   updateUser() {
+
+    var activeAdminUsers = 0
+
+    this.users.map((user, i) => {
+      if (user['role'] == 'admin' && user['status'] == 'active') {
+        activeAdminUsers = activeAdminUsers + 1
+      }
+    })
+
+    if (activeAdminUsers <= 0 && (this.users[this.actions.userToEditIndex].role != 'admin' || this.users[this.actions.userToEditIndex].role != 'inactive')) {
+      this.toastr.error('Atleast 1 active admin user must exists after updation', 'Failed')
+      this.closeEditUserModal()
+      return false
+    }
 
     if (this.users[this.actions.userToEditIndex].username == '') {
       this.toastr.warning('Enter User Name')
