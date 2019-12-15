@@ -103,6 +103,46 @@ url("./fonts/icofont.woff") format("woff");
   content: "\efd1";
 }
 
+.icofont-nerd-smile:before
+{
+  content: "\eafd";
+}
+
+.icofont-warning:before
+{
+  content: "\f026";
+}
+
+.icofont-warning-alt:before
+{
+  content: "\f025";
+}
+
+.icofont-check-circled:before
+{
+  content: "\eed7";
+}
+
+.icofont-check:before
+{
+  content: "\eed8";
+}
+
+.icofont-error:before
+{
+  content: "\ef16";
+}
+
+.icofont-info-circle:before
+{
+  content: "\ef4e";
+}
+
+.icofont-info:before
+{
+  content: "\ef50";
+}
+
 .icofont-xs
 {
   font-size: .5em;
