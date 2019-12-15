@@ -14,14 +14,14 @@
       <div class="modal-body">
         <p class="mb-2">Select whether to set this file to private or publicly readable:</p>
         <div class="d-flex flex-row mb-3">
-          <label class="RadioOptionContainer RadioOptionContainer_flex mr-4" for="exampleRadios1">
-            <input type="radio" [checked]="!object.public" id="exampleRadios1" (click)="setPrivacyPrivate()" for="exampleRadios1">
+          <label class="RadioOptionContainer RadioOptionContainer_flex mr-4" for="Radios1">
+            <input type="radio" [checked]="!object.public" id="Radios1" (click)="setPrivacyPrivate()" for="Radios1">
             <span class="RadioOptionContainer__checkmark"></span>
             <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Private</div>
           </label>
 
-          <label class="RadioOptionContainer RadioOptionContainer_flex" for="exampleRadios2">
-            <input type="radio" [checked]="object.public" id="exampleRadios2" (click)="setPrivacyPublic()">
+          <label class="RadioOptionContainer RadioOptionContainer_flex" for="Radios2">
+            <input type="radio" [checked]="object.public" id="Radios2" (click)="setPrivacyPublic()">
             <span class="RadioOptionContainer__checkmark"></span>
             <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Public</div>
           </label>
