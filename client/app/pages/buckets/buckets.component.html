@@ -1,7 +1,11 @@
 <div class="AppContent">
     <h3 class="font-weight-light mb-0">Buckets</h3>
 
-    <div class="Buckets mt-4">
+    <div *ngIf="buckets.length==0">
+        <span>Sorry, there are no buckets</span>
+    </div>
+
+    <div class="Buckets mt-4" *ngIf="buckets.length>0">
         <table class="table table-hover">
             <thead>
                 <tr>

@@ -10,13 +10,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BucketsComponent implements OnInit {
 
+  buckets = []
+
   constructor(
     private mainService: MainService,
     private helperService: HelperService,
     private toastr: ToastrService
   ) { }
-
-  buckets = []
 
   ngOnInit() {
     window.scrollTo(0, 0);
