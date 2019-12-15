@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'client/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { useAnimation } from '@angular/animations';
 
 @Component({
   selector: 'app-users',
@@ -43,8 +42,16 @@ export class UsersComponent implements OnInit {
 
   deleteUser() {
 
-    if (this.users.length == 1) {
-      this.toastr.error('Atleast 1 user must exists', 'Failed')
+    var activeAdminUsers = 0
+
+    this.users.map((user, i) => {
+      if (user['role'] == 'admin' && user['status'] == 'active' && this.actions.userToDelete.username != user['username']) {
+        activeAdminUsers = activeAdminUsers + 1
+      }
+    }) 
+
+    if (activeAdminUsers <= 0) {
+      this.toastr.error('Atleast 1 active admin user must exists', 'Failed')
       this.closeDeleteUserModal()
       return false
     }
