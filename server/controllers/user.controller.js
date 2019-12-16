@@ -198,16 +198,16 @@ export class UserController {
 
     try {
 
-      const allUsers = (usersDB.get('users').filter({ status: 'active', role: 'admin' }).value())
-      var usersLength
+      const allActiveAdminUsers = (usersDB.get('users').filter({ status: 'active', role: 'admin' }).value())
+      var activeAdminUsersLength
 
-      if (allUsers.indexOf((usersDB.get('users').filter({ username: username }).value())[0]) == -1) {
-        usersLength = allUsers.length
+      if (allActiveAdminUsers.indexOf((usersDB.get('users').filter({ username: username }).value())[0]) == -1) {
+        activeAdminUsersLength = allActiveAdminUsers.length
       } else {
-        usersLength = allUsers.length - 1
+        activeAdminUsersLength = allActiveAdminUsers.length - 1
       }
 
-      if (usersLength <= 0) {
+      if (activeAdminUsersLength <= 0) {
 
         res.json({
           success: false,
@@ -248,6 +248,30 @@ export class UserController {
     try {
 
       oldUser = usersDB.get('users').filter({ username: newUser.username }).value()
+
+      const allActiveAdminUsers = (usersDB.get('users').filter({ status: 'active', role: 'admin' }).value())
+      var activeAdminUsersLength = 0
+
+      if (allActiveAdminUsers.indexOf((usersDB.get('users').filter({ username: newUser.username }).value())[0]) == -1) {
+        activeAdminUsersLength = allActiveAdminUsers.length
+      } else {
+        if (newUser['role'] == 'admin' && newUser['status'] == 'active') {
+          activeAdminUsersLength = allActiveAdminUsers.length
+        } else {
+          activeAdminUsersLength = allActiveAdminUsers.length - 1
+        }
+      }
+
+      if (activeAdminUsersLength <= 0) {
+
+        res.json({
+          success: false,
+          message: 'Atleast one active admin user must exists after updating user ' + oldUser.username
+        })
+
+        return false
+
+      }
 
     } catch (err) {
 
