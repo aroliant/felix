@@ -1,16 +1,23 @@
 <div class="AppContent">
-    <h3 class="font-weight-light mb-0">Buckets</h3>
+    <h3 class="font-weight-light mb-0" *ngIf="buckets.length > 0  && isDataLoaded">Buckets</h3>
 
-    <div class="NoBuckets" *ngIf="buckets.length==0">
+    <div class="NoBuckets" *ngIf="buckets.length == 0 && isDataLoaded">
         <img src="../../../assets/icons/empty-bucket.svg" class="NoBuckets__Icon" alt="">
         <div class="text-center mt-1">
             <h6 class="my-3 NoBuckets__Text">There are no buckets</h6>
+            <p>Buckets are folders used to organize files.
+            </p>
+
+            <ul>
+                <li>For Every Bucket you create you can configure domain, CORS and SSL.</li>
+                <li>You can also use buckets to host your static sites.</li>
+            </ul>
         </div>
 
-        <button class="btn btn-primary NoBuckets__Button" routerLink="/buckets/create">Get Started with a Bucket</button>
+        <button class="btn btn-primary NoBuckets__Button" routerLink="/buckets/create">Create new Bucket</button>
     </div>
 
-    <div class="Buckets mt-4" *ngIf="buckets.length>0">
+    <div class="Buckets mt-4" *ngIf="buckets.length > 0  && isDataLoaded">
         <table class="table table-hover">
             <thead>
                 <tr>

@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class BucketsComponent implements OnInit {
 
   buckets = []
+  isDataLoaded: Boolean = false
 
   constructor(
     private mainService: MainService,
@@ -22,6 +23,7 @@ export class BucketsComponent implements OnInit {
     window.scrollTo(0, 0);
     this.mainService.getAllBuckets().subscribe((res: any) => {
       this.buckets = res.buckets;
+      this.isDataLoaded = true
     })
     this.buckets.map((bucket, i) => {
       bucket['showMenu'] = false
