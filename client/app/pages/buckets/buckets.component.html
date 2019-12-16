@@ -1,16 +1,13 @@
 <div class="AppContent">
     <h3 class="font-weight-light mb-0">Buckets</h3>
 
-    <div class="NoBuckets mt-2" *ngIf="buckets.length==0">
-        <i class="icofont-info NoBuckets__Icon"></i>
+    <div class="NoBuckets" *ngIf="buckets.length==0">
+        <img src="../../../assets/icons/empty-bucket.svg" class="NoBuckets__Icon" alt="">
         <div class="text-center mt-1">
-            <h4 class="text-primary m-0">No Buckets</h4>
-            <h6 class="text-secondary m-0">
-                There are no buckets
-            </h6>
+            <h6 class="my-3 NoBuckets__Text">There are no buckets</h6>
         </div>
 
-        <button class="btn btn-primary NoBuckets__Button mt-3" routerLink="/buckets/create">Create Bucket</button>
+        <button class="btn btn-primary NoBuckets__Button" routerLink="/buckets/create">Get Started with a Bucket</button>
     </div>
 
     <div class="Buckets mt-4" *ngIf="buckets.length>0">
