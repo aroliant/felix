@@ -9,7 +9,7 @@
                     <div class="form-group mb-0">
                         <input type="text" class="form-control" aria-label="Sizing example input"
                             [(ngModel)]="settings.primaryDomain" aria-describedby="inputGroup-sizing-default"
-                            placeholder="Enter you primary domain" autocomplete="off">
+                            placeholder="Enter you primary domain" [readonly]="user.role != 'admin'" autocomplete="off">
                     </div>
                     <div class="d-flex flex-row justify-content-between mt-3">
                         <div class="d-flex flex-row">
@@ -26,7 +26,8 @@
                                 <div class="h6 my-1 font-weight-normal ml-2 d-inline-flex">Force HTTPS</div>
                             </label>
                         </div>
-                        <button class="btn btn-success text-white" (click)="updateSettingsDomain()">Save</button>
+                        <button class="btn btn-success text-white" *ngIf="user.role == 'admin'"
+                            (click)="updateSettingsDomain()">Save</button>
                     </div>
                 </div>
             </div>
@@ -74,22 +75,24 @@
                             <div class="col-md-10 p-0">
                                 <div class="form-group form-inline w-50 ml-1"
                                     *ngFor="let origin of settings.keys.allowedOrigins;let allowedOriginsIndex = index">
-                                    <input type="text"
+                                    <input type="text" [readonly]="user.role != 'admin'"
                                         [(ngModel)]="settings.keys.allowedOrigins[allowedOriginsIndex].originName"
                                         class="form-control flex-grow-1" placeholder="Enter the origin path"
                                         autocomplete="off">
-                                    <a class="text-danger cursor-pointer ml-3"
+                                    <a class="text-danger cursor-pointer ml-3" *ngIf="user.role == 'admin'"
                                         (click)="removeOrigin(allowedOriginsIndex)">
                                         Remove
                                     </a>
                                 </div>
-                                <button class="btn btn-primary ml-1" (click)="addOriginInputBox()">Add</button>
+                                <button *ngIf="user.role == 'admin'" class="btn btn-primary ml-1"
+                                    (click)="addOriginInputBox()">Add</button>
                             </div>
                         </div>
 
 
                         <div class="w-100 text-right">
-                            <button class="btn btn-success text-white" (click)="addOrigin()">Save</button>
+                            <button *ngIf="user.role == 'admin'" class="btn btn-success text-white"
+                                (click)="addOrigin()">Save</button>
                         </div>
 
                     </div>

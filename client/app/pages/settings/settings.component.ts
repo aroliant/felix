@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SettingsService } from 'client/app/services/settings.service';
 import { ToastrService } from 'ngx-toastr';
 import { HelperService } from 'client/app/services/helper.service';
+import { AuthService } from 'client/app/services/auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -22,15 +23,20 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  user = {}
+
   constructor(
     private settingsServie: SettingsService,
     private helperService: HelperService,
+    private authService: AuthService,
     private toastr: ToastrService
   ) { }
 
   ngOnInit() {
 
     window.scrollTo(0, 0);
+
+    this.user = this.authService.getUser()
 
     this.settingsServie.getSettings().subscribe((getSettingsResponse: any) => {
       if (getSettingsResponse.success) {

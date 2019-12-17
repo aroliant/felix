@@ -4,6 +4,7 @@ import { MainService } from 'client/app/services/main.service';
 import { HelperService } from 'client/app/services/helper.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../../environments/environment';
+import { AuthService } from 'client/app/services/auth.service';
 
 @Component({
   selector: 'app-bucket-settings',
@@ -40,10 +41,13 @@ export class BucketSettingsComponent implements OnInit {
     forceSSL: false
   }
 
+  user = {}
+
   API_URL = environment.API_URL
 
   constructor(private route: ActivatedRoute,
     private mainService: MainService,
+    private authService: AuthService,
     private router: Router,
     private helperService: HelperService,
     private toastr: ToastrService

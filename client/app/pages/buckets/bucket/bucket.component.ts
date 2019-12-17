@@ -32,6 +32,8 @@ export class BucketComponent implements OnInit {
     objectForMeta: {}
   }
 
+  showLogOut = false
+
   showMainAction = false
 
   states = {
@@ -273,6 +275,12 @@ export class BucketComponent implements OnInit {
   }
 
   showMoveObjectsModal() {
+
+    if (this.user['role'] == 'user') {
+      this.toast.warning("You don't have permission to perform that action")
+      return;
+    }
+
     this.modalStates.moveFiles = true
   }
 
@@ -288,6 +296,12 @@ export class BucketComponent implements OnInit {
   }
 
   showDeletesModel() {
+
+    if (this.user['role'] == 'user') {
+      this.toast.warning("You don't have permission to perform that action")
+      return false;
+    }
+
     this.actions.objectsToDelete = []
     this.modalStates.delete = true
     this.objects.map((object, index) => {
@@ -298,6 +312,7 @@ export class BucketComponent implements OnInit {
   }
 
   showMoveObjectModal(i) {
+
     this.modalStates.moveFiles = true
     this.actions.objectsToMove.push(this.objects[i])
   }
@@ -357,6 +372,12 @@ export class BucketComponent implements OnInit {
   }
 
   createNewFolder() {
+
+    if (this.user['role'] == 'user') {
+      this.toast.warning("You don't have permission to perform that action")
+      return false;
+    }
+
     this.objectNameBeforeRenaming = '' // folder newly created
     this.objects.unshift({
       name: '',
@@ -464,6 +485,7 @@ export class BucketComponent implements OnInit {
   }
 
   uploadFiles(event) {
+
     const files = event.target.files
 
     for (let i = 0; i < files.length; i++) {
@@ -473,6 +495,7 @@ export class BucketComponent implements OnInit {
   }
 
   uploadFolders(event) {
+
     const files = event.target.files
 
     for (let i = 0; i < files.length; i++) {

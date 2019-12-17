@@ -9,7 +9,7 @@
                 class="icofont-listine-dots mx-2"></i>Buckets</div>
         <div class="SidebarLink" *ngIf="user.role != 'user'" routerLink="/users" routerLinkActive="SidebarLink__active">
             <i class="icofont-users-alt-5 mx-2"></i>Users</div>
-        <div class="SidebarLink" *ngIf="user.role == 'admin'" routerLink="/settings"
+        <div class="SidebarLink" *ngIf="user.role != 'user'" routerLink="/settings"
             routerLinkActive="SidebarLink__active"><i class="icofont-settings mx-2"></i>Settings</div>
     </div>
 
