@@ -9,6 +9,8 @@ import { AuthService } from 'client/app/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  showLogOut = false
+
   constructor(
     private router: Router,
     private authService: AuthService
@@ -17,6 +19,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  toggleLogOut() {
+    this.showLogOut = !this.showLogOut
   }
 
   logout() {
