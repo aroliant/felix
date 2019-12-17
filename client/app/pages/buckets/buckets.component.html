@@ -5,16 +5,15 @@
         <img src="../../../assets/icons/empty-bucket.svg" class="NoBuckets__Icon" alt="">
         <div class="text-center mt-1">
             <h6 class="my-3 NoBuckets__Text">There are no buckets</h6>
-            <p>Buckets are folders used to organize files.
+            <p class="NoBuckets__Text">Buckets are folders used to organize files.
             </p>
-
-            <ul>
+            <ul class="list-unstyled mx-0 my-3 p-0 NoBuckets__List small">
                 <li>For every bucket you create you can configure domain, CORS and SSL.</li>
                 <li>You can also use buckets to host your static sites.</li>
             </ul>
         </div>
 
-        <button class="btn btn-primary NoBuckets__Button" routerLink="/buckets/create">Create new Bucket</button>
+        <button class="btn btn-primary NoBuckets__Button" routerLink="/buckets/create">Create New Bucket</button>
     </div>
 
     <div class="Buckets mt-4" *ngIf="buckets.length > 0  && isDataLoaded">

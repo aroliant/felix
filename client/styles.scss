@@ -410,8 +410,11 @@
 }
 .NoBuckets__Button {
 }
-.NoBuckets__Text{
+.NoBuckets__Text {
   letter-spacing: 1px;
+}
+.NoBuckets__List {
+  letter-spacing: 0.8px;
 }
 .NoBuckets__Icon {
   color: map-get($theme-colors, "primary");
