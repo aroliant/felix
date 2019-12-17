@@ -14,7 +14,7 @@
     <div class="BucketNaviation pt-3">
         <a (click)="navigateToRoot(bucket?.bucketName)" [class.BucketNaviation__itemActive]="isFilesTabActive"
             class="BucketNaviation__item">Files</a>
-        <a routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings" routerLinkActive="BucketNaviation__itemActive"
+        <a *ngIf="user.role != 'user'" routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings" routerLinkActive="BucketNaviation__itemActive"
             class="BucketNaviation__item">Settings</a>
     </div>
 
