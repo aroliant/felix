@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'client/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'client/app/services/auth.service';
 
 @Component({
   selector: 'app-users',
@@ -24,13 +25,17 @@ export class UsersComponent implements OnInit {
     userToEditIndex: 0
   }
 
+  loggedInUser = {}
+
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.loggedInUser = this.authService.getUser()
     this.userService.getAllUsers().subscribe((getUsersStatus: any) => {
       if (getUsersStatus.success) {
         this.users = getUsersStatus.users

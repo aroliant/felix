@@ -5,6 +5,7 @@ import { environment } from '../../../../environments/environment'
 import { ToastrService } from 'ngx-toastr';
 import { HelperService } from 'client/app/services/helper.service';
 import { Subject } from 'rxjs';
+import { AuthService } from 'client/app/services/auth.service';
 @Component({
   selector: 'app-bucket',
   templateUrl: './bucket.component.html',
@@ -51,10 +52,13 @@ export class BucketComponent implements OnInit {
 
   currentActionIndex = 0
 
+  user = {}
+
   API_URL = environment.API_URL
 
   constructor(private route: ActivatedRoute,
     private mainService: MainService,
+    private authService: AuthService,
     private router: Router,
     private toast: ToastrService,
     private helperService: HelperService,
@@ -63,6 +67,7 @@ export class BucketComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.user = this.authService.getUser()
     this.route.params.subscribe((params) => {
       this.bucketName = params.bucketName;
       this.mainService.getBucket(this.bucketName).subscribe((res: any) => {

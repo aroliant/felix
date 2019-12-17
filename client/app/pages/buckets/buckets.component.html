@@ -65,7 +65,7 @@
                             <div class="list-group">
                                 <a class="list-group-item list-group-item-action"
                                     routerLink="/buckets/{{bucket.bucketName}}">Show Files</a>
-                                <a class="list-group-item list-group-item-action"
+                                <a class="list-group-item list-group-item-action" *ngIf="user.role != 'user'"
                                     routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings">Settings</a>
                             </div>
                         </div>

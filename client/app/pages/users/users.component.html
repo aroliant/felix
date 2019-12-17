@@ -26,7 +26,7 @@
                     </td>
                     <td class="User__role">{{user.role}}</td>
                     <td class="User__status">{{user.status}}</td>
-                    <td class="User__actions">
+                    <td class="User__actions" *ngIf="loggedInUser.role=='admin' || user.role!='admin'">
                         <a class="text-primary cursor-pointer mr-3" (click)="openEditUserModal(userIndex);">
                             <i class="icofont-ui-edit mr-2"></i> <span>Edit</span>
                         </a><br>
@@ -68,8 +68,9 @@
                 <div class="form-group">
                     <label for="felixUserRole">Role</label>
                     <select class="form-control" [(ngModel)]="actions.userToAdd.role">
-                        <option value="admin">admin</option>
+                        <option value="admin" *ngIf="loggedInUser.role=='admin'" >admin</option>
                         <option value="manager" selected>manager</option>
+                        <option value="user">user</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -121,8 +122,9 @@
                     <div class="form-group">
                         <label for="felixUserRole">Role</label>
                         <select class="form-control" [(ngModel)]="users[actions.userToEditIndex].role" name="role">
-                            <option value="admin">admin</option>
+                            <option value="admin" *ngIf="loggedInUser.role=='admin'" >admin</option>
                             <option value="manager">manager</option>
+                            <option value="user">user</option>
                         </select>
                     </div>
                     <div class="form-group">
