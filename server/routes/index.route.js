@@ -7,6 +7,7 @@ import crypto from 'crypto'
 import mime from 'mime-types'
 
 import config from '../config';
+import { DomainController } from '../controllers'
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -26,8 +27,9 @@ router.use('/', (req, res, next) => {
 
   // TODO: Handle Domains from Domain Registry
   const host = req.hostname
-  if (host.includes(config.PRIMARY_DOMAIN)) {
-    const bucketName = host.split('.')[0]
+  const bucket = DomainController.resolveDomainBucket(host)
+  if (bucket) {
+    const bucketName = bucket.bucket
     const relativePath = decodeURIComponent(req.url.replace('/', ''))
     return processAndServeFile(bucketName, relativePath, req, res)
   }

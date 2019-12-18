@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 import fs from 'fs-extra';
 // Relative Imports
-import { UserController } from './controllers'
+import { UserController, DomainController } from './controllers'
 import config from '../server/config';
 
 
@@ -31,6 +31,8 @@ app.use('/', routes);
 
 // Create Default User
 UserController.createDefaultUser()
+// Initalize Domain Controller
+DomainController.loadDomains()
 
 // Creating default files and folders
 fs.ensureFileSync(`${config.ROOT_FOLDER}/buckets.json`)

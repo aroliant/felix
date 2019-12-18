@@ -14,6 +14,7 @@ import crypto from 'crypto'
 import config from '../config'
 import Utils from '../utils'
 import { MetaManager } from '../utils/MetaManager'
+import { DomainController } from './domain.controller'
 
 const bucketsAdapter = new FileSync(config.ROOT_FOLDER + '/buckets.json')
 const bucketsDB = low(bucketsAdapter)
@@ -55,6 +56,10 @@ export class BucketController {
 
     try {
       bucketsDB.get('buckets').push(bucket).write()
+      DomainController.addDomain({
+        bucket: params.bucketName,
+        domain: `${params.bucketName}.${config.PRIMARY_DOMAIN}`
+      })
     } catch (err) {
       return res.json({
         success: false,
@@ -265,6 +270,8 @@ export class BucketController {
         });
       }
     })
+
+    DomainController.removeDomain(`${bucketName}.${config.PRIMARY_DOMAIN}`)
 
     return res.json({
       success: true,
