@@ -4,6 +4,7 @@ import path from 'path'
 import low from 'lowdb'
 import FileSync from 'lowdb/adapters/FileSync'
 import crypto from 'crypto'
+import mime from 'mime-types'
 
 import config from '../config';
 
@@ -28,9 +29,8 @@ router.use('/', (req, res, next) => {
   if (host.includes(config.PRIMARY_DOMAIN)) {
     const bucketName = host.split('.')[0]
     const relativePath = decodeURIComponent(req.url.replace('/', ''))
-    return processFileDownload(bucketName, relativePath, req, res)
+    return processAndServeFile(bucketName, relativePath, req, res)
   }
-
   next()
 })
 
@@ -40,25 +40,34 @@ router.get('/:bucketName/**', (req, res) => {
   const bucketName = req.params.bucketName
   const relativePath = req.params[0]
 
-  processFileDownload(bucketName, relativePath, req, res)
+  processAndServeFile(bucketName, relativePath, req, res)
 
 })
 
-function processFileDownload(bucketName, relativePath, req, res) {
+function processAndServeFile(bucketName, relativePath, req, res) {
 
   const shareParam = req.query.share
   const filePath = config.ROOT_FOLDER + "/buckets/" + bucketName + "/" + relativePath
   const fileName = path.basename(filePath)
 
-  // TODO : Check if bucket name exists
-
   // Read the file's meta before sending the response
   const metaFilePath = config.ROOT_FOLDER + "/meta/" + bucketName + "/" + relativePath.substring(0, relativePath.lastIndexOf('/')) + "meta.json"
+
+  // Check if meta file exists
+  if (!fs.existsSync(metaFilePath)) {
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    return res.end("404 Not Found")
+  }
 
   const adapter = new FileSync(metaFilePath)
   const db = low(adapter)
 
   const fileMeta = db.get('meta').get('children').find({ name: fileName }).value()
+
+  if (!fileMeta) {
+    res.writeHead(404, { "Content-Type": "text/plain" });
+    return res.end("404 Not Found")
+  }
 
   // Public / Private Restriction
   if (!fileMeta.public && !shareParam) {
@@ -85,8 +94,8 @@ function processFileDownload(bucketName, relativePath, req, res) {
   fs.exists(filePath, function (exists) {
     if (exists) {
       res.writeHead(200, {
-        "Content-Type": "application/octet-stream",
-        "Content-Disposition": "attachment; filename=" + fileName,
+        "Content-Type": mime.contentType(fileName),
+        //"Content-Disposition": "attachment; filename=" + fileName,
         ...fileMeta.meta // Append custom meta for Object
       });
       return fs.createReadStream(filePath).pipe(res);
