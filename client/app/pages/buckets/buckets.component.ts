@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MainService } from 'client/app/services/main.service';
-import { HelperService } from 'client/app/services/helper.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'client/app/services/auth.service';
+import { MainService } from 'client/app/services/main.service';
+import { HelperService } from 'client/app/services/helper.service';
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'app-buckets',
@@ -15,6 +16,8 @@ export class BucketsComponent implements OnInit {
   isDataLoaded: Boolean = false
 
   user = {}
+
+  API_URL = environment.API_URL
 
   constructor(
     private mainService: MainService,
