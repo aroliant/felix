@@ -1,3 +1,6 @@
+import low from 'lowdb';
+import FileSync from 'lowdb/adapters/FileSync'
+
 import { resolve } from './file-resolver'
 
 const fileName = resolve();
@@ -22,10 +25,19 @@ const {
     PORT = 80,
 } = process.env;
 
+const settingsAdapter = new FileSync(process.env.ROOT_FOLDER + '/settings.json')
+const settingsDB = low(settingsAdapter)
+let settings = {}
+try {
+    settings = settingsDB.get('settings').value()
+} catch (err) {
+    console.log(err)
+}
+
 const config = {
     ROOT_FOLDER,
     PORT,
-    PRIMARY_DOMAIN : '127.0.0.1.xip.io'
+    PRIMARY_DOMAIN: settings.primaryDomain
 }
 
 export default config;

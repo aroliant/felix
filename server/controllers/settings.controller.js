@@ -66,6 +66,7 @@ export class SettingsController {
     try {
 
       settingsDB.get('settings').assign(settings).write()
+      config.PRIMARY_DOMAIN = settings.primaryDomain
 
     } catch (err) {
 
