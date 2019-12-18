@@ -97,6 +97,7 @@ export class BucketComponent implements OnInit {
             object.showActions = false
             object.isSelected = false
             object.onEditMode = false
+            object.originalName = object.name
             return object
           })
         })
@@ -392,6 +393,12 @@ export class BucketComponent implements OnInit {
   }
 
   editObject(event, i) {
+
+    if (event.keyCode === 27) {
+      this.objects[i].onEditMode = false
+      this.objects[i].name = this.objects[i].originalName
+    }
+
     if (event.keyCode === 13) {
 
       if (this.objectNameBeforeRenaming === '') {
@@ -417,6 +424,8 @@ export class BucketComponent implements OnInit {
 
       } else {
 
+        this.objects[i].originalName = this.objects[i].name
+
         const renameObject = {
           bucketName: this.bucket.bucketName,
           paths: [this.currentPath + this.objectNameBeforeRenaming],
@@ -434,9 +443,16 @@ export class BucketComponent implements OnInit {
               name: this.objects[i].name
             }
 
-            this.mainService.searchObjects(objectToSearch).subscribe((searchObjectResponse: any) => {
+            this.mainService.searchObjects(objectToSearch).subscribe((res: any) => {
 
-              this.objects[i] = searchObjectResponse.objects[0]
+              const object = res.objects[0]
+
+              this.objects[i].name = object.name
+              this.objects[i].size = object.size
+              this.objects[i].items = object.items
+              this.objects[i].createdAt = object.createdAt
+              this.objects[i].modifiedAt = object.modifiedAt
+              this.objects[i].objectType = object.objectType
 
             })
 
