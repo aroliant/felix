@@ -155,11 +155,11 @@
               </span>
               <div class="FileBrowserOption__menu" [class.open]="object.showActions === true" #action_menu_{{i}}>
                 <div class="list-group">
-                  <a *ngIf="user.role != 'user'" class="list-group-item list-group-item-action"
-                    (click)="showManagePermissionsModal(i)">Manage
+                  <a *ngIf="user.role != 'user' && object.objectType=='file'"
+                    class="list-group-item list-group-item-action" (click)="showManagePermissionsModal(i)">Manage
                     Permissions</a>
-                  <a *ngIf="user.role != 'user'" class="list-group-item list-group-item-action"
-                    (click)="showManageMetaModal(i)">Manage
+                  <a *ngIf="user.role != 'user' && object.objectType=='file'"
+                    class="list-group-item list-group-item-action" (click)="showManageMetaModal(i)">Manage
                     Metadata</a>
                   <a class="list-group-item list-group-item-action"
                     href="{{API_URL}}/{{bucketName}}{{currentPath}}{{object.name}}" target="_blank"
