@@ -7,9 +7,20 @@
                 <div class="form-group mb-0">
                     <h4 class="font-weight-light">Primary Domain</h4>
                     <div class="form-group mb-0">
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            [(ngModel)]="settings.primaryDomain" aria-describedby="inputGroup-sizing-default"
-                            placeholder="Enter you primary domain" [readonly]="user.role != 'admin'" autocomplete="off">
+                        <input type="text" class="form-control" aria-label="Sizing example input" name="primaryDomain"
+                            [(ngModel)]="settings.primaryDomain" aria-describedby="inputGroup-sizing-default" required
+                            pattern="^(?!:\/\/)([a-zA-Z0-9*.]+\.)?[a-zA-Z0-9][a-zA-Z0-9*-]+\.[a-zA-Z]{2,6}?$"
+                            placeholder="Enter you primary domain" [readonly]="user.role != 'admin'" autocomplete="off"
+                            #primaryDomain="ngModel">
+                        <div *ngIf="primaryDomain.invalid && (primaryDomain.dirty || primaryDomain.touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="primaryDomain.errors.required">
+                                Primary Domain Name is required.
+                            </div>
+                            <div *ngIf="primaryDomain.errors.pattern">
+                                Invalid Domain Name
+                            </div>
+                        </div>
                     </div>
                     <div class="d-flex flex-row justify-content-between mt-3">
                         <div class="d-flex flex-row">
@@ -27,7 +38,7 @@
                             </label>
                         </div>
                         <button class="btn btn-success text-white" *ngIf="user.role == 'admin'"
-                            (click)="updateSettingsDomain()">Save</button>
+                            (click)="updateSettingsDomain()" [disabled]="primaryDomain.invalid">Save</button>
                     </div>
                 </div>
             </div>
