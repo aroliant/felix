@@ -41,6 +41,10 @@ export class BucketSettingsComponent implements OnInit {
     forceSSL: false
   }
 
+  isDomainNameValid = false
+  isAddOriginNameValid = false
+  isEditOriginNameValid = true
+
   user = {}
 
   API_URL = environment.API_URL
@@ -91,6 +95,42 @@ export class BucketSettingsComponent implements OnInit {
         this.toastr.error(updateBucketResult.message)
       }
     })
+  }
+
+  validateDomainName() {
+
+    if (this.newDomain.name == "") {
+      this.isDomainNameValid = false
+    } else if (/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/.test(this.newDomain.name)) {
+      this.isDomainNameValid = true
+    } else {
+      this.isDomainNameValid = false
+    }
+
+  }
+
+  validateAddOrigin() {
+
+    if (this.newCORS.origin == "") {
+      this.isAddOriginNameValid = false
+    } else if (/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/.test(this.newCORS.origin)) {
+      this.isAddOriginNameValid = true
+    } else {
+      this.isAddOriginNameValid = false
+    }
+
+  }
+
+  validateEditOrigin() {
+
+    if (this.bucket.cors[this.editCORSIndex].origin == "") {
+      this.isEditOriginNameValid = false
+    } else if (/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/.test(this.bucket.cors[this.editCORSIndex].origin)) {
+      this.isEditOriginNameValid = true
+    } else {
+      this.isEditOriginNameValid = false
+    }
+
   }
 
   openDeleteBucketModal() {
