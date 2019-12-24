@@ -3,13 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "client:dev": "ng serve",
+    "client:dev": "ng build --watch",
     "client:build": "ng build",
     "client:test": "ng test",
     "client:lint": "ng lint",
     "client:e2e": "ng e2e",
+    "start": "babel-node server/app.js",
     "server": "node dist/server/app.js",
     "server:dev": "nodemon --exec 'babel-node server/app.js'",
+    "server:docker": "nodemon -L --watch server --exec 'babel-node server/app.js'",
     "server:build": "babel server -d dist/server --copy-files --include-dotfiles"
   },
   "private": true,
