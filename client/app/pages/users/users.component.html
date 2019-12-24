@@ -57,34 +57,56 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="felixUsername">Username</label>
-                    <input type="text" [(ngModel)]="actions.userToAdd.username" class="form-control"
-                        placeholder="Enter a unique username" autocomplete="off">
+                    <input type="text" name="addUsername" [(ngModel)]="actions.userToAdd.username" class="form-control"
+                        placeholder="Enter a unique username" autocomplete="off" required #addUsername="ngModel" >
+                </div>
+                <div *ngIf="addUsername.invalid && (addUsername.dirty || addUsername.touched)" class="alert alert-danger">
+                    <div *ngIf="addUsername.errors.required">
+                        User Name is required.
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="felixUsername">Email</label>
-                    <input type="text" [(ngModel)]="actions.userToAdd.email" class="form-control"
-                        placeholder="Enter your email" autocomplete="off">
+                    <input type="text" name="addEmail" [(ngModel)]="actions.userToAdd.email" class="form-control" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$"
+                        placeholder="Enter your email" autocomplete="off" required #addEmail="ngModel" >
+                </div>
+                <div *ngIf="addEmail.invalid && (addEmail.dirty || addEmail.touched)" class="alert alert-danger">
+                    <div *ngIf="addEmail.errors.required">
+                        User Email is required.
+                    </div>
+                    <div *ngIf="addEmail.errors.pattern">
+                        User Email is not Valid.
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="felixUserRole">Role</label>
-                    <select class="form-control" [(ngModel)]="actions.userToAdd.role">
+                    <select class="form-control" name="addRole" [(ngModel)]="actions.userToAdd.role" required #addRole="ngModel" >
                         <option value="admin" *ngIf="loggedInUser.role=='admin'" >admin</option>
                         <option value="manager" selected>manager</option>
                         <option value="user">user</option>
                     </select>
                 </div>
+                <div *ngIf="addRole.invalid && (addRole.dirty || addRole.touched)" class="alert alert-danger">
+                    <div *ngIf="addRole.errors.required">
+                        User Role is required.
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="felixUserPassword">Password</label>
-                    <input type="password" [(ngModel)]="actions.userToAdd.password" class="form-control"
-                        placeholder="Password" autocomplete="new-password">
+                    <input type="password" name="addPassword" [(ngModel)]="actions.userToAdd.password" class="form-control"
+                        placeholder="Password" autocomplete="new-password" required #addPassword="ngModel" >
                 </div>
-
+                <div *ngIf="addPassword.invalid && (addPassword.dirty || addPassword.touched)" class="alert alert-danger">
+                        <div *ngIf="addPassword.errors.required">
+                            Password is required.
+                        </div>
+                    </div>
             </div>
             <div class="modal-footer">
                 <div class="w-100 text-left">
                     <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeAddUserModal();">
                         Cancel</button>
-                    <button type="button" class="btn btn-primary" (click)="addUser();">
+                    <button type="button" class="btn btn-primary" (click)="addUser();" [disabled]="addPassword.invalid || addRole.invalid || addEmail.invalid || addUsername.invalid" >
                         Add</button>
                 </div>
             </div>
@@ -111,13 +133,21 @@
                 <form class="needs-validation" autocomplete="off">
                     <div class="form-group">
                         <label for="felixUsername">Username</label>
-                        <input type="text" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control"
-                            placeholder="Enter a unique username" autocomplete="off" name="username">
+                        <input type="text" name="editUsername" [(ngModel)]="users[actions.userToEditIndex].username" class="form-control"
+                            placeholder="Enter a unique username" autocomplete="off" name="username" #editUsername="ngModel" readonly >
                     </div>
                     <div class="form-group">
                         <label for="felixUsername">Email</label>
-                        <input type="text" [(ngModel)]="users[actions.userToEditIndex].email" class="form-control"
-                            placeholder="Enter your email" autocomplete="off" name="email">
+                        <input type="text" name="editEmail" [(ngModel)]="users[actions.userToEditIndex].email" class="form-control" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" required
+                            placeholder="Enter your email" autocomplete="off" name="email" #editEmail="ngModel" >
+                    </div>
+                    <div *ngIf="editEmail.invalid && (editEmail.dirty || editEmail.touched)" class="alert alert-danger">
+                        <div *ngIf="editEmail.errors.required">
+                            User Email is required.
+                        </div>
+                        <div *ngIf="editEmail.errors.pattern">
+                            User Email is not Valid.
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="felixUserRole">Role</label>
@@ -149,7 +179,7 @@
                 <div class="w-100 text-left">
                     <button type="button" class="btn btn-outline-secondary mr-3" (click)="closeEditUserModal();">
                         Cancel</button>
-                    <button type="button" class="btn btn-success text-white" (click)="updateUser()">
+                    <button type="button" class="btn btn-success text-white" (click)="updateUser()" [disabled]="editEmail.invalid" >
                         Save</button>
                 </div>
             </div>
