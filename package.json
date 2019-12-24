@@ -9,10 +9,12 @@
     "client:lint": "ng lint",
     "client:e2e": "ng e2e",
     "start": "babel-node server/app.js",
+    "start:docker": "concurrently \"yarn client:dev\" \"nodemon -L --watch server --exec babel-node server/app.js\"",
     "server": "node dist/server/app.js",
     "server:dev": "nodemon --exec 'babel-node server/app.js'",
     "server:docker": "nodemon -L --watch server --exec 'babel-node server/app.js'",
-    "server:build": "babel server -d dist/server --copy-files --include-dotfiles"
+    "server:build": "babel server -d dist/server --copy-files --include-dotfiles",
+    "nodemon":"nodemon"
   },
   "private": true,
   "dependencies": {
@@ -63,6 +65,7 @@
     "angular-pipes": "^10.0.0",
     "bootstrap": "^4.3.1",
     "codelyzer": "~4.5.0",
+    "concurrently": "^5.0.2",
     "core-js": "^2.5.4",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
