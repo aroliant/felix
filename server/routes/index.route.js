@@ -7,7 +7,7 @@ import crypto from 'crypto'
 import mime from 'mime-types'
 
 import config from '../config';
-import { DomainController } from '../controllers'
+import { DomainController, SSLController } from '../controllers'
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -25,16 +25,25 @@ router.use('/user', require('./user.route'));
 // Domain Handling Middleware
 router.use('/', (req, res, next) => {
 
-  // TODO: Handle Domains from Domain Registry
+  // Pass /.well-known requests
+  if (req.path.split('/')[1] === '.well-known') {
+    return next()
+  }
+
+  // Handle Domains from Domain Registry
   const host = req.hostname
   const bucket = DomainController.resolveDomainBucket(host)
   if (bucket) {
     const bucketName = bucket.bucket
     const relativePath = decodeURIComponent(req.url.replace('/', ''))
+    console.log('Processing file', relativePath)
     return processAndServeFile(bucketName, relativePath, req, res)
   }
-  next()
+  return next()
 })
+
+// Handle ACME Challenge
+router.get('/.well-known/acme-challenge/:token', (req, res) => SSLController.handleDomainChallenge(req, res))
 
 // Pipe to handle GET Requests of Bucket Objects
 router.get('/:bucketName/**', (req, res) => {
@@ -57,6 +66,7 @@ function processAndServeFile(bucketName, relativePath, req, res) {
 
   // Check if meta file exists
   if (!fs.existsSync(metaFilePath)) {
+    console.log('unable to retrive meta path', metaFilePath)
     res.writeHead(404, { "Content-Type": "text/plain" });
     return res.end("404 Not Found")
   }

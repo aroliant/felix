@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 import fs from 'fs-extra';
 // Relative Imports
-import { UserController, DomainController } from './controllers'
+import { UserController, DomainController, SSLController } from './controllers'
 import config from '../server/config';
 
 
@@ -40,6 +40,9 @@ fs.ensureFileSync(`${config.ROOT_FOLDER}/users.json`)
 fs.ensureFileSync(`${config.ROOT_FOLDER}/settings.json`)
 fs.ensureDirSync(`${config.ROOT_FOLDER}/buckets`)
 fs.ensureDirSync(`${config.ROOT_FOLDER}/meta`)
+fs.ensureDirSync(`${config.ETC_FOLDER}/etc/nginx/conf.d`)
+
+new SSLController() // Generate and Load NGINX Config
 
 app.listen(PORT, function () {
     console.log('The API Server is Listening on Port : ', PORT);

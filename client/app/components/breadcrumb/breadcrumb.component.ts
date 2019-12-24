@@ -18,13 +18,13 @@ export class BreadcrumbComponent implements OnInit, OnChanges, OnDestroy {
   isFilesTabActive = false
   API_URL = environment.API_URL
 
-  user = {}
+  user: any
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.user = this.authService.getUser()

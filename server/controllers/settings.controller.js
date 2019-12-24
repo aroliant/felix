@@ -3,6 +3,7 @@ import low from 'lowdb'
 import crypto from 'crypto';
 
 import config from '../config'
+import { SSLController } from '../controllers'
 
 const settingsAdapter = new FileSync(config.ROOT_FOLDER + '/settings.json')
 const settingsDB = low(settingsAdapter)
@@ -82,6 +83,65 @@ export class SettingsController {
       success: true,
       message: "Settings Updated !"
     })
+
+
+  }
+
+  static updatePrimarySSL(req, res) {
+
+    const settingsAdapter = new FileSync(config.ROOT_FOLDER + '/settings.json')
+    const settingsDB = low(settingsAdapter)
+
+    const settings = req.body
+
+    if (!settings.primaryDomain) {
+      return res.json({
+        success: false,
+        message: "Primary Domain name is required",
+      })
+    }
+
+    if (!settings.primaryEmail) {
+      return res.json({
+        success: false,
+        message: "Primary Email is required",
+      })
+    }
+
+    try {
+
+      settingsDB.get('settings').assign(settings).write()
+      config.PRIMARY_DOMAIN = settings.primaryDomain
+      config.PRIMARY_EMAIL = settings.primaryEmail
+
+    } catch (err) {
+
+      return res.json({
+        success: false,
+        message: "Unable to update Settings",
+        error: err
+      });
+
+    }
+
+    new SSLController().issueCertficate(config.PRIMARY_DOMAIN, config.PRIMARY_EMAIL).then(() => {
+
+      return res.json({
+        success: true,
+        message: "Settings Updated !"
+      })
+
+    }).catch((err) => {
+
+      return res.json({
+        success: false,
+        message: "Unable to update SSL for this domain",
+        error: err,
+      })
+
+    })
+
+
 
 
   }

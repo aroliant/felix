@@ -11,6 +11,9 @@ router.route('/').post((req, res) => BucketController.createBucket(req, res))
   .put((req, res) => BucketController.updateBucket(req, res))
   .get((req, res) => BucketController.getAllBuckets(req, res));
 
+// Bucket - Settings SSL
+router.route('/ssl').put((req, res) => BucketController.updateSSL(req, res))
+
 router.route('/:bucketName').get((req, res) => BucketController.getBucket(req, res))
   .delete((req, res) => BucketController.deleteBucket(req, res));
 

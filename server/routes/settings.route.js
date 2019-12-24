@@ -10,3 +10,5 @@ module.exports = router;
 router.route('/').put((req, res) => SettingsController.updateSettings(req, res));
 router.route('/generateKeys').put((req, res) => SettingsController.generateKeys(req, res));
 router.route('/').get((req, res) => SettingsController.getSettings(req, res));
+
+router.route('/domain/primary/ssl').put((req, res) => SettingsController.updatePrimarySSL(req, res));

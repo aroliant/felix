@@ -146,6 +146,38 @@ export class BucketController {
     }
   }
 
+  static updateSSL(req, res) {
+    const bucket = req.body
+
+    //Check if bucket exists
+    const bucketDetails = bucketsDB.get('buckets').find({ bucketID: bucket.bucketID }).value()
+    if (bucketDetails) {
+      const bucketName = bucketDetails.bucketName
+      const adapterBucket = new FileSync(config.ROOT_FOLDER + '/' + bucketName + '.bucket.json')
+      const bucketDB = low(adapterBucket)
+
+      try {
+        bucketDB.get('bucket').assign(bucket).write()
+      } catch (err) {
+        return res.json({
+          success: false,
+          message: "Unable to update Bucket",
+          error: err
+        });
+      }
+
+      return res.json({
+        success: true,
+        message: "Bucket Updated !"
+      })
+    } else {
+      return res.json({
+        success: false,
+        message: "Unable to find bucket!"
+      })
+    }
+  }
+
   static getAllBuckets(req, res) {
     var buckets = []
     try {

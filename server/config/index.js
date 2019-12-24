@@ -27,6 +27,23 @@ const {
 
 const settingsAdapter = new FileSync(process.env.ROOT_FOLDER + '/settings.json')
 const settingsDB = low(settingsAdapter)
+
+settingsDB.defaults({
+    settings: {
+        primaryDomain: '',
+        primaryEmail: '',
+        sslEnabled: false,
+        forceSSL: false,
+        keys: {
+            enableKey: false,
+            accessKey: '',
+            apiKey: '',
+            allowedOrigins: [],
+            enableAPI: false
+        }
+    }
+}).write()
+
 let settings = {}
 try {
     settings = settingsDB.get('settings').value()
@@ -36,8 +53,10 @@ try {
 
 const config = {
     ROOT_FOLDER,
+    ETC_FOLDER: process.env.NODE_ENV === 'development' ? ROOT_FOLDER + '/' : '',
     PORT,
-    PRIMARY_DOMAIN: settings.primaryDomain
+    PRIMARY_DOMAIN: settings.primaryDomain,
+    PRIMARY_EMAIL: settings.primaryEmail
 }
 
 export default config;

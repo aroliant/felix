@@ -24,7 +24,7 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  user = {}
+  user: any
 
   constructor(
     private settingsServie: SettingsService,

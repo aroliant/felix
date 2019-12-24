@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit {
     userToEditIndex: 0
   }
 
-  loggedInUser = {}
+  loggedInUser: any
 
   constructor(
     private userService: UserService,
