@@ -4,8 +4,16 @@
 
         <div class="form-group mb-0">
             <label class="h6">Choose a unique name</label>
-            <input type="text" class="form-control" aria-label="Sizing example input" [(ngModel)]="bucket.bucketName"
-                aria-describedby="inputGroup-sizing-default" placeholder="Choose a unique name" autocomplete="off">
+            <input type="text" name="bucketName" class="form-control" aria-label="Sizing example input" [(ngModel)]="bucket.bucketName" pattern="^[a-z0-9]+$"
+                aria-describedby="inputGroup-sizing-default" placeholder="Choose a unique name" autocomplete="off" #bucketName="ngModel" required >
+            <div *ngIf="bucketName.invalid && (bucketName.dirty || bucketName.touched)" class="alert alert-danger">
+                <div *ngIf="bucketName.errors.required">
+                    Bucket Name is required.
+                </div>
+                <div *ngIf="bucketName.errors.pattern">
+                    Invalid Bucket Name
+                </div>
+            </div>
         </div>
     </div>
     <div class="w-100 mt-4">
@@ -33,6 +41,6 @@
     </div>
 
     <div class="w-100 text-right mt-2">
-        <button class="btn btn-primary" (click)="createBucket()">Create</button>
+        <button class="btn btn-primary" [disabled]="bucketName.invalid" (click)="createBucket()">Create</button>
     </div>
 </div>

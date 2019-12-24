@@ -41,6 +41,8 @@ export class BucketSettingsComponent implements OnInit {
     forceSSL: false
   }
 
+  isEditOriginNameValid = true
+
   user = {}
 
   API_URL = environment.API_URL
@@ -91,6 +93,18 @@ export class BucketSettingsComponent implements OnInit {
         this.toastr.error(updateBucketResult.message)
       }
     })
+  }
+
+  validateEditOrigin() {
+
+    if (this.bucket.cors[this.editCORSIndex].origin == "") {
+      this.isEditOriginNameValid = false
+    } else if (/^(?!:\/\/)([a-zA-Z0-9*.]+\.)?[a-zA-Z0-9][a-zA-Z0-9*-]+\.[a-zA-Z]{2,6}?$/.test(this.bucket.cors[this.editCORSIndex].origin)) {
+      this.isEditOriginNameValid = true
+    } else {
+      this.isEditOriginNameValid = false
+    }
+
   }
 
   openDeleteBucketModal() {

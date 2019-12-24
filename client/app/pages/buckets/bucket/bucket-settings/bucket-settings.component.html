@@ -139,10 +139,19 @@
         </div>
         <div class="mt-3 w-75">
           <div class="form-group form-inline m-0">
-            <input type="text" class="form-control mr-2 flex-grow-1" autocomplete="off"
-              (keydown)="addDomainOnEnter($event)" placeholder="Enter the domain you want to connect"
-              [(ngModel)]="newDomain.name">
-            <button class="btn btn-primary" (click)="updateDomain()">Connect</button>
+            <input type="text" id="domainName" name="domainName" class="form-control mr-2 flex-grow-1"
+              autocomplete="off" (keydown)="addDomainOnEnter($event)" #domainName="ngModel" required
+              pattern="^(?!:\/\/)([a-zA-Z0-9*.]+\.)?[a-zA-Z0-9][a-zA-Z0-9*-]+\.[a-zA-Z]{2,6}?$"
+              placeholder="Enter the domain you want to connect" [(ngModel)]="newDomain.name">
+            <button class="btn btn-primary" [disabled]="domainName.invalid" (click)="updateDomain()">Connect</button>
+          </div>
+          <div *ngIf="domainName.invalid && (domainName.dirty || domainName.touched)" class="alert alert-danger">
+            <div *ngIf="domainName.errors.required">
+              Domain Name is required.
+            </div>
+            <div *ngIf="domainName.errors.pattern">
+              Enter a valid Domain
+            </div>
           </div>
           <div class="mt-3 Domains">
             <strong class="text-uppercase small">Domains</strong>
@@ -244,10 +253,18 @@
         <h6 class="m-0">Origin</h6>
         <div class="form-group">
           <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
-          <input type="text" class="form-control" [(ngModel)]="newCORS.origin"
-            placeholder="Enter the name of this bucket" autocomplete="off">
+          <input type="text" name="addOriginName" class="form-control" [(ngModel)]="newCORS.origin"
+            pattern="^(?!:\/\/)([a-zA-Z0-9*.]+\.)?[a-zA-Z0-9][a-zA-Z0-9*-]+\.[a-zA-Z]{2,6}?$"
+            placeholder="Enter the name of this bucket" autocomplete="off" required #addOriginName="ngModel">
         </div>
-
+        <div *ngIf="addOriginName.invalid && (addOriginName.dirty || addOriginName.touched)" class="alert alert-danger">
+          <div *ngIf="addOriginName.errors.required">
+            Origin Name is required.
+          </div>
+          <div *ngIf="addOriginName.errors.pattern">
+            Enter a valid Origin Name
+          </div>
+        </div>
         <h6 class="m-0">Allowed Methods</h6>
         <div class="form-group d-flex flex-row justify-content-between mt-2">
           <label class="CheckboxContainer d-flex align-items-center flex-row" for="inlineCheckbox94">
@@ -293,13 +310,14 @@
         <h6 class="m-0">Access Control Max Age</h6>
         <div class="form-group">
           <label class="m-0 small text-secondary">Seconds</label>
-          <input type="text" [(ngModel)]="newCORS.accessControlMaxAge" class="form-control" autocomplete="off"
+          <input type="number" [(ngModel)]="newCORS.accessControlMaxAge" class="form-control" autocomplete="off"
             value="0">
         </div>
       </div>
       <div class="modal-footer">
         <div class="w-100 text-left">
-          <button type="button" class="btn btn-success mr-3 text-white" (click)="addCORS();">
+          <button type="button" class="btn btn-success mr-3 text-white" [disabled]="addOriginName.invalid"
+            (click)="addCORS();">
             Save Options</button>
           <button type="button" class="btn btn-outline-secondary" (click)="closeCORSoptionModal();">
             Cancel</button>
@@ -327,8 +345,17 @@
         <h6 class="m-0">Origin</h6>
         <div class="form-group">
           <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
-          <input type="text" class="form-control" [(ngModel)]="bucket.cors[this.editCORSIndex].origin"
-            placeholder="Enter the name of this bucket" autocomplete="off">
+          <input name="editOrigin" type="text" class="form-control" [(ngModel)]="bucket.cors[this.editCORSIndex].origin"
+            (input)="validateEditOrigin()" placeholder="Enter the name of this bucket" autocomplete="off" required
+            pattern="^(?!:\/\/)([a-zA-Z0-9*.]+\.)?[a-zA-Z0-9][a-zA-Z0-9*-]+\.[a-zA-Z]{2,6}?$" #editOrigin="ngModel">
+        </div>
+        <div *ngIf="editOrigin.invalid && (editOrigin.dirty || editOrigin.touched)" class="alert alert-danger">
+          <div *ngIf="editOrigin.errors.required">
+            Origin Name is required.
+          </div>
+          <div *ngIf="editOrigin.errors.pattern">
+            Enter a valid Origin Name
+          </div>
         </div>
 
         <h6 class="m-0">Allowed Methods</h6>
@@ -381,13 +408,14 @@
         <h6 class="m-0">Access Control Max Age</h6>
         <div class="form-group">
           <label class="m-0 small text-secondary">Seconds</label>
-          <input type="text" [(ngModel)]="bucket.cors[this.editCORSIndex].accessControlMaxAge" autocomplete="off"
+          <input type="number" [(ngModel)]="bucket.cors[this.editCORSIndex].accessControlMaxAge" autocomplete="off"
             class="form-control" value="0">
         </div>
       </div>
       <div class="modal-footer">
         <div class="w-100 text-left">
-          <button type="button" class="btn btn-success mr-3 text-white" (click)="editCORSOptions();">
+          <button type="button" class="btn btn-success mr-3 text-white" (click)="editCORSOptions();"
+            [disabled]="!isEditOriginNameValid">
             Save Options</button>
           <button type="button" class="btn btn-outline-secondary" (click)="closeEditCORSoptionModal();">
             Cancel</button>
