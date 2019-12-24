@@ -13,6 +13,7 @@ export class SettingsComponent implements OnInit {
 
   settings = {
     primaryDomain: '',
+    primaryEmail: '',
     sslEnabled: false,
     forceSSL: false,
     keys: {
@@ -65,6 +66,7 @@ export class SettingsComponent implements OnInit {
 
     const settings = {
       primaryDomain: this.settings.primaryDomain,
+      primaryEmail: this.settings.primaryEmail,
       sslEnabled: this.settings.sslEnabled,
       forceSSL: this.settings.forceSSL,
     }

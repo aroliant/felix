@@ -6,10 +6,16 @@
             <div class="card card-body shadow-sm border">
                 <div class="form-group mb-0">
                     <h4 class="font-weight-light">Primary Domain</h4>
-                    <div class="form-group mb-0">
-                        <input type="text" class="form-control" aria-label="Sizing example input"
+                    <div class="form-group mb-2">
+                        <input type="text" class="form-control" aria-label="Primary Domain"
                             [(ngModel)]="settings.primaryDomain" aria-describedby="inputGroup-sizing-default"
-                            placeholder="Enter you primary domain" [readonly]="user.role != 'admin'" autocomplete="off">
+                            placeholder="Enter your primary domain" [readonly]="user.role != 'admin'"
+                            autocomplete="off">
+                    </div>
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control" aria-label="Primary Email"
+                            [(ngModel)]="settings.primaryEmail" aria-describedby="inputGroup-sizing-default"
+                            placeholder="Enter your primary email" [readonly]="user.role != 'admin'" autocomplete="off">
                     </div>
                     <div class="d-flex flex-row justify-content-between mt-3">
                         <div class="d-flex flex-row">
