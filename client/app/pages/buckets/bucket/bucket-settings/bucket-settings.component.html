@@ -140,10 +140,10 @@
         <div class="mt-3 w-75">
           <div class="form-group form-inline m-0">
             <input type="text" id="domainName" name="domainName" class="form-control mr-2 flex-grow-1"
-              autocomplete="off" (input)="validateDomainName()" (keydown)="addDomainOnEnter($event)"
-              #domainName="ngModel" required pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$"
+              autocomplete="off" (keydown)="addDomainOnEnter($event)" #domainName="ngModel" required
+              pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$"
               placeholder="Enter the domain you want to connect" [(ngModel)]="newDomain.name">
-            <button class="btn btn-primary" [disabled]="!isDomainNameValid" (click)="updateDomain()">Connect</button>
+            <button class="btn btn-primary" [disabled]="domainName.invalid" (click)="updateDomain()">Connect</button>
           </div>
           <div *ngIf="domainName.invalid && (domainName.dirty || domainName.touched)" class="alert alert-danger">
             <div *ngIf="domainName.errors.required">
@@ -254,8 +254,7 @@
         <div class="form-group">
           <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
           <input type="text" name="addOriginName" class="form-control" [(ngModel)]="newCORS.origin"
-            pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$" (input)="validateAddOrigin()"
-            placeholder="Enter the name of this bucket" autocomplete="off" required #addOriginName="ngModel">
+            pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$"  placeholder="Enter the name of this bucket" autocomplete="off" required #addOriginName="ngModel">
         </div>
         <div *ngIf="addOriginName.invalid && (addOriginName.dirty || addOriginName.touched)" class="alert alert-danger">
           <div *ngIf="addOriginName.errors.required">
@@ -316,7 +315,7 @@
       </div>
       <div class="modal-footer">
         <div class="w-100 text-left">
-          <button type="button" class="btn btn-success mr-3 text-white" [disabled]="!isAddOriginNameValid"
+          <button type="button" class="btn btn-success mr-3 text-white" [disabled]="addOriginName.invalid"
             (click)="addCORS();">
             Save Options</button>
           <button type="button" class="btn btn-outline-secondary" (click)="closeCORSoptionModal();">
