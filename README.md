@@ -11,14 +11,26 @@ File Manager that runs on Docker with better UI/UX
 
 ## Install
 
-1. Clone this Repo
-2. Build the App 
+1. Create a docker-compose.yml file with the following contents
 ```
-docker-compose build
+version: "3"
+services:
+  app:
+    image: aroliant/felix:latest
+    restart: always
+    ports:
+      - 80:80
+      - 3000:3000
+      - 443:443
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./data:/data
+
 ```
-3. Run the App 
+2. Run the App 
 ```
-docker-compose up
+docker-compose up 
 ```
 
 Note : Use `docker-compose up -d` to run in detached mode
