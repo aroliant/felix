@@ -141,7 +141,7 @@
           <div class="form-group form-inline m-0">
             <input type="text" id="domainName" name="domainName" class="form-control mr-2 flex-grow-1"
               autocomplete="off" (keydown)="addDomainOnEnter($event)" #domainName="ngModel" required
-              pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$"
+              pattern="^(?!:\/\/)([a-zA-Z0-9*.]+\.)?[a-zA-Z0-9][a-zA-Z0-9*-]+\.[a-zA-Z]{2,6}?$"
               placeholder="Enter the domain you want to connect" [(ngModel)]="newDomain.name">
             <button class="btn btn-primary" [disabled]="domainName.invalid" (click)="updateDomain()">Connect</button>
           </div>
@@ -254,7 +254,8 @@
         <div class="form-group">
           <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
           <input type="text" name="addOriginName" class="form-control" [(ngModel)]="newCORS.origin"
-            pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$"  placeholder="Enter the name of this bucket" autocomplete="off" required #addOriginName="ngModel">
+            pattern="^(?!:\/\/)([a-zA-Z0-9*.]+\.)?[a-zA-Z0-9][a-zA-Z0-9*-]+\.[a-zA-Z]{2,6}?$"
+            placeholder="Enter the name of this bucket" autocomplete="off" required #addOriginName="ngModel">
         </div>
         <div *ngIf="addOriginName.invalid && (addOriginName.dirty || addOriginName.touched)" class="alert alert-danger">
           <div *ngIf="addOriginName.errors.required">
@@ -346,7 +347,7 @@
           <label class="m-0 small text-secondary">Enter the name of this bucket to enable deletion</label>
           <input name="editOrigin" type="text" class="form-control" [(ngModel)]="bucket.cors[this.editCORSIndex].origin"
             (input)="validateEditOrigin()" placeholder="Enter the name of this bucket" autocomplete="off" required
-            pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$" #editOrigin="ngModel">
+            pattern="^(?!:\/\/)([a-zA-Z0-9*.]+\.)?[a-zA-Z0-9][a-zA-Z0-9*-]+\.[a-zA-Z]{2,6}?$" #editOrigin="ngModel">
         </div>
         <div *ngIf="editOrigin.invalid && (editOrigin.dirty || editOrigin.touched)" class="alert alert-danger">
           <div *ngIf="editOrigin.errors.required">

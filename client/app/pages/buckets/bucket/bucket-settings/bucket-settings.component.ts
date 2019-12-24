@@ -99,7 +99,7 @@ export class BucketSettingsComponent implements OnInit {
 
     if (this.bucket.cors[this.editCORSIndex].origin == "") {
       this.isEditOriginNameValid = false
-    } else if (/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z]{2,}$/.test(this.bucket.cors[this.editCORSIndex].origin)) {
+    } else if (/^(?!:\/\/)([a-zA-Z0-9*.]+\.)?[a-zA-Z0-9][a-zA-Z0-9*-]+\.[a-zA-Z]{2,6}?$/.test(this.bucket.cors[this.editCORSIndex].origin)) {
       this.isEditOriginNameValid = true
     } else {
       this.isEditOriginNameValid = false
