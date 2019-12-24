@@ -27,7 +27,7 @@ RUN yarn install --production=true
 
 COPY --from=builder  /app/dist /usr/src/app/dist/
 
-COPY ./configs/nginx.conf /etc/nginx/nginx.conf
+COPY ./configs/nginx/prod/nginx.conf /etc/nginx/nginx.conf
 
 ENV NODE_ENV production
 ENV PORT 3000
