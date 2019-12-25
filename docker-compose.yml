@@ -5,6 +5,7 @@ services:
     image: aroliant/nginxnode:0.0.1
     build: 
       context: .      
+      dockerfile: configs/docker/dev/Dockerfile
     command: >
       sh -c "nginx && yarn start:docker"
     restart: unless-stopped
