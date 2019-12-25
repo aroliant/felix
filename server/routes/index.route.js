@@ -7,7 +7,7 @@ import crypto from 'crypto'
 import mime from 'mime-types'
 
 import config from '../config';
-import { DomainController, SSLController } from '../controllers'
+import { DomainController, SSLController, SettingsController } from '../controllers'
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -21,6 +21,9 @@ router.use('/bucket', require('./bucket.route'));
 router.use('/settings', require('./settings.route'));
 
 router.use('/user', require('./user.route'));
+
+router.get('/init', (req, res) => SettingsController.getGlobalSettings(req, res));
+
 
 // Domain Handling Middleware
 router.use('/', (req, res, next) => {

@@ -133,9 +133,9 @@
       </div>
       <div class="w-100 text-left mt-2">
         <div class="BucketEndpoint CopyBtn">
-          <span class="mx-2 text-secondary">{{API_URL}}/{{bucket.bucketName}}</span>
+          <span class="mx-2 text-secondary">{{bucket.bucketName}}.{{API_URL}}</span>
           <button class="btn btn-outline-primary"
-            (click)="copyToClipboard(API_URL + '/' + bucket.bucketName)">Copy</button>
+            (click)="copyToClipboard(bucket.bucketName + '.' + API_URL )">Copy</button>
         </div>
         <div class="mt-3 w-75">
           <div class="form-group form-inline m-0">

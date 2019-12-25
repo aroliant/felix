@@ -7,16 +7,12 @@ import { environment } from 'client/environments/environment';
 @Injectable()
 export class UserService {
 
-  API_URL = environment.API_URL;
+  API_URL = 'http://felix.' + environment.API_URL;
 
   constructor(private httpc: HttpClient, private router: Router) {
   }
 
   // Users
-
-  createDefaultUser() {
-    return this.httpc.post(this.API_URL + '/user/default', {});
-  }
 
   loginUser(user) {
 

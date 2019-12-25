@@ -633,4 +633,12 @@ export class BucketController {
 
   }
 
+  static addDomain(req, res) {
+    // TODO: Adding Domain to Bucket
+  }
+
+  static removeDomain(req, res) {
+    // TODO: Removing Domain to Bucket
+  }
+
 }

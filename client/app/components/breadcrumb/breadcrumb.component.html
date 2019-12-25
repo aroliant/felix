@@ -6,16 +6,16 @@
         <div>
             <h4 class="m-0 PresentBucket__name">{{bucket?.bucketName}}</h4>
             <div class="PresentBucket__info">{{bucket?.size}} / {{bucket?.items}} items</div>
-            <div class="small"><a href="{{API_URL}}/{{bucket?.bucketName}}"
-                    target="_blank">{{API_URL}}/{{bucket?.bucketName}}</a></div>
+            <div class="small"><a href="//{{bucket?.bucketName}}.{{API_URL}}"
+                    target="_blank">{{bucket?.bucketName}}.{{API_URL}}</a></div>
         </div>
     </div>
 
     <div class="BucketNaviation pt-3">
         <a (click)="navigateToRoot(bucket?.bucketName)" [class.BucketNaviation__itemActive]="isFilesTabActive"
             class="BucketNaviation__item">Files</a>
-        <a *ngIf="user.role != 'user'" routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings" routerLinkActive="BucketNaviation__itemActive"
-            class="BucketNaviation__item">Settings</a>
+        <a *ngIf="user.role != 'user'" routerLink="/buckets/{{bucket?.bucketName}}/bucket-settings"
+            routerLinkActive="BucketNaviation__itemActive" class="BucketNaviation__item">Settings</a>
     </div>
 
 </div>
