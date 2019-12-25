@@ -14,10 +14,6 @@ export class UserService {
 
   // Users
 
-  createDefaultUser() {
-    return this.httpc.post(this.API_URL + '/user/default', {});
-  }
-
   loginUser(user) {
 
     return this.httpc.put(this.API_URL + '/user/login', user);
