@@ -7,7 +7,7 @@ import { environment } from 'client/environments/environment';
 @Injectable()
 export class SettingsService {
 
-  API_URL = environment.API_URL;
+  API_URL = 'http://felix.' + environment.API_URL;
 
   constructor(private httpc: HttpClient, private router: Router) {
   }

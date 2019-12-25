@@ -37,8 +37,8 @@
                                 <a class="h6 m-0 text-primary" routerLink="/buckets/{{bucket.bucketName}}">
                                     {{bucket.bucketName}}</a>
                                 <div class="small text-secondary Bucket__url">
-                                    {{API_URL}}/{{bucket.bucketName}}
-                                    <span (click)="copyToClipboard(API_URL + '/' + bucket.bucketName)"
+                                    {{bucket.bucketName}}.{{API_URL}}
+                                    <span (click)="copyToClipboard( bucket.bucketName + '.' + API_URL)"
                                         class="Bucket__url_copy small">Copy</span>
                                 </div>
                             </div>
