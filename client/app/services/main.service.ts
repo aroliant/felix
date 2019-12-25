@@ -7,9 +7,13 @@ import { environment } from 'client/environments/environment';
 @Injectable()
 export class MainService {
 
-  API_URL = environment.API_URL;
+  API_URL = 'http://felix.' + environment.API_URL;
 
   constructor(private httpc: HttpClient, private router: Router) {
+  }
+
+  getGlobalSettings() {
+    return this.httpc.get(this.API_URL + '/init')
   }
 
   // Buckets

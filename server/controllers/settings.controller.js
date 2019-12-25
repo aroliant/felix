@@ -181,4 +181,11 @@ export class SettingsController {
 
   }
 
+  static getGlobalSettings(req, res) {
+    return res.json({
+      success: true,
+      PRIMARY_DOMAIN: config.PRIMARY_DOMAIN,
+    })
+  }
+
 }

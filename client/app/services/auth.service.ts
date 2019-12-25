@@ -12,7 +12,7 @@ const jwtHelper = new JwtHelperService();
 @Injectable()
 export class AuthService {
 
-  API_URL = environment.API_URL;
+  API_URL = 'http://felix.' + environment.API_URL;
 
 
   constructor(

@@ -11,6 +11,7 @@ export class AuthGuard implements CanActivate {
   canActivate() {
 
     if (localStorage.getItem('token') != null) {
+      // TODO: Check if Token is Valid
       return true;
     }
 
