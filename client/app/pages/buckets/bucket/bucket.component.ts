@@ -545,7 +545,7 @@ export class BucketComponent implements OnInit {
     formData.append('file', file);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('PUT', `${this.API_URL}/bucket/objects/${uploadFilePath}`, true);
+    xhr.open('PUT', `http://${this.API_URL}/bucket/objects/${uploadFilePath}`, true);
     xhr.upload.onprogress = function (e) {
       const percentComplete = Math.ceil((e.loaded / e.total) * 100);
     };
